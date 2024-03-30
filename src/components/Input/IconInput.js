@@ -18,6 +18,7 @@ const IconInput = ({
   secureTextEntry,
   iputContainerStyle,
   inputLabel,
+  inputMode
 }) => {
   return (
     <>
@@ -30,8 +31,8 @@ const IconInput = ({
         }}>
         <Text
           style={{
-            fontSize: width * 0.045,
-            marginVertical: height * 0.02,
+            fontSize: width * 0.04,
+            marginVertical: height * 0.002,
             color: 'black',
           }}>
           {inputLabel}
@@ -45,7 +46,7 @@ const IconInput = ({
               width: width * 0.9,
 
               borderWidth: width * 0.004,
-              padding: width * 0.025,
+              padding: width * 0.001,
               borderRadius: width * 0.4,
               borderColor: '#C19E9E',
             },
@@ -53,6 +54,7 @@ const IconInput = ({
           ]}>
           <Icon name={iconName} size={24} color={iconColor} />
           <TextInput
+          inputMode={inputMode}
             secureTextEntry={secureTextEntry}
             style={[{width: width * 0.7, fontSize: width * 0.05}, myStyle]}
             placeholder={inputPlaceholder}

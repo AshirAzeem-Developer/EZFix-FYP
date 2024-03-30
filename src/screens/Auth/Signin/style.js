@@ -8,7 +8,7 @@ export default StyleSheet.create({
 
   img:{
     width:width*0.3,
-    height: height *0.3,
+    height: height *0.2,
   },
   imgview:{
          alignItems:"center",
