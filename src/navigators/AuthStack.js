@@ -13,11 +13,13 @@ const Stack = createNativeStackNavigator();
 export const AuthStack = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="splash"
+      initialRouteName="SelectService"
       screenOptions={{
         headerShown: false,
       }}>
       <Stack.Screen name="splash" component={splash} />
+      <Stack.Screen name="SelectService" component={SelectService} />
+
       <Stack.Screen name="UserLoginScreen" component={UserLoginScreen} />
       <Stack.Screen name="SignupEmail" component={SignupEmail} />
       <Stack.Screen name="OTP" component={OTP} />

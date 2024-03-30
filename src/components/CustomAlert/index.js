@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Modal,
-  Text,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Modal, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './style';
-import {Images} from '../../assets/images';
+import {Images} from '../../assets/icons';
 
 const Index = ({navigation, ...props}) => {
   const {isVisible, onPress, message} = props;

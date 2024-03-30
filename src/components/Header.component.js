@@ -11,10 +11,9 @@ import {
 const {width, height} = Dimensions.get('window');
 
 //local
-import {Images} from '../assets/images';
+import {Images} from '../assets/icons';
 
 //third party library
-
 
 const Index = ({navigation, ...props}) => {
   return (

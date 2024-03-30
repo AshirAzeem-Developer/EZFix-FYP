@@ -13,7 +13,7 @@ const Splash = () => {
   return (
     <View style={[styles.container, styles.flex]}>
       <View style={styles.picStyle}>
-        <Image source={icons.Logo} resizeMode="contain" style={styles.img} />
+        <Image source={icons.EZLogo} resizeMode="contain" style={styles.img} />
       </View>
     </View>
   );

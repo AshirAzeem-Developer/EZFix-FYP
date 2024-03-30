@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {Images} from '../assets/images';
+import {Images} from '../assets/icons';
 import size from '../constants/size';
 
 //Screens
