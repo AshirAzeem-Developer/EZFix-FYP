@@ -2,6 +2,7 @@ import { Image, Text, View } from "react-native"
 import style from "./style";
 
 import icons from "../../../assets/icons";
+import IconInput from "../../../components/Input/IconInput";
 
 const Signin=()=>{
     return(<>
@@ -9,6 +10,9 @@ const Signin=()=>{
         <View style={style.imgview}>
         <Image source={icons.EZLogo} style={style.img}/>
         <Text style={style.txt1}>Login</Text>
+        </View>
+        <View>
+            <IconInput/>
         </View>
     </View>
     
