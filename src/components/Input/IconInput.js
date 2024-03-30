@@ -25,9 +25,8 @@ const IconInput = ({
       <View
         style={{
           flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
-          marginHorizontal: width * 0.04,
         }}>
         <Text
           style={{
@@ -46,6 +45,7 @@ const IconInput = ({
               width: width * 0.9,
 
               borderWidth: width * 0.004,
+              padding: width * 0.008,
               padding: width * 0.001,
               borderRadius: width * 0.4,
               borderColor: '#C19E9E',
