@@ -1,4 +1,4 @@
 export default {
   Logo: require('./EZFixLogo.png'),
-  EZLogo: require('./Logo.jpg'),
+  EZLogo: require('./Logo.png'),
 };
