@@ -26,7 +26,6 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="SignUp" component={SignUp} />
 
-       
       {/* BOTTOM TAB */}
       <Stack.Screen name="Home" component={BottomNavigator} />
     </Stack.Navigator>
