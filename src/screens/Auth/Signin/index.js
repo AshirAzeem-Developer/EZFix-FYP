@@ -28,6 +28,9 @@ const Signin = () => {
           <View>
             <CustomButton text={'Login'} />
           </View>
+          <View >
+            <Text style={style.txt2}>Don't have an account</Text>
+          </View>
         </KeyboardAvoidingView>
       </View>
     </>
