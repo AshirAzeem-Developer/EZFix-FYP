@@ -18,7 +18,7 @@ const IconInput = ({
   secureTextEntry,
   iputContainerStyle,
   inputLabel,
-  inputMode
+  inputMode,
 }) => {
   return (
     <>
@@ -26,6 +26,7 @@ const IconInput = ({
         style={{
           flexDirection: 'column',
           alignItems: 'center',
+          alignContent: 'flex-start',
           justifyContent: 'center',
         }}>
         <Text
@@ -54,7 +55,7 @@ const IconInput = ({
           ]}>
           <Icon name={iconName} size={24} color={iconColor} />
           <TextInput
-          inputMode={inputMode}
+            inputMode={inputMode}
             secureTextEntry={secureTextEntry}
             style={[{width: width * 0.7, fontSize: width * 0.05}, myStyle]}
             placeholder={inputPlaceholder}
