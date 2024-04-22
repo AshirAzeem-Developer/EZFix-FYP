@@ -6,16 +6,14 @@ import icons from '../../../assets/icons';
 import styles from './style';
 
 import {Dimensions} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Splash = () => {
-  useEffect(() => {}, []);
   // const {height, width} = useWindowDimensions();
   return (
-    <View style={[styles.container, styles.flex]}>
-      <View style={styles.picStyle}>
-        <Image source={icons.EZLogo} resizeMode="contain" style={styles.img} />
-      </View>
-    </View>
+    <SafeAreaView style={[styles.container]}>
+      <Image source={icons.EZLogo} resizeMode="contain" style={styles.img} />
+    </SafeAreaView>
   );
 };
 

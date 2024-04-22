@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Reset"
+      initialRouteName="SelectService"
       screenOptions={{
         headerShown: false,
       }}>
@@ -29,8 +29,6 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Forget" component={ForgetPass} />
       <Stack.Screen name="Reset" component={ResetPass} />
-
-
 
       {/* BOTTOM TAB */}
       <Stack.Screen name="Home" component={BottomNavigator} />
