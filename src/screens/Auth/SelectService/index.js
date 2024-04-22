@@ -37,7 +37,7 @@ const SelectService = () => {
       </View>
       <View style={styles.bottomContainer}>
         <Image source={images.BottomLeftImage} style={styles.leftImage} />
-        <TouchableOpacity>
+        <TouchableOpacity >
           <Image source={images.BottomRightImage} style={styles.rightImage} />
         </TouchableOpacity>
       </View>

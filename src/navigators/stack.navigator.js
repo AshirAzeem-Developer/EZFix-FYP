@@ -13,13 +13,13 @@ import Signin from '../screens/Auth/Signin';
 import SignUp from '../screens/Auth/SignUp';
 import ForgetPass from '../screens/ForgetPass';
 import ResetPass from '../screens/ResetPass';
-
+import Congrats from '../screens/CongratsScreen';
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="SelectService"
+      initialRouteName="Congrats"
       screenOptions={{
         headerShown: false,
       }}>
@@ -29,6 +29,7 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Forget" component={ForgetPass} />
       <Stack.Screen name="Reset" component={ResetPass} />
+      <Stack.Screen name="Congrats" component={Congrats} />
 
       {/* BOTTOM TAB */}
       <Stack.Screen name="Home" component={BottomNavigator} />

@@ -18,4 +18,5 @@ export default {
   EZFixBackground: require('./EZFixBackground.png'),
   BottomLeftImage: require('./BottomLeftImage.png'),
   BottomRightImage: require('./BottomRightImage.png'),
+  Congratulation:require('./Congratulations.png')
 };
