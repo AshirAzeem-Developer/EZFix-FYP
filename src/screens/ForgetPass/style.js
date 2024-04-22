@@ -1,3 +1,5 @@
+
+
 import {Dimensions, StyleSheet} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -23,8 +25,10 @@ export default StyleSheet.create({
     color: 'black',
     paddingTop: height * 0.01,
   },
-  fieldview: {
-    gap: 10,
+  txt2view: {
     paddingTop: height * 0.02,
+    alignItems:"center",
+    justifyContent: 'center',
   },
+ 
 });

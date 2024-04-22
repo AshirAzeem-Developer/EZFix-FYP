@@ -22,4 +22,10 @@ export default StyleSheet.create({
     color: 'black',
     paddingTop: height * 0.01,
   },
+
+  txt2: {
+    fontSize: width * 0.05,
+    color: 'black',
+   
+  },
 });

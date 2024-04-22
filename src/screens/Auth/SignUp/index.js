@@ -3,6 +3,7 @@ import style from './style';
 
 import icons from '../../../assets/icons';
 import IconInput from '../../../components/Input/IconInput';
+import CustomButton from '../../../components/Button';
 
 const SignUp = () => {
   return (
