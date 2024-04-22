@@ -3,9 +3,9 @@ const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   loginButton: {
-    width: width * 0.8,
-    marginHorizontal: width * 0.8,
-    marginTop: height * 0.04,
+    // width: width * 0.6,
+    // marginHorizontal: width * 0.8,
+    // marginTop: height * 0.04,
     backgroundColor: '#685C5C',
     opacity: '85%',
     padding: width * 0.04,

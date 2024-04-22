@@ -3,9 +3,9 @@ import React from 'react';
 import styles from './style';
 const {width, height} = Dimensions.get('window');
 
-export default function CustomButton({text}) {
+export default function CustomButton({text, ButtonWidth}) {
   return (
-    <TouchableOpacity style={styles.loginButton}>
+    <TouchableOpacity style={[styles.loginButton, {width: ButtonWidth}]}>
       <Text
         style={{
           textAlign: 'center',

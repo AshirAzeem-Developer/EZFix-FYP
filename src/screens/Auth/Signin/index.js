@@ -1,35 +1,53 @@
-import {Image, KeyboardAvoidingView, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  Text,
+  View,
+} from 'react-native';
 import style from './style';
 
 import icons from '../../../assets/icons';
 import IconInput from '../../../components/Input/IconInput';
 
 import CustomButton from '../../../components/Button';
-
-const Signin = () => {
+import AppHeader from '../../../components/AppHeader';
+import Input from '../../../components/Input';
+const {width, height} = Dimensions.get('window');
+const Signin = ({navigation}) => {
   return (
     <>
-      <View style={style.container}>
-        <KeyboardAvoidingView behavior="position">
-          <View style={style.imgview}>
-            <Image source={icons.EZLogo} style={style.img} />
-            <Text style={style.txt1}>Login</Text>
+      <AppHeader
+        title={'Sign In'}
+        onPressBackButton={() => navigation.navigate('Splash')}
+      />
+
+      <KeyboardAvoidingView behavior="position">
+        <View style={style.container}>
+          <View
+            style={{
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View style={style.imgview}>
+              <Image source={icons.EZLogo} style={style.img} />
+              <Text style={style.txt1}>Login</Text>
+            </View>
+
+            <Input placeholder={'Phone Number'} />
+            <Input placeholder={'Password'} />
           </View>
-          <View>
-            <IconInput
-              inputMode={'tel'}
-              inputLabel={'Enter Your Mobile Number'}
-            />
-            <IconInput
-              secureTextEntry={true}
-              inputLabel={'Enter Your Password'}
-            />
+          <View
+            style={{
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <CustomButton text={'Login'} ButtonWidth={width * 0.4} />
           </View>
-          <View>
-            <CustomButton text={'Login'} />
-          </View>
-        </KeyboardAvoidingView>
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     </>
   );
 };
