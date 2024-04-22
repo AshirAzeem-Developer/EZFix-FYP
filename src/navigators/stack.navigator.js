@@ -11,13 +11,15 @@ import {BottomNavigator} from './bottom.navigator';
 import SelectService from '../screens/Auth/SelectService';
 import Signin from '../screens/Auth/Signin';
 import SignUp from '../screens/Auth/SignUp';
+import ForgetPass from '../screens/ForgetPass';
+import ResetPass from '../screens/ResetPass';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Signin"
+      initialRouteName="Reset"
       screenOptions={{
         headerShown: false,
       }}>
@@ -25,6 +27,10 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="SelectService" component={SelectService} />
       <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Forget" component={ForgetPass} />
+      <Stack.Screen name="Reset" component={ResetPass} />
+
+
 
       {/* BOTTOM TAB */}
       <Stack.Screen name="Home" component={BottomNavigator} />
