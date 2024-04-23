@@ -11,15 +11,15 @@ import {BottomNavigator} from './bottom.navigator';
 import SelectService from '../screens/Auth/SelectService';
 import Signin from '../screens/Auth/Signin';
 import SignUp from '../screens/Auth/SignUp';
-import ForgetPass from '../screens/ForgetPass';
-import ResetPass from '../screens/ResetPass';
-import Congrats from '../screens/CongratsScreen';
+import ForgetPass from '../screens/Auth/ForgetPass';
+import ResetPass from '../screens/Auth/ResetPass';
+import Congrats from '../screens/Auth/CongratsScreen';
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="SignUp"
+      initialRouteName="SelectService"
       screenOptions={{
         headerShown: false,
       }}>
