@@ -4,15 +4,15 @@ import {
   KeyboardAvoidingView,
   Text,
   View,
+  TouchableOpacity
 } from 'react-native';
 import style from './style';
 
-import icons from '../../../assets/icons';
-import IconInput from '../../../components/Input/IconInput';
 
 import CustomButton from '../../../components/Button';
 import AppHeader from '../../../components/AppHeader';
 import Input from '../../../components/Input';
+import images from '../../../assets/images';
 const {width, height} = Dimensions.get('window');
 const Signin = ({navigation}) => {
   return (
@@ -30,22 +30,37 @@ const Signin = ({navigation}) => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <View style={style.imgview}>
-              <Image source={icons.EZLogo} style={style.img} />
-              <Text style={style.txt1}>Login</Text>
+            <View>
+              <Text style={style.txt1}>EzFix</Text>
             </View>
-
+           <View style={{paddingTop:height*0.05}}>  
             <Input placeholder={'Phone Number'} />
+            
             <Input placeholder={'Password'} />
+            </View>
           </View>
           <View
             style={{
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
+              paddingTop:width*0.05
             }}>
             <CustomButton text={'Login'} ButtonWidth={width * 0.4} />
+        
           </View>
+          <View style={{flexDirection:'row',paddingTop:height*0.02}}>
+          <Text style={{fontSize:width * 0.04}}>Don't Have an account?</Text>
+            <TouchableOpacity>
+              <Text style={{fontSize:width * 0.04}}> Signup</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity  style={{paddingTop:height*0.01}}>
+            <Text>Forget Password?</Text>
+          </TouchableOpacity>
+          <View style={style.bottomContainer}>
+        <Image source={images.LoginLeftImage} style={style.leftImage} />
+      </View>
         </View>
       </KeyboardAvoidingView>
     </>

@@ -12,12 +12,12 @@ export default StyleSheet.create({
   },
 
   img: {
-    width: width * 0.3,
-    height: height * 0.2,
+    width: width * 0.6,
+    height: height * 0.3,
   },
   imgview: {
     alignItems: 'center',
-    marginTop: height * 0.001,
+    paddingTop:height*0.009
   },
 
   txt1: {

@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
 
   img: {
-    width: width * 0.3,
+    width: width * 0.6,
     height: height * 0.2,
   },
   imgview: {

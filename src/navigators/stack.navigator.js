@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Congrats"
+      initialRouteName="SignUp"
       screenOptions={{
         headerShown: false,
       }}>
