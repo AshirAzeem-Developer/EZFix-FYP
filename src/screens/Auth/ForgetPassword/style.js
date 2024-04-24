@@ -6,7 +6,7 @@ export default StyleSheet.create({
     height: height * 0.85,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 
   img: {
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   imgview: {
     alignItems: 'center',
-    paddingTop: height * 0.009,
+    paddingTop: height * 0.1,
   },
 
   txt1: {

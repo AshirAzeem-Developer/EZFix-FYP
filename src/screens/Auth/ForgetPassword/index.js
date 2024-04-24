@@ -16,7 +16,6 @@ const {width, height} = Dimensions.get('window');
 const Index = () => {
   return (
     <>
-      <Text>Hello</Text>
       <AppHeader
         title={'Forgot'}
         onPressBackButton={() => navigation.navigate('Splash')}
