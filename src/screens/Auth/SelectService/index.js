@@ -13,7 +13,7 @@ import IconInput from '../../../components/Input/IconInput';
 import images from '../../../assets/images';
 import icons from '../../../assets/icons';
 const {width, height} = Dimensions.get('window');
-const SelectService = () => {
+const Index = () => {
   return (
     <ImageBackground style={styles.container} source={images.Back9}>
       <ImageBackground
@@ -37,7 +37,7 @@ const SelectService = () => {
       </View>
       <View style={styles.bottomContainer}>
         <Image source={images.BottomLeftImage} style={styles.leftImage} />
-        <TouchableOpacity >
+        <TouchableOpacity>
           <Image source={images.BottomRightImage} style={styles.rightImage} />
         </TouchableOpacity>
       </View>
@@ -45,4 +45,4 @@ const SelectService = () => {
   );
 };
 
-export default SelectService;
+export default Index;

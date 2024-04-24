@@ -12,12 +12,12 @@ import icons from '../../../assets/icons';
 import images from '../../../assets/images';
 import AppHeader from '../../../components/AppHeader';
 
-const ForgetPass = () => {
-  const {width, height} = Dimensions.get('window');
-
+const {width, height} = Dimensions.get('window');
+const Index = () => {
   return (
     <>
-      <AppHeader
+      <Text>Hello</Text>
+      {/* <AppHeader
         title={'Forgot'}
         onPressBackButton={() => navigation.navigate('Splash')}
       />
@@ -39,8 +39,8 @@ const ForgetPass = () => {
             <CustomButton text={'Send OTP Code'} />
           </View>
         </KeyboardAvoidingView>
-      </View>
+      </View> */}
     </>
   );
 };
-export default ForgetPass;
+export default Index;

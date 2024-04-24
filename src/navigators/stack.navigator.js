@@ -3,23 +3,22 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //Screens
 import Splash from '../screens/Auth/Splash';
-
-import Home from '../screens/App/Home';
-
-//bottom tab
-import {BottomNavigator} from './bottom.navigator';
 import SelectService from '../screens/Auth/SelectService';
 import Signin from '../screens/Auth/Signin';
 import SignUp from '../screens/Auth/SignUp';
 import ForgetPass from '../screens/Auth/ForgetPass';
 import ResetPass from '../screens/Auth/ResetPass';
 import Congrats from '../screens/Auth/CongratsScreen';
+
+//bottom tab
+import {BottomNavigator} from './bottom.navigator';
+
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="SelectService"
+      initialRouteName="ResetPass"
       screenOptions={{
         headerShown: false,
       }}>

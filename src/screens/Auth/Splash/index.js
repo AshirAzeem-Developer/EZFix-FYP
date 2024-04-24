@@ -8,7 +8,7 @@ import styles from './style';
 import {Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const Splash = () => {
+const Index = () => {
   // const {height, width} = useWindowDimensions();
   return (
     <SafeAreaView style={[styles.container]}>
@@ -17,4 +17,4 @@ const Splash = () => {
   );
 };
 
-export default Splash;
+export default Index;

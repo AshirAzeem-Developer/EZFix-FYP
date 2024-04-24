@@ -13,7 +13,7 @@ import images from '../../../assets/images';
 
 import AppHeader from '../../../components/AppHeader';
 
-const ResetPass = () => {
+const Index = () => {
   const {width, height} = Dimensions.get('window');
 
   return (
@@ -49,4 +49,4 @@ const ResetPass = () => {
     </>
   );
 };
-export default ResetPass;
+export default Index;

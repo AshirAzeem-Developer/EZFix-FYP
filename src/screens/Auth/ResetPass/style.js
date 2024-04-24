@@ -1,5 +1,3 @@
-
-
 import {Dimensions, StyleSheet} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -27,8 +25,7 @@ export default StyleSheet.create({
   },
   txt2view: {
     paddingTop: height * 0.02,
-    alignItems:"center",
+    alignItems: 'center',
     justifyContent: 'center',
   },
- 
 });
