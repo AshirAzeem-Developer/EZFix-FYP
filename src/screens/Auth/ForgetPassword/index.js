@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <>
       <Text>Hello</Text>
-      {/* <AppHeader
+      <AppHeader
         title={'Forgot'}
         onPressBackButton={() => navigation.navigate('Splash')}
       />
@@ -39,7 +39,7 @@ const Index = () => {
             <CustomButton text={'Send OTP Code'} />
           </View>
         </KeyboardAvoidingView>
-      </View> */}
+      </View>
     </>
   );
 };
