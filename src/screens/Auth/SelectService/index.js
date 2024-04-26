@@ -15,33 +15,62 @@ import icons from '../../../assets/icons';
 const {width, height} = Dimensions.get('window');
 const Index = () => {
   return (
-    <ImageBackground style={styles.container} source={images.Back9}>
-      <ImageBackground
-        source={images.EZFixBackground}
-        style={styles.titleContainer}>
-        <Text style={{fontSize: width * 0.05, fontWeight: 'bold'}}>EZFix</Text>
-      </ImageBackground>
-      <View style={styles.selectServiceContainer}>
-        <TouchableOpacity style={styles.cardStyle}>
-          <Image source={icons.SellServiceIcon} style={styles.iconStyle} />
-          <Text style={{color: 'white', fontSize: width * 0.04}}>
-            Sell Service
+    <>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image source={images.Worker} style={styles.imageStyles} />
+        </View>
+        <View>
+          <Text style={styles.text}>
+            Your Trusted Fix-It Partners at Your Doorstep!
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.cardStyle}>
-          <Image source={icons.FindServiceIcon} style={styles.iconStyle} />
-          <Text style={{color: 'white', fontSize: width * 0.04}}>
-            Search Service
+          <Text style={styles.descText}>
+            All local service provider on single platform. Reliable, convenient
+            and hassle-free approach.
           </Text>
-        </TouchableOpacity>
+        </View>
+        <View style={styles.selectServiceContainer}>
+          <TouchableOpacity style={styles.cardStyle}>
+            <Image source={images.FindAService} style={Style.serviceLogo} />
+            <Text style={{color: 'black'}}>Find A Service</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cardStyle}>
+            <Image source={images.BecomeASeller} style={Style.serviceLogo} />
+            <Text style={{color: 'black'}}>Become A Seller</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            width: width * 1,
+            paddingHorizontal: width * 0.05,
+            marginBottom: height * 0.02,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                textDecorationLine: 'underline',
+                fontSize: 16,
+              }}>
+              Sign in
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                textDecorationLine: 'underline',
+                fontSize: 16,
+              }}>
+              Skip
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.bottomContainer}>
-        <Image source={images.BottomLeftImage} style={styles.leftImage} />
-        <TouchableOpacity>
-          <Image source={images.BottomRightImage} style={styles.rightImage} />
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
+    </>
   );
 };
 

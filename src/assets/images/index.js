@@ -18,8 +18,11 @@ export default {
   EZFixBackground: require('./EZFixBackground.png'),
   BottomLeftImage: require('./BottomLeftImage.png'),
   BottomRightImage: require('./BottomRightImage.png'),
-  Congratulation:require('./Congratulations.png'),
-  LoginLeftImage:require('./LoginLeftImage.png'),
-  ForgetImage:require('./Forget.png'),
-  ResetImage:require('./ResetImage.png')
+  Congratulation: require('./Congratulations.png'),
+  LoginLeftImage: require('./LoginLeftImage.png'),
+  ForgetImage: require('./Forget.png'),
+  ResetImage: require('./ResetImage.png'),
+  Worker: require('./Worker.png'),
+  FindAService: require('./FindAService.png'),
+  BecomeASeller: require('./BecomeASeller.png'),
 };

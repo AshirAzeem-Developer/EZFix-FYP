@@ -6,7 +6,7 @@ import Splash from '../screens/Auth/Splash';
 import SelectService from '../screens/Auth/SelectService';
 import Signin from '../screens/Auth/Signin';
 import SignUp from '../screens/Auth/SignUp';
-import ForgetPass from '../screens/Auth/ForgetPass';
+
 import ResetPassword from '../screens/Auth/ResetPassword';
 import Congrats from '../screens/Auth/CongratsScreen';
 import ForgetPassword from '../screens/Auth/ForgetPassword';
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="ForgetPassword"
+      initialRouteName="SelectService"
       screenOptions={{
         headerShown: false,
       }}>

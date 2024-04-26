@@ -7,26 +7,52 @@ import images from '../../../assets/images';
 const {width, height} = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
+    // flex: 1,
+    backgroundColor: '#164377',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
 
     height: height * 1,
     width: width * 1,
     resizeMode: 'cover',
   },
-  titleContainer: {
+  imageContainer: {
+    marginTop: height * 0.175,
+    backgroundColor: 'white',
+    width: width * 0.9,
+    height: height * 0.4,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: width * 0.6,
-    height: height * 0.065,
-    resizeMode: 'cover',
-    marginVertical: height * 0.05,
+    borderTopRightRadius: 30,
+    borderBottomLeftRadius: 30,
   },
+  imageStyles: {
+    width: width * 0.5,
+    height: height * 0.6,
+    position: 'relative',
+    top: height * 0.2333,
+  },
+  text: {
+    color: 'white',
+    fontSize: width * 0.06,
+    textAlign: 'center',
+    marginTop: height * 0.02,
+    lineHeight: height * 0.04,
+  },
+  descText: {
+    color: 'white',
+    fontSize: width * 0.035,
+    textAlign: 'center',
+    marginTop: height * 0.02,
+
+    paddingHorizontal: width * 0.02,
+  },
+
   selectServiceContainer: {
     width: width * 1,
-    height: height * 0.6,
+    height: height * 0.2,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -35,31 +61,16 @@ export default StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     // opacity: 1,
-    width: width * 0.4,
-    height: height * 0.18,
+    width: width * 0.32,
+    height: height * 0.14,
     borderRadius: width * 0.01,
     marginHorizontal: width * 0.02,
   },
-  iconStyle: {
-    width: width * 0.09,
-    height: height * 0.039,
-    marginVertical: height * 0.02,
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: width * 0.9,
-    height: height * 0.12,
-  },
-  leftImage: {
-    width: width * 0.155,
-    height: height * 0.01,
-  },
-  rightImage: {
-    width: width * 0.18,
-    height: height * 0.084,
+
+  serviceLogo: {
+    width: width * 0.22,
+    height: height * 0.08,
   },
 });
