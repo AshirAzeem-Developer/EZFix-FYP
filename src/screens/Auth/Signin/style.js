@@ -10,19 +10,21 @@ export default StyleSheet.create({
     marginTop:height*0.1
 
   },
-
-  img: {
-    width: width * 0.05,
-    height: height * 0.05,
-    paddingTop: height * 0.01,
+ title:{
+ backgroundColor:"#164377",
+ borderWidth:1,
+ width:width*1,
+ height:height*0.5,
+ borderRadius: width * 0.1,
+ }, 
  
-  },
 
   txt1: {
     fontSize: width * 0.2,
-    color: '#164377',
-    paddingTop: height * 0.01,
-    fontStyle:"normal"
+    paddingTop:height*0.1,
+    color:"white",
+    fontStyle:"normal",
+    alignSelf:"center"
   },
 
   txt2: {

@@ -30,10 +30,12 @@ const Signin = ({navigation}) => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <View>
-              <Text style={style.txt1}>EzFix</Text>
+            <View style={style.title} >
+             <Image style={{resizeMode:'contain',width:width*1,alignSelf:"center",
+             paddingTop:height*0.7}} source={images.SigninPage}/>
+             {/* <Text style={style.txt1}>EzFix</Text> */}
             </View>
-           <View style={{paddingTop:height*0.1}}>  
+           <View style={{paddingTop:height*0.05}} >  
             <Input  placeholder={'Phone Number'} />
             
             <Input placeholder={'Password'} />
@@ -44,7 +46,7 @@ const Signin = ({navigation}) => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              paddingTop:width*0.3
+              paddingTop:width*0.2
             }}>
             <CustomButton text={'Login'} ButtonWidth={width * 0.4} />
         
