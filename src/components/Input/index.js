@@ -10,6 +10,7 @@ function Input({placeholder, value, onChangeText, keyboardType}) {
         placeholder={placeholder}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
+        
       />
     </View>
   );

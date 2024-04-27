@@ -9,13 +9,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
 
-  img: {
-    width: width * 0.3,
-    height: height * 0.2,
-  },
+  
   imgview: {
     alignItems: 'center',
-    paddingTop: height * 0.2,
+    paddingTop: height * 0.4,
   },
   txt1: {
     fontSize: width * 0.07,

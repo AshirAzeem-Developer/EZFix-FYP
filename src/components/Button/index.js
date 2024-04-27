@@ -12,6 +12,7 @@ export default function CustomButton({text, ButtonWidth}) {
           fontSize: width * 0.048,
           fontWeight: 'bold',
           color: 'white',
+          backgroundColor:"#075B9D"
         }}>
         {text}
       </Text>

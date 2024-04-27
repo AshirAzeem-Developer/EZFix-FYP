@@ -10,8 +10,10 @@ export default StyleSheet.create({
   },
 
   img: {
-    width: width * 0.6,
-    height: height * 0.2,
+    width: width * 0.8,
+    height: height * 0.4,
+    resizeMode:"contain"
+    
   },
   imgview: {
     alignItems: 'center',
@@ -20,8 +22,9 @@ export default StyleSheet.create({
 
   txt1: {
     fontSize: width * 0.07,
-    color: 'black',
-    paddingTop: height * 0.01,
+
+    color: '#164377',
+    paddingTop: height * 0.001,
   },
   txt2view: {
     paddingTop: height * 0.02,

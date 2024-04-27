@@ -18,7 +18,7 @@ const Signin = ({navigation}) => {
   return (
     <>
       <AppHeader
-        title={'Sign In'}
+         title={'Login'}
         onPressBackButton={() => navigation.navigate('Splash')}
       />
 
@@ -33,8 +33,8 @@ const Signin = ({navigation}) => {
             <View>
               <Text style={style.txt1}>EzFix</Text>
             </View>
-           <View style={{paddingTop:height*0.05}}>  
-            <Input placeholder={'Phone Number'} />
+           <View style={{paddingTop:height*0.1}}>  
+            <Input  placeholder={'Phone Number'} />
             
             <Input placeholder={'Password'} />
             </View>
@@ -44,7 +44,7 @@ const Signin = ({navigation}) => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              paddingTop:width*0.05
+              paddingTop:width*0.3
             }}>
             <CustomButton text={'Login'} ButtonWidth={width * 0.4} />
         
@@ -52,15 +52,13 @@ const Signin = ({navigation}) => {
           <View style={{flexDirection:'row',paddingTop:height*0.02}}>
           <Text style={{fontSize:width * 0.04}}>Don't Have an account?</Text>
             <TouchableOpacity>
-              <Text style={{fontSize:width * 0.04}}> Signup</Text>
+              <Text style={{fontSize:width * 0.04,color:"#075B9D"}}> Signup</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity  style={{paddingTop:height*0.01}}>
-            <Text>Forget Password?</Text>
+            <Text style={{fontWeight:"bold"}}>Forget Password?</Text>
           </TouchableOpacity>
-          <View style={style.bottomContainer}>
-        <Image source={images.LoginLeftImage} style={style.leftImage} />
-      </View>
+        
         </View>
       </KeyboardAvoidingView>
     </>

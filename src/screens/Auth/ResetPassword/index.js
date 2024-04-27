@@ -12,6 +12,7 @@ import icons from '../../../assets/icons';
 import images from '../../../assets/images';
 
 import AppHeader from '../../../components/AppHeader';
+import Input from '../../../components/Input';
 
 const Index = () => {
   const {width, height} = Dimensions.get('window');
@@ -31,18 +32,18 @@ const Index = () => {
           <View style={style.txt2view}>
             <Text>Now you can reset your old password</Text>
           </View>
-          <View style={{paddingTop: height * 0.05}}>
-            <IconInput
+          <View style={{paddingTop: height * 0.01}}>
+            <Input
               secureTextEntry={true}
-              inputLabel={'Enter a new Password'}
+              placeholder={'Enter a new Password'}
             />
-            <IconInput
+            <Input
               secureTextEntry={true}
-              inputLabel={'Confirm new Password'}
+              placeholder={'Confirm new Password'}
             />
           </View>
-          <View style={{paddingTop: height * 0.04}}>
-            <CustomButton text={'Submit'} />
+          <View style={{paddingTop: height * 0.06,alignSelf:"center"}}>
+            <CustomButton text={'Submit'}  ButtonWidth={width * 0.5}/>
           </View>
         </KeyboardAvoidingView>
       </View>

@@ -19,10 +19,10 @@ export default StyleSheet.create({
   },
 
   txt1: {
-    fontSize: width * 0.07,
-    color: 'black',
+    fontSize: width * 0.2,
+    color: '#164377',
     paddingTop: height * 0.01,
-    fontStyle:"italic"
+    fontStyle:"normal"
   },
 
   txt2: {
@@ -30,13 +30,7 @@ export default StyleSheet.create({
     color: 'black',
    
   },
-  bottomContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: width * 0.9,
-    height: height * 0.10,
-  },
+  
   leftImage: {
     width: width * 0.8,
     height: height * 0.4,

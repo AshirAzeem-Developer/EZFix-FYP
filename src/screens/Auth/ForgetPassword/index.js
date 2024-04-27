@@ -11,6 +11,7 @@ import {
 import icons from '../../../assets/icons';
 import images from '../../../assets/images';
 import AppHeader from '../../../components/AppHeader';
+import Input from '../../../components/Input';
 
 const {width, height} = Dimensions.get('window');
 const Index = () => {
@@ -28,14 +29,19 @@ const Index = () => {
             <Text style={style.txt1}>Forgot Password?</Text>
           </View>
           <View style={style.txt2view}>
-            <Text>Don’t worry! it happens.</Text>
-            <Text>Please enter phone number associated with your account</Text>
+            <Text>Don’t worry! it happens.Please enter phone</Text>
+            <Text> number associated with your account</Text>
           </View>
-          <View style={{paddingTop: height * 0.04}}>
-            <IconInput inputLabel={'Enter Your Mobile Number'} />
+          <View style={{paddingTop: height * 0.04,alignSelf:"center"}}>
+            <Input placeholder={'Enter Your Mobile Number'} />
           </View>
-          <View style={{paddingTop: height * 0.01}}>
-            <CustomButton text={'Send OTP Code'} />
+          <View  style={{
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingTop:height*0.1
+            }}>
+            <CustomButton text={'Send OTP Code'} ButtonWidth={width * 0.5}  />
           </View>
         </KeyboardAvoidingView>
       </View>

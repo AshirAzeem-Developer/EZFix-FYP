@@ -15,7 +15,7 @@ const Signin = ({navigation}) => {
     <KeyboardAvoidingView behavior="position">
       <View style={style.container}>
         <View style={style.imgview}>
-          <Image source={images.Congratulation} />
+          <Image  source={images.Congratulation} />
         </View>
         <View>
           <Text style={style.txt1}>You're all set!</Text>
@@ -25,9 +25,9 @@ const Signin = ({navigation}) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingTop: height * 0.04,
+            paddingTop: height * 0.1,
           }}>
-          <CustomButton text={'Lets Begin'} ButtonWidth={width * 0.9} />
+          <CustomButton text={'Lets Begin'} ButtonWidth={width * 0.4} />
         </View>
       </View>
     </KeyboardAvoidingView>
