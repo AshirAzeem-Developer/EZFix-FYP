@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import style from './style';
 
-import icons from "../../../assets/icons";
+import icons from '../../../assets/icons';
 
 import CustomButton from '../../../components/Button';
 import AppHeader from '../../../components/AppHeader';

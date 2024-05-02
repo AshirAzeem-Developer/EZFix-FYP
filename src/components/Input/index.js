@@ -1,52 +1,19 @@
 import React from 'react';
-import {View, TextInput, Dimensions, Text, Image} from 'react-native';
-
-//local import
+import {View, StyleSheet, TextInput, Text} from 'react-native';
 import styles from './styles';
 
-// dimenstion
-const {width, height} = Dimensions.get('window');
-
-//third party library
-
-const Index = ({
-  value,
-  errorMessage,
-  isTouch,
-  isError,
-  placeholderText,
-  isPassword,
-  handleOnChangeTxt,
-  textIcon,
-  verified,
-  right,
-  keyboardType,
-  alignment,
-  countryFlag,
-  countryFlagCode,
-  ...props
-}) => {
+function Input({placeholder, value, onChangeText, keyboardType}) {
   return (
-    <>
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View style={styles.imgStyleCont}>
-            <Image source={textIcon} style={styles.img} />
-          </View>
-          <TextInput
-            value={value}
-            placeholder={placeholderText}
-            placeholderTextColor="grey"
-            style={[styles.textInput]}
-            onChangeText={handleOnChangeTxt}
-            secureTextEntry={isPassword}
-            keyboardType={keyboardType}
-          />
-        </View>
-        {right}
-      </View>
-    </>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder={placeholder}
+        onChangeText={onChangeText}
+        keyboardType={keyboardType}
+        
+      />
+    </View>
   );
-};
+}
 
-export default Index;
+export default Input;

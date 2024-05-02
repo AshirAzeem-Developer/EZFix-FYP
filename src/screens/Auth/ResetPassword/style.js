@@ -10,8 +10,10 @@ export default StyleSheet.create({
   },
 
   img: {
-    width: width * 0.3,
-    height: height * 0.2,
+    width: width * 0.8,
+    height: height * 0.4,
+    resizeMode:"contain"
+    
   },
   imgview: {
     alignItems: 'center',
@@ -20,21 +22,13 @@ export default StyleSheet.create({
 
   txt1: {
     fontSize: width * 0.07,
-    color: 'black',
-    paddingTop: height * 0.01,
+
+    color: '#164377',
+    paddingTop: height * 0.001,
   },
-  fieldview: {
-    gap: 10,
+  txt2view: {
     paddingTop: height * 0.02,
-  },
-  categorySelectorContainerStyle: {
-    marginTop: height * 0.02,
-  },
-  uploadButtonContainer: {
-    width: width * 0.9,
-    marginTop: height * 0.01,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });
