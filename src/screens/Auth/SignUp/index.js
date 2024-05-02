@@ -46,9 +46,8 @@ const SignUp = () => {
                 style={{
                   fontSize: width * 0.06,
                   color: 'black',
-                  fontWeight: 'bold',
                   alignSelf: 'center',
-                  fontFamily: 'Poppins-BlackItalic',
+                  fontFamily: 'Dubai-Bold',
                 }}>
                 Register
               </Text>
@@ -97,8 +96,9 @@ const SignUp = () => {
                 }}
                 onPress={openCamera}>
                 <Image source={icons.Upload} style={{marginRight: 12}} />
-                <Text style={{fontSize: width * 0.05}}>
-                  Attach Cnic Front Picture
+                <Text
+                  style={{fontSize: width * 0.05, fontFamily: 'Dubai-Bold'}}>
+                  Attach cnic front picture
                 </Text>
               </TouchableOpacity>
             </View>

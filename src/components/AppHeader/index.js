@@ -25,8 +25,9 @@ const Index = ({title, onPressBackButton}) => {
               textAlign: 'center',
               marginRight: width * 0.18,
               fontSize: width * 0.05,
-              fontWeight: 'bold',
+              // fontWeight: 'bold',
               color: 'black',
+              fontFamily: 'Dubai-Regular',
             }}>
             {title}
           </Text>
