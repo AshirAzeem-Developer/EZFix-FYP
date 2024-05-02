@@ -27,4 +27,7 @@ export default StyleSheet.create({
     gap: 10,
     paddingTop: height * 0.02,
   },
+  categorySelectorContainerStyle: {
+    marginTop: height * 0.02,
+  },
 });

@@ -25,5 +25,6 @@ export default {
   Worker: require('./Worker.png'),
   FindAService: require('./FindAService.png'),
   BecomeASeller: require('./BecomeASeller.png'),
-  SigninPage: require('./SigninPage.png')
+  SigninPage: require('./SigninPage.png'),
+  AbstractImage: require('./AbstractImage.png'),
 };
