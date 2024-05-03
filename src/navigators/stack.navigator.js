@@ -10,6 +10,7 @@ import SignUp from '../screens/Auth/SignUp';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import Congrats from '../screens/Auth/CongratsScreen';
 import ForgetPassword from '../screens/Auth/ForgetPassword';
+import OTP from '../screens/Auth/OTP';
 
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
@@ -19,7 +20,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="SignUp"
+      initialRouteName="Congrats"
       screenOptions={{
         headerShown: false,
       }}>
@@ -28,6 +29,7 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+      <Stack.Screen name="OTP" component={OTP} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen name="Congrats" component={Congrats} />
 

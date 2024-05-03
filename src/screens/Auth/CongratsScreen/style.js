@@ -9,7 +9,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
 
-  
   imgview: {
     alignItems: 'center',
     paddingTop: height * 0.4,
@@ -17,13 +16,13 @@ export default StyleSheet.create({
   txt1: {
     fontSize: width * 0.07,
     color: 'black',
-    textAlign:"center",
-    paddingTop:height*0.02
+    textAlign: 'center',
+    paddingTop: height * 0.02,
+    fontFamily: 'Dubai-Regular',
   },
 
   txt2: {
     fontSize: width * 0.02,
     color: 'black',
-   
   },
 });

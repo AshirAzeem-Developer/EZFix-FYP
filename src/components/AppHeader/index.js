@@ -12,7 +12,7 @@ import images from '../../assets/images';
 import {Image} from 'react-native-elements';
 import styles from './style';
 
-const Index = ({title, onPressBackButton}) => {
+const Index = ({title, onPressBackButton, navigation}) => {
   return (
     <>
       <View style={styles.container}>

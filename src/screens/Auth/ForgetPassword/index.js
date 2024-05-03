@@ -14,12 +14,12 @@ import AppHeader from '../../../components/AppHeader';
 import Input from '../../../components/Input';
 
 const {width, height} = Dimensions.get('window');
-const Index = () => {
+const Index = ({navigation}) => {
   return (
     <>
       <AppHeader
         title={'Forgot'}
-        onPressBackButton={() => navigation.navigate('Splash')}
+        onPressBackButton={() => navigation.goBack()}
       />
 
       <View style={style.container}>
@@ -32,16 +32,21 @@ const Index = () => {
             <Text>Don’t worry! it happens.Please enter phone</Text>
             <Text> number associated with your account</Text>
           </View>
-          <View style={{paddingTop: height * 0.04,alignSelf:"center"}}>
+          <View style={{paddingTop: height * 0.04, alignSelf: 'center'}}>
             <Input placeholder={'Enter Your Mobile Number'} />
           </View>
-          <View  style={{
+          <View
+            style={{
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              paddingTop:height*0.1
+              paddingTop: height * 0.04,
             }}>
-            <CustomButton text={'Send OTP Code'} ButtonWidth={width * 0.5}  />
+            <CustomButton
+              text={'Send OTP Code'}
+              ButtonWidth={width * 0.5}
+              onPress={() => navigation.navigate('ResetPassword')}
+            />
           </View>
         </KeyboardAvoidingView>
       </View>

@@ -27,4 +27,5 @@ export default {
   BecomeASeller: require('./BecomeASeller.png'),
   SigninPage: require('./SigninPage.png'),
   AbstractImage: require('./AbstractImage.png'),
+  LockOTP: require('./LockOTP.png'),
 };
