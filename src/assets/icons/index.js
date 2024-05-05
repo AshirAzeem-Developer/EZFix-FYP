@@ -10,5 +10,8 @@ export default {
   Order:require('./order.png'),
   Notification:require('./notifications.png'),
   Home:require('./Home.png'),
-  Profile:require('./Profile.png')
+  Electrician:require('./Electrician.png'),
+  Plumber:require('./Plumber.png'),
+  Mechanic:require('./Mechanic.png'),
+
 };

@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Orders from '../screens/Seekers/Orders';
 import Notifications from '../screens/Seekers/Notifications';
 import Profile from '../screens/Seekers/Profile';
-import Home from '../screens/Seekers/Home';
+import Home from '../screens/Seekers/Home/Home';
 import {Image} from 'react-native-elements';
 import icons from '../assets/icons';
 
@@ -22,6 +22,7 @@ const BottomNavigator = () => {
                 <Image source={icons.Home} style={{width: 25, height: 25}} />
               );
             },
+            headerShown:false
           }}
         />
         <Bottom.Screen
