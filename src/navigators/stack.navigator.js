@@ -14,8 +14,6 @@ import OTP from '../screens/Auth/OTP';
 
 //bottom tab
 
-import DrawerNavigation from './DrawerNavigation';
-import Main from '../screens/Seekers/Main';
 import {BottomNavigator} from './bottom.navigator';
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +21,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="BottomNavigator"
+      initialRouteName="SelectService"
       screenOptions={{
         headerShown: false,
       }}>
