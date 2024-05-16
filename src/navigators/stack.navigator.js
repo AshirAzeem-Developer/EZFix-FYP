@@ -16,13 +16,14 @@ import OTP from '../screens/Auth/OTP';
 
 import DrawerNavigation from './DrawerNavigation';
 import Main from '../screens/Seekers/Main';
+import {BottomNavigator} from './bottom.navigator';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="BottomNavigator"
       screenOptions={{
         headerShown: false,
       }}>
@@ -36,6 +37,7 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="Congrats" component={Congrats} />
 
       {/* BOTTOM TAB */}
+      <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
     </Stack.Navigator>
   );
 };
