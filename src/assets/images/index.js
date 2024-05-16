@@ -28,4 +28,6 @@ export default {
   SigninPage: require('./SigninPage.png'),
   AbstractImage: require('./AbstractImage.png'),
   LockOTP: require('./LockOTP.png'),
+  Home: require('./Home.png'),
+  Orders: require('./Orders.png'),
 };

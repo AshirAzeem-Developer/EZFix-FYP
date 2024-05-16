@@ -14,18 +14,7 @@ const {width, height} = Dimensions.get('window');
 const Index = ({navigation, ...props}) => {
   return (
     <>
-      <MyStatusBar backgroundColor="#F6F9FE" />
-      <SafeAreaView style={styles.container}>
-        <Header HeadTxt={'About'} />
-        <ScrollView
-          contentContainerStyle={styles.contStyle}
-          showsVerticalScrollIndicator={false}>
-          <Text style={styles.txt1} onPress={() => navigation.goBack()}>
-            About
-          </Text>
-        </ScrollView>
-      </SafeAreaView>
-      {/* {loader && <Loader />} */}
+      <Text>Orders</Text>
     </>
   );
 };
