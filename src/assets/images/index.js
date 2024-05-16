@@ -30,4 +30,6 @@ export default {
   LockOTP: require('./LockOTP.png'),
   Home: require('./Home.png'),
   Orders: require('./Orders.png'),
+  Notification: require('./Notification.png'),
+  Profile: require('./Profile.png'),
 };

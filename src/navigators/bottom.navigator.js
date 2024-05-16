@@ -8,6 +8,8 @@ import size from '../constants/size';
 
 import Home from '../screens/App/Home';
 import Orders from '../screens/App/Orders';
+import Notifications from '../screens/App/Notifications';
+import Profile from '../screens/App/Profile';
 
 // Icons and Styles Imports
 import icons from '../assets/icons';
@@ -58,7 +60,7 @@ const HomeIcon = ({focused, name, icon}) => {
       focused={focused}
       name={name}
       icon={icon}
-      selectedColor={'#008000'}
+      selectedColor={'#164377'}
     />
   );
 };
@@ -91,8 +93,24 @@ export const BottomNavigator = ({}) => {
             <HomeIcon focused={focused} name="" icon={images.Orders} />
           ),
         }}></Tab.Screen>
-
       <Tab.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <HomeIcon focused={focused} name="" icon={images.Notification} />
+          ),
+        }}></Tab.Screen>
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <HomeIcon focused={focused} name="" icon={images.Profile} />
+          ),
+        }}></Tab.Screen>
+
+      {/* <Tab.Screen
         name="NewLead"
         component={NewLead}
         options={{
@@ -130,7 +148,7 @@ export const BottomNavigator = ({}) => {
               />
             </View>
           ),
-        }}></Tab.Screen>
+        }}></Tab.Screen> */}
     </Tab.Navigator>
   );
 };
