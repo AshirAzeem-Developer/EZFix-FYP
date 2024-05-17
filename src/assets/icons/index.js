@@ -1,5 +1,3 @@
-
-
 export default {
   Logo: require('./EZFixLogo.png'),
   EZLogo: require('./Logo.png'),
@@ -7,11 +5,8 @@ export default {
   SellServiceIcon: require('./SellServiceIcon.png'),
   FindServiceIcon: require('./FindServiceIcon.png'),
   Upload: require('./Upload.png'),
-  Order:require('./order.png'),
-  Notification:require('./notifications.png'),
-  Home:require('./Home.png'),
-  Electrician:require('./Electrician.png'),
-  Plumber:require('./Plumber.png'),
-  Mechanic:require('./Mechanic.png'),
-
+  Order: require('./order.png'),
+  Notification: require('./notifications.png'),
+  Home: require('./Home.png'),
+  Menu: require('./Menu.png'),
 };
