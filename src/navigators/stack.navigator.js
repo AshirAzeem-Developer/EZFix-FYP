@@ -14,8 +14,6 @@ import OTP from '../screens/Auth/OTP';
 
 //bottom tab
 
-import DrawerNavigation from './DrawerNavigation';
-import Main from '../screens/Seekers/Main';
 import {BottomNavigator} from './bottom.navigator';
 
 const Stack = createNativeStackNavigator();

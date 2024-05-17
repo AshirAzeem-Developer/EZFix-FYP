@@ -32,4 +32,5 @@ export default {
   Orders: require('./Orders.png'),
   Notification: require('./Notification.png'),
   Profile: require('./Profile.png'),
+  HandyMan: require('./HandyMan.png'),
 };
