@@ -8,8 +8,5 @@ export default {
   Order: require('./order.png'),
   Notification: require('./notifications.png'),
   Home: require('./Home.png'),
-  Electrician: require('./Electrician.png'),
-  Plumber: require('./Plumber.png'),
-  Mechanic: require('./Mechanic.png'),
   Menu: require('./Menu.png'),
 };
