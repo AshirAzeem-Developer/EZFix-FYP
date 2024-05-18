@@ -9,4 +9,7 @@ export default {
   Notification: require('./notifications.png'),
   Home: require('./Home.png'),
   Menu: require('./Menu.png'),
+  Electrician:require('./Electrician.png'),
+  Painter:require('./painter.png'),
+  Plumber:require('./Plumber.png')
 };
