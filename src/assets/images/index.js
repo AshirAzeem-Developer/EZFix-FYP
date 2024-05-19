@@ -48,6 +48,5 @@ export default {
   Plumber: require('./Plumber.png'),
   ViewAll: require('./ViewAll.png'),
   Waiter: require('./Waiter.png'),
-  HandyMan: require('./HandyMan.png'),
-  ServiceWorker: require('./ServiceWorker.png'),
+  SeekerImg:require('./Seekerimg.png')
 };

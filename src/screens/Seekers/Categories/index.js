@@ -21,7 +21,7 @@ const Categories = () => {
     { img: icons.Plumber, name: "Computer" },
     { img: icons.Plumber, name: "Band" },
     { img: icons.Plumber, name: "Car Mech" },
-    { img: icons.Plumber, name: "House Helper" },
+    { img: icons.Plumber, name: "Helper" },
     { img: icons.Plumber, name: "Bike Mech" },
   ];
 
