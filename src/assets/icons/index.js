@@ -11,4 +11,7 @@ export default {
   Menu: require('./Menu.png'),
   Star: require('./Star.png'),
   Location: require('./Location.png'),
+  Electrician: require('./Electrician.png'),
+  Painter: require('./painter.png'),
+  Plumber: require('./Plumber.png'),
 };
