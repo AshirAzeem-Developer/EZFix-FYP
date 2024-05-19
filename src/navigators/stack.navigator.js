@@ -17,13 +17,14 @@ import OTP from '../screens/Auth/OTP';
 import {BottomNavigator} from './bottom.navigator';
 import Categories from '../screens/Seekers/Categories';
 import CategorySelect from '../screens/Seekers/CategorySelect';
+import SeekerDetails from '../screens/Seekers/SeekerDetails';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="CategorySelect"
+      initialRouteName="SeekerDetails"
       screenOptions={{
         headerShown: false,
       }}>
@@ -37,6 +38,8 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="Congrats" component={Congrats} />
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="CategorySelect" component={CategorySelect} />
+      <Stack.Screen name="SeekerDetails" component={SeekerDetails} />
+
 
 
 
