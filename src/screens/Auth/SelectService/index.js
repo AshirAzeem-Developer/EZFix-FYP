@@ -9,7 +9,6 @@ import React from 'react';
 import Style from './style';
 import styles from './style';
 import {Image} from 'react-native-elements';
-import IconInput from '../../../components/Input/IconInput';
 import images from '../../../assets/images';
 import icons from '../../../assets/icons';
 const {width, height} = Dimensions.get('window');

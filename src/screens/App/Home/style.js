@@ -82,4 +82,26 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: width * 0.06,
   },
+  categoriesContaine: {
+    flexDirection: 'row',
+  },
+  categoryImageStyle: {
+    width: width * 0.1,
+    height: height * 0.045,
+  },
+  categoryContainer: {
+    backgroundColor: '#d8e7f8',
+    borderRadius: width * 0.02,
+    padding: width * 0.038,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: height * 0.02,
+    marginHorizontal: width * 0.012,
+  },
+  topRatedHeadingContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
 });

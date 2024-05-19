@@ -9,4 +9,6 @@ export default {
   Notification: require('./notifications.png'),
   Home: require('./Home.png'),
   Menu: require('./Menu.png'),
+  Star: require('./Star.png'),
+  Location: require('./Location.png'),
 };
