@@ -41,72 +41,22 @@ const Index = ({navigation, ...props}) => {
   ];
   return (
     <>
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        {/* ================ >>> Header <<<< ================ */}
-        <View style={styles.headerContainer}>
-          <TouchableOpacity>
-            <Image source={icons.Menu} style={styles.menu} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image source={images.HandyMan} style={styles.profileLogo} />
-          </TouchableOpacity>
-        </View>
-        {/* ================ >>> Search <<<< ================ */}
-        <View style={styles.searchContainer}></View>
-
-        {/* ============== >>>  Categories <<<< ================= */}
-        <View>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: width * 0.06,
-              fontWeight: 'bold',
-              marginLeft: width * 0.04,
-              marginTop: height * 0.02,
-              fontFamily: 'Dubai-Bold',
-            }}>
-            Categories
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingHorizontal: width * 0.02,
-
-              alignItems: 'center',
-            }}>
-            {serviceCategories.map((cat, ind) => {
-              return (
-                <View style={styles.categoryContainer} key={ind}>
-                  <Image source={cat.image} style={styles.categoryImageStyle} />
-                  <Text style={{marginTop: height * 0.01}}>{cat.name}</Text>
-                </View>
-              );
-            })}
-            <TouchableOpacity
-              style={{
-                padding: width * 0.04,
-                paddingHorizontal: width * 0.04,
-                // borderRadius: 10,
-                borderRadius: width * 0.02,
-                padding: width * 0.038,
-                backgroundColor: '#d8e7f8',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginVertical: height * 0.02,
-                marginHorizontal: width * 0.015,
-              }}>
-              <Image
-                source={images.ViewAll}
-                style={styles.categoryImageStyle}
-              />
-              <Text style={{marginTop: height * 0.01}}>View All</Text>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{flex: 1, backgroundColor: 'white'}}>
+          {/* ================ >>> Header <<<< ================ */}
+          <View style={styles.headerContainer}>
+            <TouchableOpacity>
+              <Image source={icons.Menu} style={styles.menu} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image source={images.HandyMan} style={styles.profileLogo} />
             </TouchableOpacity>
           </View>
-        </View>
+          {/* ================ >>> Search <<<< ================ */}
+          <View style={styles.searchContainer}></View>
 
-        <View>
-          <View style={styles.topRatedHeadingContainer}>
+          {/* ============== >>>  Categories <<<< ================= */}
+          <View>
             <Text
               style={{
                 color: 'black',
@@ -114,26 +64,83 @@ const Index = ({navigation, ...props}) => {
                 fontWeight: 'bold',
                 marginLeft: width * 0.04,
                 marginTop: height * 0.02,
+                fontFamily: 'Dubai-Bold',
               }}>
-              Top Rated Seller
+              Categories
             </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                paddingHorizontal: width * 0.02,
 
-            <TouchableOpacity>
+                alignItems: 'center',
+              }}>
+              {serviceCategories.map((cat, ind) => {
+                return (
+                  <View style={styles.categoryContainer} key={ind}>
+                    <Image
+                      source={cat.image}
+                      style={styles.categoryImageStyle}
+                    />
+                    <Text style={{marginTop: height * 0.01}}>{cat.name}</Text>
+                  </View>
+                );
+              })}
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Categories')}
+                style={{
+                  padding: width * 0.04,
+                  paddingHorizontal: width * 0.04,
+                  borderRadius: width * 0.02,
+                  padding: width * 0.038,
+                  backgroundColor: '#d8e7f8',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginVertical: height * 0.02,
+                  marginHorizontal: width * 0.015,
+                  elevation: 5,
+                }}>
+                <Image
+                  source={images.ViewAll}
+                  style={styles.categoryImageStyle}
+                />
+                <Text style={{marginTop: height * 0.01}}>View All</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View>
+            <View style={styles.topRatedHeadingContainer}>
               <Text
                 style={{
-                  color: 'grey',
-                  fontSize: width * 0.04,
+                  color: 'black',
+                  fontSize: width * 0.06,
                   fontWeight: 'bold',
-                  marginRight: width * 0.04,
+                  marginLeft: width * 0.04,
                   marginTop: height * 0.02,
                 }}>
-                See All
+                Top Rated Seller
               </Text>
-            </TouchableOpacity>
+
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    color: 'grey',
+                    fontSize: width * 0.04,
+                    fontWeight: 'bold',
+                    marginRight: width * 0.04,
+                    marginTop: height * 0.02,
+                  }}>
+                  See All
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <SellerCard />
           </View>
-          <SellerCard />
         </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 };

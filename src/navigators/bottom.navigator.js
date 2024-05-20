@@ -15,6 +15,7 @@ import Profile from '../screens/App/Profile';
 import icons from '../assets/icons';
 import GlobalStyle from '../constants/GlobalStyle';
 import color from '../constants/color';
+import images from '../assets/images';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

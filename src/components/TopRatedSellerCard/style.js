@@ -19,8 +19,10 @@ export default StyleSheet.create({
     height: height * 0.15,
     flexDirection: 'row',
     marginTop: height * 0.033,
-    // borderRadius: width * 0.0,
+    borderRadius: width * 0.01,
     backgroundColor: '#d8e7f8',
+    elevation: 5,
+
     // paddingVertical: height * 0.02,
   },
   ratingImage: {
@@ -46,5 +48,6 @@ export default StyleSheet.create({
     backgroundColor: '#164377',
     padding: 5,
     paddingHorizontal: 10,
+    borderRadius: 5,
   },
 });

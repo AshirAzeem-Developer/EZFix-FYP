@@ -15,14 +15,14 @@ import OTP from '../screens/Auth/OTP';
 //bottom tab
 
 import {BottomNavigator} from './bottom.navigator';
-import Categories from '../screens/Seekers/Categories';
+import Categories from '../screens/App/Categories';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Categories"
+      initialRouteName="BottomNavigator"
       screenOptions={{
         headerShown: false,
       }}>
@@ -36,10 +36,8 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="Congrats" component={Congrats} />
       <Stack.Screen name="Categories" component={Categories} />
 
-
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-
     </Stack.Navigator>
   );
 };

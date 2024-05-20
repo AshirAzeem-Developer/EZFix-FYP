@@ -1,4 +1,3 @@
-
 import {Dimensions, StyleSheet} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -8,19 +7,18 @@ export default StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   categoryheading: {
-    marginTop: height * 0.05,
+    marginTop: height * 0.02,
     alignItems: 'center',
   },
   listcontainer: {
     alignItems: 'center',
     paddingBottom: height * 0.1,
-    paddingTop:height * 0.04,
+    paddingTop: height * 0.04,
   },
   categoryList: {
     padding: width * 0.05,
     borderRadius: width * 0.03,
 
-    
     elevation: 5,
     backgroundColor: '#FFF',
     margin: width * 0.03,
@@ -28,10 +26,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: width * 0.28,
     height: height * 0.12,
-
   },
   txt1: {
-    fontSize: width * 0.04,
+    fontSize: width * 0.035,
     color: 'black',
     textAlign: 'center',
     paddingTop: height * 0.01,

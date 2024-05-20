@@ -66,72 +66,76 @@ const SellerCard = () => {
     },
   ];
   return (
-    <FlatList
-      data={sellers}
-      renderItem={({item}) => (
-        <View style={styles.cardStyles}>
-          <View>
-            <Image source={item.image} style={styles.image} />
-          </View>
-          <View style={{paddingVertical: 10}}>
-            <Text
-              style={{
-                fontSize: width * 0.05,
-                marginLeft: width * 0.02,
-                fontWeight: 'bold',
-                color: 'black',
-              }}>
-              {item.name}
-            </Text>
-            <View style={styles.ratingsContainer}>
-              <Image source={icons.Star} style={styles.ratingImage} />
+    <View style={styles.container}>
+      <FlatList
+        data={sellers}
+        renderItem={({item}) => (
+          <View style={styles.cardStyles}>
+            <View>
+              <Image source={item.image} style={styles.image} />
+            </View>
+            <View style={{paddingVertical: 10}}>
               <Text
                 style={{
+                  fontSize: width * 0.05,
                   marginLeft: width * 0.02,
-                  color: 'black',
-                  fontSize: width * 0.035,
-                }}>
-                {item.ratings}
-              </Text>
-            </View>
-            <View style={styles.locationContainer}>
-              <Image source={icons.Location} style={styles.locationImage} />
-              <Text style={{marginLeft: width * 0.02}}>{item.location}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text
-                style={{
-                  marginLeft: width * 0.02,
-                  fontSize: width * 0.07,
                   fontWeight: 'bold',
+                  color: 'black',
                 }}>
-                {item.category}
+                {item.name}
               </Text>
-
-              <Pressable style={styles.buttonStyle}>
+              <View style={styles.ratingsContainer}>
+                <Image source={icons.Star} style={styles.ratingImage} />
                 <Text
                   style={{
-                    color: 'white',
+                    marginLeft: width * 0.02,
+                    color: 'black',
+                    fontSize: width * 0.035,
                   }}>
-                  Book Now
+                  {item.ratings}
                 </Text>
-              </Pressable>
+              </View>
+              <View style={styles.locationContainer}>
+                <Image source={icons.Location} style={styles.locationImage} />
+                <Text style={{marginLeft: width * 0.02}}>{item.location}</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
+                <Text
+                  style={{
+                    marginLeft: width * 0.02,
+                    fontSize: width * 0.07,
+                    fontWeight: 'bold',
+                  }}>
+                  {item.category}
+                </Text>
+
+                <Pressable
+                  style={styles.buttonStyle}
+                  onPress={() => console.log('Im Pressed', item)}>
+                  <Text
+                    style={{
+                      color: 'white',
+                    }}>
+                    Book Now
+                  </Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
-      )}
-      keyExtractor={item => item.id}
-      contentContainerStyle={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    />
+        )}
+        keyExtractor={item => item.id}
+        contentContainerStyle={{
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      />
+    </View>
   );
 };
 

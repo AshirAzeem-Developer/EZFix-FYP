@@ -98,6 +98,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginVertical: height * 0.02,
     marginHorizontal: width * 0.012,
+    elevation: 5,
   },
   topRatedHeadingContainer: {
     flexDirection: 'row',
