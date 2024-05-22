@@ -30,18 +30,17 @@ const Categories = ({navigation}) => {
     {img: images.ComputerTechnician, name: 'Computer'},
     {img: images.BandGroup, name: 'Band'},
     {img: images.CarMechanic, name: 'Car Mech'},
-    {img: images.HandyMan, name: 'House Helper'},
+    {img: images.HouseHelper, name: 'House Helper'},
     {img: images.BikeRepair, name: 'Bike Mech'},
   ];
 
   return (
     <View style={style.container}>
-      <AppHeader onPressBackButton={() => navigation.goBack()} />
-      <View style={style.categoryheading}>
-        <Text style={{color: 'black', fontSize: 30, fontWeight: 'bold'}}>
-          Categories
-        </Text>
-      </View>
+      <AppHeader
+        onPressBackButton={() => navigation.goBack()}
+        title={'Categories'}
+      />
+
       <View style={style.listcontainer}>
         <FlatList
           data={category}

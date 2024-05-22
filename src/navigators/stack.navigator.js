@@ -16,16 +16,16 @@ import OTP from '../screens/Auth/OTP';
 
 import {BottomNavigator} from './bottom.navigator';
 import Categories from '../screens/App/Categories';
-import Categories from '../screens/Seekers/Categories';
-import CategorySelect from '../screens/Seekers/CategorySelect';
-import SeekerDetails from '../screens/Seekers/SeekerDetails';
+
+import CategorySelect from '../screens/App/CategorySelect';
+import SeekerDetails from '../screens/App/SeekerDetails';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="BottomNavigator"
+      initialRouteName="SeekerDetails"
       screenOptions={{
         headerShown: false,
       }}>

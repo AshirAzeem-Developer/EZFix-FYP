@@ -7,7 +7,6 @@ export default StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   categoryheading: {
-    marginTop: height * 0.02,
     alignItems: 'center',
   },
   listcontainer: {
