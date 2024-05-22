@@ -13,37 +13,31 @@ export default StyleSheet.create({
   listcontainer: {
     alignItems: 'flex-start',
     paddingBottom: height * 0.1,
-    paddingTop:height * 0.02,
+    paddingTop: height * 0.02,
   },
   sellerCardContainer: {
-
     width: width * 0.95,
     height: height * 0.15,
     backgroundColor: 'red',
     marginTop: height * 0.02,
   },
   image: {
-    width: width * 0.9,
+    width: width * 1,
     height: height * 0.32,
-    borderTopRightRadius: width * 0.03,
-    borderBottomRightRadius: width * 0.03,
-   
   },
   cardStyles: {
     width: width * 0.95,
     flexDirection: 'column',
     // borderRadius: width * 0.0,
-   marginLeft:width * 0.1,
+    marginLeft: width * 0.1,
     margin: width * 0.03,
- 
-   
+
     // paddingVertical: height * 0.02,
   },
   ratingImage: {
     width: width * 0.05,
     height: height * 0.025,
-    marginTop:height*0.01,
-   
+    marginTop: height * 0.01,
   },
   ratingsContainer: {
     flexDirection: 'row',
@@ -63,8 +57,8 @@ export default StyleSheet.create({
     backgroundColor: '#164377',
     padding: 5,
     paddingHorizontal: 10,
-     width:width*0.3,
-     height:height*0.05,
-     borderRadius:10
+    width: width * 0.3,
+    height: height * 0.05,
+    borderRadius: 10,
   },
 });
