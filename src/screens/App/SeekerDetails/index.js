@@ -44,6 +44,7 @@ const SeekerDetails = () => {
       <View>
         <Image source={images.DemoSeeker} style={style.image} />
       </View>
+      <View style={style.profileDetails}></View>
     </View>
   );
 };

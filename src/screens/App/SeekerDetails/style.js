@@ -22,8 +22,11 @@ export default StyleSheet.create({
     marginTop: height * 0.02,
   },
   image: {
-    width: width * 1,
-    height: height * 0.32,
+    width: width * 1.1,
+    height: height * 0.25,
+    alignSelf: 'center',
+
+    // zIndex: 0,
   },
   cardStyles: {
     width: width * 0.95,
@@ -60,5 +63,17 @@ export default StyleSheet.create({
     width: width * 0.3,
     height: height * 0.05,
     borderRadius: 10,
+  },
+
+  // ========= New Styling ==========
+
+  profileDetails: {
+    height: height * 0.8,
+    width: width * 1,
+    zIndex: 10,
+    backgroundColor: 'grey',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    marginTop: -25,
   },
 });
