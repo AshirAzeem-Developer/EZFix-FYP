@@ -8,7 +8,7 @@ const Ratings = () => {
     <TapRating
       ratingCount={5}
       style={{alignSelf: 'flex-end'}}
-      defaultRating={2} ````````````````
+      defaultRating={2}
       imageSize={20}
       onStartRating={rating => console.log('Rating is', rating.value)}
     />
