@@ -70,10 +70,10 @@ export default StyleSheet.create({
   profileDetails: {
     height: height * 0.8,
     width: width * 1,
-    zIndex: 10,
-    backgroundColor: 'grey',
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    marginTop: -25,
+    // zIndex: 10,
+    backgroundColor: 'white',
+    borderTopRightRadius: width * 0.03,
+    borderTopLeftRadius: width * 0.03,
+    marginTop: -height * 0.0145,
   },
 });

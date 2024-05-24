@@ -6,6 +6,8 @@ export default {
   PADDED_WIDTH: width - width * 0.06,
   FONTSIZE: 14,
   FONTSIZE_HIGH: 18,
+  FONTSIZE_NAME: 28,
+  FONTSIZE_CATEGORY: 20,
   FONTSIZE_SMALL: 10,
   WIDTH: width,
   HEIGHT: height,

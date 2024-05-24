@@ -8,12 +8,13 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import style from './style';
+import styles from './style';
 import images from '../../../assets/images';
 import size from '../../../constants/size';
 import {TouchableOpacity} from 'react-native';
 import CustomButton from '../../../components/Button';
 import icons from '../../../assets/icons';
+import Ratings from '../../../components/Ratings';
 const {width, height} = Dimensions.get('window');
 const SeekerDetails = () => {
   const category = [
@@ -40,11 +41,29 @@ const SeekerDetails = () => {
     },
   ];
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <View>
-        <Image source={images.DemoSeeker} style={style.image} />
+        <Image source={images.DemoSeeker} style={styles.image} />
+        <View style={styles.profileDetails}>
+          <Text
+            style={{
+              fontSize: size.FONTSIZE_NAME,
+              fontFamily: 'Dubai-Bold',
+              marginLeft: width * 0.04,
+              marginTop: height * 0.02,
+            }}>
+            Hafiz Naeem
+          </Text>
+          <Text
+            style={{
+              fontSize: size.FONTSIZE_CATEGORY,
+              marginLeft: width * 0.04,
+            }}>
+            Carpenter
+          </Text>
+          <Ratings />
+        </View>
       </View>
-      <View style={style.profileDetails}></View>
     </View>
   );
 };
