@@ -3,10 +3,21 @@ import React from 'react';
 import styles from './style';
 const {width, height} = Dimensions.get('window');
 
-export default function CustomButton({text, ButtonWidth, onPress,ButtonHeight}) {
+export default function CustomButton({
+  text,
+  ButtonWidth,
+  onPress,
+  ButtonHeight,
+  myStyles,
+}) {
   return (
     <TouchableOpacity
-      style={[styles.loginButton, {width: ButtonWidth},{height:ButtonHeight}]}
+      style={[
+        styles.loginButton,
+        myStyles,
+        {width: ButtonWidth},
+        {height: ButtonHeight},
+      ]}
       onPress={onPress}>
       <Text
         style={{
@@ -15,7 +26,6 @@ export default function CustomButton({text, ButtonWidth, onPress,ButtonHeight}) 
           // fontWeight: 'bold',
           color: 'white',
           fontFamily: 'Dubai-Bold',
-        
         }}>
         {text}
       </Text>

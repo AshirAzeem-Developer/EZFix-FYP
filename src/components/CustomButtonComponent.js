@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import Size from '../constants/size';
 import color from '../constants/color';
-import GlobalStyle from '../constants/globalStyle';
+import GlobalStyle from '../constants/GlobalStyle';
 
 const CustomButtonComponent = ({
   style,

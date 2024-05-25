@@ -45,11 +45,9 @@ export default StyleSheet.create({
   ratingsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  locationContainer: {
-    flexDirection: 'row',
     marginTop: height * 0.01,
   },
+
   locationImage: {
     width: width * 0.03,
     height: height * 0.02,
@@ -75,5 +73,22 @@ export default StyleSheet.create({
     borderTopRightRadius: width * 0.03,
     borderTopLeftRadius: width * 0.03,
     marginTop: -height * 0.0145,
+  },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  aboutContainer: {
+    marginLeft: width * 0.03,
+    marginTop: height * 0.02,
+  },
+  reviewsContainer: {
+    flexDirection: 'column',
+    marginTop: height * 0.04,
+  },
+  reviews: {
+    flexDirection: 'column',
+    paddingBottom: 5,
   },
 });
