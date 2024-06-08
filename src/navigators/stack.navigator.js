@@ -20,13 +20,14 @@ import Categories from '../screens/App/Categories';
 import CategorySelect from '../screens/App/CategorySelect';
 import SeekerDetails from '../screens/App/SeekerDetails';
 import WorkDetails from '../screens/App/WorkDetails';
+import Order from '../screens/App/Orders';
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="WorkDetails"
+      initialRouteName="Orders"
       screenOptions={{
         headerShown: false,
       }}>
@@ -42,6 +43,8 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="CategorySelect" component={CategorySelect} />
       <Stack.Screen name="SeekerDetails" component={SeekerDetails} />
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
+      <Stack.Screen name="Orders" component={Order} />
+
 
 
 
