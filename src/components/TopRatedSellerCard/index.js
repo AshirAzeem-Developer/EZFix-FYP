@@ -68,51 +68,31 @@ const SellerCard = () => {
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
+        style={styles.flatListStyles}
         data={sellers}
         renderItem={({item}) => (
           <View style={styles.cardStyles}>
             <View>
               <Image source={item.image} style={styles.image} />
             </View>
-            <View style={{paddingVertical: 10}}>
-              <Text
-                style={{
-                  fontSize: width * 0.05,
-                  marginLeft: width * 0.02,
-                  fontWeight: 'bold',
-                  color: 'black',
-                }}>
-                {item.name}
-              </Text>
+            <View style={styles.sellerDetailsContainer}>
+              <Text style={styles.sellerName}>{item.name}</Text>
+              {/* ========== >> Rating Container << =============== */}
+
               <View style={styles.ratingsContainer}>
                 <Image source={icons.Star} style={styles.ratingImage} />
-                <Text
-                  style={{
-                    marginLeft: width * 0.02,
-                    color: 'black',
-                    fontSize: width * 0.035,
-                  }}>
-                  {item.ratings}
-                </Text>
+                <Text style={styles.rating}>{item.ratings}</Text>
               </View>
+              {/* ========== >> Location Container << =============== */}
               <View style={styles.locationContainer}>
                 <Image source={icons.Location} style={styles.locationImage} />
-                <Text style={{marginLeft: width * 0.02}}>{item.location}</Text>
+                <Text style={styles.locationText}>{item.location}</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}>
-                <Text
-                  style={{
-                    marginLeft: width * 0.02,
-                    fontSize: width * 0.07,
-                    fontWeight: 'bold',
-                  }}>
-                  {item.category}
-                </Text>
+              {/* ========== >> Category Container << =============== */}
+
+              <View style={styles.categoryContainer}>
+                <Text style={styles.categoryText}>{item.category}</Text>
 
                 <Pressable
                   style={styles.buttonStyle}
@@ -120,6 +100,8 @@ const SellerCard = () => {
                   <Text
                     style={{
                       color: 'white',
+                      fontFamily: 'Dubai-Regular',
+                      fontSize: width * 0.04,
                     }}>
                     Book Now
                   </Text>

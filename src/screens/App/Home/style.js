@@ -102,7 +102,55 @@ export default StyleSheet.create({
   },
   topRatedHeadingContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     justifyContent: 'space-between',
+    // paddingBottom: height * 0.0,
+  },
+
+  categoriesText: {
+    color: 'black',
+    fontSize: width * 0.06,
+    marginLeft: width * 0.04,
+    marginTop: height * 0.02,
+    fontFamily: 'Dubai-Bold',
+  },
+  categoriesContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: width * 0.02,
+    alignItems: 'center',
+  },
+  catName: {
+    marginTop: height * 0.01,
+    fontFamily: 'Dubai-Medium',
+    fontSize: width * 0.037,
+  },
+  viewAllCategories: {
+    padding: width * 0.04,
+    paddingHorizontal: width * 0.04,
+    borderRadius: width * 0.02,
+    padding: width * 0.038,
+    backgroundColor: '#d8e7f8',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: height * 0.02,
+    marginHorizontal: width * 0.015,
+    elevation: 5,
+  },
+  topRatedText: {
+    color: 'black',
+    fontSize: width * 0.06,
+    fontFamily: 'Dubai-Bold',
+    marginLeft: width * 0.04,
+    marginTop: height * 0.02,
+    paddingBottom: height * 0.01,
+  },
+  seeAllText: {
+    color: 'grey',
+    fontSize: width * 0.04,
+
+    fontFamily: 'Dubai-Medium',
+    marginRight: width * 0.04,
+    // marginTop: height * 0.02,
   },
 });

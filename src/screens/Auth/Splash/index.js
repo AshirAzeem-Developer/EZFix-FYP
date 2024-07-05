@@ -5,11 +5,17 @@ import icons from '../../../assets/icons';
 // import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import styles from './style';
 
-import {Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 
 const Index = () => {
-  // const {height, width} = useWindowDimensions();
+  const navigation = useNavigation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('SelectService');
+    }, 3000);
+  });
+
   return (
     <SafeAreaView style={[styles.container]}>
       <Image source={icons.EZLogo} resizeMode="contain" style={styles.img} />

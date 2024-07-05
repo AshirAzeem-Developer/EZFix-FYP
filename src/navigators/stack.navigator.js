@@ -27,7 +27,7 @@ const Stack = createNativeStackNavigator();
 export const RootNavigator = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Orders"
+      initialRouteName="BottomNavigator"
       screenOptions={{
         headerShown: false,
       }}>
@@ -44,9 +44,6 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="SeekerDetails" component={SeekerDetails} />
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
       <Stack.Screen name="Orders" component={Order} />
-
-
-
 
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
