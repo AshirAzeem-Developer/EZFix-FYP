@@ -6,11 +6,6 @@ import size from '../constants/size';
 
 //Screens
 
-import Home from '../screens/App/Home';
-import Orders from '../screens/App/Orders';
-import Notifications from '../screens/App/Notifications';
-import Profile from '../screens/App/Profile';
-
 // Icons and Styles Imports
 import icons from '../assets/icons';
 import GlobalStyle from '../constants/GlobalStyle';
@@ -109,46 +104,6 @@ export const BottomNavigator = ({}) => {
             <HomeIcon focused={focused} name="" icon={images.Profile} />
           ),
         }}></Tab.Screen>
-
-      {/* <Tab.Screen
-        name="NewLead"
-        component={NewLead}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{padding: 10, borderRadius: 10}}>
-              <Image
-                focused={focused}
-                source={images.addButton}
-                resizeMode="contain"
-                style={{width: 45}}
-              />
-            </View>
-          ),
-        }}></Tab.Screen>
-
-      <Tab.Screen
-        name="PropertyListing"
-        component={PropertyListing}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <HomeIcon focused={focused} name="" icon={images.property} />
-          ),
-        }}></Tab.Screen>
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{padding: 10, borderRadius: 10}}>
-              <Image
-                focused={focused}
-                source={images.profile}
-                resizeMode="contain"
-                style={{width: 30}}
-              />
-            </View>
-          ),
-        }}></Tab.Screen> */}
     </Tab.Navigator>
   );
 };

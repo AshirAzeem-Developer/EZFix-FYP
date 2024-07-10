@@ -12,6 +12,7 @@ import images from '../../assets/images';
 import {Image} from 'react-native-elements';
 import icons from '../../assets/icons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
 const SellerCard = () => {
@@ -65,6 +66,7 @@ const SellerCard = () => {
       ratings: 4.5,
     },
   ];
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <FlatList
@@ -96,26 +98,18 @@ const SellerCard = () => {
 
                 <Pressable
                   style={styles.buttonStyle}
-                  onPress={() => console.log('Im Pressed', item)}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontFamily: 'Dubai-Regular',
-                      fontSize: width * 0.04,
-                    }}>
-                    Book Now
-                  </Text>
+                  onPress={() => [
+                    // console.log('Im Pressed', item),
+                    navigation.navigate('Profile'),
+                  ]}>
+                  <Text style={styles.booknowBtn}>Book Now</Text>
                 </Pressable>
               </View>
             </View>
           </View>
         )}
         keyExtractor={item => item.id}
-        contentContainerStyle={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        contentContainerStyle={styles.fl_containerStyle}
       />
     </View>
   );

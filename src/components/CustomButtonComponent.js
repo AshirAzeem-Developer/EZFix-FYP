@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import Size from '../constants/size';
-import color from '../constants/color';
-import GlobalStyle from '../constants/GlobalStyle';
+import {useSizes} from '../constants/size';
+import {useColors} from '../constants/color';
+import {getGlobalStyles} from '../constants/GlobalStyle';
 
 const CustomButtonComponent = ({
   style,
@@ -20,6 +20,7 @@ const CustomButtonComponent = ({
   icon,
   activeOpacity,
 }) => {
+  const {styles, colors} = useStyles();
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -43,23 +44,33 @@ const CustomButtonComponent = ({
 
 export default CustomButtonComponent;
 
-const styles = StyleSheet.create({
-  container: {
-    width: Size.WIDTH * 0.5,
-    height: Size.ICON,
-    backgroundColor: color.SKY_BLUE,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    borderRadius: Size.BORDER_RADIUS,
-  },
-  text: {
-    ...GlobalStyle.TEXT_STYLE,
-    color: color.PRIMARY_TEXT,
-  },
-  iconStyle: {
-    marginHorizontal: Size.PADDING,
-    width: Size.ICON * 0.5,
-    height: Size.ICON * 0.5,
-  },
-});
+const useStyles = () => {
+  const colors = useColors();
+  const sizes = useSizes();
+  const globalStyles = getGlobalStyles(colors, sizes);
+  const styles = StyleSheet.create({
+    container: {
+      width: sizes.WIDTH * 0.5,
+      height: sizes.ICON,
+      backgroundColor: colors.SKY_BLUE,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+      borderRadius: sizes.BORDER_RADIUS,
+    },
+    text: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.PRIMARY_TEXT,
+    },
+    iconStyle: {
+      marginHorizontal: Size.PADDING,
+      width: sizes.ICON * 0.5,
+      height: sizes.ICON * 0.5,
+    },
+  });
+  return {
+    colors,
+    sizes,
+    styles,
+  };
+};

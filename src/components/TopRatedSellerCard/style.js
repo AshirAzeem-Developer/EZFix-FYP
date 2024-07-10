@@ -90,4 +90,14 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  booknowBtn: {
+    color: 'white',
+    fontFamily: 'Dubai-Regular',
+    fontSize: width * 0.04,
+  },
+  fl_containerStyle: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

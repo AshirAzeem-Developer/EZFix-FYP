@@ -1,23 +1,38 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 // local
-import color from '../../../constants/color';
+import color, {useColors} from '../../../constants/color';
+import {useSizes} from '../../../constants/size';
+import {getGlobalStyles} from '../../../constants/GlobalStyle';
 
 // dimenstion
 const {width, height} = Dimensions.get('window');
 
-export default StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    backgroundColor: color.WHITE,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width * 1,
-    height: height * 1,
-  },
+const useStyles = () => {
+  const colors = useColors();
+  const sizes = useSizes();
+  const globalStyles = getGlobalStyles(colors, sizes);
 
-  img: {
-    height: height * 0.2,
-    width: width * 0.4,
-  },
-});
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'column',
+      backgroundColor: colors.WHITE,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: width * 1,
+      height: height * 1,
+    },
+
+    img: {
+      height: sizes.WIDTH * 0.6,
+      width: sizes.WIDTH * 0.6,
+    },
+  });
+  return {
+    colors,
+    sizes,
+    styles,
+  };
+};
+
+export default useStyles;
