@@ -1,8 +1,7 @@
 import {View, useWindowDimensions, Image, Text, StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import icons from '../../../assets/icons';
-// import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView';
-// import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+
 import useStyles from './style';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -19,7 +18,7 @@ const Index = () => {
   // });
 
   return (
-    <SafeAreaView style={[styles.container]}>
+    <SafeAreaView style={styles.container}>
       <Image source={icons.Logo} resizeMode="contain" style={styles.img} />
     </SafeAreaView>
   );

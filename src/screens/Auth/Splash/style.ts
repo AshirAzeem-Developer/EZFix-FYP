@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 // local
-import color, {useColors} from '../../../constants/color';
+import {useColors} from '../../../constants/color';
 import {useSizes} from '../../../constants/size';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
 
