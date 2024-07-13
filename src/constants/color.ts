@@ -10,6 +10,7 @@ const defaultColors = {
   LIGHT_GRAY200: '#c1c7c2',
   BLACK: 'black',
   WHITE: 'white',
+  MAIN_GREEN: '#008000',
 };
 
 const colorsDark = {
@@ -27,7 +28,7 @@ const colorsLight = {
   isDark: false,
   BACKGROUND: 'white',
   PRIMARY_BACKGROUND: '#F6F9FE',
-  TEXT: 'black',
+  TEXT: '#008000',
   LIGHT_GRAY: '#c1c7c2',
   GRAY: 'grey',
 };

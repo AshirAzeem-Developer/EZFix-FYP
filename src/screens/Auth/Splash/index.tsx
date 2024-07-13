@@ -7,15 +7,14 @@ import useStyles from './style';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 
-const Index = () => {
+const Index = ({navigation}) => {
   const {styles, colors} = useStyles();
 
-  const navigation = useNavigation();
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navigation.navigate('SelectService');
-  //   }, 3000);
-  // });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('OnBoarding');
+    }, 3000);
+  });
 
   return (
     <SafeAreaView style={styles.container}>

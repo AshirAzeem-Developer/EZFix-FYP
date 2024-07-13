@@ -1,5 +1,8 @@
 export default {
   Logo: require('./LogoGreenBlack.png'),
+  leftArrow: require('./leftArrow.png'),
+  leftArrowWhite: require('./leftArrowWhite.png'),
+  BackIcon: require('./BackIcon.png'),
   // EZLogo: require('./LogoGreenBlack.png'),
   // BackIcon: require('./BackArrow.png'),
   // SellServiceIcon: require('./SellServiceIcon.png'),

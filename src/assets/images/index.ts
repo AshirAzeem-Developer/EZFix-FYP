@@ -4,4 +4,9 @@ const a3 = require('./a3.png');
 
 export default {
   // a1: require('./a1.png'),
+  swiper1Image: require('./Swiper1Image.png'),
+  swiper2Image: require('./Swiper2Image.jpg'),
+  swiper3Image: require('./Swiper3Image.png'),
+  swiper4Image: require('./Swiper4Image.png'),
+  swiper5Image: require('./Swiper5Image.png'),
 };
