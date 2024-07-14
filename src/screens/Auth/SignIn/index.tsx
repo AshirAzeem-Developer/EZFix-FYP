@@ -17,14 +17,31 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../../../components/AppHeader';
 import TextInputCustom from '../../../components/TextInputCustom';
 import Button from '../../../components/Button/Button';
+import {useDispatch, useSelector} from 'react-redux';
+import {setRoleID} from '../../../store/reducer/settings';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
+
+  // const roleID = useSelector(state => state.settings.roleID);
+
+  // useEffect(() => {
+  //   if (roleID === 0) {
+  //     // Assuming 1 is the ID for serviceSeeker
+  //     navigation.navigate('serviceSeeker'); // Adjust 'ServiceSeekerStack' as necessary
+  //   } else if (roleID === 1) {
+  //     // Assuming 2 is the ID for serviceProvider
+  //     navigation.navigate('serviceProvider'); // Adjust 'ServiceProviderStack' as necessary
+  //   }
+  // }, [roleID, navigation]);
 
   // ======================>>>>>> State Variables <<<<<======================
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // ==================== >>>> Use Effect <<<< ====================
+  // const dispatch = useDispatch();
+  // const user = useSelector(state => console.log(state));
   return (
     <SafeAreaView style={styles.container}>
       {/* =============== >>>> Header <<< =============== */}
@@ -80,7 +97,10 @@ const SignIn = ({navigation}) => {
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
-          onPress={() => console.log('Login Pressed')}
+          onPress={() => [
+            // dispatch(setRoleID(Number(username))),
+            console.log('Login Pressed'),
+          ]}
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}

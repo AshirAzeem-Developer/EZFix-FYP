@@ -1,9 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 // init states
 const initState = {
   settings: {
     langID: 'en',
+    roleID: 0,
   },
 };
 
@@ -17,10 +18,14 @@ const settings = createSlice({
     setLangID(state, action) {
       state.settings.langID = action.payload;
     },
+    setRoleID(state, action: PayloadAction<number>) {
+      // New reducer to set roleID
+      state.settings.roleID = action.payload;
+    },
   },
 });
 
-export const {setLangID} = settings.actions;
+export const {setLangID, setRoleID} = settings.actions;
 export default settings.reducer;
 
 export const selectSettings = (state: any) =>

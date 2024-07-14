@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import useStyles from './style';
 import SnapCarousel from '../../../components/SnapCarousel';
-import EZBtn from '../../../components/EZBtn';
+import EZBtn from '../../../components/common/EZBtn';
 import {useNavigation} from '@react-navigation/native';
 
 const OnBoarding = ({navigation}) => {

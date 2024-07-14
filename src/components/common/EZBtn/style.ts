@@ -1,9 +1,9 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 // local
-import {useColors} from '../../constants/color';
-import {useSizes} from '../../constants/size';
-import {getGlobalStyles} from '../../constants/GlobalStyle';
+import {useColors} from '../../../constants/color';
+import {useSizes} from '../../../constants/size';
+import {getGlobalStyles} from '../../../constants/GlobalStyle';
 
 // dimenstion
 const {width, height} = Dimensions.get('window');

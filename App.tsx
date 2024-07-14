@@ -3,7 +3,7 @@ import React from 'react';
 import {RootNavigator} from './src/navigators/stack.navigator';
 
 //store
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
 // export const UserContext = React.CreateContext({});

@@ -14,6 +14,10 @@ const getSizes = (width: number, height: number) => ({
   BORDER_RADIUS: 5,
   BORDER_RADIUS_HIGH: 15,
   LOGO_SIZE: width * 0.4,
+  BOTTOM_BUTTON_HEIGHT: height * 0.125,
+  FONT_SIZE_HEADER: width * 0.0625,
+  FONT_SIZE_TITLE: width * 0.045,
+  MARGIN_VERTICAL: height * 0.025,
 });
 
 export type Sizes = ReturnType<typeof getSizes>;
