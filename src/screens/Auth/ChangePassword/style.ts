@@ -3,8 +3,8 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {useColors} from '../../../constants/color';
 import {useSizes} from '../../../constants/size';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
-// dimension
-
+// dimenstion
+const {width, height} = Dimensions.get('window');
 const useStyles = () => {
   const colors = useColors();
   const sizes = useSizes();
@@ -14,28 +14,30 @@ const useStyles = () => {
       flex: 1,
       backgroundColor: colors.WHITE,
     },
+    firstCont: {
+      width: '100%',
+    },
     textCont: {
       width: '90%',
-      flexDirection: 'column',
+      flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.065,
-      marginBottom: sizes.HEIGHT * 0.045,
+      marginBottom: sizes.HEIGHT * 0.065,
       // backgroundColor: 'red',
     },
-    forgetPasswordTxt: {
-      ...globalStyles.TEXT_STYLE_BOLD,
+    creatNewTxt: {
+      ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.0625,
-      color: colors.BLACK,
     },
 
-    sendCodeButtonCont: {
+    saveButtonCont: {
       width: '100%',
-      height: sizes.HEIGHT * 0.14,
+      height: sizes.HEIGHT * 0.125,
       position: 'absolute',
       bottom: 0,
-      // justifyContent: 'center',
+
       alignItems: 'center',
       backgroundColor: colors.WHITE,
       // for IOS
@@ -49,7 +51,7 @@ const useStyles = () => {
       // FOR ANDOIRD
       elevation: 7,
     },
-    snedCodeButton: {
+    saveButton: {
       marginTop: sizes.HEIGHT * 0.0225,
     },
   });

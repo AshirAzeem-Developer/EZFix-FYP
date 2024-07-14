@@ -37,7 +37,7 @@ const ForgetPassword: React.FC<ForgetPasswordScreenProps> = ({navigation}) => {
     image: images.otpSend,
     title: 'OTP Sent',
     firstDes: "We've sent a verification code to",
-    secondDes: 'John.smith@gmail.com',
+    secondDes: '03215589241',
     buttonTitle: 'Continue',
     handleClose: () => {
       hideModal();
@@ -62,6 +62,7 @@ const ForgetPassword: React.FC<ForgetPasswordScreenProps> = ({navigation}) => {
       {/* text component  */}
       <View style={styles.textCont}>
         <Text style={styles.forgetPasswordTxt}>Forgot Password</Text>
+        <Text>Step 1: Please verify your account.</Text>
       </View>
       {/* text component  end  */}
 

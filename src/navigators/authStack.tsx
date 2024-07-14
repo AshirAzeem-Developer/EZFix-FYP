@@ -7,12 +7,12 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 
 // locla import
 import {Role} from '../constants/enums/applicationRoleEnums';
-import {useUserStore} from '../store/reducer/user';
+import useUserStore from '../store/reducer/settings';
 import {useColors} from '../constants/color';
 
 export type AuthStackParamList = {
   Onboarding: undefined;
-  Login: undefined;
+  SignIn: undefined;
   ForgetPassword: undefined;
   OTPVerification: {navigateTo: any};
   ChangePassword: undefined;
@@ -20,7 +20,7 @@ export type AuthStackParamList = {
   // UnVerifyEmailSingUp: undefined;
   // SignUpMobileNo: undefined;
   // SingUpPersonalInfo: undefined;
-  // CreateNewPassword: undefined;
+  CreateNewPassword: undefined;
   // SignUpRoleSelect: undefined;
   // SignUpHomeAddress: {roleID: Role};
   // SignUpConnectAccount: {roleID: Role};

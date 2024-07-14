@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   TextInput,
@@ -28,6 +28,11 @@ const OTPInput: React.FC<OTPInputProps> = ({
 
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(''));
   const inputs = useRef<(TextInput | null)[]>([]);
+
+  useEffect(() => {
+    // This ensures refs are correctly assigned to inputs.current array
+    inputs.current = inputs.current.slice(0, length);
+  }, [length]);
 
   const handleChange = (text: string, index: number) => {
     if (/[^0-9]/.test(text)) return;

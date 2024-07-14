@@ -6,6 +6,7 @@ import {RootNavigator} from './src/navigators/stack.navigator';
 import {Provider, useSelector} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
+import {KeyboardProvider} from 'react-native-keyboard-controller';
 // export const UserContext = React.CreateContext({});
 
 const App = () => {
@@ -15,13 +16,15 @@ const App = () => {
   return (
     <>
       {/* <UserContext.Provider value={{user, setUser}}> */}
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </PersistGate>
-      </Provider>
+      <KeyboardProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+          </PersistGate>
+        </Provider>
+      </KeyboardProvider>
       {/* </UserContext.Provider> */}
     </>
   );

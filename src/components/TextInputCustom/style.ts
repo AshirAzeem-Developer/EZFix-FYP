@@ -35,10 +35,14 @@ const useStyles = () => {
       alignItems: 'center',
       // backgroundColor: 'pink',
     },
-    leftIcon: {},
+    leftIcon: {
+      width: sizes.WIDTH * 0.05,
+      height: sizes.WIDTH * 0.05,
+    },
     textInp: {
       ...globalStyles.TEXT_STYLE,
       height: '100%',
+      width: '80%',
       color: colors.BLACK,
       // backgroundColor: 'blue',
     },
@@ -54,7 +58,7 @@ const useStyles = () => {
       alignItems: 'center',
       // backgroundColor: 'orange',
     },
-    rightIcon: {},
+    rightIcon: {width: sizes.WIDTH * 0.05, height: sizes.WIDTH * 0.045},
   });
   return {
     colors,

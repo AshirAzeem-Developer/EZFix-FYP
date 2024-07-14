@@ -17,7 +17,7 @@ const OnBoarding = ({navigation}) => {
           myStyles={styles.buttonFrame}
           text={'Sign In'}
           onPress={() => {
-            navigation.navigate('Splash');
+            navigation.navigate('SignIn');
           }}
         />
         <View style={styles.alreadyHaveAccountParent}>

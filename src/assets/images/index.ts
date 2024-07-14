@@ -9,4 +9,9 @@ export default {
   swiper3Image: require('./Swiper3Image.png'),
   swiper4Image: require('./Swiper4Image.png'),
   swiper5Image: require('./Swiper5Image.png'),
+  otpSend: require('./otpSend.png'),
+  PasswordChanged: require('./PasswordChanged.png'),
+  crossEye: require('./crossEye.png'),
+  lock: require('./lock.png'),
+  eyeOpen: require('./eyeOpen.png'),
 };
