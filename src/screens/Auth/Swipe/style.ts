@@ -35,7 +35,7 @@ const useStyles = () => {
       textDecorationLine: 'underline',
     },
     text1Typo: {
-      fontSize: sizes.WIDTH * 0.05,
+      fontSize: sizes.FONTSIZE_HIGH,
       color: 'black',
       textDecorationLine: 'underline',
     },

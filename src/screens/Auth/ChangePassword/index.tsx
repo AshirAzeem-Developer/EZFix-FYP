@@ -46,6 +46,7 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
     image: images.PasswordChanged,
     title: 'Password Changed Successfully',
     firstDes: 'You can now login using your new password',
+
     firstDesStyle: {
       fontFamily: theme.TEXT_STYLE.fontFamily,
       fontSize: screen.width * 0.037,
@@ -75,6 +76,9 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
       {/* text component  */}
       <View style={styles.textCont}>
         <Text style={styles.creatNewTxt}>Create New Password</Text>
+        <Text>
+          Step 2: change your password. Make your password strong and safe.
+        </Text>
       </View>
       {/* text component  end  */}
 
@@ -127,7 +131,14 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
           },
         ]}
       />
+
       {/* input start end  */}
+      <View style={styles.passwordIntr}>
+        <Text>
+          Passwords must be a minimum of 8 characters. Include one letter, and
+          one number or symbol.
+        </Text>
+      </View>
 
       <BottomButton>
         <Button

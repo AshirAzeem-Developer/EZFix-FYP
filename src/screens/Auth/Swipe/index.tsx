@@ -4,6 +4,7 @@ import useStyles from './style';
 import SnapCarousel from '../../../components/SnapCarousel';
 import EZBtn from '../../../components/common/EZBtn';
 import {useNavigation} from '@react-navigation/native';
+import Button from '../../../components/Button/Button';
 
 const OnBoarding = ({navigation}) => {
   const {styles, colors} = useStyles();
@@ -13,12 +14,10 @@ const OnBoarding = ({navigation}) => {
       <View style={styles.swiperContainer}>
         <SnapCarousel />
 
-        <EZBtn
-          myStyles={styles.buttonFrame}
-          text={'Sign In'}
-          onPress={() => {
-            navigation.navigate('SignIn');
-          }}
+        <Button
+          bgcolor="#008000"
+          text="Sign In"
+          onPress={() => navigation.navigate('SignIn')}
         />
         <View style={styles.alreadyHaveAccountParent}>
           <TouchableOpacity>

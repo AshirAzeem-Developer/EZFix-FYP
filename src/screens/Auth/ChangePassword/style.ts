@@ -19,17 +19,18 @@ const useStyles = () => {
     },
     textCont: {
       width: '90%',
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'space-between',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.065,
-      marginBottom: sizes.HEIGHT * 0.065,
+      marginBottom: sizes.HEIGHT * 0.015,
       // backgroundColor: 'red',
     },
     creatNewTxt: {
-      ...globalStyles.TEXT_STYLE,
+      ...globalStyles.TEXT_STYLE_BOLD,
       fontSize: sizes.WIDTH * 0.0625,
+      color: colors.BLACK,
     },
 
     saveButtonCont: {
@@ -53,6 +54,10 @@ const useStyles = () => {
     },
     saveButton: {
       marginTop: sizes.HEIGHT * 0.0225,
+    },
+    passwordIntr: {
+      width: sizes.WIDTH * 0.9,
+      paddingLeft: sizes.WIDTH * 0.05,
     },
   });
   return {
