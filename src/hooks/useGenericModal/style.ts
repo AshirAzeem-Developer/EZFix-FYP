@@ -26,13 +26,14 @@ const useStyles = () => {
     },
     titleTxt: {
       ...globalStyles.TEXT_STYLE_BOLD,
-
+      fontSize: sizes.FONTSIZE_HIGH,
+      color: colors.BLACK,
       marginBottom: sizes.HEIGHT * 0.025,
     },
     firstDesTxt: {
       ...globalStyles.TEXT_STYLE,
-
       color: colors.LIGHT_GRAY,
+      fontSize: sizes.FONTSIZE_SMALL,
     },
     secondDesTxt: {
       ...globalStyles.TEXT_STYLE,
