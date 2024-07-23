@@ -6,21 +6,22 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useColors} from '../constants/color';
 import {getGlobalStyles} from '../constants/GlobalStyle';
 import {useSizes} from '../constants/size';
+import icons from '../assets/icons';
 
 function getTabIcon(label, isFocused) {
   switch (label) {
     case 'Home':
-      return images[isFocused ? 'hometabactive' : 'hometabinactive'];
+      return icons[isFocused ? 'hometabactive' : 'hometabinactive'];
       break;
     case 'Bookings':
-      return images[isFocused ? 'bookingstabactive' : 'bookingstabinactive'];
+      return icons[isFocused ? 'bookingstabactive' : 'bookingstabinactive'];
       break;
-    case 'Messages':
-      return images[isFocused ? 'messagestabactive' : 'messagestabinactive'];
+    case 'Message':
+      return icons[isFocused ? 'messagestabactive' : 'messagestabinactive'];
       break;
 
     case 'Profile':
-      return images[isFocused ? 'profiletabactive' : 'profiletabinactive'];
+      return icons[isFocused ? 'profiletabactive' : 'profiletabinactive'];
       break;
 
     default:
@@ -84,14 +85,18 @@ export default function MyTabBar({state, descriptors, navigation}) {
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tab}>
-            <Image source={getTabIcon(label, isFocused)} />
+            <Image
+              source={getTabIcon(label, isFocused)}
+              style={{
+                width: sizes.WIDTH * 0.07,
+                height: sizes.WIDTH * 0.07,
+              }}
+            />
             <Text
               style={[
                 styles.tabText,
                 {
-                  color: isFocused
-                    ? theme.colors.dark
-                    : theme.colors.mediumGray,
+                  color: isFocused ? colors.BLACK : colors.LIGHT_GRAY200,
                 },
               ]}>
               {label}

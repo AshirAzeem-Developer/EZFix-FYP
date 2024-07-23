@@ -27,7 +27,7 @@ function HomeTabs() {
   );
 }
 
-function ServiceSeeker() {
+function ServiceSeekerStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -39,4 +39,4 @@ function ServiceSeeker() {
   );
 }
 
-export default ServiceSeeker;
+export default ServiceSeekerStack;

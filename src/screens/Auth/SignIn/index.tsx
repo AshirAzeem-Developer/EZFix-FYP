@@ -19,6 +19,8 @@ import TextInputCustom from '../../../components/TextInputCustom';
 import Button from '../../../components/Button/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {setRoleID} from '../../../store/reducer/settings';
+import {setUser} from '../../../store/reducer/user';
+import {users} from '../../../dummy/data';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
@@ -40,7 +42,7 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   // ==================== >>>> Use Effect <<<< ====================
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const user = useSelector(state => console.log(state));
   return (
     <SafeAreaView style={styles.container}>
@@ -50,7 +52,8 @@ const SignIn = ({navigation}) => {
         rightView={
           <View style={styles.headerRightViewStyles}>
             <Text style={styles.nowHereText}>New Here ? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignUpCheckPhone')}>
               <Text style={styles.heaaderSignupText}>Sign up</Text>
             </TouchableOpacity>
           </View>
@@ -97,10 +100,11 @@ const SignIn = ({navigation}) => {
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
-          onPress={() => [
-            // dispatch(setRoleID(Number(username))),
-            console.log('Login Pressed'),
-          ]}
+          onPress={() => {
+            dispatch(
+              setUser(username == 'seeker' ? users.seeker : users.provider),
+            );
+          }}
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}

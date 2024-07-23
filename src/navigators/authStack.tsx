@@ -16,12 +16,12 @@ export type AuthStackParamList = {
   ForgetPassword: undefined;
   OTPVerification: {navigateTo: any};
   ChangePassword: undefined;
-  // SignUpCheckEmail: undefined;
+  SignUpCheckPhone: undefined;
   // UnVerifyEmailSingUp: undefined;
-  // SignUpMobileNo: undefined;
-  // SingUpPersonalInfo: undefined;
+  SignUpMobileNo: undefined;
+  SingUpPersonalInfo: undefined;
   CreateNewPassword: undefined;
-  // SignUpRoleSelect: undefined;
+  SignUpRoleSelect: undefined;
   // SignUpHomeAddress: {roleID: Role};
   // SignUpConnectAccount: {roleID: Role};
   // SignUpStatus: {roleID: Role};

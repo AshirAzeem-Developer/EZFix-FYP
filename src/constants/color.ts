@@ -11,6 +11,7 @@ const defaultColors = {
   BLACK: 'black',
   WHITE: 'white',
   MAIN_GREEN: '#008000',
+  whiteSmoke: '#F5F5F5',
 };
 
 const colorsDark = {
@@ -36,6 +37,6 @@ const colorsLight = {
 export type Colors = typeof colorsDark;
 
 export const useColors = () => {
-  const color = useColorScheme();
-  return color == 'dark' ? colorsDark : colorsLight;
+  // const color = useColorScheme();
+  return false ? colorsDark : colorsLight;
 };

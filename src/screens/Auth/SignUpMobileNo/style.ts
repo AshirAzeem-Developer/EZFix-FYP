@@ -14,9 +14,6 @@ const useStyles = () => {
       flex: 1,
       backgroundColor: colors.WHITE,
     },
-    firstCont: {
-      width: '100%',
-    },
     textCont: {
       width: '90%',
       flexDirection: 'row',
@@ -24,46 +21,27 @@ const useStyles = () => {
       alignItems: 'center',
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.065,
-      marginBottom: sizes.HEIGHT * 0.025,
+      marginBottom: sizes.HEIGHT * 0.065,
       // backgroundColor: 'red',
     },
-    creatNewTxt: {
-      ...globalStyles.TEXT_STYLE,
+    mobileNoTxt: {
+      ...globalStyles.TEXT_STYLE_BOLD,
       fontSize: sizes.WIDTH * 0.0625,
       color: colors.BLACK,
     },
-
-    // passwordStrengCont
-    passwordStrengCont: {
-      width: '85%',
-      alignSelf: 'center',
-    },
-    passwordStrengHeadTxt: {
-      ...globalStyles.TEXT_STYLE,
-      // fontSize: screen.width * 0.0625,
-      color: colors.BLACK,
-    },
-    passwordStrengDesTxt: {
-      ...globalStyles.TEXT_STYLE,
-      // fontSize: screen.width * 0.0625,
-      color: colors.BLACK,
-    },
-
-    /***********[Progress bar overrid style]*********** */
-    containerOverrideStyle: {
-      marginTop: sizes.HEIGHT * 0.025,
-      marginBottom: sizes.HEIGHT * 0.025,
-    },
-    progressBarOverrideStyle: {
+    inputRightCont: {
+      width: sizes.WIDTH * 0.075,
+      height: sizes.WIDTH * 0.075,
+      borderRadius: (sizes.WIDTH * 0.1) / 2,
       backgroundColor: colors.MAIN_GREEN,
     },
-    /***********[Progress bar overrid style End]*********** */
-    saveButtonCont: {
+
+    sendCodeButtonCont: {
       width: '100%',
-      height: height * 0.125,
+      height: sizes.HEIGHT * 0.125,
       position: 'absolute',
       bottom: 0,
-
+      // justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: colors.WHITE,
       // for IOS
@@ -77,8 +55,15 @@ const useStyles = () => {
       // FOR ANDOIRD
       elevation: 7,
     },
-    saveButton: {
+    snedCodeButton: {
       marginTop: sizes.HEIGHT * 0.0225,
+      marginBottom: sizes.HEIGHT * 0.0225,
+    },
+    wellCheckTxt: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.WIDTH * 0.045,
+      color: colors.BLACK,
+      marginLeft: sizes.WIDTH * 0.067,
     },
   });
   return {

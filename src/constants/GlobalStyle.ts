@@ -17,6 +17,12 @@ export const getGlobalStyles = (colors: Colors, sizes: Sizes) => {
           color: colors.TEXT,
           fontFamily: 'Dubai-Bold',
         },
+        TEXT_STYLE_BOLD_ITALIC: {
+          fontSize: sizes.FONTSIZE,
+          color: colors.TEXT,
+          fontFamily: 'DMSans-BoldItalic',
+          // fontStyle: 'italic',
+        },
         SHADOW_STYLE: {
           shadowColor: colors.TEXT,
           shadowOffset: {

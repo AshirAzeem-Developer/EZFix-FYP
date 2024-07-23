@@ -4,6 +4,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 
 // reducers
 import settings from './reducer/settings';
+import user from './reducer/user';
 
 // config
 const persistConfig = {
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   settings: settings,
+  user: user,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

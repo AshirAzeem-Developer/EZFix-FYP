@@ -8,14 +8,18 @@ import SignIn from '../screens/Auth/SignIn';
 import ForgotPassword from '../screens/Auth/ForgetPassword';
 import OTPVerification from '../screens/Auth/OTPVerification';
 import ChangePassword from '../screens/Auth/ChangePassword';
+import SignUpMobileNo from '../screens/Auth/SignUpMobileNo';
+import SingUpPersonalInfo from '../screens/Auth/SingUpPersonalInfo';
 
 //bottom tab
 
-import {BottomNavigator} from './bottom.navigator';
+import SignUpCheckPhone from '../screens/Auth/SignUpCheckPhone';
+import CreateNewPassword from '../screens/Auth/CreateNewPassword';
+import SignUpRoleSelect from '../screens/Auth/SignUpRoleSelect';
 
 const Stack = createNativeStackNavigator();
 
-export const RootNavigator = ({}) => {
+export const AuthStack = ({}) => {
   return (
     <Stack.Navigator
       initialRouteName="Splash"
@@ -28,9 +32,13 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="OTPVerification" component={OTPVerification} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="SignUpCheckPhone" component={SignUpCheckPhone} />
+      <Stack.Screen name="SingUpPersonalInfo" component={SingUpPersonalInfo} />
+      <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+      <Stack.Screen name="SignUpRoleSelect" component={SignUpRoleSelect} />
 
       {/* BOTTOM TAB */}
-      <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+      {/* <Stack.Screen name="BottomNavigator" component={BottomNavigator} /> */}
     </Stack.Navigator>
   );
 };

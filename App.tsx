@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {RootNavigator} from './src/navigators/stack.navigator';
+import RootNavigator from './src/navigators/navigator.root';
 
 //store
 import {Provider, useSelector} from 'react-redux';
@@ -19,9 +19,7 @@ const App = () => {
       <KeyboardProvider>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <NavigationContainer>
-              <RootNavigator />
-            </NavigationContainer>
+            <RootNavigator />
           </PersistGate>
         </Provider>
       </KeyboardProvider>

@@ -85,7 +85,7 @@ const OTPVerification: React.FC<OTPVerificationScreenProps> = ({
       <BottomButton>
         <Button
           bgcolor={true ? colors.MAIN_GREEN : colors.LIGHT_GRAY}
-          text="Resend Code"
+          text="Continue"
           textColor={true ? colors.BLACK : colors.LIGHT_GRAY200}
           onPress={() => navigate(navigateTo)}
           btnStyles={styles.saveButton}
