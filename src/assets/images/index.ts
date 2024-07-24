@@ -26,4 +26,5 @@ export default {
   activeSkewedRectangle: require('./activeSkewedRectangle.png'),
   inActiveSkewedRectangle: require('./inActiveSkewedRectangle.png'),
   doubleRightArrowGreen: require('./doubleRightArrowGreen.png'),
+  DELETE_BADGE: require('./deleteBadge.png'),
 };

@@ -8,9 +8,9 @@ const getSizes = (width: number, height: number) => ({
   PADDED_WIDTH: width - width * 0.06,
   FONTSIZE: 16,
   FONTSIZE_HIGH: 18,
+  FONTSIZE_MEDIUM: 14,
   FONTSIZE_SMALL: 10,
   ICON: width * 0.06,
-  HEADER_FOOTER_SIZE: height * 0.1,
   BORDER_RADIUS: 5,
   BORDER_RADIUS_HIGH: 15,
   LOGO_SIZE: width * 0.4,
@@ -18,6 +18,9 @@ const getSizes = (width: number, height: number) => ({
   FONT_SIZE_HEADER: width * 0.0625,
   FONT_SIZE_TITLE: width * 0.045,
   MARGIN_VERTICAL: height * 0.025,
+  HEADER_FOOTER_SIZE: height * 0.1,
+  BOTTOM_TABS_ICONS: height * 0.03,
+  BOTTOM_TABS_ICONS_ACTIVE: height * 0.033,
 });
 
 export type Sizes = ReturnType<typeof getSizes>;

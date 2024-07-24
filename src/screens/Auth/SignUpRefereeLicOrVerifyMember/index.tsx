@@ -1,7 +1,7 @@
 import React, {FC, useState, useRef} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 // third party
-import {useStyles} from 'react-native-unistyles';
+
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
   Camera,
@@ -10,25 +10,25 @@ import {
 } from 'react-native-vision-camera';
 import {FadeInDown} from 'react-native-reanimated';
 // styles
-import stylesheet from './style';
+import useStyles from './style';
 
 // local component
-import {ParentView} from '../../components/common/ParentView';
-import Header from '../../components/Header';
-import Button from '../../components/common/Button';
+import {ParentView} from '../../../components/common/ParentView/ParentView';
+import Header from '../../../components/AppHeader';
+import Button from '../../../components/Button/Button';
 
-import images from '../../utils/images';
+import images from '../../../assets/images';
 
 // local navigation
-import {AuthStackParamList} from '../../navigation/authStack';
+import {AuthStackParamList} from '../../../navigators/AuthStack';
 // enums
-import SvgImage from '../../components/common/SvgImage';
-import {useGenericModal} from '../../hooks/useGenericModal';
-import BottomButton from '../../components/common/BottomButton';
+
+import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
+import BottomButton from '../../../components/common/BottomButton/BottomButton';
 
 type SignUpRefereeLicOrVerifyMemberScreenProps = NativeStackScreenProps<
   AuthStackParamList,
-  'SignUpRefereeLicOrVerifyMember'
+  ''
 >;
 
 var timer: any = null;
@@ -36,7 +36,7 @@ const SignUpRefereeLicOrVerifyMember: FC<
   SignUpRefereeLicOrVerifyMemberScreenProps
 > = ({route, navigation}) => {
   // style
-  const {styles, theme} = useStyles(stylesheet);
+  const {styles, sizes, colors} = useStyles();
 
   // navigation
   const {navigate} = navigation;
@@ -54,7 +54,7 @@ const SignUpRefereeLicOrVerifyMember: FC<
 
   // modal prop
   const modalProps = {
-    image: images.DeleteBadge,
+    image: images.DELETE_BADGE,
     title: 'Permission required',
     firstDes:
       'Need camera permission to proceed further. Go to Settings and grant access.',
@@ -91,7 +91,7 @@ const SignUpRefereeLicOrVerifyMember: FC<
             <Text style={styles.topCameraTxt}>Front Photo of License</Text>
           </View>
           <View style={styles.camera}>
-            <SvgImage Svg={images.scanDocumentExample} />
+            <Image source={images.scanDocumentExample} />
           </View>
           <Text style={styles.noPhotoCopTxt}>No photocopies</Text>
         </View>
