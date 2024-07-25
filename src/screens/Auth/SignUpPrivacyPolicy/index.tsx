@@ -135,13 +135,13 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
             Policy Terms and Conditions
           </Text>
           <Text style={styles.PolicyTermPeraTxt}>
-            The "Policy Terms and Conditions" section of your car insurance
-            document outlines the specific rules, provisions, and contractual
-            agreements between you (the policyholder) and the insurance company.
-            It is essential to read and understand this section thoroughly, as
-            it governs the terms of your insurance coverage. Below is a general
-            outline of the content you might find in the "Policy Terms and
-            Conditions" of your car insurance:
+            The "Policy Terms and Conditions" section of EZFIX App document
+            outlines the specific rules, provisions, and contractual agreements
+            between you (the policyholder) and the iadmin It is essential to
+            read and understand this section thoroughly, as it governs the terms
+            of your provided and seeking services. Below is a general outline of
+            the content you might find in the "Policy Terms and Conditions" of
+            EZFIX app.
           </Text>
         </View>
         {/* terms and conditions */}
