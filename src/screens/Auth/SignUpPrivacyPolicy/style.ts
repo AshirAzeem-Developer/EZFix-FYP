@@ -14,6 +14,11 @@ const useStyles = () => {
       flex: 1,
       backgroundColor: colors.WHITE,
     },
+    scrollViewContent: {
+      flexGrow: 1,
+      paddingBottom: sizes.HEIGHT * 0.16,
+      // backgroundColor: 'red',
+    },
     textCont: {
       width: '90%',
       flexDirection: 'row',
@@ -21,58 +26,51 @@ const useStyles = () => {
       alignItems: 'center',
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.065,
-      marginBottom: sizes.HEIGHT * 0.065,
+      marginBottom: sizes.HEIGHT * 0.045,
       // backgroundColor: 'red',
     },
-    signUpTxt: {
+
+    PolicyTermCont: {
+      width: '100%',
+      paddingHorizontal: sizes.WIDTH * 0.05,
+      paddingVertical: sizes.HEIGHT * 0.025,
+      backgroundColor: colors.LIGHT_GRAY100,
+    },
+    PolicyTermHeadTxt: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      fontSize: sizes.WIDTH * 0.05,
+      color: colors.BLACK,
+      marginBottom: sizes.HEIGHT * 0.025,
+    },
+
+    PolicyTermPeraTxt: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.WIDTH * 0.035,
+      color: colors.BLACK,
+    },
+    creatNewTxt: {
       ...globalStyles.TEXT_STYLE_BOLD,
       fontSize: sizes.WIDTH * 0.0625,
       color: colors.BLACK,
     },
-    inputRightCont: {
-      width: width * 0.075,
-      height: width * 0.075,
-      borderRadius: (sizes.WIDTH * 0.1) / 2,
-      backgroundColor: colors.PRIMARY,
-    },
-    wellCheckTxt: {
-      ...globalStyles.TEXT_STYLE,
-      fontSize: sizes.WIDTH * 0.035,
-      color: colors.BLACK,
-      marginLeft: sizes.WIDTH * 0.067,
-    },
-    sendCodeButtonCont: {
-      width: '100%',
-      height: sizes.HEIGHT * 0.16,
-      position: 'absolute',
-      bottom: 0,
-      // justifyContent: 'center',
+
+    circleCont: {
+      width: sizes.WIDTH * 0.058,
+      height: sizes.WIDTH * 0.058,
+      borderRadius: (sizes.WIDTH * 100) / 2,
+      justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: colors.WHITE,
-      // for IOS
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 3,
-      },
-      shadowOpacity: 0.29,
-      shadowRadius: 4.65,
-      // FOR ANDOIRD
-      elevation: 7,
+      borderWidth: sizes.WIDTH * 0.0025,
+      borderColor: colors.LIGHT_GRAY200,
+      marginRight: sizes.WIDTH * 0.025,
+      marginTop: sizes.HEIGHT * 0.035,
     },
-    snedCodeButton: {
-      marginTop: sizes.HEIGHT * 0.0225,
-      marginBottom: sizes.HEIGHT * 0.0225,
-    },
-    alreadyJoinTxt: {
+    IAcceptTxt: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.035,
       color: colors.BLACK,
-    },
-    loginTxt: {
-      ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.035,
-      color: colors.PRIMARY,
+
+      marginTop: sizes.HEIGHT * 0.032,
     },
   });
   return {

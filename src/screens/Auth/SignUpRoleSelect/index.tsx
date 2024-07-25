@@ -113,11 +113,13 @@ const SignUpRoleSelect: FC<SignUpRoleSelectScreenProps> = ({navigation}) => {
       {/* LIST VIEW END */}
       <BottomButton>
         <Button
-          bgcolor={colors.MAIN_GREEN}
+          bgcolor={colors.PRIMARY}
           text="Continue"
           textColor={colors.BLACK}
           onPress={() =>
-            navigate('SignUpHomeAddress', {roleID: selectedRoleID})
+            navigate('SignUpSeekerProviderNICOrVerifyMember', {
+              roleID: selectedRoleID,
+            })
           }
           btnStyles={styles.saveButton}
         />

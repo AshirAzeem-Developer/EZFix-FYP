@@ -16,4 +16,6 @@ export default {
   MESSAGE_TAB: require('./messagestabinactive.png'),
   PROFILE_TAB_ACTIVE: require('./profiletabactive.png'),
   PROFILE_TAB: require('./profiletabinactive.png'),
+  CHECK_BLACK: require('./checkBlack.png'),
+  CHEVRON: require('./chevron.png'),
 };

@@ -27,4 +27,7 @@ export default {
   inActiveSkewedRectangle: require('./inActiveSkewedRectangle.png'),
   doubleRightArrowGreen: require('./doubleRightArrowGreen.png'),
   DELETE_BADGE: require('./deleteBadge.png'),
+  SCAN_DOCUMENT_EXAMPLE: require('./scanDocumentExample.png'),
+  HAND_HOLDING_MOBILE: require('./handHoldingMobile.png'),
+  CHECK_BADGE: require('./checkBadge.png'),
 };

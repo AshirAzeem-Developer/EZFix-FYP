@@ -25,8 +25,8 @@ export type AuthStackParamList = {
   // SignUpHomeAddress: {roleID: Role};
   // SignUpConnectAccount: {roleID: Role};
   // SignUpStatus: {roleID: Role};
-  // SignUpRefereeLicOrVerifyMember: {roleID: Role};
-  // SignUpCheckPhoto: {roleID: Role};
+  SignUpSeekerProviderNICOrVerifyMember: {roleID: Role};
+  SignUpCheckPhoto: {roleID: Role};
   // SignUpRefereeCoachingLicense: {roleID: Role};
   // SignUpTeamSetup: {roleID: Role};
   // SignUpAddExperience: {roleID: Role};
@@ -34,7 +34,7 @@ export type AuthStackParamList = {
   // SignUpExpectedRate: {roleID: Role};
   // SignUpLinkABankAccount: {roleID: Role};
   // SignUpTakeASelfie: {roleID: Role};
-  // SignUpPrivacyPolicy: undefined;
+  SignUpPrivacyPolicy: undefined;
   // SignUpTermsAndCondition: undefined;
 };
 // var
@@ -54,7 +54,7 @@ const AuthStack = () => {
       <Stack.Screen
         name="Onboarding"
         options={{
-          navigationBarColor: colors.MAIN_GREEN,
+          navigationBarColor: colors.PRIMARY,
         }}
         component={Onboarding}
       />

@@ -96,7 +96,7 @@ const SignIn = ({navigation}) => {
           bgcolor={
             username.length === 0 || password.length === 0
               ? colors.GRAY
-              : colors.MAIN_GREEN
+              : colors.PRIMARY
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"

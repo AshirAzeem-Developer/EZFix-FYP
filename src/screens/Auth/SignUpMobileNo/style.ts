@@ -33,7 +33,7 @@ const useStyles = () => {
       width: sizes.WIDTH * 0.075,
       height: sizes.WIDTH * 0.075,
       borderRadius: (sizes.WIDTH * 0.1) / 2,
-      backgroundColor: colors.MAIN_GREEN,
+      backgroundColor: colors.PRIMARY,
     },
 
     sendCodeButtonCont: {

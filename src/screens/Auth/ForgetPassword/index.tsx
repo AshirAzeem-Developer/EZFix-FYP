@@ -90,7 +90,7 @@ const ForgetPassword: React.FC<ForgetPasswordScreenProps> = ({navigation}) => {
 
       <BottomButton>
         <Button
-          bgcolor={isValid ? colors.MAIN_GREEN : colors.LIGHT_GRAY}
+          bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY}
           text="Send Code"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY200}
           onPress={() => showModal()}

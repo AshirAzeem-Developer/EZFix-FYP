@@ -142,7 +142,7 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
 
       <BottomButton>
         <Button
-          bgcolor={isValid ? colors.MAIN_GREEN : colors.LIGHT_GRAY}
+          bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY}
           text="Save"
           textColor={isValid ? colors.BLACK : colors.GRAY}
           onPress={() => showModal()}

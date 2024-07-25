@@ -1,26 +1,25 @@
 import React, {FC, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 // third party
-import {useStyles} from 'react-native-unistyles';
+
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 // styles
-import stylesheet from './style';
+import useStyles from './style';
 
 // local component
-import {ParentView} from '../../components/common/ParentView';
-import Header from '../../components/Header';
-import Button from '../../components/common/Button';
+import {ParentView} from '../../../components/common/ParentView/ParentView';
+import Header from '../../../components/AppHeader';
+import Button from '../../../components/Button/Button';
 
-import images from '../../utils/images';
+import images from '../../../assets/images';
 
 // local navigation
-import {AuthStackParamList} from '../../navigation/authStack';
+import {AuthStackParamList} from '../../../navigators/authStack';
 // enums
-import SvgImage from '../../components/common/SvgImage';
-import {Role} from '../../constant/enums/applicationRoleEnums';
-import BottomButton from '../../components/common/BottomButton';
-import {useLocaleStoreProvider} from '../../store/locale';
+import {Role} from '../../../constants/enums/applicationRoleEnums';
+import BottomButton from '../../../components/common/BottomButton/BottomButton';
+import icons from '../../../assets/icons';
 
 type SignUpCheckPhotoScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -31,8 +30,7 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
   route,
   navigation,
 }) => {
-  const {strings} = useLocaleStoreProvider();
-  const {styles, theme} = useStyles(stylesheet);
+  const {styles, sizes, colors} = useStyles();
 
   // navigation
   const {navigate} = navigation;
@@ -43,7 +41,7 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
 
       {/* text component  */}
       <View style={styles.screenTitleTxtCont}>
-        <Text style={styles.screenTitleTxt}>{strings.lblCHECK_PHOTO}</Text>
+        <Text style={styles.screenTitleTxt}>Check Photo</Text>
       </View>
       {/* text component  end  */}
       {/* takenImagePlaceHolder */}
@@ -52,38 +50,32 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
 
       {/* instructionTxt */}
       <View style={styles.instructionTxt}>
-        <Text style={styles.makeSureTxt}>{strings.lblMAKE_SURE}</Text>
+        <Text style={styles.makeSureTxt}>Make Sure</Text>
         <View style={styles.singleInsCont}>
-          <SvgImage Svg={images.checkBlack} />
+          <Image source={icons.CHECK_BLACK} />
           <Text style={styles.singInstTxt}>
-            {strings.lblIS_WHOLE_DOCUMENT_IN_FRAME}
+            Is the whole document in the frame?
           </Text>
         </View>
 
         {/* inst 2 */}
         <View style={styles.singleInsCont}>
-          <SvgImage Svg={images.checkBlack} />
+          <Image source={icons.CHECK_BLACK} />
           <Text style={styles.singInstTxt}>
-            {strings.lblCHECK_IS_PHOTO_CLEAR}
+            Is the photo clear and not blurry?
           </Text>
         </View>
         {/* inst 2 end */}
       </View>
       {/* instructionTxt */}
       <BottomButton>
-        <Text style={styles.reTakeTxt}>{strings.lblRETAKE_PHOTO}</Text>
+        <Text style={styles.reTakeTxt}>Retake Photo</Text>
         <Button
-          bgcolor={theme.colors.green}
-          text={strings.lblUSE_PHOTO}
-          textColor={theme.colors.dark}
+          bgcolor={colors.PRIMARY}
+          text="Use Photo"
+          textColor={colors.BLACK}
           onPress={() => {
-            if (roleID === Role.Referee) {
-              navigate('SignUpRefereeCoachingLicense', {roleID: roleID});
-            } else if (roleID === Role.SportingDirector) {
-              navigate('SignUpTakeASelfie', {roleID: roleID});
-            } else {
-              navigate('SignUpRefereeCoachingLicense', {roleID: roleID});
-            }
+            navigation.navigate('SignUpPrivacyPolicy', {roleID: roleID});
           }}
           btnStyles={styles.saveButton}
         />

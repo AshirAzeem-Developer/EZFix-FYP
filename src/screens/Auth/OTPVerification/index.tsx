@@ -84,7 +84,7 @@ const OTPVerification: React.FC<OTPVerificationScreenProps> = ({
       </Text>
       <BottomButton>
         <Button
-          bgcolor={true ? colors.MAIN_GREEN : colors.LIGHT_GRAY}
+          bgcolor={true ? colors.PRIMARY : colors.LIGHT_GRAY}
           text="Continue"
           textColor={true ? colors.BLACK : colors.LIGHT_GRAY200}
           onPress={() => navigate(navigateTo)}

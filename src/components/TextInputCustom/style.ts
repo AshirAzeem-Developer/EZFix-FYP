@@ -25,7 +25,7 @@ const useStyles = () => {
       borderBottomWidth: width * 0.001,
     },
     blackBottomBorder: {
-      borderBottomColor: colors.MAIN_GREEN,
+      borderBottomColor: colors.PRIMARY,
       borderBottomWidth: width * 0.002,
     },
     leftIconCon: {

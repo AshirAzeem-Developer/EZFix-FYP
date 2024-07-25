@@ -50,7 +50,7 @@ const useStyles = () => {
       borderRadius: (sizes.WIDTH * 0.1) / 2,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: colors.MAIN_GREEN,
+      backgroundColor: colors.PRIMARY,
     },
     emptyRightIconCont: {
       width: sizes.WIDTH * 0.075,

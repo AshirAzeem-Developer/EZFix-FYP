@@ -10,7 +10,6 @@ const defaultColors = {
   LIGHT_GRAY200: '#c1c7c2',
   BLACK: 'black',
   WHITE: 'white',
-  MAIN_GREEN: '#008000',
   whiteSmoke: '#F5F5F5',
 };
 

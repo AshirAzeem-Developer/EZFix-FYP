@@ -35,12 +35,12 @@ const useStyles = () => {
     detailTxt: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.0425,
-      color: theme.colors.dark,
-      marginTop: height * 0.02,
+      color: colors.BLACK,
+      marginTop: sizes.HEIGHT * 0.02,
     },
 
     saveButton: {
-      marginTop: height * 0.0225,
+      marginTop: sizes.HEIGHT * 0.0225,
     },
 
     /******************[cameraMainCont]*********************** */
@@ -49,44 +49,44 @@ const useStyles = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100%',
-      backgroundColor: theme.colors.dark,
+      backgroundColor: colors.BLACK,
     },
     topCameraTxtCont: {
       width: '95%',
       alignSelf: 'center',
     },
     topCameraTxt: {
-      fontFamily: fonts.DMSans.Bold,
-      fontSize: screen.width * 0.065,
-      color: theme.colors.white,
+      ...globalStyles.TEXT_STYLE_BOLD,
+      fontSize: sizes.WIDTH * 0.065,
+      color: colors.WHITE,
     },
     camera: {
       width: '95%',
-      height: height * 0.4,
-      marginTop: height * 0.05,
-      marginBottom: height * 0.025,
+      height: sizes.HEIGHT * 0.4,
+      marginTop: sizes.HEIGHT * 0.05,
+      marginBottom: sizes.HEIGHT * 0.025,
     },
     noPhotoCopTxt: {
-      fontFamily: fonts.DMSans.Regular,
-      fontSize: screen.width * 0.035,
-      color: theme.colors.white,
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.WIDTH * 0.035,
+      color: colors.WHITE,
     },
 
     cameraButtonMainCont: {
-      width: width * 0.24,
-      height: width * 0.24,
-      borderRadius: (width * 100) / 2,
+      width: sizes.WIDTH * 0.24,
+      height: sizes.WIDTH * 0.24,
+      borderRadius: (sizes.WIDTH * 100) / 2,
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      bottom: height * 0.08,
+      bottom: sizes.HEIGHT * 0.08,
       backgroundColor: '#393939',
     },
 
     cameraButtonInnerCont: {
-      width: width * 0.19,
-      height: width * 0.19,
-      borderRadius: (width * 100) / 2,
+      width: sizes.WIDTH * 0.19,
+      height: sizes.WIDTH * 0.19,
+      borderRadius: (sizes.WIDTH * 100) / 2,
 
       backgroundColor: '#CCCCCC',
     },

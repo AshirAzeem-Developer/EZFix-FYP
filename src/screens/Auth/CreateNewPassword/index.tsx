@@ -123,7 +123,7 @@ const CreateNewPassword: FC<PCreateNewPasswordScreenProps> = ({navigation}) => {
 
       <BottomButton>
         <Button
-          bgcolor={isValid ? colors.MAIN_GREEN : colors.LIGHT_GRAY200}
+          bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY200}
           text="Continue"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY}
           onPress={() => navigate('SignUpRoleSelect')}

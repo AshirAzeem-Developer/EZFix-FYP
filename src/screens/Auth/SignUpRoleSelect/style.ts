@@ -61,7 +61,7 @@ const useStyles = () => {
     },
 
     activeBorderBottom: {
-      borderBottomColor: colors.MAIN_GREEN,
+      borderBottomColor: colors.PRIMARY,
       borderBottomWidth: sizes.WIDTH * 0.005,
       borderBottomLeftRadius: sizes.WIDTH * 0.015,
     },

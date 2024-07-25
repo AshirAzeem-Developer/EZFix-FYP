@@ -55,7 +55,7 @@ const useStyles = () => {
       marginBottom: sizes.HEIGHT * 0.025,
     },
     progressBarOverrideStyle: {
-      backgroundColor: colors.MAIN_GREEN,
+      backgroundColor: colors.PRIMARY,
     },
     /***********[Progress bar overrid style End]*********** */
     saveButtonCont: {

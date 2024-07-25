@@ -93,7 +93,7 @@ export const useGenericModal = ({modalProp}: {modalProp: ModalProps}) => {
                   },
             ]}>
             <Button
-              bgcolor={!errorBtn ? colors.MAIN_GREEN : '#FFE2E2'}
+              bgcolor={!errorBtn ? colors.PRIMARY : '#FFE2E2'}
               text={buttonTitle}
               textColor={!errorBtn ? colors.BLACK : colors.RED}
               onPress={handleClose}

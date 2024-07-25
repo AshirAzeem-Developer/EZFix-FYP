@@ -26,14 +26,14 @@ import {AuthStackParamList} from '../../../navigators/AuthStack';
 import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 
-type SignUpRefereeLicOrVerifyMemberScreenProps = NativeStackScreenProps<
+type SignUpSeekerProviderNICOrVerifyMemberScreenProps = NativeStackScreenProps<
   AuthStackParamList,
-  ''
+  'SignUpSeekerProviderNICOrVerifyMember'
 >;
 
 var timer: any = null;
-const SignUpRefereeLicOrVerifyMember: FC<
-  SignUpRefereeLicOrVerifyMemberScreenProps
+const SignUpSeekerProviderNICOrVerifyMember: FC<
+  SignUpSeekerProviderNICOrVerifyMemberScreenProps
 > = ({route, navigation}) => {
   // style
   const {styles, sizes, colors} = useStyles();
@@ -88,10 +88,10 @@ const SignUpRefereeLicOrVerifyMember: FC<
       return (
         <View style={styles.cameraMainCont}>
           <View style={styles.topCameraTxtCont}>
-            <Text style={styles.topCameraTxt}>Front Photo of License</Text>
+            <Text style={styles.topCameraTxt}>Front Photo of NIC</Text>
           </View>
           <View style={styles.camera}>
-            <Image source={images.scanDocumentExample} />
+            <Image source={images.SCAN_DOCUMENT_EXAMPLE} />
           </View>
           <Text style={styles.noPhotoCopTxt}>No photocopies</Text>
         </View>
@@ -101,7 +101,7 @@ const SignUpRefereeLicOrVerifyMember: FC<
     return (
       <View style={styles.cameraMainCont}>
         <View style={styles.topCameraTxtCont}>
-          <Text style={styles.topCameraTxt}>Front Photo of License</Text>
+          <Text style={styles.topCameraTxt}>Front Photo of NIC</Text>
         </View>
         <Camera
           device={device}
@@ -168,31 +168,22 @@ const SignUpRefereeLicOrVerifyMember: FC<
 
           {/* text component  */}
           <View style={[styles.textCont, roleID === 1 && styles.marginStle]}>
-            <Text style={styles.verifyMemTxt}>
-              {roleID === 1
-                ? 'Referee License'
-                : roleID === 2 || roleID === 3
-                ? 'Verify Membership'
-                : ''}
-            </Text>
+            <Text style={styles.verifyMemTxt}>CNIC IDENTITY</Text>
 
-            {(roleID === 2 || roleID === 3) && (
-              <Text style={styles.detailTxt}>
-                We need proof that you belong to your sports governing body.
-                Please upload a document or photo showing your membership
-                status.
-              </Text>
-            )}
+            <Text style={styles.detailTxt}>
+              We need proof that you belong to your sports governing body.
+              Please upload a document or photo showing your membership status.
+            </Text>
           </View>
           {/* text component  end  */}
 
-          <SvgImage Svg={images.handHoldingMobile} />
+          <Image source={images.HAND_HOLDING_MOBILE} />
 
           <BottomButton>
             <Button
-              bgcolor={theme.colors.green}
+              bgcolor={colors.PRIMARY}
               text="Take a Picture"
-              textColor={theme.colors.dark}
+              textColor={colors.BLACK}
               onPress={() => {
                 // // navigate('SignUpCheckPhoto', {roleID: roleID});
                 // setIsCameraOpen(true);
@@ -213,4 +204,4 @@ const SignUpRefereeLicOrVerifyMember: FC<
   );
 };
 
-export default SignUpRefereeLicOrVerifyMember;
+export default SignUpSeekerProviderNICOrVerifyMember;

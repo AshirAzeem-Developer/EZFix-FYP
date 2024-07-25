@@ -120,7 +120,7 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
 
       <BottomButton additionalButtonContStyle={styles.sendCodeButtonCont}>
         <Button
-          bgcolor={isValid ? colors.MAIN_GREEN : colors.GRAY}
+          bgcolor={isValid ? colors.PRIMARY : colors.GRAY}
           text="Continue"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY}
           onPress={() => {
