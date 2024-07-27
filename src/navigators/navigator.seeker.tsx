@@ -5,7 +5,27 @@ import Profile from '../screens/App/Profile';
 import Messages from '../screens/App/Message';
 import Bookings from '../screens/App/Bookings';
 import icons from '../assets/icons';
-const Stack = createNativeStackNavigator();
+import ProfileSettings from '../screens/App/ProfileSettings';
+
+export type ProfileStackParamsList = {
+  Profile: undefined;
+  ProfileSettings: undefined;
+};
+
+const Stack = createNativeStackNavigator<ProfileStackParamsList>();
+
+function ProfileStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Profile">
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+    </Stack.Navigator>
+  );
+}
 
 const BottomTabs = () => {
   return (
@@ -35,7 +55,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Profile',
-          Component: Profile,
+          Component: ProfileStack,
           icon: icons.PROFILE_TAB,
           selectedIcon: icons.PROFILE_TAB_ACTIVE,
           label: 'Profile',

@@ -20,6 +20,7 @@ import SignUpCheckPhoto from '../screens/Auth/SignUpCheckPhoto';
 import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
+import {AuthStackParamList} from './authStack';
 
 const Stack = createNativeStackNavigator();
 

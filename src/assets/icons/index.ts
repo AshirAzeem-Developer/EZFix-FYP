@@ -18,4 +18,6 @@ export default {
   PROFILE_TAB: require('./profiletabinactive.png'),
   CHECK_BLACK: require('./checkBlack.png'),
   CHEVRON: require('./chevron.png'),
+  EDIT: require('./Edit.png'),
+  SETTINGS: require('./Settings.png'),
 };
