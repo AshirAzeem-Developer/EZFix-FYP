@@ -21,14 +21,16 @@ const useStyles = () => {
       marginTop: sizes.HEIGHT * 0.025,
       marginRight: sizes.HEIGHT * 0.025,
       borderBottomWidth: sizes.HEIGHT * 0.0003,
+      paddingBottom: sizes.HEIGHT * 0.01,
     },
     name: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.045,
+      fontSize: sizes.WIDTH * 0.05,
+      color: colors.BLACK,
     },
     headerImage: {
-      width: sizes.WIDTH * 0.08,
-      height: sizes.HEIGHT * 0.06,
+      width: sizes.WIDTH * 0.06,
+      height: sizes.HEIGHT * 0.03,
       marginHorizontal: sizes.WIDTH * 0.015,
       marginTop: 8,
     },
@@ -43,8 +45,9 @@ const useStyles = () => {
     },
     sec1Desc: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.044,
+      fontSize: sizes.WIDTH * 0.05,
       paddingTop: sizes.HEIGHT * 0.008,
+      color: colors.BLACK,
     },
 
     sectionContainer: {
@@ -62,19 +65,23 @@ const useStyles = () => {
     countryLabel: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.04,
+      color: colors.GRAY,
     },
     country: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.044,
+      fontSize: sizes.WIDTH * 0.05,
       paddingTop: sizes.HEIGHT * 0.008,
+      color: colors.BLACK,
     },
     contactLabel: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.04,
+      color: colors.GRAY,
     },
     contact: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.044,
+      fontSize: sizes.WIDTH * 0.05,
+      color: colors.BLACK,
 
       paddingTop: sizes.HEIGHT * 0.008,
     },
@@ -114,6 +121,8 @@ const useStyles = () => {
     },
     expLabel: {
       ...globalStyles.TEXT_STYLE,
+      color: colors.GRAY,
+      fontSize: sizes.WIDTH * 0.04,
     },
     chipText: {
       ...globalStyles.TEXT_STYLE,
@@ -142,12 +151,12 @@ const useStyles = () => {
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
-    textRefree: {
+    textSkill: {
       ...globalStyles.TEXT_STYLE_BOLD,
       marginTop: sizes.HEIGHT * 0.02,
       marginHorizontal: sizes.WIDTH * 0.02,
-
-      fontSize: sizes.WIDTH * 0.045,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.05,
     },
     clubSportsTextDivider: {
       borderLeftWidth: 2,
@@ -160,17 +169,20 @@ const useStyles = () => {
       marginLeft: sizes.WIDTH * 0.009,
       marginTop: sizes.HEIGHT * 0.01,
       fontSize: sizes.WIDTH * 0.038,
+      color: colors.GRAY,
     },
     textShortDesc: {
       ...globalStyles.TEXT_STYLE,
 
       marginLeft: sizes.WIDTH * 0.009,
       marginTop: sizes.HEIGHT * 0.01,
+      color: colors.GRAY,
     },
     expDesc: {
       ...globalStyles.TEXT_STYLE,
       marginLeft: sizes.WIDTH * 0.009,
       marginTop: sizes.HEIGHT * 0.01,
+      color: colors.BLACK,
     },
     switchContainer: {
       backgroundColor: colors.BACKGROUND,
@@ -200,8 +212,8 @@ const useStyles = () => {
       width: sizes.WIDTH * 0.2,
     },
 
-    emailText: {
-      color: colors.LIGHT_GRAY,
+    phoneNumberText: {
+      color: colors.GRAY,
     },
   });
   return {

@@ -17,12 +17,13 @@ import {FadeInDown} from 'react-native-reanimated';
 import icons from '../../../assets/icons';
 import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-// import {useLocaleStoreProvider} from '../../store/locale';
+import {useNavigation} from '@react-navigation/native';
 
-type Props = NativeStackScreenProps<ProfileStackParamsList>;
+// type Props = NativeStackScreenProps<ProfileStackParamsList, 'Profile'>;
 
-const Profile: React.FC<Props> = ({navigation}) => {
+const Profile = () => {
   const {styles, sizes, colors} = useStyles();
+  const navigation = useNavigation();
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -32,6 +33,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
       style={styles.container}
       enterAnimation={FadeInDown.duration(500)}>
       <SafeAreaView>
+        {/* ========= >> Header << ============= */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => {}}>
             <Image source={icons.EDIT} style={styles.headerImage} />
@@ -47,7 +49,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <Image source={images.PROFILE} />
             <View style={styles.profileDetailsContainer}>
               <Text style={styles.name}>John Smith</Text>
-              <Text style={styles.emailText}>John.smith@gmail.com</Text>
+              <Text style={styles.phoneNumberText}>+92 321 5589988</Text>
             </View>
           </View>
           {/* =========== >>> Section 1 <<<< ============= */}
@@ -93,9 +95,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.divider} />
             <View style={styles.refHeading}>
               <View style={styles.refDivider} />
-              <Text style={styles.textRefree}>Skill</Text>
+              <Text style={styles.textSkill}>Skill</Text>
               <View style={styles.clubSportsTextDivider} />
-              <Text style={styles.textRefree}>Technician</Text>
+              <Text style={styles.textSkill}>Technician</Text>
             </View>
             <Text style={styles.experienceTime}>Mar 2023 - Present...</Text>
             <Text style={styles.textShortDesc}>Add a short description</Text>
