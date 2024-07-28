@@ -10,7 +10,23 @@ const useStyles = () => {
   const sizes = useSizes();
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
-    container: {},
+    container: {flexDirection: 'column',
+      backgroundColor: colors.WHITE,
+      alignItems: 'center',
+      width: width * 1,
+      height: height * 1,},
+    logoImgCont: {
+      paddingTop:height*0.02,
+      alignSelf: 'flex-start',
+      paddingLeft: sizes.PADDING,
+      display:"flex",
+      flexDirection:"row"
+      
+    },
+    logoImg: {
+      height: sizes.HEIGHT * 0.12,
+      width: sizes.LOGO_SIZE,
+    },
   });
   return {
     colors,

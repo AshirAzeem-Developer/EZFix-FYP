@@ -20,4 +20,6 @@ export default {
   CHEVRON: require('./chevron.png'),
   EDIT: require('./Edit.png'),
   SETTINGS: require('./Settings.png'),
+  Bell: require('./bell.png'),
+
 };

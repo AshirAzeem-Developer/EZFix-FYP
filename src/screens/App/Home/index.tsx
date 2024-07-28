@@ -11,11 +11,12 @@ import {
 } from 'react-native';
 
 //local imports
-import styles from './style';
+import useStyles from './style';
 import icons from '../../../assets/icons';
 import images from '../../../assets/images';
 import SellerCard from '../../../components/TopRatedSellerCard';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
+
 
 //third party library
 
@@ -23,6 +24,8 @@ import {ParentView} from '../../../components/common/ParentView/ParentView';
 const {width, height} = Dimensions.get('window');
 
 const Home = () => {
+  const {styles, colors, sizes} = useStyles();
+
   // const serviceCategories = [
   //   {
   //     id: 1,
@@ -42,8 +45,15 @@ const Home = () => {
   // ];
   return (
     <>
-      <ParentView>
-        <Text>Home</Text>
+      <ParentView style={styles.container}>
+
+
+      <View style={styles.logoImgCont}>
+      <Image source={icons.Logo} style={styles.logoImg} />
+      <Image source={icons.Bell} style={styles.logoImg} />
+    </View>
+
+     
       </ParentView>
     </>
   );
