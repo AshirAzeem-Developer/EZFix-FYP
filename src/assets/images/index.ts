@@ -32,4 +32,8 @@ export default {
   CHECK_BADGE: require('./checkBadge.png'),
   FLAG: require('./Flags.png'),
   PROFILE: require('./Profile.png'),
+  Mechanic: require('./mechanic.png'),
+  Plumber: require('./plumber.png'),
+  Electrician: require('./electrician.png'),
+
 };
