@@ -1,4 +1,7 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import CreateBottomTabs from './CreateBottomTabs';
 import Home from '../screens/App/Home';
 import Profile from '../screens/App/Profile';
@@ -12,9 +15,9 @@ export type ProfileStackParamsList = {
   ProfileSettings: undefined;
 };
 
-const Stack = createNativeStackNavigator<ProfileStackParamsList>();
+const Stack = createNativeStackNavigator();
 
-function ProfileStack() {
+const ProfileStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -25,7 +28,7 @@ function ProfileStack() {
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
     </Stack.Navigator>
   );
-}
+};
 
 const BottomTabs = () => {
   return (
@@ -73,6 +76,7 @@ function ServiceSeekerStack() {
       }}
       initialRouteName="HomeTabs">
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
+      <Stack.Screen name="ProfileSetting" component={ProfileSettings} />
     </Stack.Navigator>
   );
 }

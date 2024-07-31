@@ -6,9 +6,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-type Props = NativeStackScreenProps<ProfileStackParamsList>;
+// type Props = NativeStackScreenProps<ProfileStackParamsList>;
 
-const ProfileSettings: React.FC<Props> = ({navigation}) => {
+const ProfileSettings = () => {
   const {styles, colors} = useStyles();
   return (
     <SafeAreaView style={styles.container}>
