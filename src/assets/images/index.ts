@@ -35,5 +35,7 @@ export default {
   Mechanic: require('./mechanic.png'),
   Plumber: require('./plumber.png'),
   Electrician: require('./electrician.png'),
+  Provider: require('./provider.png'),
+
 
 };

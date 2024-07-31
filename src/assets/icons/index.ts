@@ -21,5 +21,9 @@ export default {
   EDIT: require('./Edit.png'),
   SETTINGS: require('./Settings.png'),
   Bell: require('./bell.png'),
+  ArrowRight: require('./RightArrow.png'),
+  Star:require('./Star.png'),
+  map:require('./map.png')
+
 
 };

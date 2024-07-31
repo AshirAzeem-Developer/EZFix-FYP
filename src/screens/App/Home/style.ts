@@ -13,7 +13,7 @@ const useStyles = () => {
     container: { backgroundColor: '#fff',
       },
     logoImgCont: {
-      paddingTop:height*0.02,
+ 
       alignSelf: 'flex-start',
       paddingLeft: sizes.PADDING,
       display:"flex",
@@ -26,22 +26,20 @@ const useStyles = () => {
     },
     bellImg: {
         alignSelf:"center",
-        marginLeft:width*0.4,
-        paddingTop:height*0.01,
-         
+        marginLeft:sizes.WIDTH*0.5,
+        width: sizes.LOGO_SIZE,
+        
      
     },
     search:{
-        
-   paddingTop:height*0,
-    padding:height*0.03,
+   paddingTop:sizes.HEIGHT*0,
+   
     },
     categoryheading:{
+      ...globalStyles.TEXT_STYLE_BOLD,
       color:"black",
-      fontSize:width*0.07,
-      padding:width*0.02,
-   paddingTop:height*0,
-
+      fontSize:sizes.WIDTH*0.07,
+    paddingLeft:sizes.WIDTH*0.03
     },
     categories: {
       flexDirection: 'row',
@@ -67,9 +65,9 @@ const useStyles = () => {
       padding: 5,
     },
     image: {
-      width: width*0.1,
-      height: height*0.05,
-      borderRadius: 20,
+      width: sizes.WIDTH*0.1,
+      height: sizes.HEIGHT*0.05,
+      borderRadius: sizes.WIDTH*0.5
     },
     catname: {
       marginTop: height*0.01,
@@ -78,6 +76,38 @@ const useStyles = () => {
       fontWeight: 'bold',
       color:"black"
     },
+    providercontainer:{
+        paddingTop:sizes.HEIGHT*0.01
+    },
+    providers:{
+    
+      margin: 5,
+
+    },
+    providerscard: {
+        paddingLeft:sizes.WIDTH*0.02,
+        display:'flex',
+       flexDirection:'row'        
+    },
+    providernames: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+     color:colors.BLACK,
+     paddingLeft:sizes.WIDTH*0.04,
+     paddingTop:sizes.WIDTH*0.001,
+
+    },
+    providerimg: {
+      width:sizes.WIDTH*0.2,
+      height:sizes.HEIGHT*0.1,
+      borderRadius:sizes.WIDTH*0.06,
+  
+      
+    },
+    star:{
+      marginLeft:sizes.WIDTH*0.04,
+      marginTop:sizes.HEIGHT*0.004
+      
+    }
   });
   return {
     colors,
