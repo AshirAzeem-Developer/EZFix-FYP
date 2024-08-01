@@ -33,6 +33,7 @@ const useStyles = () => {
     },
     search:{
    paddingTop:sizes.HEIGHT*0,
+   padding:sizes.WIDTH*0.02
    
     },
     categoryheading:{
@@ -70,36 +71,36 @@ const useStyles = () => {
       borderRadius: sizes.WIDTH*0.5
     },
     catname: {
+      
       marginTop: height*0.01,
       textAlign: 'center',
       fontSize: width*0.03,
       fontWeight: 'bold',
       color:"black"
     },
-    providercontainer:{
-        paddingTop:sizes.HEIGHT*0.01
-    },
+  
     providers:{
     
-      margin: 5,
+      margin: sizes.WIDTH*0.01,
 
     },
     providerscard: {
-        paddingLeft:sizes.WIDTH*0.02,
+        paddingLeft:sizes.WIDTH*0.04,
         display:'flex',
-       flexDirection:'row'        
+       flexDirection:'row',        
+      
     },
     providernames: {
       ...globalStyles.TEXT_STYLE_BOLD,
      color:colors.BLACK,
      paddingLeft:sizes.WIDTH*0.04,
-     paddingTop:sizes.WIDTH*0.001,
+   
 
     },
     providerimg: {
       width:sizes.WIDTH*0.2,
       height:sizes.HEIGHT*0.1,
-      borderRadius:sizes.WIDTH*0.06,
+      borderRadius:sizes.WIDTH*0.05,
   
       
     },

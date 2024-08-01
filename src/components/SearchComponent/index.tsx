@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useColors } from '../../constants/color';
+import {useSizes } from '../../constants/size';
+import {getGlobalStyles } from '../../constants/GlobalStyle';
 
 interface SearchComponentProps {
   placeholder?: string;
   onSearch: (query: string) => void;
 }
 const {width, height} = Dimensions.get('window');
+
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder = "Search any services...", onSearch }) => {
   const [query, setQuery] = useState('');
@@ -45,11 +49,13 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
+   
   },
   input: {
     flex: 1,
     fontSize: 16,
     color:"black",
+    padding:0
   },
 });
 

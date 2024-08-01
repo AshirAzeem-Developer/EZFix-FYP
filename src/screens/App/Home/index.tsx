@@ -109,31 +109,32 @@ const Home = () => {
           <Text style={styles.categoryheading}>Top Rated Sellers</Text>
         </View>
         {/* -----------------------Providers---------------------- */}
-
-        <View style={styles.providercontainer}>
-         
-          {providers.map((providers) => (
-            <View key={providers.id} style={styles.providers}>
-              <View style={styles.providerscard}>
-                <Image source={providers.image} style={styles.providerimg} />
-                <View>  
-                <Text style={styles.providernames}>{providers.name}</Text>
-                <View style={{flexDirection:"row",}}>
-                <Image source={icons.Star} style={styles.star}  />
-                <Text style={{color:colors.BLACK,}}>4.9</Text>
+        <View>
+      <FlatList
+        data={providers}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.providers}>
+            <View style={styles.providerscard}>
+              <Image source={item.image} style={styles.providerimg} />
+              <View>  
+                <Text style={styles.providernames}>{item.name}</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Image source={icons.Star} style={styles.star} />
+                  <Text style={{ color: colors.BLACK ,paddingLeft:sizes.WIDTH*0.01}}>4.9</Text>
                 </View>
-                <View style={{flexDirection:"row"}}>
-                <Image source={icons.map} style={styles.star}  />
-                 <Text style={{color:colors.GREEN}}>{providers.Location}</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Image source={icons.map} style={styles.star} />
+                  <Text style={{ color: colors.GREEN,paddingLeft:sizes.WIDTH*0.01 }}>{item.Location}</Text>
                 </View>
-                <Text style={{color:colors.BLACK,paddingLeft:sizes.WIDTH*0.4}}>{providers.category}</Text>
-                </View>
-            
+                <Text style={{ color: colors.BLACK, paddingLeft: sizes.WIDTH * 0.04 }}>{item.category}</Text>
               </View>
             </View>
-          ))}
+          </View>
+        )}
 
-        </View>
+      />
+    </View>
         </SafeAreaView>
       </ParentView>
     </>
