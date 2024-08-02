@@ -21,7 +21,7 @@ const slides = [
 
   {
     image: images.swiper4Image,
-    headingText: 'Plumber',
+    headingText: 'PLUMBER',
     text: 'Get started now!',
   },
   {

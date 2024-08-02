@@ -31,8 +31,8 @@ const Bookings = () => {
   //   },
   //   {
   //     id: 2,
-  //     name: 'Plumber',
-  //     image: images.Plumber,
+  //     name: 'PLUMBER',
+  //     image: images.PLUMBER,
   //   },
   //   {
   //     id: 3,

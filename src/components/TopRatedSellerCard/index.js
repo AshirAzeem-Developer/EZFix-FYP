@@ -54,7 +54,7 @@ const SellerCard = () => {
       name: 'John Doe',
       image: images.ServiceWorker,
       location: 'Saddar,Karachi',
-      category: 'Plumber',
+      category: 'PLUMBER',
       ratings: 4.5,
     },
     {
@@ -62,7 +62,7 @@ const SellerCard = () => {
       name: 'John Doe',
       image: images.ServiceWorker,
       location: 'Saddar,Karachi',
-      category: 'Plumber',
+      category: 'PLUMBER',
       ratings: 4.5,
     },
   ];

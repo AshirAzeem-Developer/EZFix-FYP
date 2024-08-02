@@ -20,10 +20,9 @@ export default {
   CHEVRON: require('./chevron.png'),
   EDIT: require('./Edit.png'),
   SETTINGS: require('./Settings.png'),
-  Bell: require('./bell.png'),
+  BELL: require('./bell.png'),
   ArrowRight: require('./RightArrow.png'),
-  Star:require('./Star.png'),
-  map:require('./map.png')
-
-
+  Star: require('./Star.png'),
+  MAP: require('./map.png'),
+  NOTIFICATION: require('./notification.png'),
 };

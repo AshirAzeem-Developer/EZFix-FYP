@@ -32,7 +32,7 @@ const Messages = () => {
   //   {
   //     id: 2,
   //     name: 'Plumber',
-  //     image: images.Plumber,
+  //     image: images.PLUMBER,
   //   },
   //   {
   //     id: 3,
