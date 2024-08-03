@@ -14,7 +14,10 @@ const CategoriesCard = ({navigation}) => {
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-  const serviceCategories = [
+
+  const {styles, colors, sizes} = useStyles();
+
+  const allCategories = [
     {
       id: 1,
       name: 'Mechanic',
@@ -33,18 +36,6 @@ const CategoriesCard = ({navigation}) => {
       image: images.ELECTRICIAN,
       onPress: () => {},
     },
-    {
-      id: 4,
-      name: 'View all',
-      image: images.VIEW_ALL,
-      onPress: () => {
-        setModalVisible(true);
-      },
-    },
-  ];
-  const {styles, colors} = useStyles();
-
-  const allCategories = [
     {
       id: 5,
       name: 'Painter',
@@ -109,6 +100,14 @@ const CategoriesCard = ({navigation}) => {
 
   const ModalView = (
     <View style={{flex: 1}}>
+      <Image
+        source={images.DOWN}
+        style={{
+          width: sizes.WIDTH * 0.05,
+          height: sizes.HEIGHT * 0.05,
+          alignSelf: 'center',
+        }}
+      />
       <Text style={styles.allCategories}>All Categories</Text>
       <FlatList
         contentContainerStyle={styles.contentContainerStyle}
@@ -132,7 +131,7 @@ const CategoriesCard = ({navigation}) => {
 
   return (
     <>
-      {serviceCategories.map(category => (
+      {allCategories.slice(0, 3).map(category => (
         <TouchableOpacity
           key={category.id}
           style={styles.categoryContainer}
@@ -144,6 +143,15 @@ const CategoriesCard = ({navigation}) => {
           </View>
         </TouchableOpacity>
       ))}
+      <TouchableOpacity
+        style={styles.categoryContainer}
+        activeOpacity={0.85}
+        onPress={() => setModalVisible(true)}>
+        <View style={styles.category}>
+          <Image source={images.VIEW_ALL} style={styles.image} />
+          <Text style={styles.catname}>View all</Text>
+        </View>
+      </TouchableOpacity>
       <CustomModal
         showModal={modalVisible}
         hideModal={toggleModal}

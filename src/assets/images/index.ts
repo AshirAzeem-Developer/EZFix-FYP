@@ -47,4 +47,6 @@ export default {
   COMP_TECH: require('./computer-technician.png'),
   BABY_SITTER: require('./baby-sitter.png'),
   BAND_MASTER: require('./band.png'),
+  DOWN_ARROW: require('./down-arrow.png'),
+  DOWN: require('./down.png'),
 };

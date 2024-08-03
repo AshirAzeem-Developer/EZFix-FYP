@@ -6,9 +6,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import ReactNativeModal from 'react-native-modal';
 
 type CustomModalProps = {
-  showModal: boolean;
-  hideModal: () => void;
-  modalView: React.ReactNode;
+  showModal?: boolean;
+  hideModal?: () => void;
+  bacButtonPress?: () => void;
+  modalView?: React.ReactNode;
 };
 
 const CustomModal: React.FC<CustomModalProps> = ({

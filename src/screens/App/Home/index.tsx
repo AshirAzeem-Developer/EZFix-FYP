@@ -21,6 +21,7 @@ import {FadeInDown} from 'react-native-reanimated';
 import CategoriesCard from '../../../components/CategoriesCard';
 import ReactNativeModal from 'react-native-modal';
 import CustomModal from '../../../components/CustomModal';
+import TopProviderCards from '../../../components/TopProviderCards';
 
 //third party library
 
@@ -32,37 +33,6 @@ const Home = () => {
     // You can add your search logic here
   };
 
-  const providers = [
-    {
-      id: 1,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-    },
-    {
-      id: 2,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-    },
-    {
-      id: 3,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-    },
-    {
-      id: 4,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-    },
-  ];
-
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
 
   return (
@@ -70,6 +40,7 @@ const Home = () => {
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
+        {/* ==== >>  HEADER <<==== */}
         <View style={styles.logoImgCont}>
           <Image source={icons.Logo} style={styles.logoImg} />
           <TouchableOpacity>
@@ -98,49 +69,9 @@ const Home = () => {
         {/* -----------------------Providers---------------------- */}
         <View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.categoryheading}>Top Rated Sellers</Text>
+            <Text style={styles.topRatedSellerHeading}>Top Rated Sellers</Text>
           </View>
-          <FlatList
-            data={providers}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View style={styles.providers}>
-                <View style={styles.providerscard}>
-                  <Image source={item.image} style={styles.providerimg} />
-                  <View>
-                    <Text style={styles.providernames}>{item.name}</Text>
-                    <View style={{flexDirection: 'row'}}>
-                      <Image source={icons.Star} style={styles.star} />
-                      <Text
-                        style={{
-                          color: colors.BLACK,
-                          paddingLeft: sizes.WIDTH * 0.01,
-                        }}>
-                        4.9
-                      </Text>
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                      <Image source={icons.map} style={styles.star} />
-                      <Text
-                        style={{
-                          color: colors.GREEN,
-                          paddingLeft: sizes.WIDTH * 0.01,
-                        }}>
-                        {item.Location}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        color: colors.BLACK,
-                        paddingLeft: sizes.WIDTH * 0.04,
-                      }}>
-                      {item.category}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            )}
-          />
+          <TopProviderCards />
         </View>
       </ParentView>
     </>

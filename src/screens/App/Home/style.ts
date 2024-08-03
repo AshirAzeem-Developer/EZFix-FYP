@@ -47,10 +47,12 @@ const useStyles = () => {
       color: colors.BLACK,
       fontSize: sizes.FONT_SIZE_HEADER,
       paddingLeft: sizes.WIDTH * 0.03,
+      marginTop: sizes.HEIGHT * 0.015,
     },
     categories: {
       flexDirection: 'row',
       justifyContent: 'space-between',
+      paddingLeft: sizes.WIDTH * 0.02,
     },
     providers: {
       margin: sizes.WIDTH * 0.01,
@@ -73,6 +75,13 @@ const useStyles = () => {
     star: {
       marginLeft: sizes.WIDTH * 0.04,
       marginTop: sizes.HEIGHT * 0.004,
+    },
+    topRatedSellerHeading: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      color: colors.BLACK,
+      fontSize: sizes.FONT_SIZE_HEADER,
+      paddingLeft: sizes.WIDTH * 0.03,
+      marginTop: sizes.HEIGHT * 0.015,
     },
   });
   return {
