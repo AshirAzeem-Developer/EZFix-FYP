@@ -11,7 +11,8 @@ import useUserStore from '../store/reducer/settings';
 import {useColors} from '../constants/color';
 
 export type AuthStackParamList = {
-  Onboarding: undefined;
+  Splash: undefined;
+  OnBoarding: undefined;
   SignIn: undefined;
   ForgetPassword: undefined;
   OTPVerification: {navigateTo: any};
@@ -38,30 +39,30 @@ export type AuthStackParamList = {
   // SignUpTermsAndCondition: undefined;
 };
 // var
-const Stack = createNativeStackNavigator<AuthStackParamList>();
-// auth Stack
-const AuthStack = () => {
-  const colors = useColors();
-  const onboarding = useUserStore(state => state.onboarding);
+// const Stack = createNativeStackNavigator<AuthStackParamList>();
+// // auth Stack
+// const AuthStack = () => {
+//   const colors = useColors();
+//   const onboarding = useUserStore(state => state.onboarding);
 
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        navigationBarColor: colors.BACKGROUND,
-      }}
-      initialRouteName={!onboarding ? 'Onboarding' : 'Login'}>
-      <Stack.Screen
-        name="Onboarding"
-        options={{
-          navigationBarColor: colors.PRIMARY,
-        }}
-        component={Onboarding}
-      />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
-    </Stack.Navigator>
-  );
-};
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//         navigationBarColor: colors.BACKGROUND,
+//       }}
+//       initialRouteName={!onboarding ? 'Onboarding' : 'Login'}>
+//       <Stack.Screen
+//         name="Onboarding"
+//         options={{
+//           navigationBarColor: colors.PRIMARY,
+//         }}
+//         component={Onboarding}
+//       />
+//       <Stack.Screen name="Login" component={Login} />
+//       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+//     </Stack.Navigator>
+//   );
+// };
 
-export default AuthStack;
+// export default AuthStack;

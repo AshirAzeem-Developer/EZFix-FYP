@@ -7,14 +7,14 @@ import ReactNativeModal from 'react-native-modal';
 
 type CustomModalProps = {
   showModal?: boolean;
-  hideModal?: () => void;
+
   bacButtonPress?: () => void;
   modalView?: React.ReactNode;
 };
 
 const CustomModal: React.FC<CustomModalProps> = ({
   showModal,
-  hideModal,
+
   modalView,
 }) => {
   const {styles, colors, sizes} = useStyles();
@@ -28,8 +28,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
           padding: 0,
           margin: 0,
         }}
-        isVisible={showModal}
-        onBackdropPress={hideModal}>
+        isVisible={showModal}>
         {modalView ? modalView : null}
       </ReactNativeModal>
     </>

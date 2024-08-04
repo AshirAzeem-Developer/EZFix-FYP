@@ -9,15 +9,17 @@ import Messages from '../screens/App/Message';
 import Bookings from '../screens/App/Bookings';
 import icons from '../assets/icons';
 import ProfileSettings from '../screens/App/ProfileSettings';
+import EditProfile from '../screens/App/EditProfile';
 
 export type ProfileStackParamsList = {
   Profile: undefined;
   ProfileSettings: undefined;
+  EditProfile: undefined;
 };
 
 const Stack = createNativeStackNavigator();
 
-const ProfileStack = () => {
+function ProfileStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -26,9 +28,10 @@ const ProfileStack = () => {
       initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
-};
+}
 
 const BottomTabs = () => {
   return (
@@ -76,7 +79,6 @@ function ServiceSeekerStack() {
       }}
       initialRouteName="HomeTabs">
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
-      <Stack.Screen name="ProfileSetting" component={ProfileSettings} />
     </Stack.Navigator>
   );
 }

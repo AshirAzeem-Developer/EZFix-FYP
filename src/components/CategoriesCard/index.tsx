@@ -8,7 +8,7 @@ import images from '../../assets/images';
 import {useGenericModal} from '../../hooks/useGenericModal/useGenericModal';
 import CustomModal from '../CustomModal';
 
-const CategoriesCard = ({navigation}) => {
+const CategoriesCard = ({}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
   const toggleModal = () => {
@@ -100,14 +100,16 @@ const CategoriesCard = ({navigation}) => {
 
   const ModalView = (
     <View style={{flex: 1}}>
-      <Image
-        source={images.DOWN}
-        style={{
-          width: sizes.WIDTH * 0.05,
-          height: sizes.HEIGHT * 0.05,
-          alignSelf: 'center',
-        }}
-      />
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Image
+          source={images.DOWN}
+          style={{
+            width: sizes.WIDTH * 0.05,
+            height: sizes.HEIGHT * 0.05,
+            alignSelf: 'center',
+          }}
+        />
+      </TouchableOpacity>
       <Text style={styles.allCategories}>All Categories</Text>
       <FlatList
         contentContainerStyle={styles.contentContainerStyle}
@@ -120,7 +122,11 @@ const CategoriesCard = ({navigation}) => {
             activeOpacity={0.85}
             onPress={item.onPress}>
             <View style={styles.category}>
-              <Image source={item.image} style={styles.image} />
+              <Image
+                source={item.image}
+                style={styles.image}
+                tintColor={'#008000'}
+              />
               <Text style={styles.catname}>{item.name}</Text>
             </View>
           </TouchableOpacity>
@@ -138,7 +144,11 @@ const CategoriesCard = ({navigation}) => {
           activeOpacity={0.85}
           onPress={category.onPress}>
           <View style={styles.category}>
-            <Image source={category.image} style={styles.image} />
+            <Image
+              source={category.image}
+              style={styles.image}
+              tintColor={'#008000'}
+            />
             <Text style={styles.catname}>{category.name}</Text>
           </View>
         </TouchableOpacity>
@@ -148,7 +158,11 @@ const CategoriesCard = ({navigation}) => {
         activeOpacity={0.85}
         onPress={() => setModalVisible(true)}>
         <View style={styles.category}>
-          <Image source={images.VIEW_ALL} style={styles.image} />
+          <Image
+            source={images.VIEW_ALL}
+            style={styles.image}
+            tintColor={'#008000'}
+          />
           <Text style={styles.catname}>View all</Text>
         </View>
       </TouchableOpacity>

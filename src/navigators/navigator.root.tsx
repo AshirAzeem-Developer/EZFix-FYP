@@ -22,9 +22,9 @@ function RootNav() {
     <NavigationContainer>
       {user ? (
         user?.role?.id === Role.ServiceProvider ? (
-          <ServiceSeeker />
-        ) : (
           <ServiceProvider />
+        ) : (
+          <ServiceSeeker />
         )
       ) : (
         <AuthStack />

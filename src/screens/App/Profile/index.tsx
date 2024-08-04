@@ -19,11 +19,10 @@ import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 
-// type Props = NativeStackScreenProps<ProfileStackParamsList, 'Profile'>;
+type Props = NativeStackScreenProps<ProfileStackParamsList>;
 
-const Profile = () => {
+const Profile: React.FC<Props> = ({navigation}) => {
   const {styles, sizes, colors} = useStyles();
-  const navigation = useNavigation();
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -35,7 +34,10 @@ const Profile = () => {
       <SafeAreaView>
         {/* ========= >> Header << ============= */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('EditProfile');
+            }}>
             <Image source={icons.EDIT} style={styles.headerImage} />
           </TouchableOpacity>
           <TouchableOpacity

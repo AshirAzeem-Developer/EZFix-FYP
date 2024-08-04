@@ -5,15 +5,19 @@ import useStyles from './style';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ParentView} from '../../../components/common/ParentView/ParentView';
+import Header from '../../../components/AppHeader';
+import {useNavigation} from '@react-navigation/native';
 
-// type Props = NativeStackScreenProps<ProfileStackParamsList>;
+type Props = NativeStackScreenProps<ProfileStackParamsList>;
 
-const ProfileSettings = () => {
+const ProfileSettings: React.FC<Props> = ({navigation}) => {
   const {styles, colors} = useStyles();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hello From Profile Settings</Text>
-    </SafeAreaView>
+    <ParentView style={styles.container}>
+      <Header leftIconAction={() => navigation.goBack()} />
+    </ParentView>
   );
 };
 export default ProfileSettings;

@@ -30,9 +30,10 @@ const useStyles = () => {
     Icon: {
       width: sizes.WIDTH * 0.1,
       height: sizes.WIDTH * 0.06,
+      backgroundColor: colors.BACKGROUND,
     },
     Text: {
-      ...globalStyles.TEXT_STYLE,
+      ...globalStyles.TEXT_STYLE_BOLD,
       color: colors.TEXT,
       fontSize: sizes.WIDTH * 0.04,
     },
