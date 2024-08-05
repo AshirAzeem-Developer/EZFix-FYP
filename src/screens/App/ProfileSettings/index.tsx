@@ -40,7 +40,6 @@ export default function ProfileSettings({navigation}: Props) {
   // navigation
   const {navigate} = navigation;
 
-  const customNavigation = useNavigation();
   const dispatch = useDispatch();
 
   const modalProps = {
@@ -104,6 +103,7 @@ export default function ProfileSettings({navigation}: Props) {
 
   const closeModal = () => {
     setIsopen(false);
+    navigate('AuthStack', {screen: 'SignIn'});
   };
   return (
     <ParentView style={styles.container}>

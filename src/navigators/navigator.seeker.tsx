@@ -27,7 +27,6 @@ function ProfileStack() {
       }}
       initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
-
       <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
