@@ -23,7 +23,7 @@ type ModalProps = {
   firstDes: string;
   secondDes?: string;
   titleStyle?: TextStyle;
-  firstDesStyle?: TextStyle;
+  firstDesStyle?: {};
   secondDesStyle?: TextStyle;
   buttonTitle: string;
   handleClose: () => void;

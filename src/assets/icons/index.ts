@@ -25,4 +25,12 @@ export default {
   Star: require('./star.png'),
   MAP: require('./map.png'),
   NOTIFICATION: require('./notification.png'),
+  DELETE: require('./Delete.png'),
+  ARROW_RIGHT: require('./ArrowRight.png'),
+  LOGOUT_BADGE: require('./logoutBadge.png'),
+  LOCK: require('./lock.png'),
+  SUPPORT: require('./support.png'),
+  PRIVACY_POLICY: require('./privacypolicy.png'),
+  BELL_ICON: require('./bellIcon.png'),
+  ARROW: require('./arrow.png'),
 };

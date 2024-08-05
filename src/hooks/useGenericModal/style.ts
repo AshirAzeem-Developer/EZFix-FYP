@@ -28,16 +28,14 @@ const useStyles = () => {
       ...globalStyles.TEXT_STYLE_BOLD,
       fontSize: sizes.FONTSIZE_HIGH,
       color: colors.BLACK,
-      marginBottom: sizes.HEIGHT * 0.025,
+      marginBottom: sizes.HEIGHT * 0.035,
     },
     firstDesTxt: {
-      ...globalStyles.TEXT_STYLE,
+      // ...globalStyles.TEXT_STYLE,
       color: colors.LIGHT_GRAY,
-      fontSize: sizes.FONTSIZE_SMALL,
     },
     secondDesTxt: {
       ...globalStyles.TEXT_STYLE,
-
       fontSize: sizes.WIDTH * 0.043,
       color: colors.BLACK,
     },

@@ -27,7 +27,7 @@ function ProfileStack() {
       }}
       initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+
       <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
@@ -79,6 +79,7 @@ function ServiceSeekerStack() {
       }}
       initialRouteName="HomeTabs">
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
+      <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
     </Stack.Navigator>
   );
 }

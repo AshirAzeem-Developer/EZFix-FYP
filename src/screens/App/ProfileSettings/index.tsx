@@ -1,23 +1,147 @@
-import {Text} from 'react-native';
-import React, {useEffect} from 'react';
-import icons from '../../../assets/icons';
+import React, {useState} from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
 import useStyles from './style';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
+import {screen} from '../../../utils/constants';
+import images from '../../../assets/images';
+
 import Header from '../../../components/AppHeader';
-import {useNavigation} from '@react-navigation/native';
+import ProfileSettingOption from '../../../components/ProfileSettingOption';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import CustomModal from '../../../components/CustomCreatedModal';
+import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
 
-type Props = NativeStackScreenProps<ProfileStackParamsList>;
+import useUserStore, {
+  setUser,
+  useUserSelector,
+} from '../../../store/reducer/user';
+import Animated, {FadeInRight} from 'react-native-reanimated';
+import {getGlobalStyles} from '../../../constants/GlobalStyle';
+import icons from '../../../assets/icons';
+import {color} from 'react-native-elements/dist/helpers';
+import {useDispatch} from 'react-redux';
 
-const ProfileSettings: React.FC<Props> = ({navigation}) => {
-  const {styles, colors} = useStyles();
+interface ProfileSettingOptionType {
+  optionId: number;
+  optionIcon: any; // Replace with the correct type if known, e.g., ImageSourcePropType
+  optionText: string;
+  onPressAction: () => void;
+}
 
+interface Props {
+  navigation: NavigationProp<any>; // Adjust to your specific navigation type if known
+}
+
+export default function ProfileSettings({navigation}: Props) {
+  const {styles, sizes, colors} = useStyles();
+  const fonts = getGlobalStyles(colors, sizes);
+
+  const [isOpen, setIsopen] = useState(false);
+  // navigation
+  const {navigate} = navigation;
+
+  const customNavigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const modalProps = {
+    image: images.DELETE_BADGE,
+    title: 'Delete Account',
+    firstDes: 'Are you sure you want to delete account?',
+    firstDesStyle: {
+      color: colors.BLACK,
+    },
+    // Update the firstDesStyle property to be a string
+    buttonTitle: 'Delete',
+    handleClose: () => {
+      dispatch(setUser(null));
+    },
+  };
+
+  // Use the custom hook
+  const {GenericModal, hideModal, showModal} = useGenericModal({
+    modalProp: modalProps,
+  });
+
+  const profileSettingOptions: ProfileSettingOptionType[] = [
+    {
+      optionId: 1,
+      optionIcon: icons.LOCK,
+      optionText: 'Change Password',
+      onPressAction: () => {},
+    },
+    {
+      optionId: 2,
+      optionIcon: icons.BELL_ICON,
+      optionText: 'Notification',
+      onPressAction: () => {},
+    },
+    {
+      optionId: 3,
+      optionIcon: icons.SUPPORT,
+      optionText: 'Support',
+      onPressAction: () => {},
+    },
+    {
+      optionId: 4,
+      optionIcon: icons.PRIVACY_POLICY,
+      optionText: 'Privacy Policy',
+      onPressAction: () => {},
+    },
+
+    {
+      optionId: 5,
+      optionIcon: icons.DELETE,
+      optionText: 'Delete Account',
+      onPressAction: () => showModal(),
+    },
+    {
+      optionId: 6,
+      optionIcon: icons.ARROW_RIGHT,
+      optionText: 'Logout',
+      onPressAction: () => setIsopen(true),
+    },
+  ];
+
+  const closeModal = () => {
+    setIsopen(false);
+  };
   return (
     <ParentView style={styles.container}>
-      <Header leftIconAction={() => navigation.goBack()} />
+      <SafeAreaView>
+        <View style={styles.headerView}>
+          <Header leftIconAction={() => navigation.goBack()} />
+        </View>
+        <Text style={styles.Heading}>Settings</Text>
+        {profileSettingOptions?.map((option, ind) => {
+          return (
+            <Animated.View
+              entering={FadeInRight.duration(150).delay((ind + 1) * 100)}
+              key={ind}>
+              <ProfileSettingOption
+                optionIcon={option.optionIcon}
+                optionText={option.optionText}
+                onPress={option.onPressAction}
+              />
+            </Animated.View>
+          );
+        })}
+        <Text style={styles.footer}>EZFIX - Version 1.0</Text>
+        <GenericModal />
+        <CustomModal
+          modalTitle={'Logout'}
+          modalDesc={'Are you sure you want to logout?'}
+          modalState={isOpen}
+          rightBtnOnPress={closeModal}
+          iconImage={icons.LOGOUT_BADGE}
+          leftBtnText={'Cancel'}
+          leftBtnBgColor="white"
+          rightBtnText={'Logout'}
+          rightBtnBgColor="#FFE2E2"
+          rightBtnTextStyle={{color: 'red'}}
+          leftBtnTextStyle={{color: 'black'}}
+          leftBtnOnPress={closeModal}
+        />
+      </SafeAreaView>
     </ParentView>
   );
-};
-export default ProfileSettings;
+}
