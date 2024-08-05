@@ -49,4 +49,6 @@ export default {
   BAND_MASTER: require('./band.png'),
   DOWN_ARROW: require('./down-arrow.png'),
   DOWN: require('./down.png'),
+  allProviders: require('./AllProvider.png'),
+
 };
