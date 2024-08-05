@@ -9,6 +9,7 @@ import SearchComponent from '../../../components/SearchComponent';
 import {FadeInDown} from 'react-native-reanimated';
 import CategoriesCard from '../../../components/CategoriesCard';
 import TopProviderCards from '../../../components/TopProviderCards';
+import AllProviderCards from '../../../components/AllProvidersCard';
 
 const Providers = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,38 +27,12 @@ const Providers = () => {
       style={styles.container}
       enterAnimation={FadeInDown.duration(500)}>
       {/* ==== HEADER ==== */}
-      <View style={styles.logoImgCont}>
-        <Image source={icons.Logo} style={styles.logoImg} />
-        <TouchableOpacity>
-          <Image source={icons.BELL} style={styles.bellImg} />
-          {notificationsAvailable ? (
-            <View style={styles.notificationBadge} />
-          ) : null}
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.search}>
-        <SearchComponent
-          placeholder="search any services..."
-          onSearch={handleSearch}
-        />
-      </View>
-
-      <View>
-        <Text style={styles.categoryheading}>Categories</Text>
-      </View>
-
       {/* Categories */}
-      <View style={styles.categories}>
-        <CategoriesCard />
-      </View>
+   
 
       {/* Providers */}
       <View>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={styles.topRatedSellerHeading}>Top Rated Sellers</Text>
-        </View>
-        <TopProviderCards />
+        <AllProviderCards />
       </View>
     </ParentView>
   );

@@ -14,46 +14,12 @@ const useStyles = () => {
       backgroundColor: '#fff',
       padding: sizes.WIDTH * 0.01,
     },
-    logoImgCont: {
-      paddingLeft: sizes.PADDING,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      width: sizes.WIDTH * 0.9,
-    },
-    logoImg: {
-      height: sizes.HEIGHT * 0.1,
-      width: sizes.LOGO_SIZE,
-    },
-    bellImg: {
-      height: sizes.HEIGHT * 0.028,
-      width: sizes.WIDTH * 0.05,
-    },
-    notificationBadge: {
-      backgroundColor: 'red',
-      width: sizes.WIDTH * 0.02,
-      height: sizes.HEIGHT * 0.01,
-      borderRadius: sizes.WIDTH * 0.1,
-      position: 'absolute',
-      bottom: sizes.HEIGHT * 0.02,
-      left: sizes.WIDTH * 0.025,
-    },
-    search: {
-      paddingTop: sizes.HEIGHT * 0,
-      padding: sizes.WIDTH * 0.02,
-    },
-    categoryheading: {
-      ...globalStyles.TEXT_STYLE_BOLD,
-      color: colors.BLACK,
-      fontSize: sizes.FONT_SIZE_HEADER,
-      paddingLeft: sizes.WIDTH * 0.03,
-      marginTop: sizes.HEIGHT * 0.015,
-    },
-    categories: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingLeft: sizes.WIDTH * 0.02,
-    },
+   
+   
+   
+
+   
+  
     providers: {
       margin: sizes.WIDTH * 0.01,
     },
@@ -76,13 +42,7 @@ const useStyles = () => {
       marginLeft: sizes.WIDTH * 0.04,
       marginTop: sizes.HEIGHT * 0.004,
     },
-    topRatedSellerHeading: {
-      ...globalStyles.TEXT_STYLE_BOLD,
-      color: colors.BLACK,
-      fontSize: sizes.FONT_SIZE_HEADER,
-      paddingLeft: sizes.WIDTH * 0.03,
-      marginTop: sizes.HEIGHT * 0.015,
-    },
+
   });
   return {
     colors,
