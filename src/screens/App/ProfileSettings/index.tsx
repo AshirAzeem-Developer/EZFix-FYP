@@ -66,25 +66,33 @@ export default function ProfileSettings({navigation}: Props) {
       optionId: 1,
       optionIcon: icons.LOCK,
       optionText: 'Change Password',
-      onPressAction: () => {},
+      onPressAction: () => {
+        navigation.navigate('AuthStack', {screen: 'ChangePassword'});
+      },
     },
     {
       optionId: 2,
       optionIcon: icons.BELL_ICON,
       optionText: 'Notification',
-      onPressAction: () => {},
+      onPressAction: () => {
+        navigate('NotificationSettings');
+      },
     },
     {
       optionId: 3,
       optionIcon: icons.SUPPORT,
       optionText: 'Support',
-      onPressAction: () => {},
+      onPressAction: () => {
+        navigate('Support');
+      },
     },
     {
       optionId: 4,
       optionIcon: icons.PRIVACY_POLICY,
       optionText: 'Privacy Policy',
-      onPressAction: () => {},
+      onPressAction: () => {
+        navigate('PrivacyPolicy');
+      },
     },
 
     {

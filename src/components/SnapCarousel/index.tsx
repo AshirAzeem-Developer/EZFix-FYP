@@ -31,7 +31,7 @@ const slides = [
   },
 ];
 const SnapCarousel = () => {
-  const {styles, colors} = useStyles();
+  const {styles} = useStyles();
   const {sizes} = useStyles();
 
   const [activeIndex, setActiveIndex] = useState(0);

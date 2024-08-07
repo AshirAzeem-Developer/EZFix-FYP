@@ -15,11 +15,11 @@ import images from '../../../assets/images';
 import useStyles from './style';
 import {FadeInDown} from 'react-native-reanimated';
 import icons from '../../../assets/icons';
-import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
+import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 
-type Props = NativeStackScreenProps<ProfileStackParamsList>;
+type Props = NativeStackScreenProps<AppStackParamsList>;
 
 const Profile: React.FC<Props> = ({navigation}) => {
   const {styles, sizes, colors} = useStyles();

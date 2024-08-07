@@ -3,9 +3,9 @@ import React from 'react';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
 import Header from '../../../components/AppHeader';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ProfileStackParamsList} from '../../../navigators/navigator.seeker';
+import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 
-type Props = NativeStackScreenProps<ProfileStackParamsList>;
+type Props = NativeStackScreenProps<AppStackParamsList>;
 
 const EditProfile: React.FC<Props> = ({navigation}) => {
   return (

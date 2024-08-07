@@ -3,6 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {useColors} from '../../constants/color';
 import {useSizes} from '../../constants/size';
 import {getGlobalStyles} from '../../constants/GlobalStyle';
+import {isAndroid} from '../../utils/constants';
 // dimenstion
 const {width, height} = Dimensions.get('window');
 const useStyles = () => {
@@ -10,30 +11,25 @@ const useStyles = () => {
   const sizes = useSizes();
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
-    header: {
+    notificationOptionContainer: {
       flexDirection: 'row',
+      alignItems: 'center',
       justifyContent: 'space-between',
+
       paddingHorizontal: sizes.WIDTH * 0.05,
-      paddingVertical: sizes.WIDTH * 0.055,
-      borderBottomWidth: sizes.WIDTH * 0.001,
-      borderBottomColor: colors.LIGHT_GRAY,
-      backgroundColor: colors.WHITE,
-      marginTop: sizes.HEIGHT * 0.025,
+      // marginTop: sizes.HEIGHT * 0.04,
+      paddingVertical: sizes.HEIGHT * 0.03,
+      borderBottomWidth: sizes.HEIGHT * 0.0004,
+      width: sizes.WIDTH * 1,
     },
-    headerText: {
+    text: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.045,
-      color: colors.BLACK,
-    },
-    content: {
-      marginHorizontal: sizes.WIDTH * 0.06,
-      backgroundColor: '#fff',
-      padding: sizes.WIDTH * 0.02,
-    },
-    contentTxt: {
-      ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.04,
-      color: colors.GRAY,
+      color: 'black',
+    },
+    switchStyles: {
+      // WIDTH: sizes.WIDTH * 0.2,
+      transform: [{scaleX: isAndroid ? 1 : 0.7}, {scaleY: isAndroid ? 1 : 0.7}],
     },
   });
   return {

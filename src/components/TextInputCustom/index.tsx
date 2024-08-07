@@ -24,7 +24,7 @@ type TextInputCustomProps = {
   isShowRightIcon?: boolean;
   isPassword?: boolean;
   //
-  inputMode?: InputMode;
+  inputMode?: string;
   // functions
   leftIconAction?: () => void;
   rightIconAction?: () => void;
@@ -49,7 +49,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
   placeHolderTxt,
   value,
   //
-  inputMode = InputMode.Text,
+  inputMode,
   // bools
   isPassword,
   isShowRightIcon,

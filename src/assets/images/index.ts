@@ -50,5 +50,8 @@ export default {
   DOWN_ARROW: require('./down-arrow.png'),
   DOWN: require('./down.png'),
   allProviders: require('./AllProvider.png'),
-
+  NOTIF1: require('./notif1.png'),
+  MAIL: require('./mail.png'),
+  PHONE_CODE: require('./phoneCode.png'),
+  REQUEST_SUBMITTED: require('./requestSubmitted.png'),
 };

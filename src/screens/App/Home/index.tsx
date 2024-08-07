@@ -22,10 +22,17 @@ import CategoriesCard from '../../../components/CategoriesCard';
 import ReactNativeModal from 'react-native-modal';
 import CustomModal from '../../../components/CustomModal';
 import TopProviderCards from '../../../components/TopProviderCards';
+import {
+  NativeStackNavigatorProps,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack/lib/typescript/src/types';
+import {AuthStackParamList} from '../../../navigators/authStack';
+import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 
 //third party library
+type props = NativeStackScreenProps<AppStackParamsList>;
 
-const Home = () => {
+const Home: React.FC<props> = ({navigation}) => {
   const [showModal, setShowModal] = useState(false);
   const {styles, colors, sizes} = useStyles();
   const handleSearch = (query: string) => {
@@ -43,7 +50,8 @@ const Home = () => {
         {/* ==== >>  HEADER <<==== */}
         <View style={styles.logoImgCont}>
           <Image source={icons.Logo} style={styles.logoImg} />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Notifications')}>
             <Image source={icons.BELL} style={styles.bellImg} />
             {notificationsAvailable ? (
               <View style={styles.notificationBadge} />
