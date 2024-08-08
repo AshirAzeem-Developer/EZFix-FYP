@@ -12,6 +12,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
     {
       id: 3,
@@ -26,6 +28,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
     {
       id: 4,
@@ -33,6 +36,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
     {
       id: 5,
@@ -40,6 +44,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
     {
       id: 6,
@@ -47,6 +52,7 @@ const TopProviderCards = () => {
       Location: 'Saddar Bazar',
       category: 'Electrician',
       image: images.Provider,
+      ratePerHour: 'Rs 300/hr',
     },
   ];
   const {styles, colors, sizes} = useStyles();
@@ -71,7 +77,10 @@ const TopProviderCards = () => {
                 justifyContent: 'center',
                 marginLeft: sizes.WIDTH * 0.04,
               }}>
-              <Text style={styles.providernames}>{item.name}</Text>
+              <View style={styles.providerNameAndRateContainer}>
+                <Text style={styles.providernames}>{item.name}</Text>
+                <Text style={styles.providerRate}>{item.ratePerHour}</Text>
+              </View>
               <Text style={styles.categoryText}>{item.category}</Text>
               <View style={styles.ratingContainer}>
                 <Image source={icons.Star} style={styles.star} />

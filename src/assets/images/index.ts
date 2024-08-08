@@ -54,4 +54,8 @@ export default {
   MAIL: require('./mail.png'),
   PHONE_CODE: require('./phoneCode.png'),
   REQUEST_SUBMITTED: require('./requestSubmitted.png'),
+  EIDT: require('./edit.png'),
+  // FLAG: require('./flag.png'),
+  UPLOAD_IMAGE_CAMERA: require('./UploadImageCamera.png'),
+  DUMMY_PROFILE: require('./dummryProfile.png'),
 };
