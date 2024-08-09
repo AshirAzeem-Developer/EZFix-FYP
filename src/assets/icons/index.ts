@@ -33,4 +33,7 @@ export default {
   PRIVACY_POLICY: require('./privacypolicy.png'),
   BELL_ICON: require('./bellIcon.png'),
   ARROW: require('./arrow.png'),
+  Clock:require('./clock.png'),
+  Location:require('./Location.png')
+
 };
