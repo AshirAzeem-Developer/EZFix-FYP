@@ -57,6 +57,18 @@ const useStyles = () => {
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
+    providerNameAndRateContainer: {
+      width: sizes.WIDTH * 0.55,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+
+    providerRate: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.045,
+    },
   });
   return {
     colors,

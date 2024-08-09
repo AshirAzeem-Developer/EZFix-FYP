@@ -12,11 +12,7 @@ type CustomModalProps = {
   modalView?: React.ReactNode;
 };
 
-const CustomModal: React.FC<CustomModalProps> = ({
-  showModal,
-
-  modalView,
-}) => {
+const CustomModal: React.FC<CustomModalProps> = ({showModal, modalView}) => {
   const {styles, colors, sizes} = useStyles();
   return (
     <>
