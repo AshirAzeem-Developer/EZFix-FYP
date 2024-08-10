@@ -50,40 +50,94 @@ const useStyles = () => {
     job: {
       ...globalStyles.TEXT_STYLE_BOLD,
       color: colors.BLACK,
-      fontSize:sizes.WIDTH*0.06
+      fontSize:sizes.WIDTH*0.05,
+      paddingTop:sizes.HEIGHT*0.012
       
+    },
+    handy:{
+      ...globalStyles.TEXT_STYLE_BOLD,
+      color: colors.BLACK,
+      fontSize:sizes.WIDTH*0.05,
+      paddingTop:sizes.HEIGHT*0.03
     },
     work:{
       ...globalStyles.TEXT_STYLE,
       color:colors.BLACK,
-      fontSize:sizes.WIDTH*0.05
-
+      fontSize:sizes.WIDTH*0.035
+    },
+    subname:{
+      ...globalStyles.TEXT_STYLE,
+      color:colors.BLACK,
+      fontSize:sizes.WIDTH*0.04,
+      paddingLeft:sizes.HEIGHT*0.01
+    
     },
     time:{
         flexDirection:"row",
-        paddingTop:sizes.HEIGHT*0.01
+      paddingTop:sizes.HEIGHT*0.002,
+
     },
     handymanimg:{
       width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.2,
+      height: sizes.HEIGHT * 0.13,
       borderRadius: sizes.WIDTH * 0.01,
-      
+    },
+    locationimg:{
+      marginTop:sizes.WIDTH*0.001,
+      marginLeft:sizes.WIDTH*0.037
+    
     },
    
     rating:{
       flexDirection:"row",
-        paddingTop:sizes.HEIGHT*0.001,
-        paddingLeft:sizes.WIDTH*0.4
+      paddingTop:sizes.HEIGHT*0.035,
+     
+        paddingLeft:sizes.WIDTH*0.17
+    },
+    star: {
+      width: sizes.WIDTH * 0.06,
+      height: sizes.HEIGHT * 0.03,
+      
+    },
+    rate:{
+      color:colors.BLACK,paddingLeft:sizes.WIDTH*0.01,
+      marginTop:sizes.HEIGHT*0.003,
     },
     price:{
       ...globalStyles.TEXT_STYLE_BOLD,
 
-      color:colors.BLACK,paddingTop:sizes.HEIGHT*0.05,paddingLeft:sizes.WIDTH*0.001
+      color:colors.BLACK,
+      paddingTop:sizes.HEIGHT*0.04,
+      
+    },
+    clock:{
+     width:sizes.WIDTH*0.04,
+     height: sizes.HEIGHT * 0.02,
+     marginTop:sizes.WIDTH*0.007
+    },
+    timer:{
+      color:colors.BLACK,
+      paddingLeft:sizes.WIDTH*0.01,
+
+
     },
     providerimg: {
       width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.2,
+      height: sizes.HEIGHT * 0.13,
       borderRadius: sizes.WIDTH * 0.01,
+      
+    },
+    imgview:{
+    padding:sizes.WIDTH*0.03,
+    paddingRight:width*0.012,
+    // paddingTop:height*0.01,
+    paddingLeft:sizes.WIDTH*0.01
+
+    },
+    locimgview:{
+      padding:sizes.WIDTH*0.06,
+      paddingTop:sizes.WIDTH*0.02
+
     },
     Handyman:{
       display: 'flex',
@@ -94,19 +148,12 @@ const useStyles = () => {
       width:sizes.WIDTH*0.9,
     alignSelf:"center"
     },
-    star: {
-      width: sizes.WIDTH * 0.06,
-      height: sizes.HEIGHT * 0.03,
-      
-    },
+ 
    
       locationText: {
         ...globalStyles.TEXT_STYLE,
       },
-      services:{
-        flexDirection:"row"
-      },
-  
+     
       ratingContainer: {
         
         paddingTop:sizes.WIDTH*0.02,
@@ -120,11 +167,9 @@ const useStyles = () => {
       },
    address:{
     ...globalStyles.TEXT_STYLE_BOLD,
-
     color:colors.BLACK,
-    fontSize:sizes.WIDTH*0.06,
-    paddingLeft:sizes.WIDTH*0.02,
-    marginTop:sizes.WIDTH*0.03
+    fontSize:sizes.WIDTH*0.05,
+  
    }
 
   });

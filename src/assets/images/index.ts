@@ -58,4 +58,6 @@ export default {
   // FLAG: require('./flag.png'),
   UPLOAD_IMAGE_CAMERA: require('./UploadImageCamera.png'),
   DUMMY_PROFILE: require('./dummryProfile.png'),
+  handyman:require('./handyman.png'),
+  handyman2:require('./handyman2.png')
 };

@@ -23,7 +23,7 @@ const OrderSummary = () => {
       work:"Leaks in the Bathroom",
       time:'Jan 21,2022 at 4pm',
       Price:'RS 250/hr',
-      image: images.allProviders,
+      image: images.handyman,
     },
    
   ];
@@ -33,7 +33,7 @@ const OrderSummary = () => {
         id: 1,
         name:'HandyMan',
         subname:"Thomas Luke",
-      image: images.allProviders,
+      image: images.handyman,
         
       },
      
@@ -62,26 +62,17 @@ const OrderSummary = () => {
       renderItem={({item}) => (
         <View>
           <View style={styles.providerscard}>
+            <View style={styles.imgview}>
             <Image source={item.image} style={styles.providerimg} />
-            <View
-              style={{
-                marginLeft: sizes.WIDTH * 0.02,
-                marginTop: sizes.WIDTH * 0.03,
-
-                
-              }}>
+            </View>
+            <View>
               <Text style={styles.job}>{item.job}</Text>
-              <View style={styles.services}>
-                <View >
                 <Text style={styles.work}>{item.work}</Text>
                 <View style={styles.time}>
-                <Image source={icons.Clock}/>
-                <Text  style={{color:colors.BLACK,paddingLeft:sizes.WIDTH*0.01}}>{item.time}</Text>
+                <Image source={icons.Clock} style={styles.clock}/>
+                <Text  style={styles.timer}>{item.time}</Text>
                 <Text  style={styles.price}>{item.Price}</Text>
                 </View>
-                </View>
-                
-              </View>
             </View>
           </View>
           {/* -------------------------HandyMan------------------------------ */}
@@ -97,47 +88,40 @@ const OrderSummary = () => {
       renderItem={({item}) => (
         <View>
           <View style={styles.providerscard}>
+            <View  style={styles.imgview}>
             <Image source={item.image} style={styles.handymanimg} />
-            <View
-              style={{
-                marginLeft: sizes.WIDTH * 0.02,
-                marginTop: sizes.WIDTH * 0.03,
-
-                
-              }}>
-              <Text style={styles.job}>{item.name}</Text>
-              <View style={styles.services}>
-                <View >
-                <Text style={styles.work}>{item.subname}</Text>
-                <View style={styles.rating}>
+            </View>
+            <View>
+              <View style={{flexDirection:"row",padding:sizes.WIDTH*0.02,paddingBottom:0}}>
+              <Text style={styles.handy}>{item.name}</Text>
+              <View style={styles.rating}>
                 <Image source={icons.Star} style={styles.star}/>
-                <Text  style={{color:colors.BLACK,paddingLeft:sizes.WIDTH*0.01}}>4.5</Text>
-                
+                <Text  style={styles.rate}>4.5</Text>
                 </View>
-                </View>
-                
               </View>
+                <Text style={styles.subname}>{item.subname}</Text>
             </View>
           </View>
           {/* ----------------------------------Adress--------------------- */}
-          <View>
+        
           <View style={styles.providerscard}>
-            <View style={styles.locationcard}>
-            <Image source={icons.Location}/>
-            <View >
+            <View   style={styles.locimgview}>
+            <Image source={icons.Location} style={styles.locationimg} />
+            </View>
+            <View style={{
+     paddingLeft:sizes.WIDTH*0.1,
+            }} >
              <Text style={styles.address}>Address</Text>
              <View style={{flexDirection:"row",width:sizes.WIDTH*0.5}}>
              <Text style={{color:colors.BLACK}}>38 Chestnut StreetStaunton</Text>
 
              {/* <Input /> */}
-             <Image source={icons.EDIT} style={{marginLeft:sizes.WIDTH*0.2}}/>
+             <Image source={icons.EDIT} style={{marginLeft:sizes.WIDTH*0.05}}/>
               </View>
              
             </View>
-            </View>
           </View>
-          
-        </View>
+     
         </View>
         
       )}
