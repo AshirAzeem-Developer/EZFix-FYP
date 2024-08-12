@@ -15,6 +15,7 @@ type HeaderProps = {
   rightText?: string;
   rightView?: React.ReactNode;
   dark?: boolean;
+  title?: string;
 };
 
 const Header: React.FC<HeaderProps> = ({
@@ -24,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({
   rightText,
   rightView,
   dark = false,
+  title,
   ...props
 }) => {
   const {styles, colors} = useStyles();

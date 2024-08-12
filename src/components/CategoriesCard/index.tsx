@@ -1,20 +1,19 @@
 import {Text, View, Image, TouchableOpacity, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import icons from '../../assets/icons';
 import useStyles from './styles';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ParentView} from '../common/ParentView/ParentView';
 import images from '../../assets/images';
-import {useGenericModal} from '../../hooks/useGenericModal/useGenericModal';
 import CustomModal from '../CustomModal';
 
-const CategoriesCard = ({}) => {
+import {AppStackParamsList} from '../../navigators/navigator.seeker';
+import {useNavigation} from '@react-navigation/native';
+
+const CategoriesCard = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-  };
 
+  const toggleModal = () => setModalVisible(!modalVisible);
+
+  const navigation = useNavigation();
   const {styles, colors, sizes} = useStyles();
 
   const allCategories = [
@@ -22,79 +21,103 @@ const CategoriesCard = ({}) => {
       id: 1,
       name: 'Mechanic',
       image: images.MECHANIC,
-      onPress: () => {},
+      onPress: () => navigation.navigate('WorkDetails', {title: 'Mechanic'}),
     },
     {
       id: 2,
       name: 'Plumber',
       image: images.PLUMBER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Plumber'});
+      },
     },
     {
       id: 3,
       name: 'Electrician',
       image: images.ELECTRICIAN,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Electrician'});
+      },
     },
     {
       id: 5,
       name: 'Painter',
       image: images.PAINTER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Painter'});
+      },
     },
     {
       id: 6,
       name: 'Carpenter',
       image: images.CARPENTER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Carpenter'});
+      },
     },
     {
       id: 7,
       name: 'Gardener',
       image: images.GARDNER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Gardener'});
+      },
     },
     {
       id: 8,
       name: 'Cleaner',
       image: images.CLEANER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Cleaner'});
+      },
     },
     {
       id: 9,
       name: 'Tutor',
       image: images.TUTOR,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Tutor'});
+      },
     },
     {
       id: 10,
       name: 'Chef',
       image: images.CHEF,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Chef'});
+      },
     },
     {
       id: 11,
       name: 'Photographer',
       image: images.PHOTOGRAPHER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Photographer'});
+      },
     },
     {
       id: 12,
       name: 'Band Master',
       image: images.BAND_MASTER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Band Master'});
+      },
     },
     {
       id: 13,
       name: 'Computer Technician',
       image: images.COMP_TECH,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Computer Technician'});
+      },
     },
     {
       id: 14,
       name: 'Babysitter',
       image: images.BABY_SITTER,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('WorkDetails', {title: 'Babysitter'});
+      },
     },
   ];
 

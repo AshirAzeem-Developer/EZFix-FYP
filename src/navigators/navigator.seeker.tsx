@@ -15,6 +15,7 @@ import NotificationSetting from '../screens/App/NotificationSettings';
 import Support from '../screens/App/Support';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import PrivacyPolicy from '../screens/App/PrivacyPolicy';
+import WorkDetails from '../screens/App/WorkDetails';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -24,6 +25,8 @@ export type AppStackParamsList = {
   NotificationSetting: undefined;
   Support: undefined;
   PrivacyPolicy: undefined;
+  WorkDetails: undefined;
+  Bookings: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +40,17 @@ function ProfileStack() {
       initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+    </Stack.Navigator>
+  );
+}
+function BookingStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Bookings">
+      <Stack.Screen name="Bookings" component={Bookings} />
     </Stack.Navigator>
   );
 }
@@ -55,7 +69,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Bookings',
-          Component: Bookings,
+          Component: BookingStack,
           icon: icons.BOOKINGS_TAB,
           selectedIcon: icons.BOOKINGS_TAB_ACTIVE,
           label: 'Bookings',
@@ -95,6 +109,7 @@ function ServiceSeekerStack() {
       />
       <Stack.Screen name="Support" component={Support} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+      <Stack.Screen name="WorkDetails" component={WorkDetails} />
     </Stack.Navigator>
   );
 }

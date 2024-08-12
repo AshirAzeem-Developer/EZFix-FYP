@@ -21,14 +21,13 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
-import OrderSummary from '../screens/App/OrderSummary';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="OrderSummary"
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
       }}>
@@ -43,9 +42,6 @@ export const AuthStack = () => {
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
       <Stack.Screen name="SignUpRoleSelect" component={SignUpRoleSelect} />
       <Stack.Screen name="SignUpCheckPhoto" component={SignUpCheckPhoto} />
-      <Stack.Screen 
-      name="OrderSummary" component={OrderSummary} />
-
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"

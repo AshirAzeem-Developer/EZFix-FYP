@@ -4,11 +4,12 @@ import {TextInput, View, Text, StyleSheet} from 'react-native';
 import useStyles from './style';
 
 interface CustomTextAreaProps {
-  value: string;
+  value?: string;
   label?: string;
-  placeholder: string;
-  maxLength: number; // Add maxLength as a prop
-  customStyles: {};
+  placeholder?: string;
+  maxLength?: number; // Add maxLength as a prop
+  customStyles?: {};
+  customContainerStyles?: {};
   setValue?: (text: string) => void;
 }
 
@@ -18,13 +19,14 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
   maxLength,
   value,
   customStyles,
+  customContainerStyles,
   setValue = () => {},
 }) => {
   const {styles, colors, sizes} = useStyles();
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, customContainerStyles]}>
         {label && <Text style={styles.label}>{label}</Text>}
 
         <TextInput
