@@ -36,5 +36,7 @@ export default {
   Clock:require('./clock.png'),
   Location:require('./Location.png'),
   ADD: require('./add.png'),
+  Book_Mark:require('./bookmark.png'),
+  Share:require('./share.png')
 
 };

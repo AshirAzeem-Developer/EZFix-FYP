@@ -59,5 +59,7 @@ export default {
   UPLOAD_IMAGE_CAMERA: require('./UploadImageCamera.png'),
   DUMMY_PROFILE: require('./dummryProfile.png'),
   handyman:require('./handyman.png'),
-  handyman2:require('./handyman2.png')
+  handyman2:require('./handyman2.png'),
+  dummyprovider:require('./dummyprovider.png'),
+  project:require('./project.png')
 };

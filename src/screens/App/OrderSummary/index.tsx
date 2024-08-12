@@ -5,14 +5,10 @@ import {Text, View, Image, TouchableOpacity, FlatList} from 'react-native';
 import useStyles from './style';
 
 import {ParentView} from '../../../components/common/ParentView/ParentView';
-import SearchComponent from '../../../components/SearchComponent';
 import {FadeInDown} from 'react-native-reanimated';
-import CategoriesCard from '../../../components/CategoriesCard';
-import TopProviderCards from '../../../components/TopProviderCards';
-import AllProviderCards from '../../../components/AllProvidersCard';
 import icons from '../../../assets/icons';
 import images from '../../../assets/images';
-import { Button, Input } from 'react-native-elements';
+
 const OrderSummary = () => {
 
     const {styles, colors, sizes} = useStyles();

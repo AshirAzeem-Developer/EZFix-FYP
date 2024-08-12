@@ -21,6 +21,8 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
+import OrderSummary from '../screens/App/OrderSummary';
+import ProfileDetail from '../screens/App/ProfileDetail';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
@@ -42,6 +44,8 @@ export const AuthStack = () => {
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
       <Stack.Screen name="SignUpRoleSelect" component={SignUpRoleSelect} />
       <Stack.Screen name="SignUpCheckPhoto" component={SignUpCheckPhoto} />
+      <Stack.Screen name="OrderSummary" component={OrderSummary} />
+      <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"
