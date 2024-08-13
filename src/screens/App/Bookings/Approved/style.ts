@@ -19,7 +19,7 @@ const useStyles = () => {
       },
       providerscard: {
         
-        marginTop:sizes.HEIGHT*0.033,
+        marginTop:sizes.HEIGHT*0.02,
         // display: 'flex',
         // flexDirection: 'row',
         backgroundColor: colors.LIGHT_GRAY100,

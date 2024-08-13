@@ -55,6 +55,15 @@ const Approved = () => {
             status: 'approved',
             image: images.handyman,
         },
+        {
+            id: 4,
+            job: 'Wall Repair',
+            work: "Leaks in the Bathroom",
+            time: 'Jan 21,2022 at 4pm',
+            Price: 'RS 250/hr',
+            status: 'approved',
+            image: images.handyman,
+        },
 
     ];
     return (
