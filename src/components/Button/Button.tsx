@@ -33,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   withAnimation = false,
   disabled,
   loading,
+
 }) => {
   const {styles} = useStyles();
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
@@ -48,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
         <ActivityIndicator size={25} color={'#000000'} />
       ) : (
         <Text
-          style={[{color: textColor || '#000000'}, styles.text, btnTextStyles]}>
+          style={[{color: textColor || '#000000',}, styles.text, btnTextStyles,]}>
           {text}
         </Text>
       )}

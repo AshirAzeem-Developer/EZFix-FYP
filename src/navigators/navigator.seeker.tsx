@@ -16,6 +16,7 @@ import Support from '../screens/App/Support';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import PrivacyPolicy from '../screens/App/PrivacyPolicy';
 import WorkDetails from '../screens/App/WorkDetails';
+import Approved from '../screens/App/Bookings/Approved';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -51,6 +52,10 @@ function BookingStack() {
       }}
       initialRouteName="Bookings">
       <Stack.Screen name="Bookings" component={Bookings} />
+      <Stack.Screen name="Approved" component={Approved} />
+
+
+
     </Stack.Navigator>
   );
 }

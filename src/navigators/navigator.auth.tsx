@@ -23,13 +23,16 @@ import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
 import OrderSummary from '../screens/App/OrderSummary';
 import ProfileDetail from '../screens/App/ProfileDetail';
+import Approved from '../screens/App/Bookings/Approved';
+import Pending from '../screens/App/Bookings/Pending';
+import Cancel from '../screens/App/Bookings/Cancel';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="Pending"
       screenOptions={{
         headerShown: false,
       }}>
@@ -46,6 +49,12 @@ export const AuthStack = () => {
       <Stack.Screen name="SignUpCheckPhoto" component={SignUpCheckPhoto} />
       <Stack.Screen name="OrderSummary" component={OrderSummary} />
       <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
+      <Stack.Screen name="Approved" component={Approved} />
+      <Stack.Screen name="Pending" component={Pending} />
+      <Stack.Screen name="Cancel" component={Cancel} />
+
+
+
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"
