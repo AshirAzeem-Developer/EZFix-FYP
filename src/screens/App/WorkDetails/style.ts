@@ -23,15 +23,17 @@ const useStyles = () => {
       marginVertical: 20,
     },
     attachPhotosContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
       justifyContent: 'space-between',
       paddingHorizontal: sizes.WIDTH * 0.04,
+      marginVertical: sizes.HEIGHT * 0.02,
     },
     attachPhotosTitle: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.FONTSIZE_HIGH,
-      color: colors.BLACK,
+      color: colors.GRAY,
+      marginHorizontal: sizes.WIDTH * 0.02,
     },
   });
   return {

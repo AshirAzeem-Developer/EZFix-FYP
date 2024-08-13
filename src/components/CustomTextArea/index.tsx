@@ -11,6 +11,7 @@ interface CustomTextAreaProps {
   customStyles?: {};
   customContainerStyles?: {};
   setValue?: (text: string) => void;
+  editable?: boolean;
 }
 
 const CustomTextArea: React.FC<CustomTextAreaProps> = ({
@@ -21,6 +22,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
   customStyles,
   customContainerStyles,
   setValue = () => {},
+  editable,
 }) => {
   const {styles, colors, sizes} = useStyles();
 
@@ -30,6 +32,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
         {label && <Text style={styles.label}>{label}</Text>}
 
         <TextInput
+          editable={editable}
           style={[styles.textArea, customStyles]}
           placeholder={placeholder}
           value={value}

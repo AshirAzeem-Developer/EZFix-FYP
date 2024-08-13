@@ -7,6 +7,7 @@ import Messages from '../screens/App/Message';
 import Profile from '../screens/App/Profile';
 import CreateBottomTabs from './CreateBottomTabs';
 import icons from '../assets/icons';
+import WorkDetails from '../screens/App/WorkDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,7 @@ function ServiceProvider() {
       }}
       initialRouteName="HomeTabs">
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
+      <Stack.Screen name="WorkDetails" component={WorkDetails} />
     </Stack.Navigator>
   );
 }
