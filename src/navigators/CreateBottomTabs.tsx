@@ -32,7 +32,7 @@ const BottomOption = ({
       />
       <Text
         style={{
-          color: isFocused ? colors.PRIMARY : colors.GRAY,
+          color: isFocused ? colors.BLACK : colors.GRAY,
           fontSize: sizes.FONTSIZE_MEDIUM,
         }}>
         {title}

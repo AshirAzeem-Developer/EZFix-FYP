@@ -19,6 +19,12 @@ import WorkDetails from '../screens/App/WorkDetails';
 import Approved from '../screens/App/Bookings/Approved';
 import ProfileDetail from '../screens/App/ProfileDetail';
 import OrderSummary from '../screens/App/OrderSummary';
+import Pending from '../screens/App/Bookings/Pending';
+import Cancel from '../screens/App/Bookings/Cancel';
+import CreateTopTabs from './CreateTopTabs';
+import Header from '../components/AppHeader';
+import {useNavigation} from '@react-navigation/native';
+import {View} from 'react-native';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -50,14 +56,27 @@ function ProfileStack() {
 }
 function BookingStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="Bookings">
-      <Stack.Screen name="Bookings" component={Bookings} />
-      <Stack.Screen name="Approved" component={Approved} />
-    </Stack.Navigator>
+    <CreateTopTabs
+      initialRouteName="Approved"
+      screens={[
+        {
+          name: 'Approved',
+          Component: Approved,
+          label: 'Approved',
+        },
+        {
+          name: 'Pending',
+          Component: Pending,
+          label: 'Pending',
+        },
+        {
+          name: 'Cancel',
+          Component: Cancel,
+          label: 'Cancelled',
+        },
+      ]}
+      key={'BookingStack'}
+    />
   );
 }
 
