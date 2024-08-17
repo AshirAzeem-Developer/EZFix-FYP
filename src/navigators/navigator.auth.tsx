@@ -32,7 +32,7 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Approved"
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
       }}>
@@ -52,9 +52,6 @@ export const AuthStack = () => {
       <Stack.Screen name="Approved" component={Approved} />
       <Stack.Screen name="Pending" component={Pending} />
       <Stack.Screen name="Cancel" component={Cancel} />
-
-
-
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"

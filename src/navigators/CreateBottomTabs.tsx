@@ -27,7 +27,7 @@ const BottomOption = ({
           height: isFocused
             ? sizes.BOTTOM_TABS_ICONS_ACTIVE
             : sizes.BOTTOM_TABS_ICONS,
-          tintColor: isFocused ? colors.PRIMARY : colors.GRAY,
+          tintColor: isFocused ? colors.BLACK : colors.GRAY,
         }}
       />
       <Text

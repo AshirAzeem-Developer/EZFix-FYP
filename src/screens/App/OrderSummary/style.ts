@@ -12,166 +12,98 @@ const useStyles = () => {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#fff',
+    },
+    summaryText: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.055,
+      textAlign: 'center',
+      marginVertical: sizes.HEIGHT * 0.02,
+    },
+
+    orderItemContainer: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
       padding: sizes.WIDTH * 0.01,
+      // margin: sizes.WIDTH * 0.01,
+      backgroundColor: colors.WHITE,
+      borderRadius: sizes.BORDER_RADIUS,
+      // elevation: 5,
     },
-   
-   
-   
-
-   
-  
-    providers: {
-      margin: sizes.WIDTH * 0.01,
+    orderItemImage: {
+      width: sizes.WIDTH * 0.9,
+      height: sizes.WIDTH * 0.5,
+      borderRadius: sizes.WIDTH * 0.02,
     },
-    providerscard: {
-      
-      marginTop:sizes.HEIGHT*0.06,
-      display: 'flex',
-      flexDirection: 'row',
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      elevation: 4,
-      width:sizes.WIDTH*0.9,
-      alignSelf:"center"
+    orderItemDetails: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      marginHorizontal: sizes.WIDTH * 0.04,
+      marginTop: sizes.HEIGHT * 0.02,
     },
-    locationcard:{
-  
-    
-      paddingLeft:sizes.HEIGHT*0.01,
-      display: 'flex',
-      flexDirection: 'row',
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      elevation: 4,
-      width:sizes.WIDTH*0.9,
-      alignSelf:"center"
-
-    },
-    job: {
-      ...globalStyles.TEXT_STYLE_BOLD,
-      color: colors.BLACK,
-      fontSize:sizes.WIDTH*0.05,
-      paddingTop:sizes.HEIGHT*0.012
-      
-    },
-    handy:{
-      ...globalStyles.TEXT_STYLE_BOLD,
-      color: colors.BLACK,
-      fontSize:sizes.WIDTH*0.05,
-      paddingTop:sizes.HEIGHT*0.03
-    },
-    work:{
+    sectionTitle: {
       ...globalStyles.TEXT_STYLE,
-      color:colors.BLACK,
-      fontSize:sizes.WIDTH*0.035
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
+      marginTop: sizes.WIDTH * 0.01,
     },
-    subname:{
+    addressText: {
       ...globalStyles.TEXT_STYLE,
-      color:colors.BLACK,
-      fontSize:sizes.WIDTH*0.04,
-      paddingLeft:sizes.HEIGHT*0.01
-    
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
+      width: sizes.WIDTH * 0.5,
+      marginTop: sizes.WIDTH * 0.01,
     },
-    time:{
-        flexDirection:"row",
-      paddingTop:sizes.HEIGHT*0.002,
-
+    orderItemJob: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
+      marginTop: sizes.WIDTH * 0.01,
     },
-    handymanimg:{
-      width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.13,
-      borderRadius: sizes.WIDTH * 0.01,
+    orderItemWork: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
+      marginTop: sizes.WIDTH * 0.01,
     },
-    locationimg:{
-      marginTop:sizes.WIDTH*0.001,
-      marginLeft:sizes.WIDTH*0.037
-    
+    orderItemTime: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
     },
-   
-    rating:{
-      flexDirection:"row",
-      paddingTop:sizes.HEIGHT*0.035,
-     
-        paddingLeft:sizes.WIDTH*0.17
+    orderItemHandyman: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
     },
-    star: {
-      width: sizes.WIDTH * 0.06,
-      height: sizes.HEIGHT * 0.03,
-      
+    orderItemPrice: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.048,
     },
-    rate:{
-      color:colors.BLACK,paddingLeft:sizes.WIDTH*0.01,
-      marginTop:sizes.HEIGHT*0.003,
-    },
-    price:{
-      ...globalStyles.TEXT_STYLE_BOLD,
-
-      color:colors.BLACK,
-      paddingTop:sizes.HEIGHT*0.04,
-      
-    },
-    clock:{
-     width:sizes.WIDTH*0.04,
-     height: sizes.HEIGHT * 0.02,
-     marginTop:sizes.WIDTH*0.007
-    },
-    timer:{
-      color:colors.BLACK,
-      paddingLeft:sizes.WIDTH*0.01,
-
-
-    },
-    providerimg: {
-      width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.13,
-      borderRadius: sizes.WIDTH * 0.01,
-      
-    },
-    imgview:{
-    padding:sizes.WIDTH*0.03,
-    paddingRight:width*0.012,
-    // paddingTop:height*0.01,
-    paddingLeft:sizes.WIDTH*0.01
-
-    },
-    locimgview:{
-      padding:sizes.WIDTH*0.06,
-      paddingTop:sizes.WIDTH*0.02
-
-    },
-    Handyman:{
-      display: 'flex',
+    addressContainer: {
       flexDirection: 'row',
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      elevation: 4,
-      width:sizes.WIDTH*0.9,
-    alignSelf:"center"
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginHorizontal: sizes.WIDTH * 0.06,
     },
- 
-   
-      locationText: {
-        ...globalStyles.TEXT_STYLE,
-      },
-     
-      ratingContainer: {
-        
-        paddingTop:sizes.WIDTH*0.02,
-  
-        flexDirection: 'row',
-      
-      },
-      bookbutton:{
-        paddingLeft:sizes.WIDTH*0.2,
-        
-      },
-   address:{
-    ...globalStyles.TEXT_STYLE_BOLD,
-    color:colors.BLACK,
-    fontSize:sizes.WIDTH*0.05,
-  
-   }
-
+    editIcon: {
+      width: sizes.WIDTH * 0.05,
+      height: sizes.WIDTH * 0.05,
+      marginLeft: sizes.WIDTH * 0.08,
+    },
+    modalFirstDescStyle: {
+      ...globalStyles.TEXT_STYLE,
+      textAlign: 'center',
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.045,
+    },
+    orderSummaryContainer: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      marginHorizontal: sizes.WIDTH * 0.02,
+    },
   });
   return {
     colors,

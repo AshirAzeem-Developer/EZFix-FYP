@@ -23,7 +23,7 @@ const useStyles = () => {
       marginVertical: 20,
     },
     attachPhotosContainer: {
-      flexDirection: 'column',
+      flexDirection: 'row',
       alignItems: 'flex-start',
       justifyContent: 'space-between',
       paddingHorizontal: sizes.WIDTH * 0.04,

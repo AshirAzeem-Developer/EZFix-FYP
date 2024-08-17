@@ -17,6 +17,8 @@ import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import PrivacyPolicy from '../screens/App/PrivacyPolicy';
 import WorkDetails from '../screens/App/WorkDetails';
 import Approved from '../screens/App/Bookings/Approved';
+import ProfileDetail from '../screens/App/ProfileDetail';
+import OrderSummary from '../screens/App/OrderSummary';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -28,6 +30,8 @@ export type AppStackParamsList = {
   PrivacyPolicy: undefined;
   WorkDetails: undefined;
   Bookings: undefined;
+  ProfileDetail: undefined;
+  OrderSummary: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -53,9 +57,6 @@ function BookingStack() {
       initialRouteName="Bookings">
       <Stack.Screen name="Bookings" component={Bookings} />
       <Stack.Screen name="Approved" component={Approved} />
-
-
-
     </Stack.Navigator>
   );
 }
@@ -115,6 +116,8 @@ function ServiceSeekerStack() {
       <Stack.Screen name="Support" component={Support} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
+      <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
+      <Stack.Screen name="OrderSummary" component={OrderSummary} />
     </Stack.Navigator>
   );
 }

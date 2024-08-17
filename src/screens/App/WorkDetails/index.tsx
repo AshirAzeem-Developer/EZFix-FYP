@@ -1,4 +1,11 @@
-import {FlatList, Image, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import icons from '../../../assets/icons';
 import useStyles from './style';
@@ -11,12 +18,16 @@ import CustomTextArea from '../../../components/CustomTextArea';
 import DatePickerInput from '../../../components/DatePickerInput';
 import images from '../../../assets/images';
 import {useSelector} from 'react-redux';
+import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
+import CustomModal from '../../../components/CustomModal';
+import AllProviderCards from '../../../components/AllProvidersCard';
 
 type WorkDetailsProps = NativeStackScreenProps<AppStackParamsList>;
 
 const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   const {styles, colors} = useStyles();
   const [date, setDate] = useState<string | null>(null);
+  const [modal, setModal] = useState(false);
 
   //store
   const userId = useSelector(state => state.user.user.id);
@@ -27,6 +38,18 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   };
 
   const {title} = route.params;
+
+  const AllProvidersView = () => {
+    return (
+      <View
+        style={{
+          flex: 1,
+        }}>
+        <Header leftIconAction={() => setModal(!modal)} />
+        <AllProviderCards />
+      </View>
+    );
+  };
 
   const ServiceSeekerView = () => {
     return (
@@ -65,6 +88,24 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
           <Text style={styles.attachPhotosTitle}>Attach Photos</Text>
           <Image source={icons.ADD} />
         </View>
+
+        <TouchableOpacity
+          onPress={() => setModal(true)}
+          style={{
+            alignSelf: 'flex-end',
+            marginHorizontal: 20,
+          }}>
+          <Text
+            style={{
+              fontSize: 18,
+              fontStyle: 'italic',
+              textDecorationStyle: 'solid',
+              textDecorationLine: 'underline',
+              color: colors.PRIMARY,
+            }}>
+            See All Providers
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   };
@@ -140,7 +181,9 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
         backgroundColor: colors.WHITE,
       }}>
       <Header leftIconAction={() => navigation.goBack()} title={title} />
-      {userId === 0 ? <ServiceSeekerView /> : <ServiceProviderView />}
+      {userId === 0 ? <ServiceProviderView /> : <ServiceSeekerView />}
+
+      <CustomModal modalView={<AllProvidersView />} showModal={modal} />
     </ParentView>
   );
 };

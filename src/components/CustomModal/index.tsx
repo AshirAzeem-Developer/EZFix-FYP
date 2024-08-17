@@ -17,6 +17,7 @@ const CustomModal: React.FC<CustomModalProps> = ({showModal, modalView}) => {
   return (
     <>
       <ReactNativeModal
+        animationIn={'slideInUp'}
         style={{
           backgroundColor: 'white',
           width: sizes.WIDTH * 1,

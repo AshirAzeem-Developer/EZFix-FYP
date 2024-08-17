@@ -10,60 +10,79 @@ const useStyles = () => {
   const sizes = useSizes();
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
-    // providers: {
-    //   margin: sizes.WIDTH * 0.01,
-    //   //   height: sizes.HEIGHT * 0.12,
-    //   //   flexDirection: 'column',
-    //   //   alignItems: 'center',
-    //   justifyContent: 'center',
-    // },
-    providerscard: {
+    providersCardContainer: {
       width: sizes.WIDTH * 0.95,
-      height: sizes.HEIGHT * 0.13,
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      //   elevation: 1,
-
-      marginHorizontal: sizes.WIDTH * 0.02,
-      marginVertical: sizes.HEIGHT * 0.01,
+      justifyContent: 'space-evenly',
+      marginVertical: sizes.HEIGHT * 0.015,
+      backgroundColor: colors.WHITE,
+      borderRadius: sizes.WIDTH * 0.02,
+      elevation: 1,
       padding: sizes.WIDTH * 0.02,
     },
-    providernames: {
-      ...globalStyles.TEXT_STYLE,
-      color: colors.BLACK,
-      fontSize: sizes.WIDTH * 0.06,
-      paddingTop:sizes.HEIGHT*0.02
-    },
     providerimg: {
-      width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.13,
+      width: sizes.WIDTH * 0.28,
+      height: sizes.WIDTH * 0.45,
       borderRadius: sizes.WIDTH * 0.02,
     },
-    locationText: {
-      ...globalStyles.TEXT_STYLE,
-    },
-    services:{
-      flexDirection:"row"
-    },
+    detailsContainer: {
+      width: sizes.WIDTH * 0.6,
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
 
-    star: {
-      width: sizes.WIDTH * 0.06,
-      height: sizes.HEIGHT * 0.03,
-      
+      marginHorizontal: sizes.WIDTH * 0.02,
+      paddingHorizontal: sizes.WIDTH * 0.02,
     },
-    ratingContainer: {
-      
-      paddingTop:sizes.WIDTH*0.02,
-
+    nameAndRateContainer: {
       flexDirection: 'row',
-    
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginVertical: sizes.HEIGHT * 0.01,
     },
-    bookbutton:{
-      paddingLeft:sizes.WIDTH*0.2,
-      
+    name: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.WIDTH * 0.05,
+      color: colors.BLACK,
     },
- 
+    ratingsContainer: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      marginTop: sizes.HEIGHT * 0.015,
+    },
+    rate: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      fontSize: sizes.WIDTH * 0.04,
+      color: colors.BLACK,
+    },
+    serviceContainer: {
+      marginHorizontal: sizes.WIDTH * 0.02,
+    },
+    servicesList: {
+      marginVertical: sizes.HEIGHT * 0.0,
+    },
+    service: {},
+    star: {
+      width: sizes.WIDTH * 0.065,
+      height: sizes.WIDTH * 0.065,
+      marginRight: sizes.WIDTH * 0.015,
+    },
+    buttonsContainer: {
+      width: sizes.WIDTH * 0.6,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginVertical: sizes.HEIGHT * 0.02,
+    },
+    bookNowButton: {
+      width: sizes.WIDTH * 0.28,
+      height: sizes.HEIGHT * 0.05,
+    },
+    viewProfileButton: {
+      width: sizes.WIDTH * 0.28,
+      height: sizes.HEIGHT * 0.05,
+    },
   });
   return {
     colors,
