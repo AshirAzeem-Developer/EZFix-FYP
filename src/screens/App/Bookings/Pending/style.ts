@@ -30,15 +30,18 @@ const useStyles = () => {
         alignSelf:"center"
       },
      
-        providerimg: {
-            width: sizes.WIDTH * 0.35,
-            height: sizes.HEIGHT * 0.2,
-            borderRadius: sizes.WIDTH * 0.07,
-           
-            margin:sizes.WIDTH*0.013,
-            
-            
-          },
+      providerimg: {
+        width: sizes.WIDTH * 0.35,
+        height: sizes.HEIGHT * 0.2,
+        borderRadius: sizes.WIDTH * 0.01,
+       
+        margin:sizes.WIDTH*0.015,
+        marginTop:sizes.WIDTH*0.03,
+
+
+        
+        
+      },
           job: {
             ...globalStyles.TEXT_STYLE_BOLD,
             color: colors.BLACK,
@@ -74,7 +77,7 @@ const useStyles = () => {
           },
           statuscontainer:{
             flexDirection:'row',
-            paddingTop:sizes.HEIGHT*0.038
+            paddingTop:sizes.HEIGHT*0.02
           
           },
           provivder:{

@@ -31,11 +31,14 @@ const useStyles = () => {
       },
      
         providerimg: {
-            width: sizes.WIDTH * 0.39,
-            height: sizes.HEIGHT * 0.26,
-            borderRadius: sizes.WIDTH * 0.07,
+            width: sizes.WIDTH * 0.35,
+            height: sizes.HEIGHT * 0.23,
+            borderRadius: sizes.WIDTH * 0.01,
            
-            margin:sizes.WIDTH*0.013,
+            margin:sizes.WIDTH*0.015,
+            marginTop:sizes.WIDTH*0.03,
+
+
             
             
           },
@@ -74,7 +77,7 @@ const useStyles = () => {
           },
           statuscontainer:{
             flexDirection:'row',
-            paddingTop:sizes.HEIGHT*0.038
+            paddingTop:sizes.HEIGHT*0.01
           
           },
           provivder:{
@@ -86,9 +89,10 @@ const useStyles = () => {
 
           },
           bookbutton:{
-            paddingLeft:sizes.WIDTH*0.15,
-            paddingTop:sizes.WIDTH*0.045,
+            padding:sizes.WIDTH*0.034,
+            paddingLeft:sizes.WIDTH*0.084
 
+         
             
           },
           

@@ -98,8 +98,13 @@ const Approved = () => {
                         text="Start Working"
                         bgcolor={colors.PRIMARY}
                         btnStyles={{
-                          width: sizes.WIDTH * 0.32,
+                          width: sizes.WIDTH * 0.33,
                           height: sizes.HEIGHT * 0.038,
+                          marginLeft:sizes.WIDTH*0.099,
+                          marginTop:sizes.WIDTH*0.03,
+                          paddingLeft:sizes.WIDTH*0.001,
+                          paddingRight:sizes.WIDTH*0.001
+
                         }}
                       />
                     </View>
