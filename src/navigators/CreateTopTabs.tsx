@@ -11,6 +11,7 @@ const TopTabOption = ({title, isFocused, sizes, colors}: any) => {
     <Text
       style={{
         // alignSelf: 'center',
+        fontWeight: isFocused ? 'bold' : 'normal',
         width: sizes.WIDTH * 0.4,
         color: isFocused ? colors.PRIMARY : colors.GRAY,
         fontSize: sizes.WIDTH * 0.04,

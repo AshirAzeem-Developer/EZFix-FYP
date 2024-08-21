@@ -23,7 +23,6 @@ const useStyles = () => {
       color: colors.WHITE,
       fontSize: sizes.WIDTH * 0.045,
     },
-    
   });
   return {
     colors,

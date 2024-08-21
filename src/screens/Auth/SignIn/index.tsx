@@ -21,9 +21,44 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setRoleID} from '../../../store/reducer/settings';
 import {setUser} from '../../../store/reducer/user';
 import {users} from '../../../dummy/data';
+import axios from 'axios';
+import ServiceSeekerStack from '../../../navigators/navigator.seeker';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
+
+  const addUser = async () => {
+    try {
+      const res = await axios.post(
+        'http://192.168.100.45:1339/api/auth/local/register',
+        {
+          email: 'mussaibsanai@gmail.com',
+          password: 'Ashir12345',
+          username: 'mussaib',
+        },
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.log('Error', JSON.stringify(error, null, 2));
+    }
+  };
+
+  const loginUser = async () => {
+    try {
+      const res = await axios.post(
+        'http://192.168.100.45:1339/api/auth/local',
+        {
+          identifier: username,
+          password: password,
+        },
+      );
+      if (res.status === 200) {
+        setUser(username == 'seeker' ? users.seeker : users.provider);
+      }
+    } catch (error) {
+      console.log('Error', JSON.stringify(error, null, 2));
+    }
+  };
 
   // const roleID = useSelector(state => state.settings.roleID);
 
@@ -38,6 +73,7 @@ const SignIn = ({navigation}) => {
   // }, [roleID, navigation]);
 
   // ======================>>>>>> State Variables <<<<<======================
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -100,11 +136,11 @@ const SignIn = ({navigation}) => {
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
-          onPress={() => {
+          onPress={() =>
             dispatch(
               setUser(username == 'seeker' ? users.seeker : users.provider),
-            );
-          }}
+            )
+          }
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}

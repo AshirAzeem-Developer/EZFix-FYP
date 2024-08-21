@@ -3,6 +3,8 @@
 //     BASE_URL: `https://xxx.xxx.xxx.com/api`,
 //     LOGIN: `/xxx/xxx`,
 
+import {REGISTER} from 'redux-persist';
+
 //   },
 // };
 
@@ -15,6 +17,7 @@
 // export default Environment;
 
 export default {
-  BASE_URL: `https://xxx.xxx.xxx.com/api`,
-  LOGIN: `/xxx/xxx`,
+  BASE_URL: `http://localhost:1339/api`,
+  LOGIN: `/auth/local`,
+  REGISTER: `/auth/register`,
 };

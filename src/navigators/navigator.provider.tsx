@@ -2,15 +2,57 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/App/Home';
-import Bookings from '../screens/App/Bookings';
+
 import Messages from '../screens/App/Message';
 import Profile from '../screens/App/Profile';
 import CreateBottomTabs from './CreateBottomTabs';
 import icons from '../assets/icons';
 import WorkDetails from '../screens/App/WorkDetails';
+import Approved from '../screens/App/Bookings/Approved';
+import Pending from '../screens/App/Bookings/Pending';
+import Cancel from '../screens/App/Bookings/Cancel';
+import CreateTopTabs from './CreateTopTabs';
+import EditProfile from '../screens/App/EditProfile';
+import ProfileSettings from '../screens/App/ProfileSettings';
 
 const Stack = createNativeStackNavigator();
-
+function BookingStack() {
+  return (
+    <CreateTopTabs
+      initialRouteName="Approved"
+      screens={[
+        {
+          name: 'Approved',
+          Component: Approved,
+          label: 'Approved',
+        },
+        {
+          name: 'Pending',
+          Component: Pending,
+          label: 'Pending',
+        },
+        {
+          name: 'Cancel',
+          Component: Cancel,
+          label: 'Cancelled',
+        },
+      ]}
+      key={'BookingStack'}
+    />
+  );
+}
+function ProfileStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Profile">
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+    </Stack.Navigator>
+  );
+}
 const BottomTabs = () => {
   return (
     <CreateBottomTabs
@@ -25,7 +67,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Bookings',
-          Component: Bookings,
+          Component: BookingStack,
           icon: icons.BOOKINGS_TAB,
           selectedIcon: icons.BOOKINGS_TAB_ACTIVE,
           label: 'Bookings',
@@ -39,7 +81,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Profile',
-          Component: Profile,
+          Component: ProfileStack,
           icon: icons.PROFILE_TAB,
           selectedIcon: icons.PROFILE_TAB_ACTIVE,
           label: 'Profile',
@@ -58,6 +100,7 @@ function ServiceProvider() {
       initialRouteName="HomeTabs">
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
+      <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
     </Stack.Navigator>
   );
 }

@@ -63,4 +63,5 @@ export default {
   dummyprovider: require('./dummyprovider.png'),
   project: require('./project.png'),
   dummyWorkImage: require('./dummyWorkImage.png'),
+  StartStopWorking: require('./StartStopWorking.png'),
 };

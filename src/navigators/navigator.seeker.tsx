@@ -1,12 +1,9 @@
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateBottomTabs from './CreateBottomTabs';
 import Home from '../screens/App/Home';
 import Profile from '../screens/App/Profile';
 import Messages from '../screens/App/Message';
-import Bookings from '../screens/App/Bookings';
+
 import icons from '../assets/icons';
 import ProfileSettings from '../screens/App/ProfileSettings';
 import EditProfile from '../screens/App/EditProfile';
@@ -23,8 +20,8 @@ import Pending from '../screens/App/Bookings/Pending';
 import Cancel from '../screens/App/Bookings/Cancel';
 import CreateTopTabs from './CreateTopTabs';
 import Header from '../components/AppHeader';
-import {useNavigation} from '@react-navigation/native';
-import {View} from 'react-native';
+import StartStopWorking from '../screens/App/StartStopWorking';
+import {useSelector} from 'react-redux';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -38,6 +35,7 @@ export type AppStackParamsList = {
   Bookings: undefined;
   ProfileDetail: undefined;
   OrderSummary: undefined;
+  StartStopWorking: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -55,24 +53,27 @@ function ProfileStack() {
   );
 }
 function BookingStack() {
+  const userId = useSelector(state => state.user.user.role.id);
+  console.log('userId', userId);
+
   return (
     <CreateTopTabs
       initialRouteName="Approved"
       screens={[
         {
-          name: 'Approved',
+          name: userId === 0 ? 'All Bookings' : 'Approved',
           Component: Approved,
-          label: 'Approved',
+          label: userId === 0 ? 'All Bookings' : 'Approved',
         },
         {
-          name: 'Pending',
+          name: userId === 0 ? 'Accepted ' : 'Pending',
           Component: Pending,
-          label: 'Pending',
+          label: userId === 0 ? 'Accepted ' : 'Pending',
         },
         {
-          name: 'Cancel',
+          name: userId === 0 ? 'Rejected' : 'Cancel',
           Component: Cancel,
-          label: 'Cancelled',
+          label: userId === 0 ? 'Rejected' : 'Cancel',
         },
       ]}
       key={'BookingStack'}
@@ -137,6 +138,7 @@ function ServiceSeekerStack() {
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
       <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
       <Stack.Screen name="OrderSummary" component={OrderSummary} />
+      <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
     </Stack.Navigator>
   );
 }
