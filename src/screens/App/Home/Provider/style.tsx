@@ -14,7 +14,7 @@ const useStyles = () => {
       backgroundColor: '#fff',
       padding: sizes.WIDTH * 0.01,
     },
-    
+
     logoImgCont: {
       paddingLeft: sizes.PADDING,
       flexDirection: 'row',
@@ -40,28 +40,64 @@ const useStyles = () => {
       left: sizes.WIDTH * 0.025,
     },
    providerdetail:{
-      padding:sizes.WIDTH*0.066
+      padding:sizes.WIDTH*0.06,
+      paddingLeft:sizes.WIDTH*0.03
    },
    name:{
     color:colors.BLACK,
-    fontSize:sizes.WIDTH*0.053,
+    fontSize:sizes.WIDTH*0.061,
     fontWeight:'bold',
     paddingTop:sizes.HEIGHT*0.03
    },
    card:{
+       width:sizes.WIDTH*0.45,
+       paddingLeft:sizes.WIDTH*0.01,
+       paddingTop:sizes.WIDTH*0.04,
 
+      //  height:sizes.WIDTH*0.2
+      flexDirection:"row",
+      // justifyContent:"space-evenly"
+
+   },
+   card2:
+   {
+    width:sizes.WIDTH*0.45,
+    paddingLeft:sizes.WIDTH*0.01,
+
+      //  height:sizes.WIDTH*0.2
+      flexDirection:"row",
+      // justifyContent:"space-evenly"
+      paddingTop:sizes.HEIGHT*0.02
    },
    bookings:{
     width:sizes.WIDTH*0.45,
     borderRadius:sizes.BORDER_RADIUS*3,
    borderColor:'green',
-   borderWidth: sizes.WIDTH*0.004, 
+   borderWidth: sizes.WIDTH*0.004,
   //  padding:sizes.WIDTH*0.066
+  paddingLeft:sizes.WIDTH*0.0545,
+  paddingBottom:sizes.WIDTH*0.035
+  },
+  services:{
+    width:sizes.WIDTH*0.45,
+    borderRadius:sizes.BORDER_RADIUS*3,
+   borderColor:'green',
+   borderWidth: sizes.WIDTH*0.004,
+  //  padding:sizes.WIDTH*0.066
+  marginLeft:sizes.WIDTH*0.047,
+  paddingBottom:sizes.WIDTH*0.035
+  },
+  servicesinner:{
+  paddingLeft:sizes.WIDTH*0.053,
+    
   },
    bookingimg:{
     width:sizes.WIDTH*0.12,
     height:sizes.HEIGHT*0.06,
-    alignSelf:"flex-end"
+    alignSelf:"flex-end",
+    marginRight:sizes.WIDTH*0.02,
+    marginTop:sizes.WIDTH*0.01
+
 
    }
   });
