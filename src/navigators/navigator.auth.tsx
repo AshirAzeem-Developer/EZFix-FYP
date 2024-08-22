@@ -34,7 +34,7 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="ProviderHome"
       screenOptions={{
         headerShown: false,
       }}>
