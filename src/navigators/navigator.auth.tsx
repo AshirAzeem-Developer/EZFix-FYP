@@ -26,13 +26,15 @@ import ProfileDetail from '../screens/App/ProfileDetail';
 import Approved from '../screens/App/Bookings/Approved';
 import Pending from '../screens/App/Bookings/Pending';
 import Cancel from '../screens/App/Bookings/Cancel';
+import providerHome from '../screens/App/Home/Provider';
+import ProviderHome from '../screens/App/Home/Provider';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="ProviderHome"
       screenOptions={{
         headerShown: false,
       }}>
@@ -52,6 +54,8 @@ export const AuthStack = () => {
       <Stack.Screen name="Approved" component={Approved} />
       <Stack.Screen name="Pending" component={Pending} />
       <Stack.Screen name="Cancel" component={Cancel} />
+      <Stack.Screen name="ProviderHome" component={ProviderHome} />
+
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"

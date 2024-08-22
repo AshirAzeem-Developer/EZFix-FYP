@@ -37,6 +37,9 @@ export default {
   Location:require('./Location.png'),
   ADD: require('./add.png'),
   Book_Mark:require('./bookmark.png'),
-  Share:require('./share.png')
-
+  Share:require('./share.png'),
+  Earning:require('./Earning.png'),
+  booking:require('./booking.png'),
+  Ratings:require('./Ratings.png'),
+  Services:require('./Services.png')
 };
