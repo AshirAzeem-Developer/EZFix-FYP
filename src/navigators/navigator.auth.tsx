@@ -21,20 +21,13 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
-import OrderSummary from '../screens/App/OrderSummary';
-import ProfileDetail from '../screens/App/ProfileDetail';
-import Approved from '../screens/App/Bookings/Approved';
-import Pending from '../screens/App/Bookings/Pending';
-import Cancel from '../screens/App/Bookings/Cancel';
-import providerHome from '../screens/App/Home/Provider';
-import ProviderHome from '../screens/App/Home/Provider';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="ProviderHome"
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
       }}>
@@ -49,13 +42,6 @@ export const AuthStack = () => {
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
       <Stack.Screen name="SignUpRoleSelect" component={SignUpRoleSelect} />
       <Stack.Screen name="SignUpCheckPhoto" component={SignUpCheckPhoto} />
-      <Stack.Screen name="OrderSummary" component={OrderSummary} />
-      <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
-      <Stack.Screen name="Approved" component={Approved} />
-      <Stack.Screen name="Pending" component={Pending} />
-      <Stack.Screen name="Cancel" component={Cancel} />
-      <Stack.Screen name="ProviderHome" component={ProviderHome} />
-
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"

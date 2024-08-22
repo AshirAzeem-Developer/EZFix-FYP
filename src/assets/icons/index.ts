@@ -33,13 +33,14 @@ export default {
   PRIVACY_POLICY: require('./privacypolicy.png'),
   BELL_ICON: require('./bellIcon.png'),
   ARROW: require('./arrow.png'),
-  Clock:require('./clock.png'),
-  Location:require('./Location.png'),
+  Clock: require('./clock.png'),
+  Location: require('./Location.png'),
   ADD: require('./add.png'),
-  Book_Mark:require('./bookmark.png'),
-  Share:require('./share.png'),
-  Earning:require('./Earning.png'),
-  booking:require('./booking.png'),
-  Ratings:require('./Ratings.png'),
-  Services:require('./Services.png')
+  Book_Mark: require('./bookmark.png'),
+  Share: require('./share.png'),
+  Earning: require('./Earning.png'),
+  booking: require('./booking.png'),
+  Ratings: require('./Ratings.png'),
+
+  TOTAL_SERVICES_ICON: require('./TotalServiceIcon.png'),
 };
