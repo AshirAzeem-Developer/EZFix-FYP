@@ -40,7 +40,7 @@ const useStyles = () => {
       width: '70%',
       height: '100%',
       color: colors.BLACK,
-      fontSize: sizes.FONTSIZE,
+      fontSize: sizes.WIDTH * 0.04,
 
       // backgroundColor: 'blue',
     },

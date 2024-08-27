@@ -24,6 +24,10 @@ import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
 import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import icons from '../../../assets/icons';
+import {useDispatch, useSelector} from 'react-redux';
+import {setIsAcceptedTermsAndConditions} from '../../../store/reducer/user';
+import api from '../../../utils/api';
+import apiEndPoints from '../../../constants/apiEndPoints';
 
 type SignUpPrivacyPolicyScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -82,6 +86,9 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
   navigation,
 }) => {
   const {styles, sizes, colors} = useStyles();
+  const userState = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
+  console.log('User State:', userState);
 
   // navigation
   const {navigate} = navigation;
@@ -91,6 +98,57 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
     useState<boolean>(false);
 
   const GlobalStyle = getGlobalStyles(colors, sizes);
+
+  const addUser = async () => {
+    try {
+      const res = await api.post(apiEndPoints.REGISTER, {
+        username: userState.email,
+        name: userState.name,
+        email: userState.email,
+        password: userState.password,
+        roleType: userState.roleType,
+        phoneNumber: userState.phoneNumber,
+        cnic: userState.cnic,
+        dob: userState.dob,
+        isAcceptedTermsAndCondition: userState.isAcceptedTermsAndConditions,
+      });
+
+      if (res.status === 200) {
+        console.log('User Added Successfully');
+        console.log(res.data);
+        navigate('SignIn');
+      } else {
+        console.log('Unexpected response:', res);
+        // You can show an error modal or toast here
+      }
+    } catch (error: any) {
+      console.error('Error:', error.response.data);
+      console.error(
+        'Validation Errors:',
+        error.response.data?.error?.details?.errors,
+      );
+    } finally {
+      hideModal();
+    }
+  };
+
+  const handleModalClose = () => {
+    try {
+      addUser();
+      hideModal();
+      navigate('SignIn');
+      console.log('UserName', userState.username);
+      console.log('Name', userState.name);
+      console.log('Email', userState.email);
+      console.log('Password', userState.password);
+      console.log('Role', userState.roleType);
+      console.log('Phone', userState.phoneNumber);
+      console.log('CNIC', userState.cnicNumber);
+      console.log('DOB', userState.dob);
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
 
   // modal prop
   const acceptPrivacyModalProps = {
@@ -105,16 +163,19 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
       fontSize: sizes.WIDTH * 0.038,
     },
     buttonTitle: 'Got it',
-    handleClose: () => {
-      hideModal();
-      navigate('SignIn');
-    },
+    handleClose: addUser,
   };
 
   // Use the custom hook
   const {GenericModal, hideModal, showModal} = useGenericModal({
     modalProp: acceptPrivacyModalProps,
   });
+
+  const handleAcceptedTermsAndCondition = () => {
+    dispatch(setIsAcceptedTermsAndConditions(true));
+    setIsPrivacyPolAccepted(true);
+    showModal();
+  };
 
   return (
     <ParentView
@@ -163,10 +224,7 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
                 : colors.WHITE,
             },
           ]}
-          onPress={() => {
-            setIsPrivacyPolAccepted(true);
-            showModal();
-          }}>
+          onPress={handleAcceptedTermsAndCondition}>
           {isPrivacyPolAccepted && <Image source={icons.CHECK_BLACK} />}
         </TouchableOpacity>
         <Text style={styles.IAcceptTxt}>

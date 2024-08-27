@@ -73,8 +73,8 @@ const SignUpSeekerProviderNICOrVerifyMember: FC<
   });
 
   const handleTakePhoto = async () => {
-    // const photo = await cameraRef.current?.takePhoto();
-    // console.log('photo ==>', photo);
+    const photo = await cameraRef.current?.takePhoto();
+    console.log('photo ==>', photo);
 
     // navigating
     setIsCameraOpen(false);

@@ -14,6 +14,7 @@ import Cancel from '../screens/App/Bookings/Cancel';
 import CreateTopTabs from './CreateTopTabs';
 import EditProfile from '../screens/App/EditProfile';
 import ProfileSettings from '../screens/App/ProfileSettings';
+import ProviderHome from '../screens/App/ProviderHome';
 
 const Stack = createNativeStackNavigator();
 function BookingStack() {
@@ -60,7 +61,7 @@ const BottomTabs = () => {
       screens={[
         {
           name: 'Home',
-          Component: Home,
+          Component: ProviderHome,
           icon: icons.HOME_TAB,
           selectedIcon: icons.HOME_TAB_ACTIVE,
           label: 'Home',

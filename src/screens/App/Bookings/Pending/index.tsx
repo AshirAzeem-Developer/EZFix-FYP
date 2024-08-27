@@ -28,7 +28,7 @@ const {width, height} = Dimensions.get('window');
 const Pending = () => {
   const {styles, colors, sizes} = useStyles();
   const [workState, setWorkState] = useState(true);
-  const userId = useSelector(state => state.user.user.role.id);
+  const userType = useSelector((state: any) => state?.user?.user?.roleType);
 
   const work = [
     {
@@ -277,7 +277,7 @@ const Pending = () => {
       </ParentView>
     );
   };
-  return userId === 0 ? <ProviderView /> : <SeekerView />;
+  return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 
 export default Pending;

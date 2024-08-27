@@ -22,41 +22,31 @@ import {setRoleID} from '../../../store/reducer/settings';
 import {setUser} from '../../../store/reducer/user';
 import {users} from '../../../dummy/data';
 import axios from 'axios';
-import ServiceSeekerStack from '../../../navigators/navigator.seeker';
+import api from '../../../utils/api';
+import apiEndPoints from '../../../constants/apiEndPoints';
+import {Role} from '../../../constants/enums/applicationRoleEnums';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
 
-  const addUser = async () => {
-    try {
-      const res = await axios.post(
-        'http://192.168.100.45:1339/api/auth/local/register',
-        {
-          email: 'mussaibsanai@gmail.com',
-          password: 'Ashir12345',
-          username: 'mussaib',
-        },
-      );
-      console.log(res.data);
-    } catch (error) {
-      console.log('Error', JSON.stringify(error, null, 2));
-    }
-  };
-
   const loginUser = async () => {
     try {
-      const res = await axios.post(
-        'http://192.168.100.45:1339/api/auth/local',
-        {
-          identifier: username,
-          password: password,
-        },
-      );
+      const res = await api.post(apiEndPoints.LOGIN, {
+        identifier: username,
+        password: password,
+      });
+
       if (res.status === 200) {
-        setUser(username == 'seeker' ? users.seeker : users.provider);
+        const user = res?.data;
+        console.log('User', user);
+        const userObj = {jwt: user.jwt, ...user.user};
+        console.log('User Object', userObj);
+        dispatch(setUser(userObj));
+
+        // const user = userRoleType === 'seeker' ? users.seeker : users.provider;
       }
     } catch (error) {
-      console.log('Error', JSON.stringify(error, null, 2));
+      console.error('Error', JSON.stringify(error, null, 2));
     }
   };
 
@@ -136,11 +126,7 @@ const SignIn = ({navigation}) => {
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
-          onPress={() =>
-            dispatch(
-              setUser(username == 'seeker' ? users.seeker : users.provider),
-            )
-          }
+          onPress={loginUser}
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}

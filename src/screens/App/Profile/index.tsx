@@ -27,7 +27,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const userId = useSelector(state => state.user.user.role.id);
+  const userType = useSelector(state => state?.user?.user?.roleType);
+  console.log('USerType', userType);
 
   const SeekerView = () => {
     return (
@@ -202,7 +203,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
     );
   };
 
-  return userId === 0 ? <ProviderView /> : <SeekerView />;
+  return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 
 export default Profile;

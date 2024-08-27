@@ -17,7 +17,7 @@ import {REGISTER} from 'redux-persist';
 // export default Environment;
 
 export default {
-  BASE_URL: `http://localhost:1339/api`,
+  BASE_URL: `http://192.168.0.102:1339/api`,
   LOGIN: `/auth/local`,
-  REGISTER: `/auth/register`,
+  REGISTER: `/auth/local/register`,
 };

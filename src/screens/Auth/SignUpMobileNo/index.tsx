@@ -57,7 +57,6 @@ const SignUpMobileNo: FC<SignUpMobileNoScreenProps> = ({navigation}) => {
         }}
         rightIconAction={() => {
           setMobileNo('');
-
           setIsShowIcon(false);
         }}
         validator={validatePhoneNo}

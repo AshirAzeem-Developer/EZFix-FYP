@@ -19,6 +19,10 @@ import ProgressBar from '../../../components/ProgressBar';
 import {AuthStackParamList} from '../../../navigators/authStack';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import {validatePassword} from '../../../utils/validator';
+import {useDispatch, useSelector} from 'react-redux';
+import {setPassword} from '../../../store/reducer/user';
+import {Alert} from 'react-native';
+import AlertComponent from '../../../components/Alert';
 
 type PCreateNewPasswordScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -36,6 +40,10 @@ const CreateNewPassword: FC<PCreateNewPasswordScreenProps> = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isShowNewPassword, setIsNewShowPassword] = useState(true);
   const [isShowConfPassword, setIsShowConfPassword] = useState(true);
+  const [showError, setShowError] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const userState = useSelector((state: any) => state.user);
 
   const progress: number = (20 / 50) * 100;
 
@@ -43,6 +51,13 @@ const CreateNewPassword: FC<PCreateNewPasswordScreenProps> = ({navigation}) => {
     newPassword.trim().length > 0 && confirmPassword.trim().length > 0
       ? true
       : false;
+
+  const submitPassword = () => {
+    isValid
+      ? [dispatch(setPassword(newPassword)), navigate('SignUpRoleSelect')]
+      : null;
+  };
+
   return (
     <ParentView
       style={styles.container}
@@ -126,7 +141,7 @@ const CreateNewPassword: FC<PCreateNewPasswordScreenProps> = ({navigation}) => {
           bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY200}
           text="Continue"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY}
-          onPress={() => navigate('SignUpRoleSelect')}
+          onPress={submitPassword}
           btnStyles={styles.saveButton}
         />
       </BottomButton>

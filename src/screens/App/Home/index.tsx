@@ -38,74 +38,26 @@ const Home: React.FC<props> = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
-  // const userId = useSelector((state: any) => state.user.user.role.id);
-  const userId = 0;
 
   const handleSearch = (query: string) => {
     console.log('Search query:', query);
     // You can add your search logic here
   };
-  const ServiceProviderView = () => {
-    const cardData1 = [
-      {icon: icons.booking, value: 5, label: 'Total Bookings'},
-      {icon: icons.TOTAL_SERVICES_ICON, value: 10, label: 'Total Services'},
-      {icon: icons.Earning, value: '$0.00', label: 'Total Earnings'},
-      {icon: icons.Ratings, value: 4.5, label: 'Average Ratings'},
-    ];
 
-    return (
-      <ScrollView>
-        <View style={styles.providerdetail}>
-          <Text style={styles.name}>
-            Hello, <Text>Ashir Azeem</Text>
-          </Text>
-          <Text style={styles.welcomeBackText}>Welcome Back!</Text>
+  return (
+    <>
+      <ParentView
+        style={styles.container}
+        enterAnimation={FadeInDown.duration(500)}>
+        <View style={styles.logoImgCont}>
+          <Image source={icons.Logo} style={styles.logoImg} />
+          <TouchableOpacity>
+            <Image source={icons.BELL} style={styles.bellImg} />
+            {notificationsAvailable && (
+              <View style={styles.notificationBadge} />
+            )}
+          </TouchableOpacity>
         </View>
-        {/* ========= >> Dashboard Cards << =============== */}
-        <FlatList
-          data={cardData1}
-          numColumns={2}
-          contentContainerStyle={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity style={styles.bookings}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}>
-                  <Text
-                    style={{
-                      color: colors.BLACK,
-                      fontWeight: 'bold',
-                      fontSize: sizes.WIDTH * 0.065,
-                    }}>
-                    {item.value}
-                  </Text>
-                  <Image source={item.icon} style={styles.bookingimg} />
-                </View>
-                <Text style={styles.cardLabel}>{item.label}</Text>
-              </TouchableOpacity>
-            );
-          }}
-        />
-
-        {/* Monthly Revenue Chart */}
-        <View>
-          <Text style={styles.monthlyRevenueText}>Monthly Revenue (PKR)</Text>
-          <MyLineChart />
-        </View>
-      </ScrollView>
-    );
-  };
-  const ServiceSeekerView = () => {
-    return (
-      <>
         <View style={styles.search}>
           <SearchComponent
             placeholder="search any services..."
@@ -127,25 +79,6 @@ const Home: React.FC<props> = ({navigation}) => {
           </View>
           <TopProviderCards />
         </View>
-      </>
-    );
-  };
-
-  return (
-    <>
-      <ParentView
-        style={styles.container}
-        enterAnimation={FadeInDown.duration(500)}>
-        <View style={styles.logoImgCont}>
-          <Image source={icons.Logo} style={styles.logoImg} />
-          <TouchableOpacity>
-            <Image source={icons.BELL} style={styles.bellImg} />
-            {notificationsAvailable && (
-              <View style={styles.notificationBadge} />
-            )}
-          </TouchableOpacity>
-        </View>
-        {userId === 0 ? <ServiceProviderView /> : <ServiceSeekerView />}
       </ParentView>
     </>
   );

@@ -26,7 +26,7 @@ const useStyles = () => {
     },
     signUpTxt: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.0625,
+      fontSize: sizes.WIDTH * 0.07,
       color: colors.BLACK,
     },
     inputRightCont: {
@@ -37,7 +37,7 @@ const useStyles = () => {
     },
     wellCheckTxt: {
       ...globalStyles.TEXT_STYLE,
-      fontSize: sizes.WIDTH * 0.035,
+      fontSize: sizes.WIDTH * 0.04,
       color: colors.BLACK,
       marginLeft: sizes.WIDTH * 0.067,
     },
@@ -66,12 +66,12 @@ const useStyles = () => {
     },
     alreadyJoinTxt: {
       ...globalStyles.TEXT_STYLE,
-      fontSize: sizes.WIDTH * 0.035,
+      fontSize: sizes.WIDTH * 0.04,
       color: colors.BLACK,
     },
     loginTxt: {
       ...globalStyles.TEXT_STYLE_BOLD,
-      fontSize: sizes.WIDTH * 0.035,
+      fontSize: sizes.WIDTH * 0.04,
       color: colors.PRIMARY,
     },
   });

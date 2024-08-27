@@ -29,8 +29,8 @@ const {width, height} = Dimensions.get('window');
 const Approved = () => {
   const {styles, colors, sizes} = useStyles();
 
-  const userId = useSelector(state => state.user.user.role.id);
-  console.log('User Id', userId);
+  const userType = useSelector((state: any) => state?.user?.user?.roleType);
+  console.log('User Id', userType);
 
   const work = [
     {
@@ -291,7 +291,7 @@ const Approved = () => {
     );
   };
 
-  return userId === 0 ? <ProviderView /> : <SeekerView />;
+  return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 
 export default Approved;

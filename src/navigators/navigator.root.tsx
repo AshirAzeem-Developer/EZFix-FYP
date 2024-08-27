@@ -21,7 +21,7 @@ function RootNav() {
   return (
     <NavigationContainer>
       {user ? (
-        user?.role?.id === Role.ServiceProvider ? (
+        user?.roleType === Role.ServiceProvider ? (
           <ServiceProvider />
         ) : (
           <ServiceSeeker />

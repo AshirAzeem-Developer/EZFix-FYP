@@ -27,7 +27,7 @@ const {width, height} = Dimensions.get('window');
 
 const Cancel = () => {
   const {styles, colors, sizes} = useStyles();
-  const userId = useSelector(state => state.user.user.role.id);
+  const userType = useSelector((state: any) => state?.user?.user?.roleType);
 
   const work = [
     {
@@ -222,7 +222,7 @@ const Cancel = () => {
     );
   };
 
-  return userId === 0 ? <ProviderView /> : <SeekerView />;
+  return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 
 export default Cancel;

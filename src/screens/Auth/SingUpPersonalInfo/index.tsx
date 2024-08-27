@@ -19,6 +19,15 @@ import images from '../../../assets/images';
 // local navigation
 import {AuthStackParamList} from '../../../navigators/AuthStack';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  setCnicNumber,
+  setDateOfBirth,
+  setName,
+  setuserName,
+  setEmailAddress,
+} from '../../../store/reducer/user';
+import {validateEmail} from '../../../utils/validator';
 
 type PersonalInfoSingUpScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -30,14 +39,32 @@ const PersonalInfoSingUp: FC<PersonalInfoSingUpScreenProps> = ({
 }) => {
   const {styles, sizes, colors} = useStyles();
 
+  const dispatch = useDispatch();
+  const userData = useSelector((state: any) => state.user);
+  // console.log('User Data:', userData);
+
   const [userName, setUserName] = useState<string>('');
+  const [cnic, setCnic] = useState<string>('');
   const [dob, setDob] = useState<string | null>(null);
+  const [email, setEmail] = useState<string>('');
   const [isShowIcon, setIsShowIcon] = useState<boolean>(false);
 
   // navigation
   const {navigate} = navigation;
 
   let isValid = userName.trim().length > 0 ? true : false;
+
+  const setPersonalInfo = () => {
+    dispatch(setName(userName));
+    dispatch(setuserName(userName));
+    dispatch(setEmailAddress(email));
+    dispatch(setDateOfBirth(dob));
+    dispatch(setCnicNumber(cnic));
+    console.log('State:', userData);
+    navigate('CreateNewPassword');
+    // console.log('Personal Info:', userName, typeof cnic, dob, email);
+  };
+
   return (
     <ParentView
       style={styles.container}
@@ -69,10 +96,34 @@ const PersonalInfoSingUp: FC<PersonalInfoSingUpScreenProps> = ({
         isShowRightIcon={false}
         isPassword={false}
         placeHolderTxt="Enter CNIC Number"
-        value={userName}
+        value={cnic}
         handleOnChange={newValue => {
-          setUserName(newValue);
+          setCnic(newValue);
         }}
+      />
+      <TextInputCustom
+        leftIcon={images.MAIL}
+        leftIconAction={() => {}}
+        // isShowRightIcon={isShowCrossicon}
+        isPassword={false}
+        placeHolderTxt={'Email'}
+        value={email}
+        handleOnChange={newValue => {
+          setEmail(newValue);
+          // setIsShowCrossicon(newValue.length > 0 ? true : false);
+        }}
+        rightContStyle={styles.inputRightCont}
+        rightIcon={images.cross}
+        // rightIconAction={() => {
+        //   setEmail('');
+        //   // setIsShowCrossicon(false);
+        // }}
+        errorHandler={[
+          {
+            errorText: 'Invalid Email Address',
+            validator: validateEmail,
+          },
+        ]}
       />
 
       <DatePickerInput
@@ -92,7 +143,7 @@ const PersonalInfoSingUp: FC<PersonalInfoSingUpScreenProps> = ({
           bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY200}
           text="Continue"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY}
-          onPress={() => navigate('CreateNewPassword')}
+          onPress={setPersonalInfo}
           btnStyles={styles.snedCodeButton}
         />
       </BottomButton>

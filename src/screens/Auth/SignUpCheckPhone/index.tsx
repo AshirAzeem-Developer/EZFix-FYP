@@ -25,6 +25,8 @@ import {validateEmail, validatePhoneNo} from '../../../utils/validator';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
 import icons from '../../../assets/icons';
 import MobileNoTextInput from '../../../components/MobileNoTextInput';
+import {useDispatch, useSelector} from 'react-redux';
+import {setPhoneNumber} from '../../../store/reducer/user';
 
 type SignUpCheckPhoneScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -43,6 +45,12 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
 
   const [isShowCrossicon, setIsShowCrossicon] = useState<boolean>(false);
   const [isOtpSend, setIsOtpSend] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const phoneNumberState = useSelector((state: any) => state);
+  // console.log('Phone Number State:', phoneNumberState);
+
+  const state = useSelector((state: any) => state.user);
   // navigation
   const {navigate} = navigation;
 
@@ -66,7 +74,14 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
     image: images.otpSend,
     title: 'OTP Sent',
     firstDes: "We've sent a verification code to",
-    secondDes: '+92 325 8978998',
+    secondDes: `+92${mobileNo}`,
+    firstDesStyle: {
+      fontFamily: fonts.TEXT_STYLE.fontFamily,
+      fontSize: sizes.WIDTH * 0.042,
+      color: colors.BLACK,
+      textAlign: 'center' as 'center',
+    },
+
     buttonTitle: 'Continue',
     handleClose: () => {
       hideModal();
@@ -81,6 +96,15 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
 
   // let isValid = email.trim().length > 0 ? true : false;
   let isValid = mobileNo.trim().length > 0 ? true : false;
+
+  const handleContinuePress = () => {
+    const fullPhoneNumber = +`92${mobileNo}`;
+    console.log('Full Phone Number:', fullPhoneNumber);
+    dispatch(setPhoneNumber(fullPhoneNumber));
+    setIsOtpSend(false);
+    showModal();
+    // console.log('Type of PhoneNumber ', typeof fullPhoneNumber);
+  };
 
   return (
     <ParentView
@@ -105,7 +129,6 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
         }}
         rightIconAction={() => {
           setMobileNo('');
-
           setIsShowIcon(false);
         }}
         validator={validatePhoneNo}
@@ -123,10 +146,7 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
           bgcolor={isValid ? colors.PRIMARY : colors.GRAY}
           text="Continue"
           textColor={isValid ? colors.BLACK : colors.LIGHT_GRAY}
-          onPress={() => {
-            setIsOtpSend(false);
-            showModal();
-          }}
+          onPress={handleContinuePress}
           btnStyles={styles.snedCodeButton}
         />
 

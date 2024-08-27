@@ -40,7 +40,7 @@ const MobileNoTextInput: React.FC<MobileNoTextInputProps> = ({
   ...props
 }) => {
   const {styles, sizes, colors} = useStyles();
-  const [selectedCountryCode, setSelectedCountryCode] = useState<any>('US');
+  const [selectedCountryCode, setSelectedCountryCode] = useState<any>('PK');
   const [selectedCountry, setSelectedCountry] = useState({
     currency: ['PKR'],
     callingCode: ['92'],

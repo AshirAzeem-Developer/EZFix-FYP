@@ -20,6 +20,8 @@ import {Role} from '../../../constants/enums/applicationRoleEnums';
 
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import images from '../../../assets/images';
+import {useDispatch, useSelector} from 'react-redux';
+import {setRoleType} from '../../../store/reducer/user';
 
 type SignUpRoleSelectScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -28,6 +30,8 @@ type SignUpRoleSelectScreenProps = NativeStackScreenProps<
 
 const SignUpRoleSelect: FC<SignUpRoleSelectScreenProps> = ({navigation}) => {
   const {styles, sizes, colors} = useStyles();
+  const dispatch = useDispatch();
+  const userState = useSelector((state: any) => state.user);
 
   // navigation
   const {navigate} = navigation;
@@ -36,18 +40,34 @@ const SignUpRoleSelect: FC<SignUpRoleSelectScreenProps> = ({navigation}) => {
   const [rolesArr, setRolesArr] = useState([
     {
       roleID: Role.ServiceSeeker,
+      label: 'seeker',
       Name: 'Service Seeker',
       activeImage: images.activeServiceSeeker,
       inActiveImage: images.activeServiceSeeker,
     },
     {
       roleID: Role.ServiceProvider,
+      label: 'provider',
       Name: 'Service Provider',
       activeImage: images.activeServiceProvider,
       inActiveImage: images.activeServiceProvider,
     },
   ]);
   const [selectedRoleID, setSelectedRoleID] = useState<Role>(1);
+
+  const handleOnClick = () => {
+    // Find the selected role object
+    const selectedRole = rolesArr.find(role => role.roleID === selectedRoleID);
+
+    if (selectedRole) {
+      // Dispatch the role label instead of the role ID
+      dispatch(setRoleType(selectedRole.label));
+      navigate('SignUpSeekerProviderNICOrVerifyMember', {
+        roleID: selectedRoleID,
+      });
+    }
+  };
+  console.log('USer State', userState);
 
   return (
     <ParentView
@@ -116,11 +136,7 @@ const SignUpRoleSelect: FC<SignUpRoleSelectScreenProps> = ({navigation}) => {
           bgcolor={colors.PRIMARY}
           text="Continue"
           textColor={colors.BLACK}
-          onPress={() =>
-            navigate('SignUpSeekerProviderNICOrVerifyMember', {
-              roleID: selectedRoleID,
-            })
-          }
+          onPress={handleOnClick}
           btnStyles={styles.saveButton}
         />
       </BottomButton>

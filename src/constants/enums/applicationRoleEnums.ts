@@ -1,4 +1,4 @@
 export enum Role {
-  ServiceProvider = 0,
-  ServiceSeeker = 1,
+  ServiceProvider = 'provider',
+  ServiceSeeker = 'seeker',
 }
