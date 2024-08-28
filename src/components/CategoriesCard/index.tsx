@@ -6,15 +6,34 @@ import CustomModal from '../CustomModal';
 
 import {AppStackParamsList} from '../../navigators/navigator.seeker';
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
+import apiEndPoints from '../../constants/apiEndPoints';
+import {getCategories} from '../../utils/ApiCall';
+import {useSelector} from 'react-redux';
+import END_POINTS from '../../constants/apiEndPoints';
 
 const CategoriesCard = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [hoveredItemId, setHoveredItemId] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const toggleModal = () => setModalVisible(!modalVisible);
 
   const navigation = useNavigation();
   const {styles, colors, sizes} = useStyles();
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  let categoriesData;
+  // console.log('userToken', userToken);
+
+  useEffect(() => {
+    getCategories(userToken)
+      .then(res => {
+        setCategories(res.data?.data);
+        // console.log('res', JSON.stringify(categoriesData, null, 2));
+      })
+      .catch(err => {
+        console.log('err', err.data.message);
+      });
+  }, []);
 
   const allCategories = [
     {
@@ -121,6 +140,7 @@ const CategoriesCard = () => {
     },
   ];
 
+  console.log('CatgoriesData', JSON.stringify(categories, null, 2));
   const ModalView = (
     <View style={{flex: 1}}>
       <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -137,20 +157,26 @@ const CategoriesCard = () => {
       <FlatList
         contentContainerStyle={styles.contentContainerStyle}
         numColumns={3}
-        data={allCategories}
+        data={categories}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
+        renderItem={({item}: {item: any}) => (
           <TouchableOpacity
             style={styles.categoriesContainer}
             activeOpacity={0.85}
-            onPress={item.onPress}>
+            onPress={() => console.log(item?.attributes?.categoryId)}>
             <View style={styles.category}>
               <Image
-                source={item.image}
+                source={{
+                  uri: `${END_POINTS.BASE_URL}${
+                    (item as any)?.attributes?.icon?.data?.attributes?.url
+                  }`,
+                }}
                 style={styles.image}
                 tintColor={'#008000'}
               />
-              <Text style={styles.catname}>{item.name}</Text>
+              <Text style={styles.catname}>
+                {(item as any)?.attributes?.name}
+              </Text>
             </View>
           </TouchableOpacity>
         )}

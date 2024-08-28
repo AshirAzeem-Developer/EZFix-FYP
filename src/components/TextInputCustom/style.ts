@@ -32,12 +32,12 @@ const useStyles = () => {
       width: '10%',
       height: '100%',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       // backgroundColor: 'pink',
     },
     leftIcon: {
-      width: sizes.WIDTH * 0.05,
-      height: sizes.WIDTH * 0.05,
+      width: sizes.WIDTH * 0.06,
+      height: sizes.WIDTH * 0.06,
     },
     textInp: {
       ...globalStyles.TEXT_STYLE,

@@ -1,6 +1,6 @@
 // const _Environments = {
 //   development: {
-//     BASE_URL: `https://xxx.xxx.xxx.com/api`,
+//     API_URL: `https://xxx.xxx.xxx.com/api`,
 //     LOGIN: `/xxx/xxx`,
 
 import {REGISTER} from 'redux-persist';
@@ -15,9 +15,13 @@ import {REGISTER} from 'redux-persist';
 
 // const Environment = getEnvironment();
 // export default Environment;
-
+// office Address: 192.168.100.45
+// second Address : 192.168.0.102
 export default {
-  BASE_URL: `http://192.168.0.102:1339/api`,
+  BASE_URL: `http://192.168.100.45:1339`,
+  API_URL: `http://192.168.100.45:1339/api`,
   LOGIN: `/auth/local`,
   REGISTER: `/auth/local/register`,
+  CATEGORY: `/categories`,
+  SUPPORT: `/supports`,
 };

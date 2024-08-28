@@ -43,4 +43,6 @@ export default {
   Ratings: require('./Ratings.png'),
 
   TOTAL_SERVICES_ICON: require('./TotalServiceIcon.png'),
+  SHIELD_SEC: require('./shieldSecurity.png'),
+  MAIL: require('./mail.png'),
 };

@@ -23,6 +23,7 @@ const useStyles = () => {
       borderColor: 'gray',
       fontSize: sizes.WIDTH * 0.038,
       textAlignVertical: 'top', // Ensures text starts from the top
+      color: colors.BLACK,
     },
     charCount: {
       ...globalStyles.TEXT_STYLE_BOLD,

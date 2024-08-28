@@ -16,6 +16,10 @@ import TextInputCustom from '../../../components/TextInputCustom';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
 import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
+import {useSelector} from 'react-redux';
+import {postSupport} from '../../../utils/ApiCall';
+import {showError, showSuccess} from '../../../utils/helperFunction';
+import {validateEmail, validatePhoneNo} from '../../../utils/validator';
 
 export default function Support({navigation}) {
   const {styles, sizes, colors} = useStyles();
@@ -27,6 +31,43 @@ export default function Support({navigation}) {
   const [phone, setPhone] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
+  const userToken = useSelector((state: any) => state.user?.user?.jwt);
+  console.log('UserToken == >', userToken);
+
+  const handleSupport = () => {
+    // Validation checks for missing fields
+    if (!name || !email || !phone || !description) {
+      showError('Missing Fields', 'Please fill all the fields.');
+      return;
+    }
+
+    const phoneNumber = parseInt(phone.replace(/[^0-9]/g, ''), 10); // Convert phone string to number
+
+    if (isNaN(phoneNumber)) {
+      showError('Invalid Phone Number', 'Please enter a valid phone number.');
+      return;
+    }
+
+    // If all validations pass, proceed with the API call
+    postSupport(
+      {
+        data: {
+          name: name,
+          email: email,
+          phoneNumber: phoneNumber, // Use the converted number here
+          Description: description,
+        },
+      },
+      userToken,
+    )
+      .then(res => {
+        showModal();
+      })
+      .catch(err => {
+        showError('Error', 'Something went wrong. Please try again.');
+        console.log('Error in support submission', err.message);
+      });
+  };
   const modalProps = {
     title: 'Request Submitted',
     firstDes:
@@ -76,6 +117,12 @@ export default function Support({navigation}) {
               handleOnChange={newValue => {
                 setEmail(newValue);
               }}
+              errorHandler={[
+                {
+                  errorText: 'Invalid Email Address',
+                  validator: validateEmail,
+                },
+              ]}
             />
             <TextInputCustom
               leftIcon={images.PHONE_CODE}
@@ -83,11 +130,17 @@ export default function Support({navigation}) {
               isShowRightIcon={false}
               isPassword={false}
               placeHolderTxt="(212)-456-7890"
-              value={email}
+              value={phone}
               inputMode="tel"
               handleOnChange={newValue => {
                 setPhone(newValue);
               }}
+              errorHandler={[
+                {
+                  errorText: 'Invalid Phone Number',
+                  validator: validatePhoneNo,
+                },
+              ]}
             />
 
             <View style={styles.descriptionContainer}>
@@ -109,7 +162,7 @@ export default function Support({navigation}) {
           btnStyles={styles.buttonStyles}
           textColor="#ffffff"
           btnTextStyles={styles.btnTextStyles}
-          onPress={showModal}
+          onPress={handleSupport}
         />
       </BottomButton>
       <GenericModal />

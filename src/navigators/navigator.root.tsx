@@ -13,8 +13,6 @@ import ServiceSeeker from './navigator.seeker';
 import {Role} from '../constants/enums/applicationRoleEnums';
 // import CustomSplash from './CustomSplash';
 
-const Stack = createNativeStackNavigator();
-
 function RootNav() {
   const user = useUserSelector();
   //   const [isSplashVisible, setIsSplashVisible] = useState(true);
