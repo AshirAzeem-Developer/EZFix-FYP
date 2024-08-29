@@ -1,4 +1,4 @@
-package com.bitsproject
+package com.example.bitsproject
 
 import android.app.Application
 import com.facebook.react.PackageList

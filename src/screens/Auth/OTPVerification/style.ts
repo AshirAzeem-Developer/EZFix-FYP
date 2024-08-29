@@ -58,6 +58,12 @@ const useStyles = () => {
       paddingLeft: '5%',
       marginTop: sizes.HEIGHT * 0.05,
     },
+    notificaiton:{
+      marginTop: sizes.HEIGHT * 0.01,
+      paddingLeft: '5%',
+   
+
+    },
     ActiveResend: {
       textDecorationLine: 'underline',
       color: '#0366fc',

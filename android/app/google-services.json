@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "180359447437",
+    "project_id": "ezfix-abc3c",
+    "storage_bucket": "ezfix-abc3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180359447437:android:3fe712b91c3a6a27eaf3c4",
+        "android_client_info": {
+          "package_name": "com.example.bitsproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvZF7jH-DSI-y02BWIAofTGSEfHqSpY38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

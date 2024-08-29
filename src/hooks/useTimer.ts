@@ -6,7 +6,7 @@ interface UseCountdownTimer {
   start: (minutes: number, callback: () => void) => void;
 }
 
-function useCountdownTimer(): UseCountdownTimer {
+function useCountdownTimer(p0: number): UseCountdownTimer {
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);

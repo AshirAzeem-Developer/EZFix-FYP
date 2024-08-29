@@ -32,7 +32,7 @@ const useStyles = () => {
       textAlignVertical: 'center',
       width: sizes.HEIGHT * 0.065,
       height: sizes.HEIGHT * 0.065,
-      marginRight: sizes.WIDTH * 0.07,
+      marginRight: sizes.WIDTH * 0.022,
       // font style
       color: colors.WHITE,
       padding: 0,
