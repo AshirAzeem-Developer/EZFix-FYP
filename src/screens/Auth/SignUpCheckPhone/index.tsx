@@ -22,6 +22,7 @@ import { validatePhoneNo } from '../../../utils/validator';
 import { sendOTP } from '../../../utils/firebaseAuth';
 import images from '../../../assets/images';
 import { getGlobalStyles } from '../../../constants/GlobalStyle';
+import { showError } from '../../../utils/helperFunction';
 
 type SignUpCheckPhoneScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -62,11 +63,11 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
         setIsOtpSend(true);
         showModal();
       } else {
-        Alert.alert('Error', 'Failed to send OTP. Please try again.');
+        showError('Error', 'Failed to send OTP. Please try again.');
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
-      Alert.alert('Error', 'An error occurred while sending OTP. Please try again.');
+      showError('Error', 'An error occurred while sending OTP. Please try again.');
     }
   };
   
