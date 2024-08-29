@@ -28,6 +28,7 @@ export const ParentView: React.FC<ParentViewProps> = ({
       ]}
       entering={enterAnimation}>
       {children}
+      
     </Animated.View>
   );
 };

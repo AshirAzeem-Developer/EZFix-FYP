@@ -15,7 +15,7 @@ export type AuthStackParamList = {
   OnBoarding: undefined;
   SignIn: undefined;
   ForgetPassword: undefined;
-  OTPVerification: {navigateTo: any};
+  OTPVerification: { navigateTo: any; phoneNumber: string; confirmation: any };
   ChangePassword: undefined;
   SignUpCheckPhone: undefined;
   // UnVerifyEmailSingUp: undefined;
