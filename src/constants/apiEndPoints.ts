@@ -19,7 +19,7 @@ import {REGISTER} from 'redux-persist';
 // second Address : 192.168.0.102
 export default {
   BASE_URL: `http://192.168.0.105:1339`,
-  API_URL: `http://192.168.220.110:1339/api`,
+  API_URL: `https://dev-api.ezfix.bond/api`,
   LOGIN: `/auth/local`,
   REGISTER: `/auth/local/register`,
   CATEGORY: `/categories`,

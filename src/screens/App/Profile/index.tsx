@@ -19,6 +19,7 @@ import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import DropDown from '../../../components/DropDown';
 
 type Props = NativeStackScreenProps<AppStackParamsList>;
 
@@ -98,6 +99,11 @@ const Profile: React.FC<Props> = ({navigation}) => {
     );
   };
   const ProviderView = () => {
+    const[showSkills,setShowSkills]=useState(false)
+
+    const Show=()=>{
+      setShowSkills(true)
+    }
     return (
       <ParentView
         style={styles.container}
@@ -159,6 +165,27 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 </Text>
               </View>
             </View>
+
+            <View style={styles.sectionContainer}>
+              <View style={{flexDirection:"row"}}>
+                {/* <Text style={styles.contactLabel}></Text> */}
+                <Text style={[styles.text, styles.contact]}>
+                Add Skill
+                </Text>
+                <TouchableOpacity onPress={Show} style={styles.addicon}>
+                  <Image source={icons.ADD}/>
+                </TouchableOpacity>
+              </View>
+              
+            </View>
+            {showSkills?(<>
+              <View style={styles.dropdown}>
+            
+            <DropDown/>
+          </View>
+            </>):(<>
+            </>)}
+         
             {/* =========== >>> Section 4 <<<< ============= */}
             <View style={styles.experienceContainer}>
               <View style={styles.experienceChipContainer}>
