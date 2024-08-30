@@ -99,6 +99,7 @@ const useStyles = () => {
     text: {
       textAlign: 'center',
       fontSize: sizes.WIDTH * 0.04,
+      color: 'black',
     },
     experienceChip: {
       backgroundColor: colors.BLACK,

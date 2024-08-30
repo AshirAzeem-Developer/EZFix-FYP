@@ -134,16 +134,16 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
 
   const handleModalClose = () => {
     try {
-      addUser();
-      hideModal();
-      navigate('SignIn');
+      // addUser();
+      // hideModal();
+      // navigate('SignIn');
       console.log('UserName', userState.username);
       console.log('Name', userState.name);
       console.log('Email', userState.email);
       console.log('Password', userState.password);
       console.log('Role', userState.roleType);
       console.log('Phone', userState.phoneNumber);
-      console.log('CNIC', userState.cnicNumber);
+      console.log('CNIC', userState.cnic);
       console.log('DOB', userState.dob);
     } catch (error) {
       console.log('Error', error);
