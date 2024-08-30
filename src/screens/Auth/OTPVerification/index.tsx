@@ -16,9 +16,14 @@ import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import useCountdownTimer from '../../../hooks/useTimer';
 
 // Firebase utilities for OTP
-import {verifyOTP, sendOTP} from '../../../utils/firebaseAuth'; // Import sendOTP for resending OTP
 import {setPhoneNumber} from '../../../store/reducer/user';
 import {useDispatch} from 'react-redux';
+import {verifyOTP, sendOTP} from '../../../utils/firebaseAuth'; // Import sendOTP for resending OTP
+import {
+  showError,
+  showSuccess,
+  showWarning,
+} from '../../../utils/helperFunction';
 
 type OTPVerificationScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -72,20 +77,29 @@ const OTPVerification: React.FC<OTPVerificationScreenProps> = ({
               return;
             }
           } else {
-            setNotification(
+            showError(
               'Invalid OTP! The otp you entered is incorrect. Please try again',
             );
+            // Alert.alert('Invalid OTP', 'The OTP you entered is incorrect. Please try again.');
+            // setNotification('')
           }
         } catch (error) {
-          setNotification(
+          // console.error('Error verifying OTP:', error);
+          // Alert.alert('Error', 'An error occurred during OTP verification. Please try again.');
+          // setNotification('')
+          showError(
             'An error occurred during OTP verification. Please try again.',
           );
         }
       } else {
-        setNotification('The OTP has expired. Please request a new one.');
+        // Alert.alert('OTP Expired', 'The OTP has expired. Please request a new one.');
+        showError('The OTP has expired. Please request a new one.');
+        // setNotification("")
       }
     } else {
-      setNotification('Invalid OTP,Please enter a 6-digit OTP');
+      // Alert.alert('Invalid OTP', 'Please enter a 6-digit OTP.');
+      // setNotification('')
+      showError('Invalid OTP,Please enter a 6-digit OTP');
     }
   };
 
@@ -102,29 +116,28 @@ const OTPVerification: React.FC<OTPVerificationScreenProps> = ({
           setConfirmation(newConfirmation);
           setOtp('');
           start(1, () => {
-            console.log('Timer finished, OTP can be resent');
+            console.log('');
+            showWarning('Timer finished, OTP can be resent');
           });
           // Alert.alert('OTP Resent', `A new OTP has been sent to ${formattedPhoneNumber}.`);
-          setNotification(
+          showSuccess(
             `OTP Resent, A new OTP has been sent to ${formattedPhoneNumber}`,
           );
         } else {
           // Alert.alert('Error', 'Failed to resend OTP. Please try again.');
-          setNotification("Error', Failed to resend OTP. Please try again");
+          showError("Error', Failed to resend OTP. Please try again");
         }
       } catch (error) {
         // console.error('Error resending OTP:', error);
         // Alert.alert('Error', 'An error occurred while resending OTP. Please try again.');
-        setNotification(
-          "An error occurred while resending OTP. Please try again.'",
-        );
+        showError("An error occurred while resending OTP. Please try again.'");
       }
     }
   };
 
   useEffect(() => {
     start(1, () => {
-      console.log('Timer finished');
+      showWarning('Timer finished');
     }); // Start the timer for 60 seconds when the component mounts
   }, [start]);
 
