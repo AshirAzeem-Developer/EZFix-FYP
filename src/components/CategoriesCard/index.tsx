@@ -163,7 +163,11 @@ const CategoriesCard = () => {
           <TouchableOpacity
             style={styles.categoriesContainer}
             activeOpacity={0.85}
-            onPress={() => console.log(item?.attributes?.categoryId)}>
+            onPress={() =>
+              navigation.navigate('WorkDetails', {
+                title:any: item?.attributes?.categoryId,
+              })
+            }>
             <View style={styles.category}>
               <Image
                 source={{

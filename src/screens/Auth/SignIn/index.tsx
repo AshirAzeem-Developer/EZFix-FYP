@@ -13,32 +13,26 @@ import apiEndPoints from '../../../constants/apiEndPoints';
 import {showError, showSuccess} from '../../../utils/helperFunction';
 import images from '../../../assets/images';
 import {validateEmail, validatePassword} from '../../../utils/validator';
+import {postLogin} from '../../../utils/ApiCall';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
 
-  const loginUser = async () => {
-    try {
-      const res = await api.post(apiEndPoints.LOGIN, {
-        identifier: username,
-        password: password,
+  function loginUser() {
+    postLogin({
+      identifier: username,
+      password: password,
+    })
+      .then(res => {
+        console.log('res', res?.data);
+        dispatch(setUser(res.data));
+        showSuccess('Login Success');
+      })
+      .catch(err => {
+        showError(err.message);
+        console.error('Error', err);
       });
-
-      if (res.status === 200) {
-        showSuccess('Login Successfull');
-        const user = res?.data;
-        console.log('User', user);
-        const userObj = {jwt: user.jwt, ...user.user};
-        console.log('User Object', userObj);
-        dispatch(setUser(userObj));
-
-        // const user = userRoleType === 'seeker' ? users.seeker : users.provider;
-      }
-    } catch (error: any) {
-      showError('Email or Password Incorrect');
-      // console.error('Error', error?.response?.data?.error?.message);
-    }
-  };
+  }
   // ======================>>>>>> State Variables <<<<<======================
 
   const [username, setUsername] = useState('');
@@ -115,7 +109,7 @@ const SignIn = ({navigation}) => {
           }
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
-          onPress={loginUser}
+          onPress={() => loginUser()}
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}
