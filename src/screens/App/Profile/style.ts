@@ -62,6 +62,27 @@ const useStyles = () => {
       paddingHorizontal: sizes.WIDTH * 0.1,
       borderRadius: sizes.WIDTH * 0.02,
     },
+    // sectionContainerskills: {
+    //   flexDirection: 'row',
+    //   alignItems: 'center',
+    //   justifyContent: 'space-between',
+    //   backgroundColor: colors.BACKGROUND,
+    //   width: sizes.WIDTH * 0.92,
+    //   height: sizes.HEIGHT * 0.05,
+    //   alignSelf: 'center',
+    //   marginTop: sizes.HEIGHT * 0.02,
+    //   paddingHorizontal: sizes.WIDTH * 0.1,
+    //   borderRadius: sizes.WIDTH * 0.02,
+    // },
+    dropdown:{
+      borderRadius: sizes.WIDTH * 0.02,
+      alignSelf: 'center',
+      marginTop: sizes.HEIGHT * 0.01,
+      alignItems: 'center',
+      width: sizes.WIDTH * 0.92,
+      // backgroundColor: colors.BACKGROUND,
+      // height: sizes.HEIGHT * 0.1,
+    },
     countryLabel: {
       ...globalStyles.TEXT_STYLE,
       fontSize: sizes.WIDTH * 0.04,
@@ -85,7 +106,10 @@ const useStyles = () => {
 
       paddingTop: sizes.HEIGHT * 0.008,
     },
-
+    addicon:{
+       alignSelf:"center",
+       paddingLeft:sizes.WIDTH*0.4
+    },
     experienceContainer: {
       flexDirection: 'column',
       backgroundColor: colors.BACKGROUND,
