@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 function DropDown() {
@@ -11,7 +11,9 @@ function DropDown() {
     { label: 'Italy', value: 'italy' },
 
   ]);
-
+  useEffect(() => {
+    console.log("Selected items:", value);
+  }, [value]);
   const dotColors = ['#008000',]; 
 
   return (
