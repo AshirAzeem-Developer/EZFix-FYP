@@ -165,7 +165,7 @@ const CategoriesCard = () => {
             activeOpacity={0.85}
             onPress={() =>
               navigation.navigate('WorkDetails', {
-                title:any: item?.attributes?.categoryId,
+                titles: item?.attributes?.categoryId,
               })
             }>
             <View style={styles.category}>
