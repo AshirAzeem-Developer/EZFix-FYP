@@ -31,7 +31,7 @@ export type AppStackParamsList = {
   NotificationSetting: undefined;
   Support: undefined;
   PrivacyPolicy: undefined;
-  WorkDetails: undefined;
+  WorkDetails: {title: string};
   Bookings: undefined;
   ProfileDetail: undefined;
   OrderSummary: undefined;
