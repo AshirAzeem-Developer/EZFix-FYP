@@ -166,8 +166,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
               </View>
             </View>
 
-            <View style={styles.sectionContainer}>
-              <View style={{flexDirection:"row"}}>
+            <View style={showSkills ? styles.active:styles.sectionContainerskills} >
+              <View style={{flexDirection:"row",paddingTop:sizes.HEIGHT*0.02}}>
                 {/* <Text style={styles.contactLabel}></Text> */}
                 <Text style={[styles.text, styles.contact]}>
                 Add Skill
@@ -176,15 +176,15 @@ const Profile: React.FC<Props> = ({navigation}) => {
                   <Image source={icons.ADD}/>
                 </TouchableOpacity>
               </View>
-              
-            </View>
-            {showSkills?(<>
+              {showSkills?(<>
               <View style={styles.dropdown}>
             
             <DropDown/>
           </View>
             </>):(<>
             </>)}
+            </View>
+          
          
             {/* =========== >>> Section 4 <<<< ============= */}
             <View style={styles.experienceContainer}>
