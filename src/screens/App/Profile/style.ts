@@ -52,6 +52,7 @@ const useStyles = () => {
 
     sectionContainer: {
       flexDirection: 'row',
+      // zIndex:10,
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: colors.BACKGROUND,
@@ -76,10 +77,14 @@ const useStyles = () => {
     // },
     dropdown: {
       borderRadius: sizes.WIDTH * 0.02,
-      alignSelf: 'center',
+      // alignSelf: 'center',
+      justifyContent: 'center', // Centers items horizontally
+      alignItems: 'center', // Centers items vertically
       marginTop: sizes.HEIGHT * 0.01,
-      alignItems: 'center',
+
       width: sizes.WIDTH * 0.92,
+      // margin:sizes.WIDTH*0.001,
+
       // backgroundColor: colors.BACKGROUND,
       // height: sizes.HEIGHT * 0.1,
     },
