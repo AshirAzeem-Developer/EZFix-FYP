@@ -22,7 +22,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
   customStyles,
   customContainerStyles,
   setValue = () => {},
-  editable,
+  editable = true,
 }) => {
   const {styles, colors, sizes} = useStyles();
 

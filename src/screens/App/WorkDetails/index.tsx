@@ -17,27 +17,30 @@ import Header from '../../../components/AppHeader';
 import CustomTextArea from '../../../components/CustomTextArea';
 import DatePickerInput from '../../../components/DatePickerInput';
 import images from '../../../assets/images';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
 import CustomModal from '../../../components/CustomModal';
 import AllProviderCards from '../../../components/AllProvidersCard';
+import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
+import {
+  setJobBookingDate,
+  setJobDescription,
+  setSkill,
+} from '../../../store/reducer/job-order';
 
 type WorkDetailsProps = NativeStackScreenProps<AppStackParamsList>;
 
 const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   const {styles, colors} = useStyles();
-  const [date, setDate] = useState<string | null>(null);
   const [modal, setModal] = useState(false);
 
-  //store
-  const userId = useSelector(state => state.user.user.id);
+  //============ >> store << =============
+  const dispatch = useDispatch();
+  const userId = useSelector((state: any) => state.user.user.id);
+  const jobOrdeState = useSelector((state: any) => state.JobOrder);
   // console.log('Selector from WorkDetails Screen: ', userId);
 
-  const handleDateChange = (date: string) => {
-    setDate(date);
-  };
-
-  const {title} = route.params;
+  const {title} = route.params as {title: string};
 
   const AllProvidersView = () => {
     return (
@@ -52,61 +55,82 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   };
 
   const ServiceSeekerView = () => {
+    const [date, setDate] = useState<string | null>(null);
+    const [description, setDescription] = useState<string>('');
+    const [jobPhotos, setJobPhotos] = useState<string[]>([]);
+    const showData = () => {
+      dispatch(setJobDescription(description));
+      dispatch(setJobBookingDate(date));
+      console.log('Job Order State: ', jobOrdeState);
+      console.log('Job Description: ', description);
+      console.log('Date: ', date);
+      setModal(true);
+    };
     return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.title}> {title}</Text>
+      <MyKeyboardAvoider>
+        <SafeAreaView style={styles.container}>
+          <Text style={styles.title}> {title}</Text>
 
-        {/* ============ >>>> Text Area for Problem Description <<< ================== */}
-        <View style={styles.textAreaContainer}>
-          <CustomTextArea
-            maxLength={250}
-            placeholder="Your Problem Description"
-          />
-        </View>
-        {/* ================= >>> Date Selector for Booking <<< ================= */}
-        <View
-          style={{
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            paddingHorizontal: 20,
-            marginVertical: 20,
-          }}>
-          <Text style={{textAlign: 'left', fontSize: 15, marginVertical: 12}}>
-            Choose Date of Booking
-          </Text>
-          <DatePickerInput
-            leftIcon={images.calendar}
-            placeHolderTxt="Select Date"
-            placeHolderDateMode="DateMonthYear"
-            value={date}
-            handleOnChange={val => setDate(val)}
-          />
-        </View>
-        {/* ================= >>> Attach Photos <<< ================= */}
-        <View style={styles.attachPhotosContainer}>
-          <Text style={styles.attachPhotosTitle}>Attach Photos</Text>
-          <Image source={icons.ADD} />
-        </View>
-
-        <TouchableOpacity
-          onPress={() => setModal(true)}
-          style={{
-            alignSelf: 'flex-end',
-            marginHorizontal: 20,
-          }}>
-          <Text
+          {/* ============ >>>> Text Area for Problem Description <<< ================== */}
+          <View style={styles.textAreaContainer}>
+            <CustomTextArea
+              maxLength={250}
+              placeholder="Your Problem Description"
+              value={description}
+              setValue={setDescription}
+            />
+          </View>
+          {/* ================= >>> Date Selector for Booking <<< ================= */}
+          <View
             style={{
-              fontSize: 18,
-              fontStyle: 'italic',
-              textDecorationStyle: 'solid',
-              textDecorationLine: 'underline',
-              color: colors.PRIMARY,
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              paddingHorizontal: 20,
+              marginVertical: 20,
             }}>
-            See All Providers
-          </Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+            <Text style={{textAlign: 'left', fontSize: 15, marginVertical: 12}}>
+              Choose Date of Booking
+            </Text>
+            <DatePickerInput
+              leftIcon={images.calendar}
+              placeHolderTxt="Select Date"
+              placeHolderDateMode="DateMonthYear"
+              value={date}
+              handleOnChange={val => setDate(val)}
+            />
+          </View>
+          {/* ================= >>> Attach Photos <<< ================= */}
+          {/* <View style={styles.attachPhotosContainer}>
+            <Text style={styles.attachPhotosTitle}>Attach Photos</Text>
+            <TouchableOpacity>
+              <Image source={icons.ADD} />
+            </TouchableOpacity>
+          </View> */}
+          {/* ================= >>> Attach Photos <<< ================= */}
+
+          <TouchableOpacity
+            onPress={
+              // () => setModal(true)
+              showData
+            }
+            style={{
+              alignSelf: 'flex-end',
+              marginHorizontal: 20,
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontStyle: 'italic',
+                textDecorationStyle: 'solid',
+                textDecorationLine: 'underline',
+                color: colors.PRIMARY,
+              }}>
+              See All Providers
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </MyKeyboardAvoider>
     );
   };
   const ServiceProviderView = () => {
@@ -149,6 +173,7 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
           <Text style={styles.attachPhotosTitle}>Attached Photos</Text>
 
           <FlatList
+            keyboardShouldPersistTaps="handled"
             contentContainerStyle={{
               elevation: 2,
             }}

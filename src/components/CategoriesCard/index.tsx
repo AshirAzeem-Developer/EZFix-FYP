@@ -9,8 +9,9 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import apiEndPoints from '../../constants/apiEndPoints';
 import {getCategories} from '../../utils/ApiCall';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import END_POINTS from '../../constants/apiEndPoints';
+import {setSkill} from '../../store/reducer/job-order';
 
 const CategoriesCard = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,6 +22,7 @@ const CategoriesCard = () => {
   const navigation = useNavigation();
   const {styles, colors, sizes} = useStyles();
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  const dispatch = useDispatch();
   let categoriesData;
   // console.log('userToken', userToken);
 
@@ -35,112 +37,112 @@ const CategoriesCard = () => {
       });
   }, []);
 
-  const allCategories = [
-    {
-      id: 1,
-      name: 'Mechanic',
-      image: images.MECHANIC,
-      onPress: () => navigation.navigate('WorkDetails', {title: 'Mechanic'}),
-    },
-    {
-      id: 2,
-      name: 'Plumber',
-      image: images.PLUMBER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Plumber'});
-      },
-    },
-    {
-      id: 3,
-      name: 'Electrician',
-      image: images.ELECTRICIAN,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Electrician'});
-      },
-    },
-    {
-      id: 5,
-      name: 'Painter',
-      image: images.PAINTER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Painter'});
-      },
-    },
-    {
-      id: 6,
-      name: 'Carpenter',
-      image: images.CARPENTER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Carpenter'});
-      },
-    },
-    {
-      id: 7,
-      name: 'Gardener',
-      image: images.GARDNER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Gardener'});
-      },
-    },
-    {
-      id: 8,
-      name: 'Cleaner',
-      image: images.CLEANER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Cleaner'});
-      },
-    },
-    {
-      id: 9,
-      name: 'Tutor',
-      image: images.TUTOR,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Tutor'});
-      },
-    },
-    {
-      id: 10,
-      name: 'Chef',
-      image: images.CHEF,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Chef'});
-      },
-    },
-    {
-      id: 11,
-      name: 'Photographer',
-      image: images.PHOTOGRAPHER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Photographer'});
-      },
-    },
-    {
-      id: 12,
-      name: 'Band Master',
-      image: images.BAND_MASTER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Band Master'});
-      },
-    },
-    {
-      id: 13,
-      name: 'Computer Technician',
-      image: images.COMP_TECH,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Computer Technician'});
-      },
-    },
-    {
-      id: 14,
-      name: 'Babysitter',
-      image: images.BABY_SITTER,
-      onPress: () => {
-        navigation.navigate('WorkDetails', {title: 'Babysitter'});
-      },
-    },
-  ];
+  // const allCategories = [
+  //   {
+  //     id: 1,
+  //     name: 'Mechanic',
+  //     image: images.MECHANIC,
+  //     onPress: () => navigation.navigate('WorkDetails', {title: 'Mechanic'}),
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Plumber',
+  //     image: images.PLUMBER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Plumber'});
+  //     },
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Electrician',
+  //     image: images.ELECTRICIAN,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Electrician'});
+  //     },
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Painter',
+  //     image: images.PAINTER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Painter'});
+  //     },
+  //   },
+  //   {
+  //     id: 6,
+  //     name: 'Carpenter',
+  //     image: images.CARPENTER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Carpenter'});
+  //     },
+  //   },
+  //   {
+  //     id: 7,
+  //     name: 'Gardener',
+  //     image: images.GARDNER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Gardener'});
+  //     },
+  //   },
+  //   {
+  //     id: 8,
+  //     name: 'Cleaner',
+  //     image: images.CLEANER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Cleaner'});
+  //     },
+  //   },
+  //   {
+  //     id: 9,
+  //     name: 'Tutor',
+  //     image: images.TUTOR,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Tutor'});
+  //     },
+  //   },
+  //   {
+  //     id: 10,
+  //     name: 'Chef',
+  //     image: images.CHEF,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Chef'});
+  //     },
+  //   },
+  //   {
+  //     id: 11,
+  //     name: 'Photographer',
+  //     image: images.PHOTOGRAPHER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Photographer'});
+  //     },
+  //   },
+  //   {
+  //     id: 12,
+  //     name: 'Band Master',
+  //     image: images.BAND_MASTER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Band Master'});
+  //     },
+  //   },
+  //   {
+  //     id: 13,
+  //     name: 'Computer Technician',
+  //     image: images.COMP_TECH,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Computer Technician'});
+  //     },
+  //   },
+  //   {
+  //     id: 14,
+  //     name: 'Babysitter',
+  //     image: images.BABY_SITTER,
+  //     onPress: () => {
+  //       navigation.navigate('WorkDetails', {title: 'Babysitter'});
+  //     },
+  //   },
+  // ];
 
-  console.log('CatgoriesData', JSON.stringify(categories, null, 2));
+  // console.log('CatgoriesData', JSON.stringify(categories, null, 2));
   const ModalView = (
     <View style={{flex: 1}}>
       <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -163,11 +165,12 @@ const CategoriesCard = () => {
           <TouchableOpacity
             style={styles.categoriesContainer}
             activeOpacity={0.85}
-            onPress={() =>
+            onPress={() => [
               navigation.navigate('WorkDetails', {
-                title:any: item?.attributes?.categoryId,
-              })
-            }>
+                title: item.attributes?.categoryId,
+              }),
+              dispatch(setSkill(item?.attributes.name)),
+            ]}>
             <View style={styles.category}>
               <Image
                 source={{
@@ -190,19 +193,26 @@ const CategoriesCard = () => {
 
   return (
     <>
-      {allCategories.slice(0, 3).map(category => (
+      {categories.slice(0, 3).map(category => (
         <TouchableOpacity
-          key={category.id}
+          key={category.attributes?.categoryId}
           style={styles.categoryContainer}
           activeOpacity={0.85}
-          onPress={category.onPress}>
+          onPress={() => [
+            navigation.navigate('WorkDetails', {
+              title: category?.attributes.name,
+            }),
+            dispatch(setSkill(category?.attributes?.name)),
+          ]}>
           <View style={styles.category}>
             <Image
-              source={category.image}
+              source={{
+                uri: `${END_POINTS.BASE_URL}${category.attributes?.icon?.data?.attributes?.url}`,
+              }}
               style={styles.image}
               tintColor={'#008000'}
             />
-            <Text style={styles.catname}>{category.name}</Text>
+            <Text style={styles.catname}>{category.attributes?.name}</Text>
           </View>
         </TouchableOpacity>
       ))}

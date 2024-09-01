@@ -38,6 +38,8 @@ const Home: React.FC<props> = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
+  const user = useSelector(state => state?.user.user.user.roleType);
+  console.log('UserType === >: ', user);
 
   const handleSearch = (query: string) => {
     console.log('Search query:', query);

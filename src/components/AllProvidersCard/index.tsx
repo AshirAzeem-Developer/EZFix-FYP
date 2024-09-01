@@ -1,5 +1,5 @@
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import icons from '../../assets/icons';
 import useStyles from './style';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,7 +9,33 @@ import Header from '../AppHeader';
 import {ParentView} from '../common/ParentView/ParentView';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackParamsList} from '../../navigators/navigator.seeker';
+import {useSelector} from 'react-redux';
+import {getProvider, getProviders} from '../../utils/ApiCall';
+import END_POINTS from '../../constants/apiEndPoints';
 const AllProviderCards = () => {
+  const JobOrder = useSelector((state: any) => state.JobOrder);
+  const [providersData, setProvidersData] = useState<any[]>([]);
+
+  const queryParams = {
+    'filters[skills][name][$eq]': JobOrder.skill,
+    populate: '*',
+  };
+  const userToken = useSelector((state: any) => state.user?.user?.jwt);
+
+  useEffect(() => {
+    // dispatch(getProviders(token, queryParams));
+    getProviders(userToken, queryParams)
+      .then(res => {
+        // console.log('Providers: ', JSON.stringify(res.data, null, 2));
+        setProvidersData(res.data);
+        // console.log('JobOrderSkill: ', JobOrder.skill);
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      });
+  }, [JobOrder.skill]);
+  // console.log('Providers', JSON.stringify(providersData, null, 2));
+
   const providers = [
     {
       id: 1,
@@ -78,11 +104,24 @@ const AllProviderCards = () => {
   ];
   const {styles, colors, sizes} = useStyles();
   const navigation: AppStackParamsList = useNavigation();
+
+  const handleViewProfile = (id: number) => {
+    getProvider(userToken, id, JobOrder.skill)
+      .then(res => {
+        console.log('Provider Profile: ', JSON.stringify(res.data, null, 2));
+        navigation.navigate('ProfileDetail', {provider: res.data});
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      });
+    console.log('Provider Profile: ', id);
+  };
+
   return (
     <ParentView>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={providers}
+        data={providersData}
         keyExtractor={item => item.id.toString()}
         contentContainerStyle={{
           flexDirection: 'column',
@@ -92,13 +131,18 @@ const AllProviderCards = () => {
         }}
         renderItem={({item}) => (
           <View style={styles.providersCardContainer}>
-            <Image source={item.image} style={styles.providerimg} />
+            <Image
+              source={{
+                uri: `${END_POINTS.BASE_URL}${item?.profileImage?.url}`,
+              }}
+              style={styles.providerimg}
+            />
             <View style={styles.detailsContainer}>
               <View style={styles.nameAndRateContainer}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.rate}>Rs {item.perHourRate}/hr</Text>
               </View>
-              <View style={styles.servicesList}>
+              {/* <View style={styles.servicesList}>
                 <FlatList
                   contentContainerStyle={{
                     flexDirection: 'column',
@@ -114,7 +158,7 @@ const AllProviderCards = () => {
                     </View>
                   )}
                 />
-              </View>
+              </View> */}
               <View style={styles.ratingsContainer}>
                 <Image source={icons.Star} style={styles.star} />
                 <Text style={styles.rate}>{item.ratings}</Text>
@@ -124,7 +168,8 @@ const AllProviderCards = () => {
                   withAnimation
                   bgcolor="#d2e6d0"
                   text="View Profile"
-                  onPress={() => navigation.navigate('ProfileDetail')}
+                  // onPress={() => navigation.navigate('ProfileDetail')}
+                  onPress={() => handleViewProfile(item.id)}
                   btnStyles={styles.viewProfileButton}
                   btnTextStyles={{color: colors.BLACK}}
                 />

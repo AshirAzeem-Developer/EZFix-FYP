@@ -29,9 +29,12 @@ const {width, height} = Dimensions.get('window');
 const Approved = () => {
   const {styles, colors, sizes} = useStyles();
 
-  const userType = useSelector((state: any) => state?.user?.user?.roleType);
-  console.log('User Id', userType);
-
+  const userType = useSelector(
+    (state: any) => state?.user?.user?.user?.roleType,
+  );
+  useEffect(() => {
+    console.log('User Id', userType);
+  }, [userType]);
   const work = [
     {
       id: 1,

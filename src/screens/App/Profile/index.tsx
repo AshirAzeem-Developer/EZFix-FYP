@@ -28,7 +28,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const userType = useSelector(state => state?.user?.user?.roleType);
+  const userType = useSelector(state => state?.user?.user?.user?.roleType);
   console.log('USerType', userType);
 
   const SeekerView = () => {
@@ -67,11 +67,11 @@ const Profile: React.FC<Props> = ({navigation}) => {
               </View>
               <View>
                 <Text style={styles.text}>Completed</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>237890</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>03</Text>
               </View>
               <View>
                 <Text style={styles.text}>In Progress</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>27</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>02</Text>
               </View>
             </View>
             {/* =========== >>> Section 2 <<<< ============= */}
@@ -99,11 +99,11 @@ const Profile: React.FC<Props> = ({navigation}) => {
     );
   };
   const ProviderView = () => {
-    const[showSkills,setShowSkills]=useState(false)
+    const [showSkills, setShowSkills] = useState(false);
 
-    const Show=()=>{
-      setShowSkills(true)
-    }
+    const Show = () => {
+      setShowSkills(true);
+    };
     return (
       <ParentView
         style={styles.container}
@@ -167,25 +167,26 @@ const Profile: React.FC<Props> = ({navigation}) => {
             </View>
 
             <View style={styles.sectionContainer}>
-              <View style={{flexDirection:"row"}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: sizes.WIDTH * 0.75,
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
                 {/* <Text style={styles.contactLabel}></Text> */}
-                <Text style={[styles.text, styles.contact]}>
-                Add Skill
-                </Text>
+                <Text style={[styles.text, styles.contact]}>Add Skill</Text>
                 <TouchableOpacity onPress={Show} style={styles.addicon}>
-                  <Image source={icons.ADD}/>
+                  <Image source={icons.ADD} />
                 </TouchableOpacity>
               </View>
-              
             </View>
-            {showSkills?(<>
+            {showSkills && (
               <View style={styles.dropdown}>
-            
-            <DropDown/>
-          </View>
-            </>):(<>
-            </>)}
-         
+                <DropDown />
+              </View>
+            )}
+
             {/* =========== >>> Section 4 <<<< ============= */}
             <View style={styles.experienceContainer}>
               <View style={styles.experienceChipContainer}>

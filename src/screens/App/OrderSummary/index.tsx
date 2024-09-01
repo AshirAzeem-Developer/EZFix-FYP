@@ -24,25 +24,48 @@ import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 
-const OrderSummary = () => {
+import {useSelector} from 'react-redux';
+import {postJobOrder} from '../../../utils/ApiCall';
+import {showError, showSuccess} from '../../../utils/helperFunction';
+
+const OrderSummary = ({route}) => {
   const [address, setAddress] = useState('123 Main St, City, State');
   const [editable, setEditable] = useState(false);
   const {styles, colors, sizes} = useStyles();
   const navigation: AppStackParamsList = useNavigation();
+  const JobOrder = useSelector((state: any) => state.JobOrder);
+  const providerData = route.params?.data || null;
+  const userToken = useSelector((state: any) => state.user?.user?.jwt);
 
-  // const [modal, setModal] = useState<boolean>();
-  const work = [
-    {
-      id: 1,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022',
-      Price: 'RS 250/hr',
-      image: images.handyman,
-      handyMan: 'Thomas Lukas',
-      address: '123 Main St, City, State',
-    },
-  ];
+  console.log('PRoviderData: ', JSON.stringify(providerData, null, 2));
+  console.log('JobOrder: ', JobOrder);
+
+  const handleSubmit = () => {
+    postJobOrder(
+      {
+        data: {
+          description: JobOrder.jobDescription,
+          date: JobOrder.jobBookingData,
+          fixedPrice: providerData?.skills[0]?.hourlyRate,
+        },
+      },
+      userToken,
+    )
+      .then(res => {
+        showSuccess(
+          'Booking Confirmed',
+          'Your booking has been confirmed check the "Booking Section" for the service provider response',
+        );
+        hideModal();
+        navigation.navigate('Home');
+        console.log('Response: ', res);
+      })
+      .catch(err => {
+        showError('Error', 'Something went wrong');
+        console.log('Error: ', err);
+      });
+  };
+
   const orderConfirmedModalProps = {
     image: images.CHECK_BADGE,
     title: 'Booking Confirmed',
@@ -50,10 +73,7 @@ const OrderSummary = () => {
       'Your booking  has been confirmed check the "Booking Section" for the service provider response',
     buttonTitle: 'Done',
     firstDesStyle: styles.modalFirstDescStyle,
-    handleClose: () => {
-      hideModal();
-      navigation.navigate('Home');
-    },
+    handleClose: handleSubmit,
   };
 
   const {GenericModal, showModal, hideModal} = useGenericModal({
@@ -72,33 +92,36 @@ const OrderSummary = () => {
         <View style={styles.orderSummaryContainer}>
           {/* ==== ORDER SUMMARY ==== */}
 
-          <FlatList
-            data={work}
+          {/* <FlatList
+            data={JobOrder}
             keyExtractor={item => item.id.toString()}
             contentContainerStyle={{
               marginHorizontal: sizes.WIDTH * 0.01,
             }}
             renderItem={({item}) => (
-              <View style={styles.orderItemContainer}>
-                <Image source={item.image} style={styles.orderItemImage} />
-                <View style={styles.orderItemDetails}>
-                  <Text style={styles.orderItemJob}>Job : {item.job}</Text>
-                  <Text style={styles.orderItemWork}>
-                    Job Details : {item.work}
-                  </Text>
-                  <Text style={styles.orderItemTime}>
-                    Booking Date : {item.time}
-                  </Text>
-                  <Text style={styles.orderItemHandyman}>
-                    Worker Name : {item.handyMan}
-                  </Text>
-                  <Text style={styles.orderItemPrice}>
-                    Per Hour Rate : {item.Price}
-                  </Text>
-                </View>
-              </View>
+              
             )}
-          />
+          /> */}
+
+          <View style={styles.orderItemContainer}>
+            <Image source={images.Order} style={styles.orderItemImage} />
+            <View style={styles.orderItemDetails}>
+              <Text style={styles.orderItemJob}>Job : {JobOrder.skill}</Text>
+              <Text style={styles.orderItemWork}>
+                Job Details : {JobOrder.jobDescription}
+              </Text>
+              <Text style={styles.orderItemTime}>
+                Booking Date : {JobOrder.jobBookingData}
+              </Text>
+              <Text style={styles.orderItemHandyman}>
+                Worker Name : {providerData?.name}
+              </Text>
+              <Text style={styles.orderItemPrice}>
+                Per Hour Rate : {providerData?.skills[0]?.hourlyRate}
+              </Text>
+            </View>
+          </View>
+
           {/* ==== ORDER SUMMARY ==== */}
 
           {/* ==== ADDRESS ==== */}

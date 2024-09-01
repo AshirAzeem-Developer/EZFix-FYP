@@ -6,17 +6,16 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../../../components/AppHeader';
 import TextInputCustom from '../../../components/TextInputCustom';
 import Button from '../../../components/Button/Button';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setUser} from '../../../store/reducer/user';
-import api from '../../../utils/api';
-import apiEndPoints from '../../../constants/apiEndPoints';
 import {showError, showSuccess} from '../../../utils/helperFunction';
-import images from '../../../assets/images';
+
 import {validateEmail, validatePassword} from '../../../utils/validator';
 import {postLogin} from '../../../utils/ApiCall';
 
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
+  const dispatch = useDispatch();
 
   function loginUser() {
     postLogin({
@@ -39,7 +38,6 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   // ======================>>>>>> Hooks <<<<<======================
-  const dispatch = useDispatch();
   // const user = useSelector(state => console.log(state));
   return (
     <SafeAreaView style={styles.container}>

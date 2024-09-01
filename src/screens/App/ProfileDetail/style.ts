@@ -16,23 +16,25 @@ const useStyles = () => {
     provider: {
       display: 'flex',
       flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: sizes.WIDTH * 0.9,
     },
     name: {
-      ...globalStyles.TEXT_STYLE,
+      ...globalStyles.TEXT_STYLE_BOLD,
       color: colors.BLACK,
-      fontSize: sizes.WIDTH * 0.042,
+      fontSize: sizes.WIDTH * 0.05,
     },
     price: {
       ...globalStyles.TEXT_STYLE,
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.042,
-      paddingLeft: sizes.WIDTH * 0.4,
     },
 
     summary: {
       ...globalStyles.TEXT_STYLE,
       color: colors.BLACK,
-      fontSize: sizes.WIDTH * 0.036,
+      fontSize: sizes.WIDTH * 0.04,
       paddingTop: sizes.HEIGHT * 0.002,
     },
     providerimg: {
@@ -44,6 +46,7 @@ const useStyles = () => {
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.01,
       borderRadius: sizes.BORDER_RADIUS * 2,
+      resizeMode: 'cover',
     },
     social: {
       flexDirection: 'row',
@@ -63,11 +66,19 @@ const useStyles = () => {
     reviews: {
       flexDirection: 'row',
       paddingTop: sizes.HEIGHT * 0.01,
+      width: sizes.WIDTH * 0.9,
+      justifyContent: 'space-between',
+    },
+    reviewsText: {
+      ...globalStyles.TEXT_STYLE_BOLD,
+      color: colors.BLACK,
+      paddingTop: sizes.HEIGHT * 0.01,
+      fontSize: sizes.WIDTH * 0.06,
     },
     star: {
       width: sizes.WIDTH * 0.06,
       height: sizes.HEIGHT * 0.03,
-      marginLeft: sizes.WIDTH * 0.6,
+      paddingHorizontal: sizes.WIDTH * 0.01,
     },
     chatNowBtn: {
       width: sizes.WIDTH * 0.4,

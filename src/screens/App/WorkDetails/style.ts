@@ -15,6 +15,7 @@ const useStyles = () => {
       color: colors.BLACK,
       fontSize: sizes.FONT_SIZE_HEADER,
       textAlign: 'center',
+      textTransform: 'capitalize',
     },
     textAreaContainer: {
       borderBottomWidth: 2,

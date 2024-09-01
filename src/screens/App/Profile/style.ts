@@ -74,7 +74,7 @@ const useStyles = () => {
     //   paddingHorizontal: sizes.WIDTH * 0.1,
     //   borderRadius: sizes.WIDTH * 0.02,
     // },
-    dropdown:{
+    dropdown: {
       borderRadius: sizes.WIDTH * 0.02,
       alignSelf: 'center',
       marginTop: sizes.HEIGHT * 0.01,
@@ -106,10 +106,7 @@ const useStyles = () => {
 
       paddingTop: sizes.HEIGHT * 0.008,
     },
-    addicon:{
-       alignSelf:"center",
-       paddingLeft:sizes.WIDTH*0.4
-    },
+    addicon: {},
     experienceContainer: {
       flexDirection: 'column',
       backgroundColor: colors.BACKGROUND,

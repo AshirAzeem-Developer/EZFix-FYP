@@ -5,6 +5,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 // reducers
 import settings from './reducer/settings';
 import user from './reducer/user';
+import jobOrder from './reducer/job-order';
 
 // config
 const persistConfig = {
@@ -16,6 +17,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   settings: settings,
   user: user,
+  JobOrder: jobOrder,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

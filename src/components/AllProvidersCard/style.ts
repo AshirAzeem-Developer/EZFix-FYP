@@ -23,8 +23,9 @@ const useStyles = () => {
     },
     providerimg: {
       width: sizes.WIDTH * 0.28,
-      height: sizes.WIDTH * 0.45,
+      height: sizes.WIDTH * 0.4,
       borderRadius: sizes.WIDTH * 0.02,
+      resizeMode: 'cover',
     },
     detailsContainer: {
       width: sizes.WIDTH * 0.6,
@@ -47,9 +48,10 @@ const useStyles = () => {
     },
     ratingsContainer: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
+      justifyContent: 'center',
       alignItems: 'center',
-      marginTop: sizes.HEIGHT * 0.015,
+      // marginTop: sizes.HEIGHT * 0.015,
+      padding: sizes.WIDTH * 0.02,
     },
     rate: {
       ...globalStyles.TEXT_STYLE_BOLD,

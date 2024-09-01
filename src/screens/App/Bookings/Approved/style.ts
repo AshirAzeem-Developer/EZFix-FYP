@@ -88,7 +88,6 @@ const useStyles = () => {
     },
     bookbutton: {
       padding: sizes.WIDTH * 0.034,
-      paddingLeft: sizes.WIDTH * 0.084,
     },
     btnStyles: {
       width: sizes.WIDTH * 0.33,

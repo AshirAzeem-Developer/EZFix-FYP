@@ -34,7 +34,7 @@ export type AppStackParamsList = {
   WorkDetails: {title: string};
   Bookings: undefined;
   ProfileDetail: undefined;
-  OrderSummary: undefined;
+  OrderSummary: {data: any};
   StartStopWorking: undefined;
 };
 
