@@ -30,15 +30,17 @@ import {AuthStackParamList} from '../../../navigators/authStack';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {useSelector} from 'react-redux';
 import MyLineChart from '../../../components/LineChart';
+import {getAllProviders} from '../../../utils/ApiCall';
+import {showError} from '../../../utils/helperFunction';
 
 //third party library
 type props = NativeStackScreenProps<AppStackParamsList>;
 
 const Home: React.FC<props> = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
-  const [showModal, setShowModal] = useState(false);
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
   const user = useSelector(state => state?.user.user.user.roleType);
+
   console.log('UserType === >: ', user);
 
   const handleSearch = (query: string) => {
@@ -53,7 +55,8 @@ const Home: React.FC<props> = ({navigation}) => {
         enterAnimation={FadeInDown.duration(500)}>
         <View style={styles.logoImgCont}>
           <Image source={icons.Logo} style={styles.logoImg} />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Notifications')}>
             <Image source={icons.BELL} style={styles.bellImg} />
             {notificationsAvailable && (
               <View style={styles.notificationBadge} />

@@ -29,7 +29,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const userType = useSelector(state => state?.user?.user?.user?.roleType);
+  const userData = useSelector(state => state?.user?.user?.user);
   console.log('USerType', userType);
+  console.log('User Data', userData);
 
   const SeekerView = () => {
     return (
@@ -55,8 +57,10 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.profileContainer}>
               <Image source={images.PROFILE} />
               <View style={styles.profileDetailsContainer}>
-                <Text style={styles.name}>John Smith</Text>
-                <Text style={styles.phoneNumberText}>+92 321 5589988</Text>
+                <Text style={styles.name}>{userData?.name}</Text>
+                <Text style={styles.phoneNumberText}>
+                  +{userData?.phoneNumber}
+                </Text>
               </View>
             </View>
             {/* =========== >>> Section 1 <<<< ============= */}
@@ -79,7 +83,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.sectionContainer}>
               <View>
                 <Text style={styles.countryLabel}>Country</Text>
-                <Text style={[styles.text, styles.country]}>US, Texas</Text>
+                <Text style={[styles.text, styles.country]}>
+                  Pakistan , Karachi.
+                </Text>
               </View>
               <Image source={images.FLAG} />
             </View>
@@ -89,7 +95,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +92 344 2565412
+                  +{userData?.phoneNumber}
                 </Text>
               </View>
             </View>

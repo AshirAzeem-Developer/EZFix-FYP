@@ -100,6 +100,7 @@ const PersonalInfoSingUp: FC<PersonalInfoSingUpScreenProps> = ({
         handleOnChange={newValue => {
           setCnic(newValue);
         }}
+        maxLenght={13}
       />
       <TextInputCustom
         leftIcon={images.MAIL}

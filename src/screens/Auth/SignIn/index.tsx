@@ -28,7 +28,7 @@ const SignIn = ({navigation}) => {
         showSuccess('Login Success');
       })
       .catch(err => {
-        showError(err.message);
+        showError(err, 'Login Failed');
         console.error('Error', err);
       });
   }

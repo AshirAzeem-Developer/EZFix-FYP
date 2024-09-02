@@ -19,9 +19,9 @@ const useStyles = () => {
     // },
     providerscard: {
       width: sizes.WIDTH * 0.95,
-      height: sizes.HEIGHT * 0.13,
+      // height: sizes.HEIGHT * 0.13,
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'flex-start',
       //   elevation: 1,
 
@@ -30,13 +30,13 @@ const useStyles = () => {
       padding: sizes.WIDTH * 0.02,
     },
     providernames: {
-      ...globalStyles.TEXT_STYLE,
+      ...globalStyles.TEXT_STYLE_BOLD,
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.06,
     },
     providerimg: {
       width: sizes.WIDTH * 0.3,
-      height: sizes.HEIGHT * 0.13,
+      height: sizes.HEIGHT * 0.18,
       borderRadius: sizes.WIDTH * 0.02,
     },
     locationText: {
@@ -44,7 +44,7 @@ const useStyles = () => {
     },
     categoryText: {
       ...globalStyles.TEXT_STYLE,
-      color: colors.PRIMARY,
+      color: colors.GRAY,
       fontSize: sizes.WIDTH * 0.05,
     },
 

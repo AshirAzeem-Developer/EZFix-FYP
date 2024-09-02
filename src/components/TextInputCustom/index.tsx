@@ -34,7 +34,7 @@ type TextInputCustomProps = {
   leftContStyle?: StyleProp<ViewStyle>;
   rightContStyle?: StyleProp<ViewStyle>;
   onFocus?: () => void;
-
+  maxLenght?: number;
   errorHandler?: {
     errorText: string; // error message
     validator: (text: string) => boolean; // return true if no error
@@ -63,7 +63,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
   rightContStyle,
   onFocus,
   errorHandler,
-
+  maxLenght,
   ...props
 }) => {
   const {styles, sizes, colors} = useStyles();
@@ -109,6 +109,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
           placeholderTextColor={colors.LIGHT_GRAY}
           inputMode={inputMode}
           value={value}
+          maxLength={maxLenght}
           onChangeText={text => {
             setShowError(true);
 

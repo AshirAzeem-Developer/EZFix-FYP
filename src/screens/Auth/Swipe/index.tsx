@@ -20,7 +20,8 @@ const OnBoarding = ({navigation}) => {
           onPress={() => navigation.navigate('SignIn')}
         />
         <View style={styles.alreadyHaveAccountParent}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignUpCheckPhone')}>
             <Text style={styles.text1Typo}>Create an account</Text>
           </TouchableOpacity>
         </View>

@@ -44,6 +44,18 @@ export const getProviders = (token: any, queryParams: any) => {
   });
 };
 
+export const getAllProviders = (token: any) => {
+  return apiRequest.get(
+    `${apiEndPoint.GET_PROVIDERS}?filters[roleType]=provider&populate=*`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
+
 export const getCategories = (token: any) => {
   return apiRequest.get(`${apiEndPoint.CATEGORY}/?populate=*`, {
     headers: {
