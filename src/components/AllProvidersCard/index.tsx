@@ -10,11 +10,18 @@ import {ParentView} from '../common/ParentView/ParentView';
 import {useNavigation} from '@react-navigation/native';
 import {AppStackParamsList} from '../../navigators/navigator.seeker';
 import {useSelector} from 'react-redux';
-import {getProvider, getProviders} from '../../utils/ApiCall';
+import {
+  getProvider,
+  getProviders,
+  getUserById,
+  postJobOrder,
+} from '../../utils/ApiCall';
 import END_POINTS from '../../constants/apiEndPoints';
+import {showError, showSuccess} from '../../utils/helperFunction';
 const AllProviderCards = () => {
   const JobOrder = useSelector((state: any) => state.JobOrder);
   const [providersData, setProvidersData] = useState<any[]>([]);
+  const [provider, setProvider] = useState(null);
 
   const queryParams = {
     'filters[skills][name][$eq]': JobOrder.skill,
@@ -26,7 +33,7 @@ const AllProviderCards = () => {
     // dispatch(getProviders(token, queryParams));
     getProviders(userToken, queryParams)
       .then(res => {
-        // console.log('Providers: ', JSON.stringify(res.data, null, 2));
+        console.log('Providers Data == >: ', JSON.stringify(res.data, null, 2));
         setProvidersData(res.data);
         // console.log('JobOrderSkill: ', JobOrder.skill);
       })
@@ -34,87 +41,21 @@ const AllProviderCards = () => {
         console.log('Error: ', err);
       });
   }, [JobOrder.skill]);
-  // console.log('Providers', JSON.stringify(providersData, null, 2));
+  // console.log('ProvidersData', JSON.stringify(providersData, null, 2));
 
-  const providers = [
-    {
-      id: 1,
-      image: images.allProviders,
-      name: 'Amir Khan',
-      perHourRate: 250,
-      services: ['Wall Repair', 'Wall Painting', 'Plumbing', 'Wall Decoration'],
-      ratings: 4.5,
-    },
-    {
-      id: 2,
-      image: images.allProviders,
-      name: 'John Doe',
-      perHourRate: 200,
-      services: [
-        'Electrical Repair',
-        'Lighting Installation',
-        'Appliance Installation',
-      ],
-      ratings: 4.2,
-    },
-    {
-      id: 3,
-      image: images.allProviders,
-      name: 'Emily Smith',
-      perHourRate: 300,
-      services: [
-        'Plumbing',
-        'Bathroom Renovation',
-        'Water Heater Installation',
-      ],
-      ratings: 4.8,
-    },
-    {
-      id: 4,
-      image: images.allProviders,
-      name: 'Michael Johnson',
-      perHourRate: 180,
-      services: ['Furniture Assembly', 'Carpentry', 'Interior Design'],
-      ratings: 4.6,
-    },
-    {
-      id: 5,
-      image: images.allProviders,
-      name: 'Sarah Wilson',
-      perHourRate: 220,
-      services: ['Gardening', 'Lawn Maintenance', 'Tree Trimming'],
-      ratings: 4.4,
-    },
-    {
-      id: 6,
-      image: images.allProviders,
-      name: 'David Brown',
-      perHourRate: 250,
-      services: ['Painting', 'Wallpaper Installation', 'Drywall Repair'],
-      ratings: 4.7,
-    },
-    {
-      id: 7,
-      image: images.allProviders,
-      name: 'Jessica Lee',
-      perHourRate: 280,
-      services: ['Cleaning', 'Housekeeping', 'Laundry'],
-      ratings: 4.9,
-    },
-  ];
   const {styles, colors, sizes} = useStyles();
   const navigation: AppStackParamsList = useNavigation();
 
   const handleViewProfile = (id: number) => {
     getProvider(userToken, id, JobOrder.skill)
       .then(res => {
-        console.log('Provider Profile: ', JSON.stringify(res.data, null, 2));
+        // console.log('Provider Profile: ', JSON.stringify(res.data, null, 2));
         navigation.navigate('ProfileDetail', {provider: res.data});
       })
       .catch(err => {
         console.log('Error: ', err);
       });
-    console.log('Provider Profile: ', id);
+    // console.log('Provider Profile: ', id);
   };
 
   return (
@@ -140,7 +81,9 @@ const AllProviderCards = () => {
             <View style={styles.detailsContainer}>
               <View style={styles.nameAndRateContainer}>
                 <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.rate}>Rs {item.perHourRate}/hr</Text>
+                <Text style={styles.rate}>
+                  Rs {item?.skills[0]?.hourlyRate}/hr
+                </Text>
               </View>
               {/* <View style={styles.servicesList}>
                 <FlatList
@@ -159,10 +102,10 @@ const AllProviderCards = () => {
                   )}
                 />
               </View> */}
-              <View style={styles.ratingsContainer}>
+              {/* <View style={styles.ratingsContainer}>
                 <Image source={icons.Star} style={styles.star} />
                 <Text style={styles.rate}>{item.ratings}</Text>
-              </View>
+              </View> */}
               <View style={styles.buttonsContainer}>
                 <Button
                   withAnimation
@@ -178,7 +121,31 @@ const AllProviderCards = () => {
                   bgcolor="#008000"
                   text="Book Now"
                   btnStyles={styles.bookNowButton}
-                  onPress={() => console.log('Book Now')}
+                  onPress={() => {
+                    postJobOrder(
+                      {
+                        data: {
+                          description: JobOrder.jobDescription,
+                          date: JobOrder.jobBookingData,
+                          fixedPrice: item?.skills[0]?.hourlyRate,
+                        },
+                      },
+                      userToken,
+                    )
+                      .then(res => {
+                        showSuccess(
+                          'Booking Confirmed',
+                          'Your booking has been confirmed check the "Booking Section" for the service provider response',
+                        );
+
+                        navigation.navigate('Home');
+                        console.log('Response: ', res);
+                      })
+                      .catch(err => {
+                        showError('Error', 'Something went wrong');
+                        console.log('Error: ', err);
+                      });
+                  }}
                 />
               </View>
             </View>

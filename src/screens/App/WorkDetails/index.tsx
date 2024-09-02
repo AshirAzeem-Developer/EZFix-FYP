@@ -89,7 +89,13 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
               paddingHorizontal: 20,
               marginVertical: 20,
             }}>
-            <Text style={{textAlign: 'left', fontSize: 15, marginVertical: 12}}>
+            <Text
+              style={{
+                textAlign: 'left',
+                fontSize: 15,
+                marginVertical: 12,
+                color: colors.BLACK,
+              }}>
               Choose Date of Booking
             </Text>
             <DatePickerInput
@@ -118,16 +124,18 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
               alignSelf: 'flex-end',
               marginHorizontal: 20,
             }}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontStyle: 'italic',
-                textDecorationStyle: 'solid',
-                textDecorationLine: 'underline',
-                color: colors.PRIMARY,
-              }}>
-              See All Providers
-            </Text>
+            {CustomTextArea.length > 0 && date && (
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontStyle: 'italic',
+                  textDecorationStyle: 'solid',
+                  textDecorationLine: 'underline',
+                  color: colors.PRIMARY,
+                }}>
+                See All Providers
+              </Text>
+            )}
           </TouchableOpacity>
         </SafeAreaView>
       </MyKeyboardAvoider>

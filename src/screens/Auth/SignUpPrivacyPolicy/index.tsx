@@ -109,7 +109,7 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
         roleType: userState.roleType,
         phoneNumber: userState.phoneNumber,
         cnic: userState.cnic,
-        dob: userState.dob,
+        dateOfBirth: userState.dob,
         isAcceptedTermsAndCondition: userState.isAcceptedTermsAndConditions,
       });
 
@@ -122,11 +122,8 @@ const SignUpPrivacyPolicy: FC<SignUpPrivacyPolicyScreenProps> = ({
         // You can show an error modal or toast here
       }
     } catch (error: any) {
-      console.error('Error:', error.response.data);
-      console.error(
-        'Validation Errors:',
-        error.response.data?.error?.details?.errors,
-      );
+      console.error('Error:', JSON.stringify(error.response, null, 2));
+      // console.error('Validation Errors:', error);
     } finally {
       hideModal();
     }

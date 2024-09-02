@@ -39,6 +39,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
           onChangeText={text => setValue(text)}
           multiline={true}
           numberOfLines={4}
+          placeholderTextColor={colors.GRAY}
           maxLength={maxLength} // Set the maxLength prop
         />
 
