@@ -95,7 +95,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +{userData?.phoneNumber}
+                  +92{userData?.phoneNumber}
                 </Text>
               </View>
             </View>

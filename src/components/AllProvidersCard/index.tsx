@@ -28,6 +28,7 @@ const AllProviderCards = () => {
     populate: '*',
   };
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
+  // console.log('Skills', JobOrder.skill);
 
   useEffect(() => {
     // dispatch(getProviders(token, queryParams));
