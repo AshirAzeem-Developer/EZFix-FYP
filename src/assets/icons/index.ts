@@ -41,8 +41,9 @@ export default {
   Earning: require('./Earning.png'),
   booking: require('./booking.png'),
   Ratings: require('./Ratings.png'),
-   Add:require('./add.png'),
+  Add: require('./add.png'),
   TOTAL_SERVICES_ICON: require('./TotalServiceIcon.png'),
   SHIELD_SEC: require('./shieldSecurity.png'),
   MAIL: require('./mail.png'),
+  CALENDAR: require('./calendar-tick.png'),
 };

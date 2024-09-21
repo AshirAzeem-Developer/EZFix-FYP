@@ -20,21 +20,16 @@ import {FadeInDown} from 'react-native-reanimated';
 import Button from '../../../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {getJobOrders, getSkillsFromUserId} from '../../../../utils/ApiCall';
+import apiEndPoints from '../../../../constants/apiEndPoints';
 
 //third party library
 
-// dimenstion
-const {width, height} = Dimensions.get('window');
-
 const Approved = () => {
   const {styles, colors, sizes} = useStyles();
+  const [workState, setWorkState] = useState(true);
+  const userType = useSelector((state: any) => state?.user?.user?.roleType);
 
-  const userType = useSelector(
-    (state: any) => state?.user?.user?.user?.roleType,
-  );
-  useEffect(() => {
-    console.log('User Id', userType);
-  }, [userType]);
   const work = [
     {
       id: 1,
@@ -42,7 +37,7 @@ const Approved = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'approved',
+      status: 'pending',
       image: images.handyman,
     },
     {
@@ -51,7 +46,7 @@ const Approved = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'approved',
+      status: 'pending',
       image: images.handyman,
     },
     {
@@ -60,7 +55,7 @@ const Approved = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'approved',
+      status: 'pending',
       image: images.handyman,
     },
     {
@@ -69,55 +64,47 @@ const Approved = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'approved',
+      status: 'pending',
       image: images.handyman,
     },
   ];
-  const [approved, setApproved] = useState(false);
-  const navigation = useNavigation();
 
   const SeekerView = () => {
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-          data={work}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.providerscard}>
-              <View style={styles.provivder}>
-                <View>
-                  <Image source={item.image} style={styles.providerimg} />
-                </View>
-                <View style={styles.items}>
-                  <Text style={styles.job}>{item.job}</Text>
-                  <Text style={styles.work}>{item.work}</Text>
-                  <View style={styles.time}>
-                    <Image source={icons.Clock} style={styles.clock} />
-                    <Text style={styles.timer}>{item.time}</Text>
-                  </View>
-                  <View style={styles.statuscontainer}>
-                    <Text style={{color: colors.BLACK}}>Status :</Text>
-                    <Text style={styles.status}> {item.status}</Text>
-                  </View>
-                  <View style={styles.bookbutton}>
-                    <Button
-                      onPress={() => {
-                        navigation.navigate('StartStopWorking');
-                      }}
-                      text="Start Working"
-                      bgcolor={colors.PRIMARY}
-                      btnStyles={styles.btnStyles}
-                    />
+        <View>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
+            data={work}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => (
+              <View>
+                <View style={styles.providerscard}>
+                  <View style={styles.provivder}>
+                    <View>
+                      <Image source={item.image} style={styles.providerimg} />
+                    </View>
+                    <View style={styles.items}>
+                      <Text style={styles.job}>{item.job}</Text>
+                      <Text style={styles.work}>{item.work}</Text>
+                      <View style={styles.time}>
+                        <Image source={icons.Clock} style={styles.clock} />
+                        <Text style={styles.timer}>{item.time}</Text>
+                      </View>
+                      <View style={styles.statuscontainer}>
+                        <Text style={{color: colors.BLACK}}>Status :</Text>
+                        <Text style={styles.status}> {item.status}</Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
-          )}
-        />
+            )}
+          />
+        </View>
       </ParentView>
     );
   };
@@ -160,33 +147,30 @@ const Approved = () => {
                       View Details
                     </Text>
                   </TouchableOpacity>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginVertical: sizes.HEIGHT * 0.01,
-                    }}>
-                    <Button
-                      text="Reject"
-                      bgcolor="#FFE2E2"
-                      btnTextStyles={{color: 'black'}}
-                      btnStyles={{
-                        width: sizes.WIDTH * 0.22,
-                        height: sizes.HEIGHT * 0.038,
-                      }}
-                      onPress={() => {}}
-                    />
-                    <Button
-                      text="Accept"
-                      bgcolor="#008000"
-                      btnTextStyles={{color: 'white'}}
-                      btnStyles={{
-                        width: sizes.WIDTH * 0.22,
-                        height: sizes.HEIGHT * 0.038,
-                        marginLeft: sizes.WIDTH * 0.02,
-                      }}
-                      onPress={() => {}}
-                    />
-                  </View>
+                  {workState && (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        marginVertical: sizes.HEIGHT * 0.01,
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        width: sizes.WIDTH * 0.45,
+                      }}>
+                      <Button
+                        text="Start Job"
+                        bgcolor="#008000"
+                        btnTextStyles={{color: 'white'}}
+                        btnStyles={{
+                          width: sizes.WIDTH * 0.22,
+                          height: sizes.HEIGHT * 0.038,
+                          marginLeft: sizes.WIDTH * 0.02,
+                        }}
+                        onPress={() => {
+                          console.log('Start Working Pressed');
+                        }}
+                      />
+                    </View>
+                  )}
                 </View>
               </View>
               <View>
@@ -293,7 +277,6 @@ const Approved = () => {
       </ParentView>
     );
   };
-
   return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 

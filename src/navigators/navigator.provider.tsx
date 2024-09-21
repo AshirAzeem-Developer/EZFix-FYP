@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator();
 function BookingStack() {
   return (
     <CreateTopTabs
-      initialRouteName="Approved"
+      initialRouteName="Pending"
       screens={[
         {
           name: 'Approved',

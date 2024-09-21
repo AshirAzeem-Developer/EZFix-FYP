@@ -16,8 +16,10 @@ import {postLogin} from '../../../utils/ApiCall';
 const SignIn = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   function loginUser() {
+    setLoading(true);
     postLogin({
       identifier: username,
       password: password,
@@ -26,10 +28,12 @@ const SignIn = ({navigation}) => {
         console.log('res', res?.data);
         dispatch(setUser(res.data));
         showSuccess('Login Success');
+        setLoading(false);
       })
       .catch(err => {
         showError(err, 'Login Failed');
         console.error('Error', err);
+        setLoading(false);
       });
   }
   // ======================>>>>>> State Variables <<<<<======================
@@ -108,6 +112,7 @@ const SignIn = ({navigation}) => {
           btnStyles={{width: sizes.WIDTH * 0.9}}
           textColor="#ffffff"
           onPress={() => loginUser()}
+          loading={loading}
         />
       </View>
       {/* ==================== >>> Forgot Password <<< ==================== */}

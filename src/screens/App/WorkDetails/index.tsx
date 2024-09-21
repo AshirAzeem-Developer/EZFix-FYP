@@ -36,11 +36,14 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
 
   //============ >> store << =============
   const dispatch = useDispatch();
-  const userId = useSelector((state: any) => state.user.user.id);
+
+  const userTye = useSelector((state: any) => state.user.user.user.roleType);
   const jobOrdeState = useSelector((state: any) => state.JobOrder);
-  // console.log('Selector from WorkDetails Screen: ', userId);
+  // console.log('User Type: ', userTye);
 
   const {title} = route.params as {title: string};
+  const {data} = route.params as {data: any};
+  console.log('Job Data: ', JSON.stringify(data, null, 2));
 
   const AllProvidersView = () => {
     return (
@@ -144,12 +147,14 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   const ServiceProviderView = () => {
     return (
       <SafeAreaView style={styles.container}>
+        <Text style={styles.title}> {title}</Text>
         {/* ============ >>>> Text Area for Problem Description <<< ================== */}
         <View style={styles.textAreaContainer}>
           <CustomTextArea
             editable={false}
             maxLength={250}
             placeholder="Problem Description"
+            value={data?.attributes?.description}
           />
         </View>
         {/* ================= >>> Date  for Booking <<< ================= */}
@@ -172,7 +177,7 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
             }}>
             <Image source={images.calendar} />
             <Text style={{fontSize: 16, color: colors.BLACK, marginLeft: 10}}>
-              12th June 2021
+              {data?.attributes?.date}
             </Text>
           </View>
         </View>
@@ -214,7 +219,7 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
         backgroundColor: colors.WHITE,
       }}>
       <Header leftIconAction={() => navigation.goBack()} title={title} />
-      {userId === 0 ? <ServiceProviderView /> : <ServiceSeekerView />}
+      {userTye === 'provider' ? <ServiceProviderView /> : <ServiceSeekerView />}
 
       <CustomModal modalView={<AllProvidersView />} showModal={modal} />
     </ParentView>

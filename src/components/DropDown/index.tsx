@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import {useState} from 'react';
+import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 function DropDown() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState([]);
   const [items, setItems] = useState([
-    { label: 'Finland', value: 'finland' },
-    { label: 'Barcelona', value: 'barcelona' },
-    { label: 'Spain', value: 'spain' },
-    { label: 'Italy', value: 'italy' },
-
+    {label: 'Finland', value: 'finland'},
+    {label: 'Barcelona', value: 'barcelona'},
+    {label: 'Spain', value: 'spain'},
+    {label: 'Italy', value: 'italy'},
   ]);
 
-  const dotColors = ['#008000',]; 
+  const dotColors = ['#008000'];
 
   return (
     <DropDownPicker
@@ -36,7 +36,9 @@ function DropDown() {
         margin: 2,
         backgroundColor: '', // Keeps the background color neutral or the same
       }}
-      badgeDotColors={value.map((val, index) => dotColors[index % dotColors.length])}
+      badgeDotColors={value.map(
+        (val, index) => dotColors[index % dotColors.length],
+      )}
       style={{
         borderColor: '#fff',
         borderRadius: 8,

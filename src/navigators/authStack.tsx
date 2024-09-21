@@ -15,7 +15,7 @@ export type AuthStackParamList = {
   OnBoarding: undefined;
   SignIn: undefined;
   ForgetPassword: undefined;
-  OTPVerification: { navigateTo: any; phoneNumber: string; confirmation: any };
+  OTPVerification: {navigateTo: any; phoneNumber: string; confirmation: any};
   ChangePassword: undefined;
   SignUpCheckPhone: undefined;
   // UnVerifyEmailSingUp: undefined;
@@ -38,31 +38,3 @@ export type AuthStackParamList = {
   SignUpPrivacyPolicy: undefined;
   // SignUpTermsAndCondition: undefined;
 };
-// var
-// const Stack = createNativeStackNavigator<AuthStackParamList>();
-// // auth Stack
-// const AuthStack = () => {
-//   const colors = useColors();
-//   const onboarding = useUserStore(state => state.onboarding);
-
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//         navigationBarColor: colors.BACKGROUND,
-//       }}
-//       initialRouteName={!onboarding ? 'Onboarding' : 'Login'}>
-//       <Stack.Screen
-//         name="Onboarding"
-//         options={{
-//           navigationBarColor: colors.PRIMARY,
-//         }}
-//         component={Onboarding}
-//       />
-//       <Stack.Screen name="Login" component={Login} />
-//       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
-//     </Stack.Navigator>
-//   );
-// };
-
-// export default AuthStack;

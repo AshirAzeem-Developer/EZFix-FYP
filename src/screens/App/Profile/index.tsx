@@ -28,8 +28,24 @@ const Profile: React.FC<Props> = ({navigation}) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const userType = useSelector(state => state?.user?.user?.user?.roleType);
-  const userData = useSelector(state => state?.user?.user?.user);
+
+  // ==== >> Defining type for Redux State << ====
+  interface RootState {
+    user: {
+      user: {
+        user: {
+          roleType: string;
+          name: string;
+          phoneNumber: string;
+        };
+      };
+    };
+  }
+
+  const userType = useSelector(
+    (state: RootState) => state.user.user.user.roleType,
+  );
+  const userData = useSelector((state: RootState) => state.user.user.user);
   console.log('USerType', userType);
   console.log('User Data', userData);
 

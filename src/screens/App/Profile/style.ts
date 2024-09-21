@@ -63,21 +63,10 @@ const useStyles = () => {
       paddingHorizontal: sizes.WIDTH * 0.1,
       borderRadius: sizes.WIDTH * 0.02,
     },
-    // sectionContainerskills: {
-    //   flexDirection: 'row',
-    //   alignItems: 'center',
-    //   justifyContent: 'space-between',
-    //   backgroundColor: colors.BACKGROUND,
-    //   width: sizes.WIDTH * 0.92,
-    //   height: sizes.HEIGHT * 0.05,
-    //   alignSelf: 'center',
-    //   marginTop: sizes.HEIGHT * 0.02,
-    //   paddingHorizontal: sizes.WIDTH * 0.1,
-    //   borderRadius: sizes.WIDTH * 0.02,
-    // },
+
     dropdown: {
       borderRadius: sizes.WIDTH * 0.02,
-      // alignSelf: 'center',
+      alignSelf: 'center',
       justifyContent: 'center', // Centers items horizontally
       alignItems: 'center', // Centers items vertically
       marginTop: sizes.HEIGHT * 0.01,

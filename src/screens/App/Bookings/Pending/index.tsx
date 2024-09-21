@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {
   Text,
   Dimensions,
-  SafeAreaView,
-  ScrollView,
   View,
   Image,
   TouchableOpacity,
   FlatList,
+  Linking,
 } from 'react-native';
 
 //local imports
@@ -19,6 +18,9 @@ import useStyles from './style';
 import {FadeInDown} from 'react-native-reanimated';
 import Button from '../../../../components/Button/Button';
 import {useSelector} from 'react-redux';
+import {getJobOrders, getSkillsFromUserId} from '../../../../utils/ApiCall';
+import {useNavigation} from '@react-navigation/native';
+import apiEndPoints from '../../../../constants/apiEndPoints';
 
 //third party library
 
@@ -27,8 +29,14 @@ const {width, height} = Dimensions.get('window');
 
 const Pending = () => {
   const {styles, colors, sizes} = useStyles();
-  const [workState, setWorkState] = useState(true);
-  const userType = useSelector((state: any) => state?.user?.user?.roleType);
+  // ============== >> Navigation <<< ============== \\
+  const navigation = useNavigation();
+
+  // ============== >> Redux State for User (Fetching user type) <<< ============== \\
+
+  const userType = useSelector(
+    (state: any) => state?.user?.user?.user?.roleType,
+  );
 
   const work = [
     {
@@ -37,7 +45,7 @@ const Pending = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'pending',
+      status: 'approved',
       image: images.handyman,
     },
     {
@@ -46,7 +54,7 @@ const Pending = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'pending',
+      status: 'approved',
       image: images.handyman,
     },
     {
@@ -55,7 +63,7 @@ const Pending = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'pending',
+      status: 'approved',
       image: images.handyman,
     },
     {
@@ -64,47 +72,103 @@ const Pending = () => {
       work: 'Leaks in the Bathroom',
       time: 'Jan 21,2022 at 4pm',
       Price: 'RS 250/hr',
-      status: 'pending',
+      status: 'approved',
       image: images.handyman,
     },
   ];
+  const [approved, setApproved] = useState(false);
+  const [userSkillIds, setUserSkillIds] = useState<number[]>([]);
+  const [userSkills, setUserSkills] = useState<any[]>([]);
+  const [jobOrders, setJobOrders] = useState<any>({});
+
+  const [jobsListing, setJobsListing] = useState<any[]>([]);
+
+  // ==============>> Log User Id and Token <<================ \\
+  const userId = useSelector((state: any) => state.user.user.user.id);
+  console.log('User id is: ', userId);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+
+  // First effect: Fetch user skills
+  useEffect(() => {
+    getSkillsFromUserId(userId, userToken)
+      .then(res => {
+        const skills = res.data.skills || [];
+        setUserSkills(skills);
+        const skillIds = skills.map((skill: any) => skill.id);
+        setUserSkillIds(skillIds); // Update skill IDs state
+
+        console.log('Skills', JSON.stringify(skills, null, 2));
+        // console.log('User skills:', JSON.stringify(skills, null, 2));
+        // console.log('Skill IDs:', skillIds);
+      })
+      .catch(err => {
+        console.log('Error fetching user skills:', err);
+      });
+  }, [userId, userToken]); // Ensure this effect runs when userId or userToken changes
+
+  // Second effect: Fetch job orders when skill IDs are updated
+  useEffect(() => {
+    console.log('Fetching job orders for skill IDs:', userSkillIds);
+    if (userSkillIds.length > 0) {
+      getJobOrders(userSkillIds, userToken)
+        .then(res => {
+          setJobOrders(res.data || {});
+          console.log(
+            'Job orders by user skills:',
+            JSON.stringify(res.data, null, 2),
+          );
+        })
+        .catch(err => {
+          console.log(
+            'Error fetching job orders:',
+            err.response ? err.response.data : err,
+          );
+        });
+    }
+  }, [userSkillIds, userToken]); // Ensure this effect runs when skill IDs are updated
 
   const SeekerView = () => {
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        <View>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-            data={work}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View>
-                <View style={styles.providerscard}>
-                  <View style={styles.provivder}>
-                    <View>
-                      <Image source={item.image} style={styles.providerimg} />
-                    </View>
-                    <View style={styles.items}>
-                      <Text style={styles.job}>{item.job}</Text>
-                      <Text style={styles.work}>{item.work}</Text>
-                      <View style={styles.time}>
-                        <Image source={icons.Clock} style={styles.clock} />
-                        <Text style={styles.timer}>{item.time}</Text>
-                      </View>
-                      <View style={styles.statuscontainer}>
-                        <Text style={{color: colors.BLACK}}>Status :</Text>
-                        <Text style={styles.status}> {item.status}</Text>
-                      </View>
-                    </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
+          data={work}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
+            <View style={styles.providerscard}>
+              <View style={styles.provivder}>
+                <View>
+                  <Image source={item.image} style={styles.providerimg} />
+                </View>
+                <View style={styles.items}>
+                  <Text style={styles.job}>{item.job}</Text>
+                  <Text style={styles.work}>{item.work}</Text>
+                  <View style={styles.time}>
+                    <Image source={icons.Clock} style={styles.clock} />
+                    <Text style={styles.timer}>{item.time}</Text>
+                  </View>
+                  <View style={styles.statuscontainer}>
+                    <Text style={{color: colors.BLACK}}>Status :</Text>
+                    <Text style={styles.status}> {item.status}</Text>
+                  </View>
+                  <View style={styles.bookbutton}>
+                    <Button
+                      onPress={() => {
+                        navigation.navigate('StartStopWorking');
+                      }}
+                      text="Start Working"
+                      bgcolor={colors.PRIMARY}
+                      btnStyles={styles.btnStyles}
+                    />
                   </View>
                 </View>
               </View>
-            )}
-          />
-        </View>
+            </View>
+          )}
+        />
       </ParentView>
     );
   };
@@ -116,9 +180,9 @@ const Pending = () => {
         <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-          data={work}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
+          data={jobOrders?.data}
+          // keyExtractor={item => item.id.toString()}
+          renderItem={({item, index}) => (
             <View
               style={[
                 styles.providerscard,
@@ -129,105 +193,73 @@ const Pending = () => {
               ]}>
               <View style={styles.provivder}>
                 <View>
-                  <Image source={item.image} style={styles.providerViewimg} />
+                  <Image
+                    source={images.handyman}
+                    style={styles.providerViewimg}
+                  />
                 </View>
                 <View style={styles.items}>
-                  <Text style={styles.job}>{item.job}</Text>
-                  <Text style={styles.work}>{item.work}</Text>
+                  <Text style={styles.job}>
+                    {
+                      item?.attributes?.skill?.data?.attributes?.category?.data
+                        ?.attributes?.name
+                    }
+                  </Text>
+                  <Text style={styles.work} numberOfLines={2}>
+                    {item?.attributes?.description}
+                  </Text>
                   <View style={styles.time}>
                     <Image source={icons.Clock} style={styles.clock} />
-                    <Text style={styles.timer}>{item.time}</Text>
+                    <Text style={styles.timer}>{item?.attributes?.date}</Text>
                   </View>
-                  <TouchableOpacity style={styles.statuscontainer}>
-                    <Text
-                      style={{
-                        color: colors.BLACK,
-                        textDecorationLine: 'underline',
-                      }}>
-                      View Details
-                    </Text>
+                  <TouchableOpacity
+                    style={styles.statuscontainer}
+                    onPress={() =>
+                      navigation.navigate('WorkDetails', {
+                        title: 'Work Description',
+                        data: item,
+                      })
+                    }>
+                    <Text style={styles.viewDetailsText}>View Details</Text>
                   </TouchableOpacity>
-                  {workState && (
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        marginVertical: sizes.HEIGHT * 0.01,
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        width: sizes.WIDTH * 0.45,
-                      }}>
-                      <Button
-                        text="Start Job"
-                        bgcolor="#008000"
-                        btnTextStyles={{color: 'white'}}
-                        btnStyles={{
-                          width: sizes.WIDTH * 0.22,
-                          height: sizes.HEIGHT * 0.038,
-                          marginLeft: sizes.WIDTH * 0.02,
-                        }}
-                        onPress={() => {
-                          console.log('Start Working Pressed');
-                        }}
-                      />
-                    </View>
-                  )}
+                  <View style={styles.btnContainer}>
+                    <Button
+                      text="Reject"
+                      bgcolor="#FFE2E2"
+                      btnTextStyles={{color: 'black'}}
+                      btnStyles={styles.rejectBtn}
+                      onPress={() => {}}
+                    />
+                    <Button
+                      text="Accept"
+                      bgcolor="#008000"
+                      btnTextStyles={{color: 'white'}}
+                      btnStyles={styles.btnAccept}
+                      onPress={() => {}}
+                    />
+                  </View>
                 </View>
               </View>
               <View>
-                <View
-                  style={{
-                    backgroundColor: 'rgba(0,128,0,0.2)',
-                    width: sizes.WIDTH * 0.9,
-                    height: sizes.HEIGHT * 0.14,
-                    marginBottom: sizes.HEIGHT * 0.02,
-                    marginHorizontal: sizes.WIDTH * 0.02,
-                    alignSelf: 'center',
-                    borderRadius: sizes.WIDTH * 0.02,
-                  }}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'flex-start',
-                      marginLeft: sizes.WIDTH * 0.02,
-                    }}>
+                <View style={styles.providerMainContainer}>
+                  <View style={styles.container1}>
                     <Image
-                      source={images.handyman}
-                      style={{
-                        width: sizes.WIDTH * 0.14,
-                        height: sizes.HEIGHT * 0.07,
-                        borderRadius: sizes.WIDTH * 1,
-                        margin: sizes.WIDTH * 0.015,
-                        marginTop: sizes.WIDTH * 0.03,
+                      source={{
+                        uri: `${apiEndPoints.BASE_URL}${item?.attributes?.service_seeker?.data?.attributes?.profileImage?.data?.attributes?.url}`,
                       }}
+                      style={styles.providerImage}
                     />
-                    <View
-                      style={{
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                        justifyContent: 'center',
-                        marginLeft: sizes.WIDTH * 0.03,
-                      }}>
-                      <Text
-                        style={{
-                          fontSize: sizes.WIDTH * 0.045,
-                          fontWeight: 'bold',
-                        }}>
-                        Minnie Ramsey
+                    <View style={styles.nameAndLocationContainer}>
+                      <Text style={styles.seekerName}>
+                        {
+                          item?.attributes?.service_seeker?.data?.attributes
+                            ?.name
+                        }
                       </Text>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'flex-start',
-                        }}>
+                      <View style={styles.locationContainer}>
                         <Image
                           source={icons.Location}
-                          style={{
-                            width: sizes.WIDTH * 0.03,
-                            height: sizes.HEIGHT * 0.02,
-                            marginTop: sizes.WIDTH * 0.007,
-                          }}
+                          style={styles.locationIcon}
                         />
                         <Text
                           style={{
@@ -238,35 +270,27 @@ const Pending = () => {
                       </View>
                     </View>
                   </View>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignContent: 'center',
-                      justifyContent: 'flex-end',
-                      marginRight: sizes.WIDTH * 0.02,
-                    }}>
+                  <View style={styles.buttonsContainer}>
                     <Button
                       icon={icons.Phone}
                       text="Call"
                       bgcolor="#008000"
-                      btnStyles={{
-                        width: sizes.WIDTH * 0.25,
-                        height: sizes.HEIGHT * 0.038,
-                        marginLeft: sizes.WIDTH * 0.02,
+                      btnStyles={styles.callBtnStyles}
+                      onPress={() => {
+                        Linking.openURL(
+                          `tel:+${item?.attributes?.service_seeker?.data?.attributes?.phoneNumber}`,
+                        );
                       }}
-                      onPress={() => {}}
                     />
                     <Button
                       icon={icons.MESSAGE_TAB_ACTIVE}
                       text="ChatNow"
                       bgcolor="#ffffff"
-                      btnStyles={{
-                        width: sizes.WIDTH * 0.32,
-                        height: sizes.HEIGHT * 0.038,
-                        marginLeft: sizes.WIDTH * 0.02,
-                      }}
+                      btnStyles={styles.chatNowBtn}
                       btnTextStyles={{color: 'black'}}
-                      onPress={() => {}}
+                      onPress={() => {
+                        navigation.navigate('Messages');
+                      }}
                     />
                   </View>
                 </View>
@@ -277,6 +301,7 @@ const Pending = () => {
       </ParentView>
     );
   };
+
   return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };
 

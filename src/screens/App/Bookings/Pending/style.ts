@@ -56,6 +56,7 @@ const useStyles = () => {
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.035,
       paddingTop: sizes.HEIGHT * 0.003,
+      width: sizes.WIDTH * 0.5,
     },
     time: {
       flexDirection: 'row',
@@ -83,6 +84,94 @@ const useStyles = () => {
     },
     items: {
       padding: sizes.WIDTH * 0.02,
+    },
+    btnStyles: {
+      width: sizes.WIDTH * 0.33,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.099,
+      marginTop: sizes.WIDTH * 0.03,
+      paddingLeft: sizes.WIDTH * 0.001,
+      paddingRight: sizes.WIDTH * 0.001,
+    },
+    rejectBtn: {
+      width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+    },
+
+    btnAccept: {
+      width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    bookbutton: {
+      padding: sizes.WIDTH * 0.034,
+    },
+    providerMainContainer: {
+      backgroundColor: 'rgba(0,128,0,0.2)',
+      // backgroundColor: 'red',
+      width: sizes.WIDTH * 0.9,
+      height: sizes.HEIGHT * 0.14,
+      marginBottom: sizes.HEIGHT * 0.02,
+      marginHorizontal: sizes.WIDTH * 0.02,
+      alignSelf: 'center',
+      borderRadius: sizes.WIDTH * 0.02,
+    },
+    container1: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    buttonsContainer: {
+      flexDirection: 'row',
+      alignContent: 'center',
+      justifyContent: 'flex-end',
+      marginRight: sizes.WIDTH * 0.02,
+    },
+    callBtnStyles: {
+      width: sizes.WIDTH * 0.25,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    chatNowBtn: {
+      width: sizes.WIDTH * 0.32,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    locationContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    locationIcon: {
+      width: sizes.WIDTH * 0.03,
+      height: sizes.HEIGHT * 0.02,
+      marginTop: sizes.WIDTH * 0.007,
+    },
+    seekerName: {
+      fontSize: sizes.WIDTH * 0.045,
+      fontWeight: 'bold',
+    },
+    nameAndLocationContainer: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      marginLeft: sizes.WIDTH * 0.03,
+    },
+    providerImage: {
+      width: sizes.WIDTH * 0.14,
+      height: sizes.HEIGHT * 0.07,
+      borderRadius: sizes.WIDTH * 1,
+      margin: sizes.WIDTH * 0.015,
+      marginTop: sizes.WIDTH * 0.03,
+    },
+    btnContainer: {
+      flexDirection: 'row',
+      marginVertical: sizes.HEIGHT * 0.01,
+    },
+    viewDetailsText: {
+      color: colors.BLACK,
+      textDecorationLine: 'underline',
     },
   });
   return {

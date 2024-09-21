@@ -58,6 +58,8 @@ const useStyles = () => {
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.035,
       paddingTop: sizes.HEIGHT * 0.003,
+      width: sizes.WIDTH * 0.5,
+      lineHeight: sizes.HEIGHT * 0.02,
     },
     time: {
       flexDirection: 'row',
@@ -96,6 +98,16 @@ const useStyles = () => {
       marginTop: sizes.WIDTH * 0.03,
       paddingLeft: sizes.WIDTH * 0.001,
       paddingRight: sizes.WIDTH * 0.001,
+    },
+    rejectBtn: {
+      width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+    },
+
+    btnAccept: {
+      width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
     },
   });
   return {

@@ -111,7 +111,8 @@ export default function ProfileSettings({navigation}: Props) {
 
   const closeModal = () => {
     setIsopen(false);
-    navigate('AuthStack', {screen: 'SignIn'});
+    // navigate('ServiceProvider', {screen: 'HomeTabs'});
+    dispatch(setUser(null));
   };
   return (
     <ParentView style={styles.container}>
