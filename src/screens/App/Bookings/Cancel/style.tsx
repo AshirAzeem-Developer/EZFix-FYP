@@ -31,8 +31,8 @@ const useStyles = () => {
     },
 
     providerimg: {
-      width: sizes.WIDTH * 0.35,
-      height: sizes.HEIGHT * 0.2,
+      width: sizes.WIDTH * 0.3,
+      height: sizes.WIDTH * 0.3,
       borderRadius: sizes.WIDTH * 0.01,
 
       margin: sizes.WIDTH * 0.015,

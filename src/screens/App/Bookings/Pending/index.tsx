@@ -20,6 +20,7 @@ import Button from '../../../../components/Button/Button';
 import {useSelector} from 'react-redux';
 import {
   getJobOrders,
+  getServiceSeekerBooking,
   getSkillsFromUserId,
   updateJobOrder,
 } from '../../../../utils/ApiCall';
@@ -42,45 +43,6 @@ const Pending: React.FC<AppStackParamsList> = () => {
   const userType = useSelector(
     (state: any) => state?.user?.user?.user?.roleType,
   );
-
-  const work = [
-    {
-      id: 1,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'approved',
-      image: images.handyman,
-    },
-    {
-      id: 2,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'approved',
-      image: images.handyman,
-    },
-    {
-      id: 3,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'approved',
-      image: images.handyman,
-    },
-    {
-      id: 4,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'approved',
-      image: images.handyman,
-    },
-  ];
 
   // ================= >>> User States <<< ================= \\
 
@@ -106,6 +68,24 @@ const Pending: React.FC<AppStackParamsList> = () => {
         console.log('Skills', JSON.stringify(skills, null, 2));
         // console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
+        {
+          userType !== 'seeker'
+            ? getJobOrders(userSkillIds, userToken, 'Pending')
+                .then(res => {
+                  setJobOrders(res.data || {});
+                  console.log(
+                    'Pending Job Order By User Skills:',
+                    JSON.stringify(res.data, null, 2),
+                  );
+                })
+                .catch(err => {
+                  console.log(
+                    'Error fetching job orders:',
+                    err.response ? err.response.data : err,
+                  );
+                })
+            : fetchSeekerBookings();
+        }
       })
       .catch(err => {
         console.log('Error fetching user skills:', err);
@@ -113,68 +93,98 @@ const Pending: React.FC<AppStackParamsList> = () => {
   }, [userId, userToken]); // Ensure this effect runs when userId or userToken changes
 
   // Second effect: Fetch job orders when skill IDs are updated
-  useEffect(() => {
-    console.log('Fetching job orders for skill IDs:', userSkillIds);
-    if (userSkillIds.length > 0) {
-      getJobOrders(userSkillIds, userToken, 'Pending')
-        .then(res => {
-          setJobOrders(res.data || {});
-          console.log(
-            'Job orders by user skills:',
-            JSON.stringify(res.data, null, 2),
-          );
-        })
-        .catch(err => {
-          console.log(
-            'Error fetching job orders:',
-            err.response ? err.response.data : err,
-          );
-        });
-    }
-  }, [userSkillIds, userToken]); // Ensure this effect runs when skill IDs are updated
+  // useEffect(() => {
+  //   console.log('Fetching job orders for skill IDs:', userSkillIds);
+  //   if (userSkillIds.length > 0) {
+
+  //   }
+  // }, [userSkillIds, userToken]); // Ensure this effect runs when skill IDs are updated
+
+  function fetchSeekerBookings() {
+    getServiceSeekerBooking(userId, 'Pending', userToken)
+      .then(res => {
+        console.log(
+          'Service Seeker Pending  Bookings',
+          JSON.stringify(res.data, null, 2),
+        );
+        setJobOrders(res.data);
+      })
+      .catch(err => {
+        console.log('Error fetching Service Seeker Bookings', err);
+      });
+  }
 
   const SeekerView = () => {
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-          data={work}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.providerscard}>
-              <View style={styles.provivder}>
+        <View>
+          {jobOrders.data?.length > 0 ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
+              data={jobOrders?.data}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({item}) => (
                 <View>
-                  <Image source={item.image} style={styles.providerimg} />
+                  <View style={styles.providerscard}>
+                    <View style={styles.provivder}>
+                      <View>
+                        <Image
+                          source={{
+                            uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
+                          }}
+                          style={styles.providerimg}
+                        />
+                      </View>
+                      <View style={styles.items}>
+                        <Text style={styles.job}>
+                          {
+                            item?.attributes?.skill?.data?.attributes?.category
+                              ?.data?.attributes?.name
+                          }
+                        </Text>
+                        <Text style={styles.work}>
+                          {item?.attributes?.description}
+                        </Text>
+                        <View style={styles.time}>
+                          <Image source={icons.Clock} style={styles.clock} />
+                          <Text style={styles.timer}>
+                            {item?.attributes?.date}
+                          </Text>
+                        </View>
+                        <View style={styles.statuscontainer}>
+                          <Text style={{color: colors.BLACK}}>
+                            Status :{' '}
+                            <Text style={styles.status}>
+                              {item?.attributes?.jobStatus}
+                            </Text>
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.items}>
-                  <Text style={styles.job}>{item.job}</Text>
-                  <Text style={styles.work}>{item.work}</Text>
-                  <View style={styles.time}>
-                    <Image source={icons.Clock} style={styles.clock} />
-                    <Text style={styles.timer}>{item.time}</Text>
-                  </View>
-                  <View style={styles.statuscontainer}>
-                    <Text style={{color: colors.BLACK}}>Status :</Text>
-                    <Text style={styles.status}> {item.status}</Text>
-                  </View>
-                  <View style={styles.bookbutton}>
-                    <Button
-                      onPress={() => {
-                        navigation.navigate('StartStopWorking');
-                      }}
-                      text="Start Working"
-                      bgcolor={colors.PRIMARY}
-                      btnStyles={styles.btnStyles}
-                    />
-                  </View>
-                </View>
-              </View>
+              )}
+            />
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: sizes.WIDTH * 0.05,
+                  color: colors.BLACK,
+                }}>
+                No Pending Jobs
+              </Text>
             </View>
           )}
-        />
+        </View>
       </ParentView>
     );
   };

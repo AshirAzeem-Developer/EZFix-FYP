@@ -1,37 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 
 //local imports
 import useStyles from './style';
 import icons from '../../../assets/icons';
-import images from '../../../assets/images';
-import SellerCard from '../../../components/TopRatedSellerCard';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
 import SearchComponent from '../../../components/SearchComponent';
 import {FadeInDown} from 'react-native-reanimated';
 import CategoriesCard from '../../../components/CategoriesCard';
-import ReactNativeModal from 'react-native-modal';
-import CustomModal from '../../../components/CustomModal';
+
 import TopProviderCards from '../../../components/TopProviderCards';
-import {
-  NativeStackNavigatorProps,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack/lib/typescript/src/types';
-import {AuthStackParamList} from '../../../navigators/authStack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
+
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {useSelector} from 'react-redux';
-import MyLineChart from '../../../components/LineChart';
-import {getAllProviders} from '../../../utils/ApiCall';
-import {showError} from '../../../utils/helperFunction';
 
 //third party library
 type props = NativeStackScreenProps<AppStackParamsList>;
@@ -39,7 +21,17 @@ type props = NativeStackScreenProps<AppStackParamsList>;
 const Home: React.FC<props> = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
-  const user = useSelector(state => state?.user.user.user.roleType);
+  interface RootState {
+    user: {
+      user: {
+        user: {
+          roleType: string;
+        };
+      };
+    };
+  }
+
+  const user = useSelector((state: RootState) => state.user.user.user.roleType);
 
   console.log('UserType === >: ', user);
 

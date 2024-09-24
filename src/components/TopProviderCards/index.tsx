@@ -9,56 +9,6 @@ import {useSelector} from 'react-redux';
 import {showError} from '../../utils/helperFunction';
 import API_ENDPOINTS from '../../constants/apiEndPoints';
 const TopProviderCards = () => {
-  const providers = [
-    {
-      id: 1,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-    {
-      id: 2,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-    {
-      id: 3,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-    {
-      id: 4,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-    {
-      id: 5,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-    {
-      id: 6,
-      name: 'Amir Khan',
-      Location: 'Saddar Bazar',
-      category: 'Electrician',
-      image: images.Provider,
-      ratePerHour: 'Rs 300/hr',
-    },
-  ];
   const [serviceProviders, setServiceProviders] = useState([]);
 
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
@@ -74,8 +24,9 @@ const TopProviderCards = () => {
         console.log('Error:', err);
       });
   }, [userToken]);
+
   const {styles, colors, sizes} = useStyles();
-  const numColumns = 2;
+  // const numColumns = 2;
   return (
     <FlatList
       style={{
@@ -110,9 +61,10 @@ const TopProviderCards = () => {
                 <Text style={styles.categoryText}>{skill?.name}</Text>
               ))} */}
               <FlatList
-                key={`columns_${numColumns}`} // Change the key prop to force re-render
+                // key={`columns_${numColumns}`} // Change the key prop to force re-render
                 style={{
-                  width: sizes.WIDTH * 0.6,
+                  width: sizes.WIDTH * 0.5,
+                  // height: sizes.HEIGHT * 0.1,
                 }}
                 data={item?.skills}
                 keyExtractor={item => item.id.toString()}
@@ -130,13 +82,15 @@ const TopProviderCards = () => {
                         marginRight: -sizes.WIDTH * 0.02,
                       }}
                     />
-                    <Text style={styles.categoryText}>{item?.name}</Text>
+                    <Text style={styles.categoryText} numberOfLines={1}>
+                      {item?.name}
+                    </Text>
                   </View>
                 )}
-                numColumns={numColumns}
-                columnWrapperStyle={{
-                  justifyContent: 'space-between',
-                }}
+                // numColumns={numColumns}
+                // columnWrapperStyle={{
+                //   justifyContent: 'space-between',
+                // }}
               />
 
               <View style={styles.ratingContainer}>

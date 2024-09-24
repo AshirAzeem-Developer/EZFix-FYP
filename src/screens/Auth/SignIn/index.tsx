@@ -31,7 +31,7 @@ const SignIn = ({navigation}) => {
         setLoading(false);
       })
       .catch(err => {
-        showError(err, 'Login Failed');
+        showError('Email or password incorrect');
         console.error('Error', err);
         setLoading(false);
       });

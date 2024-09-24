@@ -189,3 +189,19 @@ export const updateJobOrder = (
     },
   });
 };
+
+export const getServiceSeekerBooking = (
+  userId: number,
+  status: string,
+  token: string,
+) => {
+  // Construct the URL for fetching bookings by user ID and status
+  const url = `${apiEndPoint.JOB_ORDERS}?filters[service_seeker][id][$eq]=${userId}&filters[jobStatus][$eq]=${status}&populate[skill][populate][category][populate]=*&populate[service_seeker][populate]=profileImage`;
+
+  return apiRequest.get(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

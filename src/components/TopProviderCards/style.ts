@@ -45,7 +45,7 @@ const useStyles = () => {
     categoryText: {
       ...globalStyles.TEXT_STYLE,
       color: colors.GRAY,
-      fontSize: sizes.WIDTH * 0.05,
+      fontSize: sizes.WIDTH * 0.04,
     },
 
     star: {

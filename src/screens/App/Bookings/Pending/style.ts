@@ -30,8 +30,8 @@ const useStyles = () => {
     },
 
     providerimg: {
-      width: sizes.WIDTH * 0.35,
-      height: sizes.HEIGHT * 0.2,
+      width: sizes.WIDTH * 0.3,
+      height: sizes.WIDTH * 0.3,
       borderRadius: sizes.WIDTH * 0.02,
 
       margin: sizes.WIDTH * 0.015,
@@ -70,13 +70,14 @@ const useStyles = () => {
     timer: {
       color: colors.BLACK,
       paddingLeft: sizes.WIDTH * 0.01,
+      fontSize: sizes.WIDTH * 0.035,
     },
     status: {
       color: colors.SKY_BLUE,
     },
     statuscontainer: {
       flexDirection: 'row',
-      paddingTop: sizes.HEIGHT * 0.02,
+      paddingTop: sizes.HEIGHT * 0.01,
     },
     provivder: {
       flexDirection: 'row',

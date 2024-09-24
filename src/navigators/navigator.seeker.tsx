@@ -53,28 +53,30 @@ function ProfileStack() {
   );
 }
 function BookingStack() {
-  const userType = useSelector((state: any) => state?.user?.user?.roleType);
+  const userType = useSelector(
+    (state: any) => state?.user?.user?.user?.roleType,
+  );
 
-  console.log('userType', userType);
+  // console.log('userType', userType);
 
   return (
     <CreateTopTabs
       initialRouteName="Approved"
       screens={[
         {
-          name: userType === 'seeker' ? 'All Bookings' : 'Approved',
+          name: userType !== 'seeker' ? 'All Bookings' : 'Approved',
           Component: Approved,
-          label: userType === 'seeker' ? 'All Bookings' : 'Approved',
+          label: userType !== 'seeker' ? 'All Bookings' : 'Approved',
         },
         {
-          name: userType === 'seeker' ? 'Accepted ' : 'Pending',
+          name: userType !== 'seeker' ? 'Accepted ' : 'Pending',
           Component: Pending,
-          label: userType === 'seeker' ? 'Accepted ' : 'Pending',
+          label: userType !== 'seeker' ? 'Accepted ' : 'Pending',
         },
         {
-          name: userType === 'seeker' ? 'Rejected' : 'Cancelled',
+          name: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
           Component: Cancel,
-          label: userType === 'seeker' ? 'Rejected' : 'Cancelled',
+          label: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
         },
       ]}
       key={'BookingStack'}

@@ -19,28 +19,26 @@ import useStyles from './style';
 import {FadeInDown} from 'react-native-reanimated';
 import Button from '../../../../components/Button/Button';
 import {useSelector} from 'react-redux';
-import {getJobOrders, getSkillsFromUserId} from '../../../../utils/ApiCall';
+import {
+  getJobOrders,
+  getServiceSeekerBooking,
+  getSkillsFromUserId,
+} from '../../../../utils/ApiCall';
 import apiEndPoints from '../../../../constants/apiEndPoints';
 import jobOrder from '../../../../store/reducer/job-order';
 
-//third party library
-
-// dimenstion
-const {width, height} = Dimensions.get('window');
-
 const Cancel = ({route, navigation}) => {
   const {styles, colors, sizes} = useStyles();
-  const userType = useSelector((state: any) => state?.user?.user?.roleType);
+  const userType = useSelector(
+    (state: any) => state?.user?.user?.user?.roleType,
+  );
+  const userId = useSelector((state: any) => state.user?.user?.user?.id);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
   const [userSkillIds, setUserSkillIds] = useState<number[]>([]);
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [jobOrders, setJobOrders] = useState<any>({});
 
-  const userId = useSelector((state: any) => state.user.user.user.id);
-  // console.log('User id is: ', userId);
-  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
-  // const {data} = route.params;
-  // console.log('Cancelled Bookings', data);
   useEffect(() => {
     getSkillsFromUserId(userId, userToken)
       .then(res => {
@@ -52,61 +50,40 @@ const Cancel = ({route, navigation}) => {
         console.log('Skills', JSON.stringify(skills, null, 2));
         // console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
-        getJobOrders(skillIds, userToken, 'Cancelled')
-          .then(res => {
-            console.log(
-              'Cancelled Job Orders',
-              JSON.stringify(res.data.data, null, 2),
-            );
-            setJobOrders(res.data);
-          })
-          .catch(err => {
-            console.log('Error in fetching Approved Job Orders', err);
-          });
+        {
+          userType !== 'seeker'
+            ? getJobOrders(skillIds, userToken, 'Cancelled')
+                .then(res => {
+                  console.log(
+                    'Cancelled Job Orders',
+                    JSON.stringify(res.data.data, null, 2),
+                  );
+                  setJobOrders(res.data);
+                })
+                .catch(err => {
+                  console.log('Error in fetching Approved Job Orders', err);
+                })
+            : fetchSeekerBookings();
+        }
       })
       .catch(err => {
         console.log('Error fetching user skills:', err);
       });
   }, []);
 
-  const work = [
-    {
-      id: 1,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'Cancelled',
-      image: images.handyman,
-    },
-    {
-      id: 2,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'Cancelled',
-      image: images.handyman,
-    },
-    {
-      id: 3,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'Cancelled',
-      image: images.handyman,
-    },
-    {
-      id: 4,
-      job: 'Wall Repair',
-      work: 'Leaks in the Bathroom',
-      time: 'Jan 21,2022 at 4pm',
-      Price: 'RS 250/hr',
-      status: 'Cancelled',
-      image: images.handyman,
-    },
-  ];
+  function fetchSeekerBookings() {
+    getServiceSeekerBooking(userId, 'Cancelled', userToken)
+      .then(res => {
+        console.log(
+          'Service Seeker Pending  Bookings',
+          JSON.stringify(res.data, null, 2),
+        );
+        setJobOrders(res.data);
+      })
+      .catch(err => {
+        console.log('Error fetching Service Seeker Bookings', err);
+      });
+  }
 
   const SeekerView = () => {
     return (
@@ -114,35 +91,68 @@ const Cancel = ({route, navigation}) => {
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
         <View>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-            data={work}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View>
-                <View style={styles.providerscard}>
-                  <View style={styles.provivder}>
-                    <View>
-                      <Image source={item.image} style={styles.providerimg} />
-                    </View>
-                    <View style={styles.items}>
-                      <Text style={styles.job}>{item.job}</Text>
-                      <Text style={styles.work}>{item.work}</Text>
-                      <View style={styles.time}>
-                        <Image source={icons.Clock} style={styles.clock} />
-                        <Text style={styles.timer}>{item.time}</Text>
+          {jobOrders.data?.length > 0 ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
+              data={jobOrders?.data}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({item}) => (
+                <View>
+                  <View style={styles.providerscard}>
+                    <View style={styles.provivder}>
+                      <View>
+                        <Image
+                          source={{
+                            uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
+                          }}
+                          style={styles.providerimg}
+                        />
                       </View>
-                      <View style={styles.statuscontainer}>
-                        <Text style={{color: colors.BLACK}}>Status :</Text>
-                        <Text style={styles.status}> {item.status}</Text>
+                      <View style={styles.items}>
+                        <Text style={styles.job}>
+                          {
+                            item?.attributes?.skill?.data?.attributes?.category
+                              ?.data?.attributes?.name
+                          }
+                        </Text>
+                        <Text style={styles.work}>
+                          {item?.attributes?.description}
+                        </Text>
+                        <View style={styles.time}>
+                          <Image source={icons.CALENDAR} style={styles.clock} />
+                          <Text style={styles.timer}>
+                            {item?.attributes?.date}
+                          </Text>
+                        </View>
+                        <View style={styles.statuscontainer}>
+                          <Text style={{color: colors.BLACK}}>Status : </Text>
+                          <Text style={styles.status}>
+                            {item?.attributes?.jobStatus}
+                          </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            )}
-          />
+              )}
+            />
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: sizes.WIDTH * 0.05,
+                  color: colors.BLACK,
+                }}>
+                No Pending Jobs
+              </Text>
+            </View>
+          )}
         </View>
       </ParentView>
     );
