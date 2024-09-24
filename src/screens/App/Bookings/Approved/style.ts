@@ -40,8 +40,8 @@ const useStyles = () => {
       marginTop: sizes.WIDTH * 0.03,
     },
     providerViewimg: {
-      width: sizes.WIDTH * 0.35,
-      height: sizes.HEIGHT * 0.2,
+      width: sizes.WIDTH * 0.31,
+      height: sizes.WIDTH * 0.31,
       borderRadius: sizes.WIDTH * 0.03,
 
       margin: sizes.WIDTH * 0.015,
@@ -106,6 +106,61 @@ const useStyles = () => {
 
     btnAccept: {
       width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    btnContainer: {
+      flexDirection: 'row',
+      marginVertical: sizes.HEIGHT * 0.01,
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      width: sizes.WIDTH * 0.45,
+    },
+    btnStartJobStyles: {
+      width: sizes.WIDTH * 0.22,
+      height: sizes.HEIGHT * 0.038,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    seekerCont: {
+      backgroundColor: 'rgba(0,128,0,0.2)',
+      width: sizes.WIDTH * 0.9,
+      height: sizes.HEIGHT * 0.14,
+      marginBottom: sizes.HEIGHT * 0.02,
+      marginHorizontal: sizes.WIDTH * 0.02,
+      alignSelf: 'center',
+      borderRadius: sizes.WIDTH * 0.02,
+    },
+    detailsCont: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    seekerDetails: {
+      width: sizes.WIDTH * 0.14,
+      height: sizes.HEIGHT * 0.07,
+      borderRadius: sizes.WIDTH * 1,
+      margin: sizes.WIDTH * 0.015,
+      marginTop: sizes.WIDTH * 0.03,
+    },
+    locationCont: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    locationIcon: {
+      width: sizes.WIDTH * 0.03,
+      height: sizes.HEIGHT * 0.02,
+      marginTop: sizes.WIDTH * 0.007,
+    },
+    seekerBtnsContainer: {
+      flexDirection: 'row',
+      alignContent: 'center',
+      justifyContent: 'flex-end',
+      marginRight: sizes.WIDTH * 0.02,
+    },
+    chatNowBtn: {
+      width: sizes.WIDTH * 0.32,
       height: sizes.HEIGHT * 0.038,
       marginLeft: sizes.WIDTH * 0.02,
     },

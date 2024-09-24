@@ -11,7 +11,7 @@ const useStyles = () => {
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fff',
+      backgroundColor: '#ffffff',
       padding: sizes.WIDTH * 0.029,
     },
     providers: {
@@ -39,7 +39,7 @@ const useStyles = () => {
     },
     providerViewimg: {
       width: sizes.WIDTH * 0.35,
-      height: sizes.HEIGHT * 0.2,
+      height: sizes.WIDTH * 0.35,
       borderRadius: sizes.WIDTH * 0.03,
 
       margin: sizes.WIDTH * 0.015,

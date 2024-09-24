@@ -72,9 +72,9 @@ function BookingStack() {
           label: userType === 'seeker' ? 'Accepted ' : 'Pending',
         },
         {
-          name: userType === 'seeker' ? 'Rejected' : 'Cancel',
+          name: userType === 'seeker' ? 'Rejected' : 'Cancelled',
           Component: Cancel,
-          label: userType === 'seeker' ? 'Rejected' : 'Cancel',
+          label: userType === 'seeker' ? 'Rejected' : 'Cancelled',
         },
       ]}
       key={'BookingStack'}

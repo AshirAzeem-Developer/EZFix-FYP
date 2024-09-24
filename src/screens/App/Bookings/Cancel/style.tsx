@@ -57,6 +57,7 @@ const useStyles = () => {
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.035,
       paddingTop: sizes.HEIGHT * 0.003,
+      width: sizes.WIDTH * 0.5,
     },
     time: {
       flexDirection: 'row',

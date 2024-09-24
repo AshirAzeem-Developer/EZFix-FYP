@@ -141,13 +141,23 @@ export const getJobOrdersBySkills = (skillIds: number[], token: string) => {
   });
 };
 
-export const getJobOrders = (skillIds: number[], token: string) => {
+export const getJobOrders = (
+  skillIds: number[],
+  token: string,
+  jobStatus?: string,
+) => {
   // Construct the query parameters dynamically based on the skillIds array
   const skillIdsQuery = skillIds
     .map(id => `filters[skill][id][$in]=${id}`)
     .join('&');
-  // Construct the URL for fetching job orders
-  const url = `${apiEndPoint.JOB_ORDERS}?${skillIdsQuery}&populate[skill][populate]=category&populate[service_seeker][populate]=*`;
+
+  // Conditionally add the jobStatus filter if provided
+  const jobStatusQuery = jobStatus
+    ? `&filters[jobStatus][$eq]=${jobStatus}`
+    : '';
+
+  // Construct the URL for fetching job orders with skill IDs and optionally job status
+  const url = `${apiEndPoint.JOB_ORDERS}?${skillIdsQuery}${jobStatusQuery}&populate[skill][populate][category][populate]=*&populate[service_seeker][populate]=profileImage`;
 
   return apiRequest.get(url, {
     headers: {
@@ -156,6 +166,7 @@ export const getJobOrders = (skillIds: number[], token: string) => {
     },
   });
 };
+
 export const updateJobOrder = (
   jobId: number,
   jobStatus: string,
@@ -167,7 +178,7 @@ export const updateJobOrder = (
   // Payload to update the job order status
   const data = {
     data: {
-      jobStatus, // Update the jobStatus field with the provided status
+      jobStatus: jobStatus, // Update the jobStatus field with the provided status
     },
   };
 

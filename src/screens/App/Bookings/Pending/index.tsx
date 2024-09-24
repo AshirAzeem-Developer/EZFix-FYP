@@ -18,16 +18,21 @@ import useStyles from './style';
 import {FadeInDown} from 'react-native-reanimated';
 import Button from '../../../../components/Button/Button';
 import {useSelector} from 'react-redux';
-import {getJobOrders, getSkillsFromUserId} from '../../../../utils/ApiCall';
+import {
+  getJobOrders,
+  getSkillsFromUserId,
+  updateJobOrder,
+} from '../../../../utils/ApiCall';
 import {useNavigation} from '@react-navigation/native';
 import apiEndPoints from '../../../../constants/apiEndPoints';
+import {AppStackParamsList} from '../../../../navigators/navigator.seeker';
 
 //third party library
 
 // dimenstion
 const {width, height} = Dimensions.get('window');
 
-const Pending = () => {
+const Pending: React.FC<AppStackParamsList> = () => {
   const {styles, colors, sizes} = useStyles();
   // ============== >> Navigation <<< ============== \\
   const navigation = useNavigation();
@@ -76,12 +81,13 @@ const Pending = () => {
       image: images.handyman,
     },
   ];
+
+  // ================= >>> User States <<< ================= \\
+
   const [approved, setApproved] = useState(false);
   const [userSkillIds, setUserSkillIds] = useState<number[]>([]);
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [jobOrders, setJobOrders] = useState<any>({});
-
-  const [jobsListing, setJobsListing] = useState<any[]>([]);
 
   // ==============>> Log User Id and Token <<================ \\
   const userId = useSelector((state: any) => state.user.user.user.id);
@@ -110,7 +116,7 @@ const Pending = () => {
   useEffect(() => {
     console.log('Fetching job orders for skill IDs:', userSkillIds);
     if (userSkillIds.length > 0) {
-      getJobOrders(userSkillIds, userToken)
+      getJobOrders(userSkillIds, userToken, 'Pending')
         .then(res => {
           setJobOrders(res.data || {});
           console.log(
@@ -173,131 +179,169 @@ const Pending = () => {
     );
   };
   const ProviderView = () => {
+    function updateJobOrderStatus(jobId: number, jobStatus: string) {
+      updateJobOrder(jobId, jobStatus, userToken)
+        .then(res => {
+          console.log('Job order status updated:', res.data);
+        })
+        .catch(err => {
+          console.log(
+            'Error updating job order status:',
+            err.response ? err.response.data : err,
+          );
+        });
+    }
+
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-          data={jobOrders?.data}
-          // keyExtractor={item => item.id.toString()}
-          renderItem={({item, index}) => (
-            <View
-              style={[
-                styles.providerscard,
-                {
-                  backgroundColor: 'white',
-                  elevation: 5,
-                },
-              ]}>
-              <View style={styles.provivder}>
-                <View>
-                  <Image
-                    source={images.handyman}
-                    style={styles.providerViewimg}
-                  />
-                </View>
-                <View style={styles.items}>
-                  <Text style={styles.job}>
-                    {
-                      item?.attributes?.skill?.data?.attributes?.category?.data
-                        ?.attributes?.name
-                    }
-                  </Text>
-                  <Text style={styles.work} numberOfLines={2}>
-                    {item?.attributes?.description}
-                  </Text>
-                  <View style={styles.time}>
-                    <Image source={icons.Clock} style={styles.clock} />
-                    <Text style={styles.timer}>{item?.attributes?.date}</Text>
-                  </View>
-                  <TouchableOpacity
-                    style={styles.statuscontainer}
-                    onPress={() =>
-                      navigation.navigate('WorkDetails', {
-                        title: 'Work Description',
-                        data: item,
-                      })
-                    }>
-                    <Text style={styles.viewDetailsText}>View Details</Text>
-                  </TouchableOpacity>
-                  <View style={styles.btnContainer}>
-                    <Button
-                      text="Reject"
-                      bgcolor="#FFE2E2"
-                      btnTextStyles={{color: 'black'}}
-                      btnStyles={styles.rejectBtn}
-                      onPress={() => {}}
-                    />
-                    <Button
-                      text="Accept"
-                      bgcolor="#008000"
-                      btnTextStyles={{color: 'white'}}
-                      btnStyles={styles.btnAccept}
-                      onPress={() => {}}
-                    />
-                  </View>
-                </View>
-              </View>
-              <View>
-                <View style={styles.providerMainContainer}>
-                  <View style={styles.container1}>
+        {jobOrders.data?.lenght > 0 ? (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
+            data={jobOrders?.data}
+            // keyExtractor={item => item.id.toString()}
+            renderItem={({item, index}) => (
+              <View
+                style={[
+                  styles.providerscard,
+                  {
+                    backgroundColor: 'white',
+                    elevation: 5,
+                  },
+                ]}>
+                <View style={styles.provivder}>
+                  <View>
                     <Image
                       source={{
-                        uri: `${apiEndPoints.BASE_URL}${item?.attributes?.service_seeker?.data?.attributes?.profileImage?.data?.attributes?.url}`,
+                        uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
                       }}
-                      style={styles.providerImage}
+                      style={styles.providerViewimg}
                     />
-                    <View style={styles.nameAndLocationContainer}>
-                      <Text style={styles.seekerName}>
-                        {
-                          item?.attributes?.service_seeker?.data?.attributes
-                            ?.name
-                        }
-                      </Text>
-                      <View style={styles.locationContainer}>
-                        <Image
-                          source={icons.Location}
-                          style={styles.locationIcon}
-                        />
-                        <Text
-                          style={{
-                            marginLeft: sizes.WIDTH * 0.01,
-                          }}>
-                          38 Chestnut StreetStaunton
-                        </Text>
-                      </View>
+                  </View>
+                  <View style={styles.items}>
+                    <Text style={styles.job}>
+                      {
+                        item?.attributes?.skill?.data?.attributes?.category
+                          ?.data?.attributes?.name
+                      }
+                    </Text>
+                    <Text style={styles.work} numberOfLines={2}>
+                      {item?.attributes?.description}
+                    </Text>
+                    <View style={styles.time}>
+                      <Image source={icons.Clock} style={styles.clock} />
+                      <Text style={styles.timer}>{item?.attributes?.date}</Text>
+                    </View>
+                    <TouchableOpacity
+                      style={styles.statuscontainer}
+                      onPress={() => {
+                        navigation.navigate('WorkDetails', {
+                          title: 'Work Description',
+                          data: item,
+                        });
+                      }}>
+                      <Text style={styles.viewDetailsText}>View Details</Text>
+                    </TouchableOpacity>
+                    <View style={styles.btnContainer}>
+                      <Button
+                        text="Cancel"
+                        bgcolor="#FFE2E2"
+                        btnTextStyles={{color: 'black'}}
+                        btnStyles={styles.rejectBtn}
+                        onPress={() => [
+                          updateJobOrderStatus(item.id, 'Cancelled'),
+                          navigation.navigate('Cancelled'),
+                        ]}
+                      />
+                      <Button
+                        text="Approve"
+                        bgcolor="#008000"
+                        btnTextStyles={{color: 'white'}}
+                        btnStyles={styles.btnAccept}
+                        onPress={() => [
+                          updateJobOrderStatus(item.id, 'Approved'),
+                          navigation.navigate('Approved'),
+                        ]}
+                      />
                     </View>
                   </View>
-                  <View style={styles.buttonsContainer}>
-                    <Button
-                      icon={icons.Phone}
-                      text="Call"
-                      bgcolor="#008000"
-                      btnStyles={styles.callBtnStyles}
-                      onPress={() => {
-                        Linking.openURL(
-                          `tel:+${item?.attributes?.service_seeker?.data?.attributes?.phoneNumber}`,
-                        );
-                      }}
-                    />
-                    <Button
-                      icon={icons.MESSAGE_TAB_ACTIVE}
-                      text="ChatNow"
-                      bgcolor="#ffffff"
-                      btnStyles={styles.chatNowBtn}
-                      btnTextStyles={{color: 'black'}}
-                      onPress={() => {
-                        navigation.navigate('Messages');
-                      }}
-                    />
+                </View>
+                <View>
+                  <View style={styles.providerMainContainer}>
+                    <View style={styles.container1}>
+                      <Image
+                        source={{
+                          uri: `${apiEndPoints.BASE_URL}${item?.attributes?.service_seeker?.data?.attributes?.profileImage?.data?.attributes?.url}`,
+                        }}
+                        style={styles.providerImage}
+                      />
+                      <View style={styles.nameAndLocationContainer}>
+                        <Text style={styles.seekerName}>
+                          {
+                            item?.attributes?.service_seeker?.data?.attributes
+                              ?.name
+                          }
+                        </Text>
+                        <View style={styles.locationContainer}>
+                          <Image
+                            source={icons.Location}
+                            style={styles.locationIcon}
+                          />
+                          <Text
+                            style={{
+                              marginLeft: sizes.WIDTH * 0.01,
+                            }}>
+                            38 Chestnut StreetStaunton
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={styles.buttonsContainer}>
+                      <Button
+                        icon={icons.Phone}
+                        text="Call"
+                        bgcolor="#008000"
+                        btnStyles={styles.callBtnStyles}
+                        onPress={() => {
+                          Linking.openURL(
+                            `tel:+${item?.attributes?.service_seeker?.data?.attributes?.phoneNumber}`,
+                          );
+                        }}
+                      />
+                      <Button
+                        icon={icons.MESSAGE_TAB_ACTIVE}
+                        text="ChatNow"
+                        bgcolor="#ffffff"
+                        btnStyles={styles.chatNowBtn}
+                        btnTextStyles={{color: 'black'}}
+                        onPress={() => {
+                          navigation.navigate('Messages');
+                        }}
+                      />
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
-          )}
-        />
+            )}
+          />
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                fontSize: sizes.WIDTH * 0.05,
+                color: colors.BLACK,
+              }}>
+              No Pending Jobs
+            </Text>
+          </View>
+        )}
       </ParentView>
     );
   };
