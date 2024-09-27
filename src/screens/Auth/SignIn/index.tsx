@@ -8,7 +8,7 @@ import TextInputCustom from '../../../components/TextInputCustom';
 import Button from '../../../components/Button/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUser} from '../../../store/reducer/user';
-import {showError, showSuccess} from '../../../utils/helperFunction';
+import {CheckInternet, showError, showSuccess} from '../../../utils/helperFunction';
 
 import {validateEmail, validatePassword} from '../../../utils/validator';
 import {postLogin} from '../../../utils/ApiCall';
@@ -40,11 +40,14 @@ const SignIn = ({navigation}) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const[isConnected,setisConnected]=useState(false)
 
   // ======================>>>>>> Hooks <<<<<======================
   // const user = useSelector(state => console.log(state));
   return (
-    <SafeAreaView style={styles.container}>
+    <>
+   <>
+      <SafeAreaView style={styles.container}>
       {/* =============== >>>> Header <<< =============== */}
       <Header
         leftIconAction={() => navigation.goBack()}
@@ -121,7 +124,19 @@ const SignIn = ({navigation}) => {
           <Text style={styles.forgotPass}>Forgot Password ?</Text>
         </TouchableOpacity>
       </View>
+      
+      <CheckInternet isConnected={isConnected} setisConnected={setisConnected}/>
+
     </SafeAreaView>
+    
+    
+    
+    </>
+    
+    
+    
+    
+    </>
   );
 };
 

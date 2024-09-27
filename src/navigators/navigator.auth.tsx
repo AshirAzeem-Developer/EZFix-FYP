@@ -21,13 +21,16 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
+import Chat from '../screens/App/Chat';
+import Chatlist from '../components/ChatList';
+import ChatOpen from '../screens/App/ChatOpen';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="ChatOpen"
       screenOptions={{
         headerShown: false,
       }}>
@@ -42,6 +45,12 @@ export const AuthStack = () => {
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
       <Stack.Screen name="SignUpRoleSelect" component={SignUpRoleSelect} />
       <Stack.Screen name="SignUpCheckPhoto" component={SignUpCheckPhoto} />
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Chatlist" component={Chatlist} />
+      <Stack.Screen name="ChatOpen" component={ChatOpen} />
+
+
+
 
       <Stack.Screen
         name="SignUpSeekerProviderNICOrVerifyMember"
