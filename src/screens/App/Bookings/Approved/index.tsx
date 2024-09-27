@@ -24,7 +24,6 @@ import {useSelector} from 'react-redux';
 import {
   getJobOrders,
   getServiceSeekerBooking,
-  getServiceSeekerBookings,
   getSkillsFromUserId,
 } from '../../../../utils/ApiCall';
 import apiEndPoints from '../../../../constants/apiEndPoints';

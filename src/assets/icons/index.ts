@@ -46,4 +46,6 @@ export default {
   SHIELD_SEC: require('./shieldSecurity.png'),
   MAIL: require('./mail.png'),
   CALENDAR: require('./calendar-tick.png'),
+  SEND: require('./send.png'),
+  MESSAGE_SEARCH: require('./messageSearch.png'),
 };

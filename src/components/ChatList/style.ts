@@ -11,35 +11,33 @@ const useStyles = () => {
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fff',
+      backgroundColor: colors.BACKGROUND,
       margin: sizes.WIDTH * 0.029,
+      marginBottom: 0,
     },
-    name:{
-        color:colors.BLACK,
-        fontSize:sizes.FONT_SIZE_TITLE,
-        fontWeight:"bold",
-        // padding:sizes.WIDTH*0.023
+    name: {
+      color: colors.BLACK,
+      fontSize: sizes.FONT_SIZE_TITLE,
+      fontWeight: 'bold',
+      // padding:sizes.WIDTH*0.023
     },
-    contacts:{
-            display:"flex",
-            flexDirection:"row",
-            paddingBottom:sizes.WIDTH*0.05,
-            padding:sizes.WIDTH*0.01,
-            paddingTop:sizes.WIDTH*0.04,
-            // borderWidth:sizes.BORDER_RADIUS,
-            borderBottomWidth:sizes.WIDTH*0.001
+    contacts: {
+      display: 'flex',
+      flexDirection: 'row',
+      paddingBottom: sizes.WIDTH * 0.05,
+      padding: sizes.WIDTH * 0.01,
+      paddingTop: sizes.WIDTH * 0.04,
+      // borderWidth:sizes.BORDER_RADIUS,
+      borderBottomWidth: sizes.WIDTH * 0.001,
     },
-    chat:{
-        color:colors.BLACK,
-        fontSize:sizes.FONTSIZE_MEDIUM,
-        
+    chat: {
+      color: colors.BLACK,
+      fontSize: sizes.FONTSIZE_MEDIUM,
     },
-    cards:{
-         padding:sizes.WIDTH*0.01,
-         paddingLeft:sizes.WIDTH*0.03,
-
+    cards: {
+      padding: sizes.WIDTH * 0.01,
+      paddingLeft: sizes.WIDTH * 0.03,
     },
- 
   });
   return {
     colors,

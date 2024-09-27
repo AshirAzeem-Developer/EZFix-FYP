@@ -22,6 +22,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import SearchComponent from '../../../components/SearchComponent';
 import Chatlist from '../../../components/ChatList';
+import Header from '../../../components/Header';
 
 //third party library
 
@@ -30,34 +31,37 @@ const {width, height} = Dimensions.get('window');
 
 const Chat = () => {
   const {styles, colors, sizes} = useStyles();
+  const [search, setSearch] = useState(false);
 
-  
   const handleSearch = (query: string) => {
     console.log('Search query:', query);
     // You can add your search logic here
   };
-  
+
   const [approved, setApproved] = useState(false);
   const navigation = useNavigation();
 
-  
-    return (
-      <ParentView
-        style={styles.container}
-        enterAnimation={FadeInDown.duration(500)}>
-        <View style={styles.search}>
-          <SearchComponent
-            placeholder="search chats"
-            onSearch={handleSearch}
-          />
-        </View>
-        <Chatlist/>
-
-     
-      </ParentView>
-    );
-  };
-
-
+  return (
+    <ParentView
+      style={styles.container}
+      enterAnimation={FadeInDown.duration(500)}>
+      <Header
+        heading="Chats"
+        isLeftShow={true}
+        leftIconAction={() => navigation.goBack()}
+        rightIcon={icons.MESSAGE_SEARCH}
+        isRightShow={true}
+        rightIconAction={() => setSearch(!search)}
+      />
+      {search && (
+        <SearchComponent
+          placeholder="Search for a chat"
+          onSearch={handleSearch}
+        />
+      )}
+      <Chatlist />
+    </ParentView>
+  );
+};
 
 export default Chat;

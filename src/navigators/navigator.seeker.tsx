@@ -19,9 +19,12 @@ import OrderSummary from '../screens/App/OrderSummary';
 import Pending from '../screens/App/Bookings/Pending';
 import Cancel from '../screens/App/Bookings/Cancel';
 import CreateTopTabs from './CreateTopTabs';
-import Header from '../components/AppHeader';
+import Header from '../components/Header';
 import StartStopWorking from '../screens/App/StartStopWorking';
 import {useSelector} from 'react-redux';
+import Chat from '../screens/App/Chat';
+import Chatlist from '../components/ChatList';
+import ChatOpen from '../screens/App/ChatOpen';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -36,6 +39,9 @@ export type AppStackParamsList = {
   ProfileDetail: undefined;
   OrderSummary: {data: any};
   StartStopWorking: undefined;
+  ChatOpen: {title: string};
+  Chat: undefined;
+  Chatlist: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -56,31 +62,43 @@ function BookingStack() {
   const userType = useSelector(
     (state: any) => state?.user?.user?.user?.roleType,
   );
-
-  // console.log('userType', userType);
-
   return (
-    <CreateTopTabs
-      initialRouteName="Approved"
-      screens={[
-        {
-          name: userType !== 'seeker' ? 'All Bookings' : 'Approved',
-          Component: Approved,
-          label: userType !== 'seeker' ? 'All Bookings' : 'Approved',
-        },
-        {
-          name: userType !== 'seeker' ? 'Accepted ' : 'Pending',
-          Component: Pending,
-          label: userType !== 'seeker' ? 'Accepted ' : 'Pending',
-        },
-        {
-          name: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
-          Component: Cancel,
-          label: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
-        },
-      ]}
-      key={'BookingStack'}
-    />
+    <>
+      {/* <Header isLeftShow={false} heading="Bookings" /> */}
+      <CreateTopTabs
+        initialRouteName="Approved"
+        screens={[
+          {
+            name: userType !== 'seeker' ? 'All Bookings' : 'Approved',
+            Component: Approved,
+            label: userType !== 'seeker' ? 'All Bookings' : 'Approved',
+          },
+          {
+            name: userType !== 'seeker' ? 'Accepted ' : 'Pending',
+            Component: Pending,
+            label: userType !== 'seeker' ? 'Accepted ' : 'Pending',
+          },
+          {
+            name: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
+            Component: Cancel,
+            label: userType !== 'seeker' ? 'Rejected' : 'Cancelled',
+          },
+        ]}
+        key={'BookingStack'}
+      />
+    </>
+  );
+}
+function ChatStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Chat">
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Chatlist" component={Chatlist} />
+    </Stack.Navigator>
   );
 }
 
@@ -105,7 +123,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Messages',
-          Component: Messages,
+          Component: ChatStack,
           icon: icons.MESSAGE_TAB,
           selectedIcon: icons.MESSAGE_TAB_ACTIVE,
           label: 'Messages',
@@ -142,6 +160,7 @@ function ServiceSeekerStack() {
       <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
       <Stack.Screen name="OrderSummary" component={OrderSummary} />
       <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
+      <Stack.Screen name="ChatOpen" component={ChatOpen} />
     </Stack.Navigator>
   );
 }

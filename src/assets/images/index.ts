@@ -65,7 +65,8 @@ export default {
   dummyWorkImage: require('./dummyWorkImage.png'),
   StartStopWorking: require('./StartStopWorking.png'),
   Order: require('./Order.png'),
-  Internet:require('./nointernet.png'),
-  Dp:require('./DP.png'),
-  Bitmap:require('./Bitmap.png')
+  Internet: require('./nointernet.png'),
+  Dp: require('./DP.png'),
+  Bitmap: require('./Bitmap.png'),
+  ARROW_LEFT: require('./arrowLeftBlack.png'),
 };

@@ -14,12 +14,10 @@ const useStyles = () => {
       backgroundColor: '#fff',
       margin: sizes.WIDTH * 0.01,
     },
-     search: {
-      paddingTop: sizes.HEIGHT * 0.04,
-       padding: sizes.WIDTH * 0.014,
-    
+    search: {
+      // paddingTop: sizes.HEIGHT * 0.04,
+      padding: sizes.WIDTH * 0.014,
     },
-    
   });
   return {
     colors,

@@ -64,7 +64,7 @@ const TopProviderCards = () => {
                 // key={`columns_${numColumns}`} // Change the key prop to force re-render
                 style={{
                   width: sizes.WIDTH * 0.5,
-                  // height: sizes.HEIGHT * 0.1,
+                  height: sizes.HEIGHT * 0.1,
                 }}
                 data={item?.skills}
                 keyExtractor={item => item.id.toString()}

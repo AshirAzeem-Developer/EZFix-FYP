@@ -15,6 +15,9 @@ import CreateTopTabs from './CreateTopTabs';
 import EditProfile from '../screens/App/EditProfile';
 import ProfileSettings from '../screens/App/ProfileSettings';
 import ProviderHome from '../screens/App/ProviderHome';
+import Chat from '../screens/App/Chat';
+import Chatlist from '../components/ChatList';
+import ChatOpen from '../screens/App/ChatOpen';
 
 const Stack = createNativeStackNavigator();
 function BookingStack() {
@@ -54,6 +57,20 @@ function ProfileStack() {
     </Stack.Navigator>
   );
 }
+
+function ChatStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Chat">
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Chatlist" component={Chatlist} />
+    </Stack.Navigator>
+  );
+}
+
 const BottomTabs = () => {
   return (
     <CreateBottomTabs
@@ -75,7 +92,7 @@ const BottomTabs = () => {
         },
         {
           name: 'Messages',
-          Component: Messages,
+          Component: ChatStack,
           icon: icons.MESSAGE_TAB,
           selectedIcon: icons.MESSAGE_TAB_ACTIVE,
           label: 'Messages',
@@ -102,6 +119,7 @@ function ServiceProvider() {
       <Stack.Screen name="HomeTabs" component={BottomTabs} />
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+      <Stack.Screen name="ChatOpen" component={ChatOpen} />
     </Stack.Navigator>
   );
 }

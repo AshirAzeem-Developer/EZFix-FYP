@@ -7,6 +7,7 @@ import {
   ViewStyle,
   TextStyle,
   Text,
+  InputModeOptions,
 } from 'react-native';
 
 // styles
@@ -24,7 +25,7 @@ type TextInputCustomProps = {
   isShowRightIcon?: boolean;
   isPassword?: boolean;
   //
-  inputMode?: string;
+  inputMode?: InputModeOptions;
   // functions
   leftIconAction?: () => void;
   rightIconAction?: () => void;
@@ -39,6 +40,7 @@ type TextInputCustomProps = {
     errorText: string; // error message
     validator: (text: string) => boolean; // return true if no error
   }[];
+  showBottomBorder?: boolean;
 };
 
 const TextInputCustom: React.FC<TextInputCustomProps> = ({
@@ -64,6 +66,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
   onFocus,
   errorHandler,
   maxLenght,
+  showBottomBorder = true,
   ...props
 }) => {
   const {styles, sizes, colors} = useStyles();
@@ -83,7 +86,10 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
       <View
         style={[
           styles.container,
-          value.length > 0 ? styles.blackBottomBorder : styles.greyBottomBorder, // TODO BIND THIS WITHN INPUT LENGTH
+          showBottomBorder &&
+            (value.length > 0
+              ? styles.blackBottomBorder
+              : styles.greyBottomBorder), // TODO BIND THIS WITHN INPUT LENGTH
         ]}>
         {/* left icon cont */}
         {leftIcon && (
@@ -106,8 +112,8 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
           ]}
           secureTextEntry={isPassword}
           placeholder={placeHolderTxt}
-          placeholderTextColor={colors.LIGHT_GRAY}
-          inputMode={inputMode}
+          placeholderTextColor={colors.GRAY}
+          inputMode={inputMode as InputModeOptions}
           value={value}
           maxLength={maxLenght}
           onChangeText={text => {
@@ -139,7 +145,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
         {/* right icon cont */}
         {isShowRightIcon ? (
           <TouchableOpacity
-            activeOpacity={1}
+            // activeOpacity={1}
             style={[styles.rightIconCon, rightContStyle]}
             onPress={rightIconAction}>
             <Image source={rightIcon} style={styles.rightIcon} />

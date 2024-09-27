@@ -8,14 +8,14 @@ const {width, height} = Dimensions.get('window');
 const useStyles = () => {
   const colors = useColors();
   const sizes = useSizes();
-  const globalStyles = getGlobalStyles(colors, sizes);
+  const theme = getGlobalStyles(colors, sizes);
 
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#fff',
       flex: 1,
-      padding: sizes.WIDTH * 0.01,
-      paddingTop:sizes.WIDTH*0.1
+      // padding: sizes.WIDTH * 0.01,
+      // paddingTop:sizes.WIDTH*0.1
     },
     messageRow: {
       flexDirection: 'row',
@@ -62,6 +62,42 @@ const useStyles = () => {
       fontSize: sizes.FONTSIZE_SMALL,
       color: colors.GRAY,
       alignSelf: 'flex-end',
+    },
+    sendMessageContainer: {
+      width: sizes.WIDTH * 1,
+      alignSelf: 'center',
+      height: sizes.WIDTH * 0.2,
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderTopEndRadius: sizes.WIDTH * 0.06,
+      borderTopLeftRadius: sizes.WIDTH * 0.06,
+      paddingHorizontal: sizes.WIDTH * 0.02,
+      backgroundColor: 'rgba(0,128,0,0.1)',
+      marginTop: sizes.WIDTH * 0.01,
+      // elevation: 1,
+    },
+    headerText: {
+      fontSize: sizes.WIDTH * 0.055,
+      paddingLeft: sizes.WIDTH * 0.03,
+      color: colors.WHITE,
+      fontFamily: theme.TEXT_STYLE_BOLD.fontFamily,
+    },
+    chatHeaderContainer: {
+      backgroundColor: colors.PRIMARY,
+      width: sizes.WIDTH * 1,
+      height: sizes.HEIGHT * 0.1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      paddingHorizontal: sizes.WIDTH * 0.02,
+    },
+    dpImageStyles: {
+      width: sizes.WIDTH * 0.12,
+      height: sizes.WIDTH * 0.12,
+      borderRadius: sizes.WIDTH * 0.1,
+      alignSelf: 'center',
+      marginLeft: sizes.WIDTH * 0.02,
     },
   });
 
