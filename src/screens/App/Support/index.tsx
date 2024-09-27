@@ -8,7 +8,7 @@ import {ParentView} from '../../../components/common/ParentView/ParentView';
 import images from '../../../assets/images';
 import stylesheet from './style';
 
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 
 import CustomTextArea from '../../../components/CustomTextArea';
 import Button from '../../../components/Button/Button';
@@ -89,9 +89,13 @@ export default function Support({navigation}) {
     <ParentView>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Header leftIconAction={() => navigation.goBack()} />
+          <Header
+            isLeftShow={true}
+            heading="Support"
+            leftIconAction={() => navigation.goBack()}
+          />
         </View>
-        <Text style={styles.supportText}>Support</Text>
+        {/* <Text style={styles.supportText}>Support</Text> */}
         <MyKeyboardAvoider avoidBottomButton>
           <View style={styles.container}>
             <TextInputCustom

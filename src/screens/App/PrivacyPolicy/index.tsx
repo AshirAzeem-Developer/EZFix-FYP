@@ -5,7 +5,7 @@ import useStyles from './style';
 
 import {ParentView} from '../../../components/common/ParentView/ParentView';
 
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import CustomAccordionView from '../../../components/CustomAccordionView';
 
 interface Section {
@@ -64,8 +64,12 @@ export default function PrivacyPolicy({navigation}: any) {
 
   return (
     <ParentView style={styles.container}>
-      <Header leftIconAction={() => navigation.goBack()} />
-      <Text style={styles.privacyPolHeading}>Privacy Policy</Text>
+      <Header
+        isLeftShow={true}
+        heading="Privacy Policy"
+        leftIconAction={() => navigation.goBack()}
+      />
+      {/* <Text style={styles.privacyPolHeading}></Text> */}
       <ScrollView>
         <View style={styles.ppContainer}>
           <Text style={styles.ppHeading}>

@@ -5,7 +5,7 @@ import {ParentView} from '../../../components/common/ParentView/ParentView';
 import {screen} from '../../../utils/constants';
 import images from '../../../assets/images';
 
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import ProfileSettingOption from '../../../components/ProfileSettingOption';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import CustomModal from '../../../components/CustomCreatedModal';
@@ -37,8 +37,6 @@ export default function ProfileSettings({navigation}: Props) {
   const fonts = getGlobalStyles(colors, sizes);
 
   const [isOpen, setIsopen] = useState(false);
-  // navigation
-  const {navigate} = navigation;
 
   const dispatch = useDispatch();
 
@@ -75,7 +73,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionIcon: icons.BELL_ICON,
       optionText: 'Notification',
       onPressAction: () => {
-        navigate('NotificationSettings');
+        navigation.navigate('NotificationSettings');
       },
     },
     {
@@ -83,7 +81,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionIcon: icons.SUPPORT,
       optionText: 'Support',
       onPressAction: () => {
-        navigate('Support');
+        navigation.navigate('Support');
       },
     },
     {
@@ -91,7 +89,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionIcon: icons.PRIVACY_POLICY,
       optionText: 'Privacy Policy',
       onPressAction: () => {
-        navigate('PrivacyPolicy');
+        navigation.navigate('PrivacyPolicy');
       },
     },
 
@@ -118,9 +116,13 @@ export default function ProfileSettings({navigation}: Props) {
     <ParentView style={styles.container}>
       <SafeAreaView>
         <View style={styles.headerView}>
-          <Header leftIconAction={() => navigation.goBack()} />
+          <Header
+            isLeftShow={true}
+            leftIconAction={() => navigation.goBack()}
+            heading="Settings"
+          />
         </View>
-        <Text style={styles.Heading}>Settings</Text>
+        {/* <Text style={styles.Heading}>Settings</Text> */}
         {profileSettingOptions?.map((option, ind) => {
           return (
             <Animated.View

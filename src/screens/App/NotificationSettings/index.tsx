@@ -7,7 +7,7 @@ import {ParentView} from '../../../components/common/ParentView/ParentView';
 import {screen} from '../../../utils/constants';
 import images from '../../../assets/images';
 import stylesheet from './style';
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import NotificationSettingOptions from '../../../components/NotificationSettings';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
@@ -30,7 +30,11 @@ const NotificationSetting: React.FC<props> = ({navigation}) => {
   ];
   return (
     <ParentView style={styles.container}>
-      <Header leftIconAction={() => navigation.goBack()} />
+      <Header
+        isLeftShow={true}
+        heading="Notification Settings"
+        leftIconAction={() => navigation.goBack()}
+      />
       {settingOptions.map((option, ind) => {
         return (
           <View key={ind}>
