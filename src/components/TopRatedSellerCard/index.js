@@ -12,6 +12,7 @@ import images from '../../assets/images';
 import {Image} from 'react-native-elements';
 import icons from '../../assets/icons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
 const SellerCard = () => {
@@ -53,7 +54,7 @@ const SellerCard = () => {
       name: 'John Doe',
       image: images.ServiceWorker,
       location: 'Saddar,Karachi',
-      category: 'Plumber',
+      category: 'PLUMBER',
       ratings: 4.5,
     },
     {
@@ -61,77 +62,56 @@ const SellerCard = () => {
       name: 'John Doe',
       image: images.ServiceWorker,
       location: 'Saddar,Karachi',
-      category: 'Plumber',
+      category: 'PLUMBER',
       ratings: 4.5,
     },
   ];
+  const navigation = useNavigation();
   return (
-    <FlatList
-      data={sellers}
-      renderItem={({item}) => (
-        <View style={styles.cardStyles}>
-          <View>
-            <Image source={item.image} style={styles.image} />
-          </View>
-          <View style={{paddingVertical: 10}}>
-            <Text
-              style={{
-                fontSize: width * 0.05,
-                marginLeft: width * 0.02,
-                fontWeight: 'bold',
-                color: 'black',
-              }}>
-              {item.name}
-            </Text>
-            <View style={styles.ratingsContainer}>
-              <Image source={icons.Star} style={styles.ratingImage} />
-              <Text
-                style={{
-                  marginLeft: width * 0.02,
-                  color: 'black',
-                  fontSize: width * 0.035,
-                }}>
-                {item.ratings}
-              </Text>
+    <View style={styles.container}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        style={styles.flatListStyles}
+        data={sellers}
+        renderItem={({item}) => (
+          <View style={styles.cardStyles}>
+            <View>
+              <Image source={item.image} style={styles.image} />
             </View>
-            <View style={styles.locationContainer}>
-              <Image source={icons.Location} style={styles.locationImage} />
-              <Text style={{marginLeft: width * 0.02}}>{item.location}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text
-                style={{
-                  marginLeft: width * 0.02,
-                  fontSize: width * 0.07,
-                  fontWeight: 'bold',
-                }}>
-                {item.category}
-              </Text>
+            <View style={styles.sellerDetailsContainer}>
+              <Text style={styles.sellerName}>{item.name}</Text>
+              {/* ========== >> Rating Container << =============== */}
 
-              <Pressable style={styles.buttonStyle}>
-                <Text
-                  style={{
-                    color: 'white',
-                  }}>
-                  Book Now
-                </Text>
-              </Pressable>
+              <View style={styles.ratingsContainer}>
+                <Image source={icons.Star} style={styles.ratingImage} />
+                <Text style={styles.rating}>{item.ratings}</Text>
+              </View>
+              {/* ========== >> Location Container << =============== */}
+              <View style={styles.locationContainer}>
+                <Image source={icons.Location} style={styles.locationImage} />
+                <Text style={styles.locationText}>{item.location}</Text>
+              </View>
+              {/* ========== >> Category Container << =============== */}
+
+              <View style={styles.categoryContainer}>
+                <Text style={styles.categoryText}>{item.category}</Text>
+
+                <Pressable
+                  style={styles.buttonStyle}
+                  onPress={() => [
+                    // console.log('Im Pressed', item),
+                    navigation.navigate('Profile'),
+                  ]}>
+                  <Text style={styles.booknowBtn}>Book Now</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
-      )}
-      keyExtractor={item => item.id}
-      contentContainerStyle={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    />
+        )}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.fl_containerStyle}
+      />
+    </View>
   );
 };
 

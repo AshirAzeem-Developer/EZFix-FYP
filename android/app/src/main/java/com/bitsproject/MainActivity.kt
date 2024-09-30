@@ -1,4 +1,4 @@
-package com.bitsproject
+package com.example.bitsproject
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

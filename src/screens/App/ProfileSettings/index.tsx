@@ -122,7 +122,7 @@ export default function ProfileSettings({navigation}: Props) {
             heading="Settings"
           />
         </View>
-
+        {/* <Text style={styles.Heading}>Settings</Text> */}
         {profileSettingOptions?.map((option, ind) => {
           return (
             <Animated.View
