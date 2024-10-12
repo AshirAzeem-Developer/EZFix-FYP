@@ -101,7 +101,13 @@ const Chatlist = () => {
         renderItem={({item}) => (
           <TouchableOpacity
             style={styles.contacts}
-            onPress={() => navigation.navigate('ChatOpen', {title: item.name})}>
+            onPress={() =>
+              navigation.navigate('ChatOpen', {
+                title: item.name,
+                senderId: 8,
+                receiverId: 12,
+              })
+            }>
             <Image source={item.img} />
             <View style={styles.cards}>
               <Text style={styles.name}>{item.name}</Text>

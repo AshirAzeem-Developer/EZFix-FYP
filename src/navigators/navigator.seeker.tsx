@@ -39,7 +39,7 @@ export type AppStackParamsList = {
   ProfileDetail: undefined;
   OrderSummary: {data: any};
   StartStopWorking: undefined;
-  ChatOpen: {title: string};
+  ChatOpen: {title: string; data?: any; senderId?: number; receiverId?: number};
   Chat: undefined;
   Chatlist: undefined;
 };
