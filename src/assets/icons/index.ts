@@ -48,4 +48,8 @@ export default {
   CALENDAR: require('./calendar-tick.png'),
   SEND: require('./send.png'),
   MESSAGE_SEARCH: require('./messageSearch.png'),
+  USERS: require('./users.png'),
+  MEDAL: require('./medal.png'),
+  STAR_RATE: require('./starRate.png'),
+  MESSAGES: require('./messages.png'),
 };

@@ -12,7 +12,7 @@ const useStyles = () => {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fff',
+      backgroundColor: '#f2f2f2',
       flex: 1,
       // padding: sizes.WIDTH * 0.01,
       // paddingTop:sizes.WIDTH*0.1
@@ -34,9 +34,7 @@ const useStyles = () => {
       borderRadius: (sizes.WIDTH * 0.1) / 2, // Makes the image circular
       marginRight: sizes.WIDTH * 0.02,
     },
-    messageContainer: {
-      maxWidth: '70%',
-    },
+
     senderContainer: {
       alignSelf: 'flex-start',
       backgroundColor: '#E1F5FE',
@@ -54,9 +52,10 @@ const useStyles = () => {
       alignItems: 'flex-start',
     },
     messageText: {
-      fontSize: sizes.FONT_SIZE_TITLE,
+      fontSize: sizes.FONTSIZE,
       color: colors.BLACK,
       marginBottom: sizes.WIDTH * 0.01,
+      textAlign: 'right',
     },
     messageTime: {
       fontSize: sizes.FONTSIZE_SMALL,
@@ -98,6 +97,75 @@ const useStyles = () => {
       borderRadius: sizes.WIDTH * 0.1,
       alignSelf: 'center',
       marginLeft: sizes.WIDTH * 0.02,
+    },
+
+    messageContainer: {
+      flex: 1,
+      width: '100%',
+    },
+    message: {
+      color: 'black',
+      backgroundColor: '#fff',
+      borderRadius: sizes.WIDTH * 0.02,
+      padding: sizes.WIDTH * 0.03,
+      marginVertical: sizes.WIDTH * 0.02,
+      maxWidth: '80%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginHorizontal: sizes.WIDTH * 0.02,
+    },
+    sentMessage: {
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
+      alignSelf: 'flex-end',
+      backgroundColor: '#008000',
+      color: '#fff',
+      textAlign: 'right',
+    },
+    receivedMessage: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      alignSelf: 'flex-start',
+      backgroundColor: 'rgba(0,128,0,0.3)',
+    },
+
+    timestamp: {
+      fontSize: 12,
+      color: 'black',
+      marginTop: 4,
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#fff',
+      paddingHorizontal: 16,
+      position: 'absolute',
+      bottom: 0,
+
+      paddingBottom: sizes.HEIGHT * 0.035,
+      paddingTop: sizes.HEIGHT * 0.015,
+      borderTopEndRadius: sizes.WIDTH * 0.06,
+      borderTopLeftRadius: sizes.WIDTH * 0.06,
+    },
+    input: {
+      flex: 1,
+      fontSize: 16,
+      color: 'black',
+    },
+    sendButton: {
+      // backgroundColor: '#0084ff',
+      borderRadius: 16,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      marginLeft: 8,
+    },
+    sendButtonText: {
+      color: '#fff',
+      fontSize: 16,
     },
   });
 

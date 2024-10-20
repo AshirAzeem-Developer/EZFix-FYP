@@ -21,17 +21,16 @@ import {FadeInDown} from 'react-native-reanimated';
 import Button from '../../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import SearchComponent from '../../../components/SearchComponent';
-import Chatlist from '../../../components/ChatList';
 import Header from '../../../components/Header';
 import apiEndPoints from '../../../constants/apiEndPoints';
+import styles from './style';
+import {fetchFriendsList} from '../../../utils/ApiCall';
 
 //third party library
 
-// dimenstion
-const {width, height} = Dimensions.get('window');
-
 const Chat = () => {
+  const {styles, colors, sizes} = useStyles();
+
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
   const userId = useSelector((state: any) => state.user?.user?.user?.id);
 
@@ -73,24 +72,11 @@ const Chat = () => {
 
   const fetchUsers = async () => {
     const token = userToken;
-    try {
-      const response = await fetch(
-        `${apiEndPoints.BASE_URL}/api/users?filters[id][$ne]=${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const usersData = await response.json();
-      setUsers(usersData);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
+    fetchFriendsList(userId, token)
+      .then(res => {
+        setUsers(res.data);
+      })
+      .catch(err => console.error('Error fetching providers:', err));
   };
 
   useEffect(() => {
@@ -99,23 +85,32 @@ const Chat = () => {
     }
   }, []);
 
-  const handleFriendPress = (friendId: number, name: string) => {
+  const handleFriendPress = (friendId: number, name: string, item: any) => {
     navigation.navigate('ChatOpen', {
       data: friendId,
       name: name,
+      friendData: item,
     });
   };
 
   const renderFriendItem = ({item}) => {
+    console.log('Item is ======= > ', JSON.stringify(item, null, 2));
     return (
-      <TouchableOpacity onPress={() => handleFriendPress(item.id)}>
-        <View style={{padding: 16}}>
-          <Text
-            style={{
-              color: 'black',
-            }}>
-            {item.name}
-          </Text>
+      <TouchableOpacity
+        onPress={() => handleFriendPress(item?.id, item?.name, item)}>
+        <View style={styles.friendListContainer}>
+          <View>
+            <Image
+              source={{
+                uri: `${apiEndPoints.BASE_URL}${item.profileImage.url}`,
+              }}
+              style={styles.image}
+            />
+          </View>
+          <View>
+            <Text style={styles.friendName}>{item.name}</Text>
+            <Text style={styles.messageText}>{item?.message?.content}</Text>
+          </View>
         </View>
       </TouchableOpacity>
     );
@@ -124,7 +119,8 @@ const Chat = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Friend Lists</Text>
+        {/* <Text style={styles.title}>Friend Lists</Text> */}
+        <Header heading="Chats" />
         <FlatList
           data={users}
           renderItem={renderFriendItem}
@@ -135,23 +131,5 @@ const Chat = () => {
     </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    margin: 16,
-  },
-  title: {
-    color: 'black',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  flatList: {
-    flexGrow: 1,
-  },
-});
+
 export default Chat;

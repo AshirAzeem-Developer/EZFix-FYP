@@ -11,7 +11,7 @@ import jobOrder from './reducer/job-order';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['settings'],
+  whitelist: ['settings', 'user'],
 };
 
 const rootReducer = combineReducers({

@@ -17,7 +17,7 @@ import icons from '../../../assets/icons';
 import images from '../../../assets/images';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import Button from '../../../components/Button/Button';
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
 import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
@@ -27,18 +27,23 @@ import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {useSelector} from 'react-redux';
 import {postJobOrder} from '../../../utils/ApiCall';
 import {showError, showSuccess} from '../../../utils/helperFunction';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const OrderSummary = ({route}) => {
+type Props = NativeStackScreenProps<AppStackParamsList, 'OrderSummary'>;
+
+const OrderSummary: React.FC<Props> = ({route}) => {
   const [address, setAddress] = useState('123 Main St, City, State');
   const [editable, setEditable] = useState(false);
   const {styles, colors, sizes} = useStyles();
   const navigation: AppStackParamsList = useNavigation();
   const JobOrder = useSelector((state: any) => state.JobOrder);
   const providerData = route.params?.data || null;
+
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
 
-  console.log('PRoviderData: ', JSON.stringify(providerData, null, 2));
-  console.log('JobOrder: ', JobOrder);
+  console.log('Provider Skills is ====== >', providerData?.skill);
+  // console.log('PRoviderData: ', JSON.stringify(providerData, null, 2));
+  // console.log('JobOrder: ', JobOrder);
 
   const handleSubmit = () => {
     postJobOrder(
@@ -46,7 +51,7 @@ const OrderSummary = ({route}) => {
         data: {
           description: JobOrder.jobDescription,
           date: JobOrder.jobBookingData,
-          fixedPrice: providerData?.skills[0]?.hourlyRate,
+          fixedPrice: providerData?.skill?.split('\n').pop() || 600,
         },
       },
       userToken,
@@ -85,10 +90,13 @@ const OrderSummary = ({route}) => {
       style={styles.container}
       enterAnimation={FadeInDown.duration(500)}>
       {/* ==== HEADER ==== */}
-      <Header leftIconAction={() => navigation.goBack()} />
+      <Header
+        heading="Booking Summary"
+        isLeftShow={true}
+        leftIconAction={() => navigation.goBack()}
+      />
       {/* ==== HEADER ==== */}
       <MyKeyboardAvoider avoidBottomButton>
-        <Text style={styles.summaryText}>Booking Summary</Text>
         <View style={styles.orderSummaryContainer}>
           {/* ==== ORDER SUMMARY ==== */}
 
@@ -117,7 +125,7 @@ const OrderSummary = ({route}) => {
                 Worker Name : {providerData?.name}
               </Text>
               <Text style={styles.orderItemPrice}>
-                Per Hour Rate : {providerData?.skills[0]?.hourlyRate}
+                Per Hour Rate : {providerData?.skill?.split('\n').pop()}
               </Text>
             </View>
           </View>
@@ -156,6 +164,7 @@ const OrderSummary = ({route}) => {
           bgcolor="#008000"
           btnStyles={{
             marginVertical: sizes.HEIGHT * 0.02,
+            borderRadius: sizes.WIDTH * 0.02,
           }}
         />
       </BottomButton>

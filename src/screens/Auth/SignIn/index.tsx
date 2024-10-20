@@ -16,8 +16,12 @@ import {
 
 import {validateEmail, validatePassword} from '../../../utils/validator';
 import {postLogin} from '../../../utils/ApiCall';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {AuthStackParamList} from '../../../navigators/authStack';
 
-const SignIn = ({navigation}) => {
+type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
+
+const SignIn = ({navigation}: Props) => {
   const {styles, colors, sizes} = useStyles();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);

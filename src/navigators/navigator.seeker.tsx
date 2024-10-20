@@ -2,8 +2,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateBottomTabs from './CreateBottomTabs';
 import Home from '../screens/App/Home';
 import Profile from '../screens/App/Profile';
-import Messages from '../screens/App/Message';
-
 import icons from '../assets/icons';
 import ProfileSettings from '../screens/App/ProfileSettings';
 import EditProfile from '../screens/App/EditProfile';
@@ -25,6 +23,7 @@ import {useSelector} from 'react-redux';
 import Chat from '../screens/App/Chat';
 import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
+import AllProviderCards from '../screens/App/AllProviders';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -37,11 +36,14 @@ export type AppStackParamsList = {
   WorkDetails: {title: string; data?: any};
   Bookings: undefined;
   ProfileDetail: undefined;
-  OrderSummary: {data: any};
+  OrderSummary: {
+    data: {};
+  };
   StartStopWorking: undefined;
-  ChatOpen: {title: string; data?: any; senderId?: number; receiverId?: number};
+  ChatOpen: {title: string; data?: any};
   Chat: undefined;
   Chatlist: undefined;
+  AllProviders: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -161,6 +163,7 @@ function ServiceSeekerStack() {
       <Stack.Screen name="OrderSummary" component={OrderSummary} />
       <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
+      <Stack.Screen name="AllProviders" component={AllProviderCards} />
     </Stack.Navigator>
   );
 }

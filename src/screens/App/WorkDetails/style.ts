@@ -36,6 +36,44 @@ const useStyles = () => {
       color: colors.GRAY,
       marginHorizontal: sizes.WIDTH * 0.02,
     },
+    datePickerContainer: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      marginVertical: sizes.HEIGHT * 0.02,
+      paddingHorizontal: sizes.WIDTH * 0.04,
+    },
+    dateLabel: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.FONTSIZE,
+      color: colors.GRAY,
+    },
+    dateDisplay: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginVertical: sizes.HEIGHT * 0.01,
+    },
+    dateText: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.FONTSIZE,
+      color: colors.BLACK,
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    attachedPhoto: {},
+    seeAllProvidersButton: {
+      // backgroundColor: colors.PRIMARY,
+      padding: 10,
+      borderRadius: 5,
+      marginVertical: 20,
+      marginHorizontal: 10,
+    },
+    seeAllProvidersText: {
+      ...globalStyles.TEXT_STYLE_BOLD_ITALIC,
+      color: colors.BLACK,
+      fontSize: sizes.FONTSIZE,
+      textAlign: 'right',
+    },
   });
   return {
     colors,

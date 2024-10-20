@@ -72,6 +72,19 @@ export const postSupport = (data: {}, token: any) => {
     },
   });
 };
+
+export const getUserByNameWithAllDetails = (token: any, userName: string) => {
+  return apiRequest.get(
+    `${apiEndPoint.USERS}?filters[name][$eq]=${userName}&populate=*`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
+
 // ================= >> Skills << =================
 export const getSkillsFromUserId = (userId: number, token: string) => {
   // Construct the URL for fetching the user with populated skills
@@ -114,7 +127,7 @@ export const getJobOrdersByUserNameWithReviews = (
   userName: string,
 ) => {
   return apiRequest.get(
-    `${apiEndPoint.JOB_ORDERS}?filters[skill][user][name][$eq]=${userName}&populate[user_review]=*`,
+    `${apiEndPoint.JOB_ORDERS}?filters[skill][user][name][$eq]=${userName}&populate[user_review][populate][user][populate]=*`,
     {
       headers: {
         'Content-Type': 'application/json',
@@ -205,3 +218,19 @@ export const getServiceSeekerBooking = (
     },
   });
 };
+
+// ================================ >> Message << ================================
+
+// fetch friends List
+export const fetchFriendsList = (userId: number, token: string) => {
+  // Construct the URL for fetching the user with populated skills
+  const url = `${apiEndPoint.USERS}?filters[id][$ne]=${userId}&populate=*`;
+
+  return apiRequest.get(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+// /api/users
