@@ -49,7 +49,7 @@ interface RouteParams {
   friendData: any;
 }
 
-const Chatopen: React.FC = ({navigation}) => {
+const Chatopen = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
 
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
