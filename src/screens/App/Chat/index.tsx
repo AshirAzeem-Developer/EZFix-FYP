@@ -22,7 +22,7 @@ import Button from '../../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import Header from '../../../components/Header';
-import apiEndPoints from '../../../constants/apiEndPoints';
+import API_ENDPOINTS from '../../../constants/apiEndPoints';
 import styles from './style';
 import {fetchFriendsList} from '../../../utils/ApiCall';
 
@@ -102,7 +102,7 @@ const Chat = () => {
           <View>
             <Image
               source={{
-                uri: `${apiEndPoints.BASE_URL}${item.profileImage.url}`,
+                uri: `${API_ENDPOINTS.BASE_URL}${item.profileImage?.url}`,
               }}
               style={styles.image}
             />

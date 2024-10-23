@@ -37,6 +37,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
           roleType: string;
           name: string;
           phoneNumber: string;
+          email: string;
         };
       };
     };
@@ -47,7 +48,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   );
   const userData = useSelector((state: RootState) => state.user.user.user);
   console.log('USerType', userType);
-  console.log('User Data', userData);
+  console.log('User Data', JSON.stringify(userData, null, 2));
 
   const SeekerView = () => {
     return (
@@ -71,12 +72,16 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* =========== >>> Profile <<<< ============= */}
             <View style={styles.profileContainer}>
-              <Image source={images.PROFILE} />
+              <Image
+                source={images.PROFILE}
+                style={{
+                  width: sizes.WIDTH * 0.18,
+                  height: sizes.WIDTH * 0.18,
+                }}
+              />
               <View style={styles.profileDetailsContainer}>
                 <Text style={styles.name}>{userData?.name}</Text>
-                <Text style={styles.phoneNumberText}>
-                  +{userData?.phoneNumber}
-                </Text>
+                <Text style={styles.phoneNumberText}>{userData?.email}</Text>
               </View>
             </View>
             {/* =========== >>> Section 1 <<<< ============= */}
@@ -111,7 +116,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +92{userData?.phoneNumber}
+                  +{userData?.phoneNumber}
                 </Text>
               </View>
             </View>
@@ -147,7 +152,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* =========== >>> Profile <<<< ============= */}
             <View style={styles.profileContainer}>
-              <Image source={images.PROFILE} />
+              <Image source={images.PROFILE} style={{}} />
               <View style={styles.profileDetailsContainer}>
                 <Text style={styles.name}>John Smith</Text>
                 <Text style={styles.phoneNumberText}>+92 321 5589988</Text>
@@ -210,7 +215,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             )}
 
             {/* =========== >>> Section 4 <<<< ============= */}
-            <View style={styles.experienceContainer}>
+            {/* <View style={styles.experienceContainer}>
               <View style={styles.experienceChipContainer}>
                 <Text style={styles.expLabel}>Experience</Text>
                 <View style={styles.experienceChip}>
@@ -232,7 +237,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 Laudantium, voluptatum aliquam iure, et nemo eaque incidunt
                 sapiente qui ut ipsa libero!*
               </Text>
-            </View>
+            </View> */}
 
             {/* =========== >>> Section 5 (Toggle) <<<< ============= */}
             <View style={styles.switchContainer}>

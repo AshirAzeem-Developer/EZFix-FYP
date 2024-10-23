@@ -55,7 +55,7 @@ const useStyles = () => {
       // zIndex:10,
       alignItems: 'center',
       justifyContent: 'space-between',
-      backgroundColor: colors.BACKGROUND,
+      backgroundColor: 'rgba(0,128,0,0.1)',
       width: sizes.WIDTH * 0.92,
       height: sizes.HEIGHT * 0.1,
       alignSelf: 'center',
