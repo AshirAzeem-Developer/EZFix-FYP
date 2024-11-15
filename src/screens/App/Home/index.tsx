@@ -33,7 +33,7 @@ const Home: React.FC<props> = ({navigation}) => {
 
   const user = useSelector((state: RootState) => state.user.user.user.roleType);
 
-  console.log('UserType === >: ', user);
+  // console.log('UserType === >: ', user);
 
   const handleSearch = (query: string) => {
     console.log('Search query:', query);
@@ -55,12 +55,12 @@ const Home: React.FC<props> = ({navigation}) => {
             )}
           </TouchableOpacity>
         </View>
-        <View style={styles.search}>
+        {/* <View style={styles.search}>
           <SearchComponent
             placeholder="search any services..."
             onSearch={handleSearch}
           />
-        </View>
+        </View> */}
         <View>
           <Text style={styles.categoryheading}>Categories</Text>
         </View>

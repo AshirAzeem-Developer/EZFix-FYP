@@ -66,7 +66,7 @@ const Pending: React.FC<AppStackParamsList> = () => {
         setUserSkillIds(skillIds); // Update skill IDs state
 
         console.log('Skills', JSON.stringify(skills, null, 2));
-        // console.log('User skills:', JSON.stringify(skills, null, 2));
+        console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
         {
           userType !== 'seeker'
@@ -202,11 +202,15 @@ const Pending: React.FC<AppStackParamsList> = () => {
         });
     }
 
+    console.log(
+      'Job Orders -------------------------------- > ',
+      jobOrders?.data,
+    );
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        {jobOrders.data?.lenght > 0 ? (
+        {jobOrders && (
           <FlatList
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
@@ -336,7 +340,8 @@ const Pending: React.FC<AppStackParamsList> = () => {
               </View>
             )}
           />
-        ) : (
+        )}
+        {/* : (
           <View
             style={{
               flex: 1,
@@ -351,7 +356,7 @@ const Pending: React.FC<AppStackParamsList> = () => {
               No Pending Jobs
             </Text>
           </View>
-        )}
+        )} */}
       </ParentView>
     );
   };

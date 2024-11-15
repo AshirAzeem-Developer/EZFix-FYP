@@ -46,7 +46,7 @@ export const getProviders = (token: any, queryParams: any) => {
 
 export const getAllProviders = (token: any) => {
   return apiRequest.get(
-    `${apiEndPoint.USERS}?filters[roleType]=provider&populate=*`,
+    `${apiEndPoint.USERS}?filters[roleType]=provider&populate[profileImage]=*&populate[skills]=*&populate[job_orders][populate]=*`,
     {
       headers: {
         'Content-Type': 'application/json',

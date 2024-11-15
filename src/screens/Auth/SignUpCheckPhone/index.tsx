@@ -1,41 +1,43 @@
-import React, { FC, useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { FadeInDown } from 'react-native-reanimated';
+import React, {FC, useState} from 'react';
+import {View, Text, Alert} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {FadeInDown} from 'react-native-reanimated';
 
 // styles
 import useStyles from './style';
 
 // local component
-import { ParentView } from '../../../components/common/ParentView/ParentView';
+import {ParentView} from '../../../components/common/ParentView/ParentView';
 import Header from '../../../components/AppHeader';
 import MobileNoTextInput from '../../../components/MobileNoTextInput';
 import Button from '../../../components/Button/Button';
 
 // local navigation
-import { AuthStackParamList } from '../../../navigators/authStack';
-import { useGenericModal } from '../../../hooks/useGenericModal/useGenericModal';
+import {AuthStackParamList} from '../../../navigators/authStack';
+import {useGenericModal} from '../../../hooks/useGenericModal/useGenericModal';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
-import { validatePhoneNo } from '../../../utils/validator';
+import {validatePhoneNo} from '../../../utils/validator';
 
 // Firebase utilities for OTP
-import { sendOTP } from '../../../utils/firebaseAuth';
+import {sendOTP} from '../../../utils/firebaseAuth';
 import images from '../../../assets/images';
-import { getGlobalStyles } from '../../../constants/GlobalStyle';
-import { showError } from '../../../utils/helperFunction';
+import {getGlobalStyles} from '../../../constants/GlobalStyle';
+import {showError} from '../../../utils/helperFunction';
 
 type SignUpCheckPhoneScreenProps = NativeStackScreenProps<
   AuthStackParamList,
   'SignUpCheckPhone'
 >;
 const formatPhoneNumber = (countryCode: string, phoneNumber: string) => {
-  const formattedCountryCode = countryCode.startsWith('+') ? countryCode : `+${countryCode}`;
+  const formattedCountryCode = countryCode.startsWith('+')
+    ? countryCode
+    : `+${countryCode}`;
   const formattedPhoneNumber = phoneNumber.replace(/^0+/, ''); // Remove leading zeros
   return `${formattedCountryCode}${formattedPhoneNumber}`;
 };
 
-const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
-  const { styles, sizes, colors } = useStyles();
+const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({navigation}) => {
+  const {styles, sizes, colors} = useStyles();
   const fonts = getGlobalStyles(colors, sizes);
 
   // state
@@ -45,11 +47,10 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
   const [confirmation, setConfirmation] = useState<any>(null);
 
   // navigation
-  const { navigate } = navigation;
+  const {navigate} = navigation;
 
   // Format the phone number into E.164 format
-  
- 
+
   const handleSendOTP = async () => {
     const countryCode = '92'; // Example country code for Pakistan
     const formattedPhoneNumber = formatPhoneNumber(countryCode, mobileNo); // Ensure correct formatting
@@ -67,10 +68,13 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
-      showError('Error', 'An error occurred while sending OTP. Please try again.');
+      showError(
+        'Error',
+        'An error occurred while sending OTP. Please try again.',
+      );
     }
   };
-  
+
   const verifyEmailModalProps = {
     image: images.unVerifyPhone,
     title: 'Verify Your Phone Number',
@@ -96,19 +100,21 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
       navigate('OTPVerification', {
         confirmation,
         phoneNumber: mobileNo, // Pass the correct phone number here
-        navigateTo: 'SingUpPersonalInfo'
+        navigateTo: 'SingUpPersonalInfo',
       });
     },
   };
   // Use the custom hook
-  const { GenericModal, hideModal, showModal } = useGenericModal({
+  const {GenericModal, hideModal, showModal} = useGenericModal({
     modalProp: isOtpSend ? otpSendModalProps : verifyEmailModalProps,
   });
 
   let isValid = validatePhoneNo(mobileNo);
 
   return (
-    <ParentView style={styles.container} enterAnimation={FadeInDown.duration(500)}>
+    <ParentView
+      style={styles.container}
+      enterAnimation={FadeInDown.duration(500)}>
       <Header leftIconAction={() => navigation.goBack()} />
       <GenericModal />
 
@@ -147,7 +153,10 @@ const SignUpCheckPhone: FC<SignUpCheckPhoneScreenProps> = ({ navigation }) => {
             if (isValid) {
               showModal();
             } else {
-              Alert.alert('Invalid Number', 'Please enter a valid mobile number.');
+              Alert.alert(
+                'Invalid Number',
+                'Please enter a valid mobile number.',
+              );
             }
           }}
           btnStyles={styles.snedCodeButton}
