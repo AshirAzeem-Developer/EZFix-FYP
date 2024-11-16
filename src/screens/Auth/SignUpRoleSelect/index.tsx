@@ -67,7 +67,7 @@ const SignUpRoleSelect: FC<SignUpRoleSelectScreenProps> = ({navigation}) => {
       });
     }
   };
-  console.log('USer State', userState);
+  // console.log('USer State', userState);
 
   return (
     <ParentView

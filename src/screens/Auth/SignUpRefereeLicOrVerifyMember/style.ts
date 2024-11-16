@@ -45,6 +45,7 @@ const useStyles = () => {
 
     /******************[cameraMainCont]*********************** */
     cameraMainCont: {
+      flexDirection: 'column',
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
@@ -61,9 +62,11 @@ const useStyles = () => {
       color: colors.WHITE,
     },
     camera: {
+      position: 'relative',
+      // top: sizes.HEIGHT * 0.00,
       width: '95%',
-      height: sizes.HEIGHT * 0.4,
-      marginTop: sizes.HEIGHT * 0.05,
+      height: sizes.HEIGHT * 0.35,
+      // marginTop: sizes.HEIGHT * 0.05,
       marginBottom: sizes.HEIGHT * 0.025,
     },
     noPhotoCopTxt: {

@@ -27,7 +27,7 @@ export type AuthStackParamList = {
   // SignUpConnectAccount: {roleID: Role};
   // SignUpStatus: {roleID: Role};
   SignUpSeekerProviderNICOrVerifyMember: {roleID: Role};
-  SignUpCheckPhoto: {roleID: Role};
+  SignUpCheckPhoto: {roleID: Role; cnicFrontImage?: string};
   // SignUpRefereeCoachingLicense: {roleID: Role};
   // SignUpTeamSetup: {roleID: Role};
   // SignUpAddExperience: {roleID: Role};

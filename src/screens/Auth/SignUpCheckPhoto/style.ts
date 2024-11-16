@@ -33,7 +33,7 @@ const useStyles = () => {
       height: '27%',
       alignSelf: 'center',
       borderRadius: sizes.WIDTH * 0.025,
-      backgroundColor: colors.LIGHT_GRAY100,
+      // backgroundColor: colors.LIGHT_GRAY100,
     },
 
     instructionTxt: {
@@ -52,7 +52,7 @@ const useStyles = () => {
       alignSelf: 'center',
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: sizes.HEIGHT * 0.025,
+      marginTop: sizes.HEIGHT * 0.005,
       // backgroundColor: 'green',
     },
     singInstTxt: {

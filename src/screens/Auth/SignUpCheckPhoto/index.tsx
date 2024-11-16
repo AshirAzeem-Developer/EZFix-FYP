@@ -34,7 +34,8 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
 
   // navigation
   const {navigate} = navigation;
-  const {roleID} = route.params;
+  const {roleID, cnicFrontImage} = route.params;
+  console.log('Cnic Front Image', cnicFrontImage);
   return (
     <ParentView style={styles.container}>
       <Header leftIconAction={() => navigation.goBack()} />
@@ -45,7 +46,18 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
       </View>
       {/* text component  end  */}
       {/* takenImagePlaceHolder */}
-      <View style={styles.takenImgCon}></View>
+      <View style={styles.takenImgCon}>
+        <Image
+          source={{uri: `file://${cnicFrontImage}`}}
+          // resizeMode="cover"
+          style={{
+            width: '100%',
+            height: '100%',
+            borderRadius: sizes.WIDTH * 0.025,
+            backgroundColor: 'red',
+          }}
+        />
+      </View>
       {/* takenImagePlaceHolder */}
 
       {/* instructionTxt */}
@@ -70,6 +82,7 @@ const SignUpCheckPhoto: FC<SignUpCheckPhotoScreenProps> = ({
       {/* instructionTxt */}
       <BottomButton>
         <Text style={styles.reTakeTxt}>Retake Photo</Text>
+
         <Button
           bgcolor={colors.PRIMARY}
           text="Use Photo"

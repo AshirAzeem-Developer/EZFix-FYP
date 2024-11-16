@@ -78,7 +78,7 @@ const SignUpSeekerProviderNICOrVerifyMember: FC<
 
     // navigating
     setIsCameraOpen(false);
-    navigate('SignUpCheckPhoto', {roleID: roleID});
+    navigate('SignUpCheckPhoto', {roleID: roleID, cnicFrontImage: photo?.path});
   };
 
   if (device == null) return null;
@@ -109,6 +109,7 @@ const SignUpSeekerProviderNICOrVerifyMember: FC<
           style={styles.camera}
           photo={true}
           ref={cameraRef}
+          resizeMode="cover"
         />
         <Text style={styles.noPhotoCopTxt}>No photocopies</Text>
 
@@ -170,10 +171,10 @@ const SignUpSeekerProviderNICOrVerifyMember: FC<
           <View style={[styles.textCont, roleID === 1 && styles.marginStle]}>
             <Text style={styles.verifyMemTxt}>CNIC IDENTITY</Text>
 
-            <Text style={styles.detailTxt}>
+            {/* <Text style={styles.detailTxt}>
               We need proof that you belong to your sports governing body.
               Please upload a document or photo showing your membership status.
-            </Text>
+            </Text> */}
           </View>
           {/* text component  end  */}
 
