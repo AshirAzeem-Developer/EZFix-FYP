@@ -22,7 +22,7 @@ export default {
   SETTINGS: require('./Settings.png'),
   BELL: require('./bell.png'),
   ArrowRight: require('./RightArrow.png'),
-  Star: require('./Star.png'),
+  Star: require('./star.png'),
   MAP: require('./map.png'),
   NOTIFICATION: require('./notification.png'),
   DELETE: require('./Delete.png'),

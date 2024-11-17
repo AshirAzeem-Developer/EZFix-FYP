@@ -18,33 +18,44 @@ import ProviderHome from '../screens/App/ProviderHome';
 import Chat from '../screens/App/Chat';
 import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
+import { StyleSheet, View } from 'react-native';
+import CustomHeader from '../components/CustomHeader';
+import Header from '../components/Header';
 
 const Stack = createNativeStackNavigator();
-function BookingStack() {
+
+const BookingStack = ({ navigation }: { navigation: any }) => {
   return (
-    <CreateTopTabs
-      initialRouteName="Pending"
-      screens={[
-        {
-          name: 'Approved',
-          Component: Approved,
-          label: 'Approved',
-        },
-        {
-          name: 'Pending',
-          Component: Pending,
-          label: 'Pending',
-        },
-        {
-          name: 'Cancel',
-          Component: Cancel,
-          label: 'Cancelled',
-        },
-      ]}
-      key={'BookingStack'}
-    />
+    <View style={styles.container}>
+      {/* Custom Header */}
+    
+          <Header  
+            isLeftShow={true}
+            heading="Bookings"
+            leftIconAction={() => navigation.goBack()}
+          />
+     
+
+      {/* Top Tabs */}
+      <CreateTopTabs
+        initialRouteName="Pending"
+        screens={[
+          { name: 'Approved', Component: Approved, label: 'Approved' },
+          { name: 'Pending', Component: Pending, label: 'Pending' },
+          { name: 'Cancel', Component: Cancel, label: 'Cancelled' },
+        ]}
+        key={'BookingStack'}
+      />
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
 function ProfileStack() {
   return (
     <Stack.Navigator
@@ -58,18 +69,26 @@ function ProfileStack() {
   );
 }
 
-function ChatStack() {
+const ChatStack = ({ navigation }: { navigation: any }) => {
   return (
     <Stack.Navigator
+      initialRouteName="Chat"
       screenOptions={{
-        headerShown: false,
+        header: ({ navigation, route }) => (
+          <Header  
+          isLeftShow={true}
+          heading="Chats"
+          leftIconAction={() => navigation.goBack()}
+        />
+   
+        ),
       }}
-      initialRouteName="Chat">
+    >
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Chatlist" component={Chatlist} />
     </Stack.Navigator>
   );
-}
+};
 
 const BottomTabs = () => {
   return (

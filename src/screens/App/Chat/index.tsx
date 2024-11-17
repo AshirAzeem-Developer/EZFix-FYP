@@ -120,7 +120,7 @@ const Chat = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         {/* <Text style={styles.title}>Friend Lists</Text> */}
-        <Header heading="Chats" />
+       
         <FlatList
           data={users}
           renderItem={renderFriendItem}

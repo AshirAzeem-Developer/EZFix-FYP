@@ -20,6 +20,7 @@ const useStyles = () => {
     },
     flatList: {
       flexGrow: 1,
+      padding:sizes.WIDTH*0.03
     },
     friendName: {
       ...globalStyles.TEXT_STYLE_BOLD,
