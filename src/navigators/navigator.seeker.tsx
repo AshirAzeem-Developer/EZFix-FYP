@@ -24,6 +24,7 @@ import Chat from '../screens/App/Chat';
 import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
 import AllProviderCards from '../screens/App/AllProviders';
+import { View } from 'react-native';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -60,12 +61,20 @@ function ProfileStack() {
     </Stack.Navigator>
   );
 }
-function BookingStack() {
+function BookingStack({ navigation }) {
   const userType = useSelector(
     (state: any) => state?.user?.user?.user?.roleType,
   );
   return (
     <>
+    <View>
+
+    <Header  
+            isLeftShow={true}
+            heading="Bookings"
+            leftIconAction={() => navigation.goBack()}
+          />
+    </View>
       {/* <Header isLeftShow={false} heading="Bookings" /> */}
       <CreateTopTabs
         initialRouteName="Approved"
@@ -91,9 +100,19 @@ function BookingStack() {
     </>
   );
 }
-function ChatStack() {
+function ChatStack({navigation}) {
+ 
   return (
-    <Stack.Navigator
+    <>
+    <View>
+
+<Header  
+        isLeftShow={true}
+        heading="Chats"
+        leftIconAction={() => navigation.goBack()}
+      />
+</View>
+     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
@@ -101,6 +120,8 @@ function ChatStack() {
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Chatlist" component={Chatlist} />
     </Stack.Navigator>
+    </>
+ 
   );
 }
 
