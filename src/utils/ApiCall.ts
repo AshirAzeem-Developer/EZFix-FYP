@@ -234,3 +234,5 @@ export const fetchFriendsList = (userId: number, token: string) => {
   });
 };
 // /api/users
+
+// ========================= >> HUZAIFA API CALLINGS << =========================
