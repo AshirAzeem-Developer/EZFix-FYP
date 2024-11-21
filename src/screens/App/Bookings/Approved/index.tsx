@@ -163,7 +163,7 @@ const Approved = ({navigation}) => {
                 fontSize: sizes.WIDTH * 0.05,
                 color: colors.BLACK,
               }}>
-              No Pending {userType === 'seeker' ? ' Bookings' : 'Jobs'}
+              No Approved {userType === 'seeker' ? ' Bookings' : 'Jobs'}
             </Text>
           </View>
         )}

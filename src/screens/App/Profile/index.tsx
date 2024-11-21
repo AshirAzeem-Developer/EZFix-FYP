@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -20,12 +20,15 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import DropDown from '../../../components/DropDown';
+import apiEndPoints from '../../../constants/apiEndPoints';
+import {getUserById} from '../../../utils/ApiCall';
 
 type Props = NativeStackScreenProps<AppStackParamsList>;
 
 const Profile: React.FC<Props> = ({navigation}) => {
   const {styles, sizes, colors} = useStyles();
 
+  const [userAllData, setUserAllData] = useState<any>({});
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -46,9 +49,34 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const userType = useSelector(
     (state: RootState) => state.user.user.user.roleType,
   );
+
+  const userId = useSelector((state: RootState) => state.user.user.user.id);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+
+  console.log('I am the logged IN User Right Now  --------------- > ', userId);
+
   const userData = useSelector((state: RootState) => state.user.user.user);
-  console.log('USerType', userType);
-  console.log('User Data', JSON.stringify(userData, null, 2));
+
+  // console.log('USerType', userType);
+  // console.log('User Data', JSON.stringify(userData, null, 2));
+
+  function GetUserALLData() {
+    getUserById(userToken, userId)
+      .then(res => {
+        console.log(
+          'I am the logged IN User Right Now ',
+          JSON.stringify(res.data, null, 2),
+        );
+        setUserAllData(res.data);
+      })
+      .catch(err => {
+        console.log('Error', err);
+      });
+  }
+
+  useEffect(() => {
+    GetUserALLData();
+  }, []);
 
   const SeekerView = () => {
     return (
@@ -73,7 +101,9 @@ const Profile: React.FC<Props> = ({navigation}) => {
             {/* =========== >>> Profile <<<< ============= */}
             <View style={styles.profileContainer}>
               <Image
-                source={images.PROFILE}
+                source={{
+                  uri: `${apiEndPoints.BASE_URL}${userAllData?.profileImage?.url}`,
+                }}
                 style={{
                   width: sizes.WIDTH * 0.18,
                   height: sizes.WIDTH * 0.18,
