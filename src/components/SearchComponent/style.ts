@@ -16,9 +16,11 @@ const useStyles = () => {
       justifyContent: 'flex-start',
       backgroundColor: '#fff',
       borderRadius: sizes.WIDTH * 0.1,
-      padding: sizes.WIDTH * 0.03,
+      padding: sizes.WIDTH * 0.02,
+      alignSelf: 'center',
 
       elevation: 2,
+      width: sizes.WIDTH * 0.95,
     },
     icon: {
       marginHorizontal: sizes.WIDTH * 0.02,

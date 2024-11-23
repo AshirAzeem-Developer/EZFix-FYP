@@ -19,6 +19,40 @@ export const getUserById = (token: any, id: any) => {
   });
 };
 
+export const getMultipleUsers = (token: string, userIds: number[]) => {
+  // Handle empty array case
+  if (!userIds.length) {
+    return Promise.resolve({data: []});
+  }
+
+  // Build the filter query for multiple IDs
+  const filterQuery = userIds
+    .map((id, index) => `filters[id][$in][${index}]=${id}`)
+    .join('&');
+
+  // Construct the complete URL with filters and populate
+  const url = `${apiEndPoint.USERS}?${filterQuery}&populate=*`;
+
+  return apiRequest
+    .get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+      console.log(
+        'Multiple Users Response:',
+        JSON.stringify(response.data, null, 2),
+      );
+      return response;
+    })
+    .catch(error => {
+      console.error('Error fetching multiple users:', error);
+      throw error;
+    });
+};
+
 export const getProvider = (token: any, id: any, skill: string) => {
   return apiRequest.get(
     `${apiEndPoint.USERS}/${id}?populate[skills][filters][name][$eq]=${skill}&populate[skills][populate]=*`,
@@ -222,17 +256,80 @@ export const getServiceSeekerBooking = (
 // ================================ >> Message << ================================
 
 // fetch friends List
-export const fetchFriendsList = (userId: number, token: string) => {
-  // Construct the URL for fetching the user with populated skills
-  const url = `${apiEndPoint.USERS}?filters[id][$ne]=${userId}&populate=*`;
+// export const fetchFriendsList = (userId: number, token: string) => {
+//   // Construct the URL for fetching the user with populated skills
+//   const url = `${apiEndPoint.USERS}?filters[id][$ne]=${userId}&populate=*`;
 
-  return apiRequest.get(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
+//   return apiRequest.get(url, {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+// };
+
+// export const fetchFriendsList = (userId: number, token: string) => {
+//   // Query messages to find all chats involving the user
+//   const url = `${apiEndPoint.MESSAGES}?filters[$or][0][sender][id][$eq]=${userId}&filters[$or][1][recipient][id][$eq]=${userId}&populate=sender,recipient`;
+
+//   return apiRequest.get(url, {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+// };
+
+export const fetchFriendsList = (userId: number, token: string) => {
+  // Query messages to find all chats involving the user
+  const url = `${apiEndPoint.MESSAGES}?filters[$or][0][sender][id][$eq]=${userId}&filters[$or][1][recipient][id][$eq]=${userId}&populate=sender,recipient`;
+
+  return apiRequest
+    .get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+      console.log('Response Data', JSON.stringify(response.data, null, 2));
+      // Extract recipients from the response data
+      const friendsList = response.data?.data?.map((message: any) => {
+        // Return the recipient if the current user is the sender, or the sender if the current user is the recipient
+        return message?.attributes?.sender?.data?.id === userId
+          ? message.attributes?.recipient
+          : message.attributes?.sender;
+      });
+
+      console.log('Friends List', JSON.stringify(friendsList, null, 2));
+
+      // Keep only the first occurrence of each user based on their id (discard subsequent duplicates)
+      const seenUserIds = new Set();
+      const filteredFriendsList = friendsList.filter((friend: any) => {
+        // Make sure to access the id at the correct level (friend.data.id)
+        const friendId = friend?.data?.id;
+
+        // If the user's id has already been seen, discard this friend
+        if (seenUserIds.has(friendId)) {
+          return false; // Discard the duplicate
+        }
+        seenUserIds.add(friendId); // Add the user's id to the seen set
+        return true; // Keep the first occurrence
+      });
+
+      // console.log(
+      //   'Filtered Friends List',
+      //   JSON.stringify(filteredFriendsList, null, 2),
+      // );
+
+      return filteredFriendsList;
+    })
+    .catch(error => {
+      console.error('Error fetching friends list:', error);
+      throw error;
+    });
 };
+
 // /api/users
 
 // ========================= >> HUZAIFA API CALLINGS << =========================

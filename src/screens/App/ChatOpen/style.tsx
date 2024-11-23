@@ -12,7 +12,7 @@ const useStyles = () => {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#f2f2f2',
+      backgroundColor: '#F5F9F5',
       flex: 1,
       // padding: sizes.WIDTH * 0.01,
       // paddingTop:sizes.WIDTH*0.1
@@ -81,6 +81,7 @@ const useStyles = () => {
       paddingLeft: sizes.WIDTH * 0.03,
       color: colors.WHITE,
       fontFamily: theme.TEXT_STYLE_BOLD.fontFamily,
+      textTransform: 'capitalize',
     },
     chatHeaderContainer: {
       backgroundColor: colors.PRIMARY,
@@ -129,7 +130,8 @@ const useStyles = () => {
       alignItems: 'flex-start',
       justifyContent: 'flex-start',
       alignSelf: 'flex-start',
-      backgroundColor: 'rgba(0,128,0,0.3)',
+      backgroundColor: '#E8F5E8',
+      color: '#333333',
     },
 
     timestamp: {
@@ -141,7 +143,7 @@ const useStyles = () => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#fff',
+      backgroundColor: '#E8F5E8',
       paddingHorizontal: 16,
       position: 'absolute',
       bottom: 0,

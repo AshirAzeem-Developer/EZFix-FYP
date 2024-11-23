@@ -9,4 +9,5 @@ export default {
   SUPPORT: `/supports`,
   JOB_ORDERS: `/job-orders`,
   USERS: `/users`,
+  MESSAGES: `/messages`,
 };

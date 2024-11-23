@@ -67,7 +67,6 @@ function BookingStack({navigation}) {
   );
   return (
     <>
-    
       <CreateTopTabs
         initialRouteName="Approved"
         screens={[
@@ -95,13 +94,6 @@ function BookingStack({navigation}) {
 function ChatStack({navigation}) {
   return (
     <>
-      <View>
-        <Header
-          isLeftShow={true}
-          heading="Chats"
-          leftIconAction={() => navigation.goBack()}
-        />
-      </View>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

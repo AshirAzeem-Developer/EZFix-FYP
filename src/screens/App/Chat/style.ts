@@ -20,12 +20,13 @@ const useStyles = () => {
     },
     flatList: {
       flexGrow: 1,
-      padding:sizes.WIDTH*0.03
+      padding: sizes.WIDTH * 0.03,
     },
     friendName: {
       ...globalStyles.TEXT_STYLE_BOLD,
       color: colors.BLACK,
       fontSize: sizes.WIDTH * 0.04,
+      textTransform: 'capitalize',
     },
     messageText: {
       ...globalStyles.TEXT_STYLE,
@@ -33,16 +34,46 @@ const useStyles = () => {
       fontSize: sizes.WIDTH * 0.035,
     },
     image: {
-      width: width * 0.13,
-      height: width * 0.13,
-      borderRadius: width * 1,
+      width: sizes.WIDTH * 0.165,
+      height: sizes.WIDTH * 0.165,
+      borderRadius: sizes.WIDTH * 1,
       marginRight: sizes.WIDTH * 0.025,
+      alignSelf: 'center',
+      borderWidth: 3,
+      borderColor: colors.GREEN,
     },
     friendListContainer: {
       padding: sizes.WIDTH * 0.02,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-start',
+    },
+    nameTimeContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: sizes.WIDTH * 0.72,
+    },
+    messageContainer: {},
+    timeText: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.GRAY,
+      fontSize: sizes.WIDTH * 0.032,
+    },
+    avatarContainer: {},
+    emptyContainer: {},
+    emptyText: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.BLACK,
+      fontSize: sizes.WIDTH * 0.04,
+      textAlign: 'center',
+    },
+    errorContainer: {},
+    errorText: {
+      ...globalStyles.TEXT_STYLE,
+      color: colors.RED,
+      fontSize: sizes.WIDTH * 0.04,
+      textAlign: 'center',
     },
   });
   return {

@@ -59,9 +59,9 @@ const Chatopen = ({navigation}) => {
   const route = useRoute();
   const {data, name, friendData} = route.params as RouteParams;
   let friendId = data;
-  // console.log('Friend Id:', data);
-  // console.log('UserId', userId);
-  // console.log('Name is ', name);
+  console.log('Friend Id:', data);
+  console.log('UserId', userId);
+  console.log('Name is ', name);
   console.log('Friend Data is  ', JSON.stringify(friendData, null, 2));
 
   useEffect(() => {
@@ -165,7 +165,7 @@ const Chatopen = ({navigation}) => {
           </TouchableOpacity>
           <Image
             source={{
-              uri: `${apiEndPoints.BASE_URL}${friendData.profileImage.url}`,
+              uri: `${apiEndPoints.BASE_URL}${friendData?.profileImage?.url}`,
             }}
             style={styles.dpImageStyles}
           />
@@ -192,10 +192,23 @@ const Chatopen = ({navigation}) => {
                     ? styles.receivedMessage
                     : styles.sentMessage,
                 ]}>
-                <Text style={styles.messageText}>
+                <Text
+                  style={[
+                    styles.messageText,
+
+                    item?.attributes?.recipient?.data?.id === userId
+                      ? styles.receivedMessage
+                      : styles.sentMessage,
+                  ]}>
                   {item.attributes.content}
                 </Text>
-                <Text style={styles.timestamp}>
+                <Text
+                  style={[
+                    styles.timestamp,
+                    item?.attributes?.recipient?.data?.id === userId
+                      ? styles.receivedMessage
+                      : styles.sentMessage,
+                  ]}>
                   {new Date(item?.attributes?.timeStamp).toLocaleTimeString()}
                 </Text>
               </View>

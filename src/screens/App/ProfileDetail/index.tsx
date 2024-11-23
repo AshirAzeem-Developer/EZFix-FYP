@@ -22,7 +22,6 @@ import END_POINTS from '../../../constants/apiEndPoints';
 import {
   getJobOrdersByUserNameWithReviews,
   getUserById,
-  getUserByNameWithAllDetails,
 } from '../../../utils/ApiCall';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 
@@ -65,8 +64,8 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
   const category = route.params?.category;
 
   console.log(
-    'Provider  Data ----------------------- .......>>>>>',
-    JSON.stringify(provider, null, 2),
+    'Provider  Id is ----------------------- .......>>>>>',
+    JSON.stringify(provider?.id, null, 2),
   );
 
   const handleSelect = (value: string) => {
@@ -186,7 +185,13 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
           bgcolor="#FFFfff"
           icon={icons.MESSAGE_TAB_ACTIVE}
           text="Chat Now"
-          onPress={() => console.log('ChatNow')}
+          onPress={() =>
+            navigation.navigate('ChatOpen', {
+              data: provider?.id,
+              name: providerData.name,
+              friendData: provider,
+            })
+          }
         />
         <Button
           withAnimation
