@@ -182,10 +182,15 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* =========== >>> Profile <<<< ============= */}
             <View style={styles.profileContainer}>
-              <Image source={images.PROFILE} style={{}} />
+              <Image source={{
+                  uri: `${apiEndPoints.BASE_URL}${userAllData?.profileImage?.url}`,
+                }}  style={{
+                  width: sizes.WIDTH * 0.18,
+                  height: sizes.WIDTH * 0.18,
+                }} />
               <View style={styles.profileDetailsContainer}>
-                <Text style={styles.name}>John Smith</Text>
-                <Text style={styles.phoneNumberText}>+92 321 5589988</Text>
+                <Text style={styles.name}>{userData?.name}</Text>
+                <Text style={styles.phoneNumberText}>{userData?.email}</Text>
               </View>
             </View>
             {/* =========== >>> Section 1 <<<< ============= */}
