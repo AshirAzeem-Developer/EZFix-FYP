@@ -22,7 +22,7 @@ export default {
   SETTINGS: require('./Settings.png'),
   BELL: require('./bell.png'),
   ArrowRight: require('./RightArrow.png'),
-  star: require('./star.png'),
+  Star: require('./Star.png'),
   MAP: require('./map.png'),
   NOTIFICATION: require('./notification.png'),
   DELETE: require('./Delete.png'),
@@ -52,4 +52,5 @@ export default {
   MEDAL: require('./medal.png'),
   STAR_RATE: require('./starRate.png'),
   MESSAGES: require('./messages.png'),
+  DUMMY_AVATAR: require('./dummayAvatar.png'),
 };

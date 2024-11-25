@@ -53,7 +53,7 @@ const Pending: React.FC<AppStackParamsList> = () => {
 
   // ==============>> Log User Id and Token <<================ \\
   const userId = useSelector((state: any) => state.user.user.user.id);
-  console.log('User id is: ', userId);
+  // console.log('User id is: ', userId);
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
   // First effect: Fetch user skills
@@ -65,18 +65,18 @@ const Pending: React.FC<AppStackParamsList> = () => {
         const skillIds = skills.map((skill: any) => skill.id);
         setUserSkillIds(skillIds); // Update skill IDs state
 
-        console.log('Skills', JSON.stringify(skills, null, 2));
-        console.log('User skills:', JSON.stringify(skills, null, 2));
+        // console.log('Skills', JSON.stringify(skills, null, 2));
+        // console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
         {
           userType !== 'seeker'
             ? getJobOrders(userSkillIds, userToken, 'Pending')
                 .then(res => {
                   setJobOrders(res.data || {});
-                  console.log(
-                    'Pending Job Order By User Skills:',
-                    JSON.stringify(res.data, null, 2),
-                  );
+                  // console.log(
+                  //   'Pending Job Order By User Skills:',
+                  //   JSON.stringify(res.data, null, 2),
+                  // );
                 })
                 .catch(err => {
                   console.log(
@@ -103,10 +103,10 @@ const Pending: React.FC<AppStackParamsList> = () => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Pending', userToken)
       .then(res => {
-        console.log(
-          'Service Seeker Pending  Bookings',
-          JSON.stringify(res.data, null, 2),
-        );
+        // console.log(
+        //   'Service Seeker Pending  Bookings',
+        //   JSON.stringify(res.data, null, 2),
+        // );
         setJobOrders(res.data);
       })
       .catch(err => {

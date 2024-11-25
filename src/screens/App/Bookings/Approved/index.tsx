@@ -27,7 +27,6 @@ import {
   getSkillsFromUserId,
 } from '../../../../utils/ApiCall';
 import apiEndPoints from '../../../../constants/apiEndPoints';
-import jobOrder from '../../../../store/reducer/job-order';
 
 //third party library
 
@@ -54,17 +53,17 @@ const Approved = ({navigation}) => {
         const skillIds = skills.map((skill: any) => skill.id);
         setUserSkillIds(skillIds); // Update skill IDs state
 
-        console.log('Skills', JSON.stringify(skills, null, 2));
+        // console.log('Skills', JSON.stringify(skills, null, 2));
         // console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
         {
           userType !== 'seeker'
             ? getJobOrders(skillIds, userToken, 'Approved')
                 .then(res => {
-                  console.log(
-                    'Approved Job Orders',
-                    JSON.stringify(res.data.data, null, 2),
-                  );
+                  // console.log(
+                  //   'Approved Job Orders',
+                  //   JSON.stringify(res.data.data, null, 2),
+                  // );
                   setJobOrders(res.data);
                 })
                 .catch(err => {
@@ -81,10 +80,10 @@ const Approved = ({navigation}) => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Approved', userToken)
       .then(res => {
-        console.log(
-          'Service Seeker Bookings',
-          JSON.stringify(res.data, null, 2),
-        );
+        // console.log(
+        //   'Service Seeker Bookings',
+        //   JSON.stringify(res.data, null, 2),
+        // );
         setJobOrders(res.data);
       })
       .catch(err => {
@@ -92,7 +91,11 @@ const Approved = ({navigation}) => {
       });
   }
 
-  console.log('JobOrderLength', jobOrders.data?.length);
+  console.log(
+    'Approved Job Orders ==========> ',
+    JSON.stringify(jobOrders.data, null, 2),
+  );
+  // console.log('JobOrderLength', jobOrders.data?.length);
 
   const SeekerView = () => {
     return (

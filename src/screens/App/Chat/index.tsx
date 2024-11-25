@@ -145,11 +145,12 @@ const Chat: React.FC = () => {
         style={styles.friendListContainer}>
         <View style={styles.avatarContainer}>
           <Image
-            source={{
-              uri: `${API_ENDPOINTS.BASE_URL}${thumbnailUrl}`,
-            }}
+            source={
+              item.profileImage !== null
+                ? {uri: `${API_ENDPOINTS.BASE_URL}${thumbnailUrl}`}
+                : icons.DUMMY_AVATAR
+            }
             style={styles.image}
-            // defaultSource={require('../../../assets/images/default-avatar.png')}
           />
         </View>
         <View style={styles.messageContainer}>

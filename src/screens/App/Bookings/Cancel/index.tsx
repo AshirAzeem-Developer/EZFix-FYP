@@ -47,7 +47,7 @@ const Cancel = ({route, navigation}) => {
         const skillIds = skills.map((skill: any) => skill.id);
         setUserSkillIds(skillIds); // Update skill IDs state
 
-        console.log('Skills', JSON.stringify(skills, null, 2));
+        // console.log('Skills', JSON.stringify(skills, null, 2));
         // console.log('User skills:', JSON.stringify(skills, null, 2));
         // console.log('Skill IDs:', skillIds);
         {
@@ -74,10 +74,10 @@ const Cancel = ({route, navigation}) => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Cancelled', userToken)
       .then(res => {
-        console.log(
-          'Service Seeker Pending  Bookings',
-          JSON.stringify(res.data, null, 2),
-        );
+        // console.log(
+        //   'Service Seeker Pending  Bookings',
+        //   JSON.stringify(res.data, null, 2),
+        // );
         setJobOrders(res.data);
       })
       .catch(err => {

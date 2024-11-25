@@ -33,6 +33,7 @@ interface RootState {
     skill: string;
     jobDescription: string;
     jobBookingData: string;
+    skillId: number;
   };
   user: {
     user: {
@@ -47,8 +48,10 @@ const AllProviderCards: React.FC = () => {
     useNavigation<NativeStackNavigationProp<AppStackParamsList>>();
   const JobOrder = useSelector((state: RootState) => state.JobOrder);
   const userToken = useSelector((state: RootState) => state.user?.user?.jwt);
+  const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
+  console.log('Skill Is ==========> ', JobOrder.skillId);
 
-  console.log('User is  ======= > ', JobOrder.skill);
+  // console.log('User is  ======= > ', JobOrder.skill);
   const [providersData, setProvidersData] = useState<Provider[]>([]);
 
   const fetchProviders = useCallback(() => {
@@ -58,7 +61,9 @@ const AllProviderCards: React.FC = () => {
     };
 
     getProviders(userToken, queryParams)
-      .then(res => setProvidersData(res.data))
+      .then(res => {
+        setProvidersData(res.data);
+      })
       .catch(err => console.error('Error fetching providers:', err));
   }, [userToken, JobOrder.skill]);
 
@@ -82,7 +87,10 @@ const AllProviderCards: React.FC = () => {
       description: JobOrder.jobDescription,
       date: JobOrder.jobBookingData,
       fixedPrice: item.skills[0]?.hourlyRate,
+      service_seeker: userId,
+      skill: JobOrder.skillId,
     };
+    console.log('Job Data ----------------- >>> ', jobData);
 
     postJobOrder({data: jobData}, userToken)
       .then(() => {

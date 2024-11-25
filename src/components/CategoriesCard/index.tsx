@@ -8,7 +8,7 @@ import axios from 'axios';
 import {getCategories} from '../../utils/ApiCall';
 import {useDispatch, useSelector} from 'react-redux';
 import END_POINTS from '../../constants/apiEndPoints';
-import {setSkill} from '../../store/reducer/job-order';
+import {setSkill, setSkillId} from '../../store/reducer/job-order';
 
 const CategoriesCard = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -66,6 +66,8 @@ const CategoriesCard = () => {
                   title: item?.attributes?.categoryId,
                 });
                 dispatch(setSkill(item?.attributes.name));
+                dispatch(setSkillId(item?.id));
+                // console.log('Selected Category ----- >>', item?.id);
               }}>
               <View style={styles.category}>
                 <Image
@@ -90,6 +92,11 @@ const CategoriesCard = () => {
     setModalVisible(prev => !prev);
   }, []);
 
+  // console.log(
+  //   'Categories Are-------------- >',
+  //   JSON.stringify(categories, null, 2),
+  // );
+
   return (
     <>
       {categories.slice(0, 3).map(category => (
@@ -102,6 +109,8 @@ const CategoriesCard = () => {
               title: category?.attributes.name,
             });
             dispatch(setSkill(category?.attributes?.name));
+            dispatch(setSkillId(category?.id));
+            // console.log('Selected Category ----- >>', category?.id);
           }}>
           <View style={styles.category}>
             <Image
