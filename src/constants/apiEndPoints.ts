@@ -10,4 +10,5 @@ export default {
   JOB_ORDERS: `/job-orders`,
   USERS: `/users`,
   MESSAGES: `/messages`,
+  SKILLS: `/skills`,
 };

@@ -38,10 +38,12 @@ const OrderSummary: React.FC<Props> = ({route}) => {
   const navigation: AppStackParamsList = useNavigation();
   const JobOrder = useSelector((state: any) => state.JobOrder);
   const providerData = route.params?.data || null;
+  const userId = useSelector((state: any) => state.user?.user?.user?.id);
 
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
+  const JobOrderState = useSelector((state: any) => state.JobOrder);
 
-  console.log('Provider Skills is ====== >', providerData?.skill);
+  console.log('Provider Skills is ====== >', providerData);
   // console.log('PRoviderData: ', JSON.stringify(providerData, null, 2));
   // console.log('JobOrder: ', JobOrder);
 
@@ -51,7 +53,9 @@ const OrderSummary: React.FC<Props> = ({route}) => {
         data: {
           description: JobOrder.jobDescription,
           date: JobOrder.jobBookingData,
-          fixedPrice: providerData?.skill?.split('\n').pop() || 600,
+          fixedPrice: JobOrderState.skillHourlyRate,
+          service_seeker: userId,
+          skill: JobOrderState?.skillId,
         },
       },
       userToken,
@@ -122,10 +126,10 @@ const OrderSummary: React.FC<Props> = ({route}) => {
                 Booking Date : {JobOrder.jobBookingData}
               </Text>
               <Text style={styles.orderItemHandyman}>
-                Worker Name : {providerData?.name}
+                Worker Name : {JobOrderState?.providerName}
               </Text>
               <Text style={styles.orderItemPrice}>
-                Per Hour Rate : {providerData?.skill?.split('\n').pop()}
+                Per Hour Rate : {JobOrderState.skillHourlyRate}
               </Text>
             </View>
           </View>

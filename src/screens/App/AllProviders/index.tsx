@@ -1,17 +1,28 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {FlatList, Image, Text, View, ListRenderItem} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useStyles from './style';
 import Button from '../../../components/Button/Button';
 
 import {ParentView} from '../../../components/common/ParentView/ParentView';
-import {getProviders, getProvider, postJobOrder} from '../../../utils/ApiCall';
+import {
+  getProviders,
+  getProvider,
+  postJobOrder,
+  getSkillsByCategoryWithUserDetails,
+} from '../../../utils/ApiCall';
 import END_POINTS from '../../../constants/apiEndPoints';
 import {showError, showSuccess} from '../../../utils/helperFunction';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Header from '../../../components/Header';
+import {User, Briefcase, Clock, DollarSign} from 'lucide-react-native';
+import {
+  setPrviderName,
+  setSkillHourlyRate,
+  setSkillId,
+} from '../../../store/reducer/job-order';
 
 // Define types for provider data
 interface Skill {
@@ -49,10 +60,14 @@ const AllProviderCards: React.FC = () => {
   const JobOrder = useSelector((state: RootState) => state.JobOrder);
   const userToken = useSelector((state: RootState) => state.user?.user?.jwt);
   const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
-  console.log('Skill Is ==========> ', JobOrder.skillId);
+  const dispatch = useDispatch();
+  // console.log('Skill Name Is ==========> ', JobOrder.skill);
 
-  // console.log('User is  ======= > ', JobOrder.skill);
   const [providersData, setProvidersData] = useState<Provider[]>([]);
+  console.log(
+    'Peoviders Data  is  ======= > ',
+    JSON.stringify(providersData, null, 2),
+  );
 
   const fetchProviders = useCallback(() => {
     const queryParams = {
@@ -68,8 +83,9 @@ const AllProviderCards: React.FC = () => {
   }, [userToken, JobOrder.skill]);
 
   useEffect(() => {
-    fetchProviders();
-  }, [fetchProviders]);
+    // fetchProviders();
+    GET_SKILLS();
+  }, []);
 
   const handleViewProfile = (id: number) => {
     getProvider(userToken, id, JobOrder.skill)
@@ -86,9 +102,9 @@ const AllProviderCards: React.FC = () => {
     const jobData = {
       description: JobOrder.jobDescription,
       date: JobOrder.jobBookingData,
-      fixedPrice: item.skills[0]?.hourlyRate,
+      fixedPrice: item.attributes?.hourlyRate,
       service_seeker: userId,
-      skill: JobOrder.skillId,
+      skill: item?.id,
     };
     console.log('Job Data ----------------- >>> ', jobData);
 
@@ -102,6 +118,15 @@ const AllProviderCards: React.FC = () => {
       })
       .catch(() => showError('Error', 'Something went wrong'));
   };
+  const ProfileInfoItem = ({icon: Icon, title, value, iconColor}) => (
+    <View style={styles.infoItem}>
+      <Icon color={iconColor} size={24} />
+      <View style={styles.infoTextContainer}>
+        <Text style={styles.infoLabel}>{title}</Text>
+        <Text style={styles.infoValue}>{value}</Text>
+      </View>
+    </View>
+  );
 
   const renderProviderItem: ListRenderItem<Provider> = ({item}) => (
     <View style={styles.providersCardContainer}>
@@ -115,36 +140,53 @@ const AllProviderCards: React.FC = () => {
           paddingTop: sizes.WIDTH * 0.02,
         }}>
         <Image
-          source={{uri: `${END_POINTS.BASE_URL}${item.profileImage?.url}`}}
+          source={{
+            uri: `${END_POINTS.BASE_URL}${item.attributes?.user?.data?.attributes?.profileImage?.data?.attributes?.url}`,
+          }}
           style={styles.providerimg}
         />
         <View style={styles.detailsContainer}>
           <View style={styles.nameAndRateContainer}>
-            <Text style={styles.name}>{item.name}</Text>
-            {item?.skills?.map((skill, index) => (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'flex-start',
-                  justifyContent: 'space-between',
-                  marginTop: sizes.HEIGHT * 0.005,
-                }}>
-                <Text
-                  style={{
-                    width: sizes.WIDTH * 0.44,
-                    color: colors.BLACK,
-                    fontSize: sizes.WIDTH * 0.03,
-                  }}>
-                  {skill.name}
-                </Text>
-                <Text key={index} style={styles.rate}>
-                  Rs {skill.hourlyRate}/hr
-                </Text>
-              </View>
-            ))}
-            {/* <Text style={styles.rate}>Rs {item.skills[0]?.hourlyRate}/hr</Text> */}
+            <Text style={styles.name}>
+              {item.attributes?.user?.data?.attributes?.name}
+            </Text>
+            <Text style={styles.skillName}>{item.attributes?.name}</Text>
           </View>
         </View>
+      </View>
+      <View
+        style={{
+          width: sizes.WIDTH * 0.9,
+          height: sizes.HEIGHT * 0.001,
+          backgroundColor: colors.LIGHT_GRAY100,
+          marginTop: sizes.HEIGHT * 0.02,
+        }}
+      />
+      <View style={styles.infoGrid}>
+        <ProfileInfoItem
+          icon={Briefcase}
+          title="Category"
+          value={item?.attributes?.category?.data?.attributes.name}
+          iconColor="#3B82F6"
+        />
+        <ProfileInfoItem
+          icon={Clock}
+          title="Experience"
+          value={`${item?.attributes.experienceYears} Years`}
+          iconColor="#10B981"
+        />
+        <ProfileInfoItem
+          icon={DollarSign}
+          title="Hourly Rate"
+          value={`${item?.attributes.hourlyRate} PKR/Hr`}
+          iconColor="#8B5CF6"
+        />
+        <ProfileInfoItem
+          icon={User}
+          title="Contact"
+          value={`${item?.attributes?.user?.data?.attributes?.phoneNumber}`}
+          iconColor="#EF4444"
+        />
       </View>
       <View
         style={{
@@ -159,7 +201,16 @@ const AllProviderCards: React.FC = () => {
           withAnimation
           bgcolor="#d2e6d0"
           text="View Profile"
-          onPress={() => handleViewProfile(item.id)}
+          onPress={() => {
+            [
+              handleViewProfile(item.attributes?.user?.data?.id),
+              dispatch(setSkillHourlyRate(item.attributes?.hourlyRate)),
+              dispatch(
+                setPrviderName(item.attributes?.user?.data?.attributes?.name),
+              ),
+              dispatch(setSkillId(item.id)),
+            ];
+          }}
           btnStyles={styles.viewProfileButton}
           btnTextStyles={{
             color: colors.BLACK,
@@ -183,9 +234,22 @@ const AllProviderCards: React.FC = () => {
     </View>
   );
 
+  function GET_SKILLS() {
+    getSkillsByCategoryWithUserDetails(userToken, JobOrder.skill)
+      .then(res => {
+        // console.log(
+        //   'Skills are ==========> ',
+        //   JSON.stringify(res.data, null, 2),
+        // );
+        setProvidersData(res.data.data);
+      })
+      .catch(err => {
+        console.log('Error is ==========> ', err);
+      });
+  }
+
   return (
     <ParentView>
-      {/* <Header leftIconAction={navigation.goBack} /> */}
       <Header
         heading="All Providers"
         isLeftShow={true}

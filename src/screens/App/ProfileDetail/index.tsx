@@ -24,6 +24,7 @@ import {
   getUserById,
 } from '../../../utils/ApiCall';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
+import {setSkillHourlyRate} from '../../../store/reducer/job-order';
 
 type Props = NativeStackScreenProps<AppStackParamsList, 'ProfileDetail'>;
 
@@ -63,10 +64,10 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
   const providerData = route.params?.provider;
   const category = route.params?.category;
 
-  console.log(
-    'Provider  Id is ----------------------- .......>>>>>',
-    JSON.stringify(provider?.id, null, 2),
-  );
+  // console.log(
+  //   'Provider  Id is ----------------------- .......>>>>>',
+  //   JSON.stringify(provider?.id, null, 2),
+  // );
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);
@@ -78,6 +79,10 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
     const fetchProviderData = async () => {
       try {
         const userResponse = await getUserById(userToken, providerData.id);
+        console.log(
+          'first user response is ==========> ',
+          JSON.stringify(userResponse.data, null, 2),
+        );
         setProvider(userResponse.data);
       } catch (err) {
         console.error('Error fetching provider:', err);
@@ -120,6 +125,7 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
     );
   };
 
+  // console.log('Hourly Rate is ==========> ', hourlyRate);
   return (
     <>
       <ParentView
@@ -198,11 +204,7 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
           btnStyles={styles.bookNowBtn}
           bgcolor="#008000"
           text="Book Now"
-          onPress={() =>
-            navigation.navigate('OrderSummary', {
-              data: {...providerData, skill: selectedValue},
-            })
-          }
+          onPress={() => [navigation.navigate('OrderSummary')]}
         />
       </View>
     </>
