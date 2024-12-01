@@ -18,31 +18,31 @@ import ProviderHome from '../screens/App/ProviderHome';
 import Chat from '../screens/App/Chat';
 import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Header from '../components/Header';
+import Notifications from '../screens/App/Notifications';
 
 const Stack = createNativeStackNavigator();
 
-const BookingStack = ({ navigation }: { navigation: any }) => {
+const BookingStack = ({navigation}: {navigation: any}) => {
   return (
     <View style={styles.container}>
       {/* Custom Header */}
-    
-          <Header  
-            isLeftShow={true}
-            heading="Bookings"
-            leftIconAction={() => navigation.goBack()}
-          />
-     
+
+      <Header
+        isLeftShow={true}
+        heading="Bookings"
+        leftIconAction={() => navigation.goBack()}
+      />
 
       {/* Top Tabs */}
       <CreateTopTabs
         initialRouteName="Pending"
         screens={[
-          { name: 'Approved', Component: Approved, label: 'Approved' },
-          { name: 'Pending', Component: Pending, label: 'Pending' },
-          { name: 'Cancel', Component: Cancel, label: 'Cancelled' },
+          {name: 'Approved', Component: Approved, label: 'Approved'},
+          {name: 'Pending', Component: Pending, label: 'Pending'},
+          {name: 'Cancel', Component: Cancel, label: 'Cancelled'},
         ]}
         key={'BookingStack'}
       />
@@ -69,21 +69,19 @@ function ProfileStack() {
   );
 }
 
-const ChatStack = ({ navigation }: { navigation: any }) => {
+const ChatStack = ({navigation}: {navigation: any}) => {
   return (
     <Stack.Navigator
       initialRouteName="Chat"
       screenOptions={{
-        header: ({ navigation, route }) => (
-          <Header  
-          isLeftShow={true}
-          heading="Chats"
-          leftIconAction={() => navigation.goBack()}
-        />
-   
+        header: ({navigation, route}) => (
+          <Header
+            isLeftShow={true}
+            heading="Chats"
+            leftIconAction={() => navigation.goBack()}
+          />
         ),
-      }}
-    >
+      }}>
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Chatlist" component={Chatlist} />
     </Stack.Navigator>
@@ -139,6 +137,7 @@ function ServiceProvider() {
       <Stack.Screen name="WorkDetails" component={WorkDetails} />
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
+      <Stack.Screen name="Notification" component={Notifications} />
     </Stack.Navigator>
   );
 }

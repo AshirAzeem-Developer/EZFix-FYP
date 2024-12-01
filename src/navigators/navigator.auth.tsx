@@ -21,6 +21,7 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import SignUpSeekerProviderNICOrVerifyMember from '../screens/Auth/SignUpRefereeLicOrVerifyMember';
 import SignUpPrivacyPolicy from '../screens/Auth/SignUpPrivacyPolicy';
 import {AuthStackParamList} from './authStack';
+import Notifications from '../screens/App/Notifications';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 

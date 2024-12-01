@@ -2,17 +2,20 @@ import {FlatList, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import icons from '../../../assets/icons';
 import useStyles from './style';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../../../navigators/authStack';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import NotificationCard from '../../../components/NotificationCard';
-import images from '../../../assets/images';
+import {
+  addNotification,
+  clearNotifications,
+  useNotifications,
+} from '../../../store/reducer/notifications';
+import {useDispatch, useSelector} from 'react-redux';
+import {getNotificationsByUserId} from '../../../utils/ApiCall';
 
 type props = NativeStackScreenProps<AppStackParamsList>;
 
@@ -24,52 +27,42 @@ interface Message {
   userImage: string;
 }
 
-const messages: Message[] = [
-  {
-    id: '1',
-    userName: 'User 1',
-    time: '1h',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    userImage: images.NOTIF1,
-  },
-  {
-    id: '2',
-    userName: 'User 2',
-    time: '2h',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    userImage: images.NOTIF1,
-  },
-  {
-    id: '3',
-    userName: 'User 3',
-    time: '8h',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    userImage: images.NOTIF1,
-  },
-  {
-    id: '4',
-    userName: 'User 3',
-    time: '8h',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    userImage: images.NOTIF1,
-  },
-  {
-    id: '5',
-    userName: 'User 2',
-    time: '2h',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    userImage: images.NOTIF1,
-  },
-];
-
 const Notifications: React.FC<props> = ({navigation}) => {
+  const userId = useSelector((state: any) => state.user.user.user.id);
+  // console.log('User id is: ', userId);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+
+  useEffect(() => {
+    dispatch(clearNotifications());
+    getNotificationsByUserId(userToken, userId)
+      .then(res => {
+        const notifications = res.data?.data;
+        dispatch(addNotification(notifications));
+        // console.log('Notifications:', JSON.stringify(res.data.data, null, 2));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
   const {styles, colors, sizes} = useStyles();
+  const notifications = useNotifications();
+  const dispatch = useDispatch();
+
+  console.log(
+    'Notifications============= >>',
+    JSON.stringify(notifications, null, 2),
+  );
+
   return (
     <ParentView>
-      <Header leftIconAction={() => navigation.goBack()} />
+      <Header
+        leftIconAction={() => navigation.goBack()}
+        isLeftShow={true}
+        heading="Notifications"
+      />
       <View style={styles.container}>
         <FlatList
-          data={messages}
+          data={notifications}
           renderItem={({item}) => <NotificationCard message={item} />}
           keyExtractor={item => item.id}
         />

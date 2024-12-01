@@ -1,29 +1,30 @@
-import {Image, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import useStyles from './style';
+import {NotificationsType} from '../../store/reducer/notifications';
 
-type Message = {
-  id: string;
-  userName: string;
-  time: string;
-  text: string;
-  userImage: {};
-};
-
-const NotificationCard: React.FC<{message: Message}> = ({message}) => {
+const NotificationCard: React.FC<{message: NotificationsType}> = ({
+  message,
+}) => {
   const {styles, colors, sizes} = useStyles();
   return (
-    <View style={styles.messageContainer}>
-      <Image source={message.userImage} style={styles.userImage} />
+    <TouchableOpacity
+      style={styles.messageContainer}
+      onPress={() =>
+        console.log('Notification Clicked', message?.attributes?.additionalData)
+      }>
+      {/* <Image source={message.} style={styles.userImage} /> */}
       <View style={styles.textContainer}>
         <View style={styles.nameTimeContainer}>
-          <Text style={styles.userName}>{message.userName}</Text>
-          <Text style={styles.time}>{message.time}</Text>
+          <Text style={styles.userName}>{message?.attributes.title}</Text>
+          <Text style={styles.time}>
+            {new Date(message?.attributes?.date).toLocaleTimeString()}
+          </Text>
         </View>
-        <Text style={styles.text}>{message.text}</Text>
+        <Text style={styles.text}>{message?.attributes?.content}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 export default NotificationCard;

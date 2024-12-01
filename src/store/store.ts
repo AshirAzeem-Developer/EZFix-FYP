@@ -6,18 +6,20 @@ import {persistStore, persistReducer} from 'redux-persist';
 import settings from './reducer/settings';
 import user from './reducer/user';
 import jobOrder from './reducer/job-order';
+import notification from './reducer/notifications';
 
 // config
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['settings', 'user'],
+  whitelist: ['settings', 'user', 'notification'],
 };
 
 const rootReducer = combineReducers({
   settings: settings,
   user: user,
   JobOrder: jobOrder,
+  notification: notification,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

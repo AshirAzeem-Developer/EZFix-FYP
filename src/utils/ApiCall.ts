@@ -254,32 +254,6 @@ export const getServiceSeekerBooking = (
 };
 
 // ================================ >> Message << ================================
-
-// fetch friends List
-// export const fetchFriendsList = (userId: number, token: string) => {
-//   // Construct the URL for fetching the user with populated skills
-//   const url = `${apiEndPoint.USERS}?filters[id][$ne]=${userId}&populate=*`;
-
-//   return apiRequest.get(url, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
-
-// export const fetchFriendsList = (userId: number, token: string) => {
-//   // Query messages to find all chats involving the user
-//   const url = `${apiEndPoint.MESSAGES}?filters[$or][0][sender][id][$eq]=${userId}&filters[$or][1][recipient][id][$eq]=${userId}&populate=sender,recipient`;
-
-//   return apiRequest.get(url, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
-
 export const fetchFriendsList = (userId: number, token: string) => {
   // Query messages to find all chats involving the user
   const url = `${apiEndPoint.MESSAGES}?filters[$or][0][sender][id][$eq]=${userId}&filters[$or][1][recipient][id][$eq]=${userId}&populate=sender,recipient`;
@@ -331,6 +305,36 @@ export const fetchFriendsList = (userId: number, token: string) => {
 };
 
 // /api/users
+// ========================= >> SKILLS << =========================
+
+export const getSkillsByCategoryWithUserDetails = (
+  token: string,
+  categoryName: string,
+) => {
+  return apiRequest.get(
+    `${apiEndPoint.SKILLS}?filters[category][name][$eq]=${categoryName}&&populate=category,user,job_orders,user.profileImage`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
+
+// =========================>> Notifications << =========================
+
+export const getNotificationsByUserId = (token: string, userId: number) => {
+  return apiRequest.get(
+    `${apiEndPoint.NOTIFICATIONS}?filters[sendTo][id][$eq]=${userId}&populate=*`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
 
 // ========================= >> HUZAIFA API CALLINGS << =========================
 export const updateUserById = (token: string, userId: string, data: any) => {

@@ -12,7 +12,9 @@ import {
   getSkillsFromUserId,
 } from '../../../utils/ApiCall';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 const ProviderHome = () => {
+  const navigation = useNavigation();
   const {styles, sizes, colors} = useStyles();
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
   const [userSkillIds, setUserSkillIds] = useState<number[]>([]);
@@ -84,7 +86,7 @@ const ProviderHome = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.logoImgCont}>
           <Image source={icons.Logo} style={styles.logoImg} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
             <Image source={icons.BELL} style={styles.bellImg} />
             {notificationsAvailable && (
               <View style={styles.notificationBadge} />
@@ -100,6 +102,7 @@ const ProviderHome = () => {
         {/* ========= >> Dashboard Cards << =============== */}
         <FlatList
           data={cardData1}
+          keyExtractor={(item, index) => `${item.label}-${index}`}
           numColumns={2}
           contentContainerStyle={{
             flexDirection: 'column',

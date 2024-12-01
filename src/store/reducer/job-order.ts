@@ -8,6 +8,8 @@ const initState = {
   jobBookingData: null,
   jobPhotos: [],
   skillId: null,
+  skillHourlyRate: null,
+  providerName: null,
 };
 
 export type JobOrderStoreType = typeof initState.jobDescription;
@@ -33,6 +35,12 @@ const jobOrder = createSlice({
     setSkillId(state, action) {
       state.skillId = action.payload;
     },
+    setSkillHourlyRate(state, action) {
+      state.skillHourlyRate = action.payload;
+    },
+    setPrviderName(state, action) {
+      state.providerName = action.payload;
+    },
   },
 });
 
@@ -41,6 +49,8 @@ export const {setJobDescription} = jobOrder.actions;
 export const {setJobBookingDate} = jobOrder.actions;
 export const {setJobPhotos} = jobOrder.actions;
 export const {setSkillId} = jobOrder.actions;
+export const {setSkillHourlyRate} = jobOrder.actions;
+export const {setPrviderName} = jobOrder.actions;
 
 export default jobOrder.reducer;
 

@@ -23,8 +23,8 @@ const useStyles = () => {
       paddingTop: sizes.WIDTH * 0.02,
     },
     providerimg: {
-      width: sizes.WIDTH * 0.28,
-      height: sizes.WIDTH * 0.28,
+      width: sizes.WIDTH * 0.22,
+      height: sizes.WIDTH * 0.22,
       borderRadius: sizes.WIDTH * 0.02,
       resizeMode: 'cover',
       paddingLeft: sizes.WIDTH * 0.02,
@@ -93,6 +93,44 @@ const useStyles = () => {
       height: sizes.HEIGHT * 0.04,
       borderRadius: sizes.WIDTH * 0.02,
       marginHorizontal: sizes.WIDTH * 0.02,
+    },
+    skillName: {
+      ...globalStyles.TEXT_STYLE,
+      fontSize: sizes.WIDTH * 0.04,
+      color: colors.BLACK,
+    },
+    infoGrid: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      width: '100%',
+      alignSelf: 'center',
+      marginHorizontal: sizes.WIDTH * 0.02,
+
+      paddingHorizontal: sizes.WIDTH * 0.03,
+    },
+    infoItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      width: sizes.WIDTH * 0.3,
+      marginBottom: sizes.HEIGHT * 0.01,
+      marginLeft: sizes.WIDTH * 0.012,
+    },
+    infoTextContainer: {
+      marginLeft: sizes.WIDTH * 0.02,
+    },
+    infoLabel: {
+      fontSize: sizes.WIDTH * 0.03,
+      color: '#6B7280',
+      textTransform: 'capitalize',
+    },
+    infoValue: {
+      fontSize: sizes.WIDTH * 0.035,
+      fontWeight: '600',
+      color: '#1F2937',
+      textTransform: 'capitalize',
+      width: sizes.WIDTH * 0.4,
     },
   });
   return {
