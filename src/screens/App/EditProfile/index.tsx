@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import useStyles from './style';
 
 import {ParentView} from '../../../components/common/ParentView/ParentView';
@@ -11,9 +11,22 @@ import CustomActionSheet from '../../../components/CustomActionSheet';
 import CustomModal from '../../../components/CustomModal';
 import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
 import icons from '../../../assets/icons';
+import { useSelector } from 'react-redux';
+import { getUserById, updateUserById } from '../../../utils/ApiCall';
+import apiEndPoints from '../../../constants/apiEndPoints';
+import TextInputCustom from '../../../components/TextInputCustom';
 
 export default function EditProfile({navigation}: any) {
   const {styles, sizes, colors} = useStyles();
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+
+  const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
+  console.log(userId);
+  const [Username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isOpen, setIsopen] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -30,7 +43,51 @@ export default function EditProfile({navigation}: any) {
     // Handle delete action
     console.log('Experience Delted ');
   };
+  // const fetchUserData = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await getUserById(userToken, userId);
+  //     const userData = response.data;
+  //     setName(userData.name || '');
+  //     setEmail(userData.email || '');
+  //     setPhoneNumber(userData.phoneNumber || '');
+  //     setProfileImage(`${apiEndPoints.BASE_URL}${userData?.profileImage?.url}`);
+  //   } catch (error) {
+  //     console.error('Error fetching user data:', error);
+  //     Alert.alert('Error', 'Failed to fetch user data.');
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  const handleSave = async () => {
+    // if (!name || !email || !phoneNumber) {
+    //   Alert.alert('Validation Error', 'Name, email, and phone number are required.');
+    //   return;
+    // }
 
+    setIsLoading(true);
+  
+      updateUserById(userToken, userId, {        
+       
+          name:Username,
+             
+    
+      // Alert.alert('Success', 'Profile updated successfully.');
+      // navigation.goBack();
+      }).then((res)=>{
+        console.log(JSON.stringify(res.data,null,2));
+        
+      }).catch((error)=>{
+        console.log(error);
+        
+      })
+    
+    }
+  console.log(Username);
+
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, []);
   const menuOptions = [
     {
       optionText: 'Edit Profile',
@@ -58,7 +115,7 @@ export default function EditProfile({navigation}: any) {
             Cancel
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity  onPress={handleSave}>
           <Text
             style={{
               fontSize: sizes.WIDTH * 0.04,
@@ -72,7 +129,12 @@ export default function EditProfile({navigation}: any) {
       <MyKeyboardAvoider style={{height: sizes.HEIGHT * 0.9}}>
         <View style={[styles.profileImageContainer, {flexDirection: 'row'}]}>
           <View>
-            <Image source={images.DUMMY_PROFILE} />
+            <Image
+            style={{
+              width: sizes.WIDTH * 0.25,
+              height: sizes.WIDTH * 0.25,
+              borderRadius: sizes.WIDTH * 0.125,}}
+            source={profileImage ? {uri: profileImage} : images.DUMMY_PROFILE} />
             <TouchableOpacity style={styles.upload}>
               <Image source={images.UPLOAD_IMAGE_CAMERA} />
             </TouchableOpacity>
@@ -82,10 +144,12 @@ export default function EditProfile({navigation}: any) {
         {/* ============= >>> Name Input  <<<< =================  */}
         <View style={styles.nameContainer}>
           <Image source={icons.Profile} />
-          <CustomInput
-            inputType={'default'}
-            label="Full Name"
-            placeholder={'John Smith'}
+          <TextInputCustom
+           
+    
+    handleOnChange={text => setUserName(text)}
+    value={Username}
+    placeHolderTxt="Enter your name"
           />
         </View>
         {/* ============= >>> Contact Input  <<<< =================  */}
@@ -98,6 +162,8 @@ export default function EditProfile({navigation}: any) {
           <CustomInput
             inputType={'number-pad'}
             label="Contact Number"
+            inpValue={phoneNumber} // Use inpValue to bind the state
+            onChangeText={setEmail}
             placeholder={'+92 xxx xxxxxxx'}
           />
         </View>
