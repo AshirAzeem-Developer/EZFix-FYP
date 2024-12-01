@@ -64,11 +64,6 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
   const providerData = route.params?.provider;
   const category = route.params?.category;
 
-  // console.log(
-  //   'Provider  Id is ----------------------- .......>>>>>',
-  //   JSON.stringify(provider?.id, null, 2),
-  // );
-
   const handleSelect = (value: string) => {
     setSelectedValue(value);
   };
@@ -80,7 +75,7 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
       try {
         const userResponse = await getUserById(userToken, providerData.id);
         console.log(
-          'first user response is ==========> ',
+          'First user response is ==========> ',
           JSON.stringify(userResponse.data, null, 2),
         );
         setProvider(userResponse.data);

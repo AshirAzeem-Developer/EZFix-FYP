@@ -17,7 +17,7 @@ function RootNav() {
   const user = useUserSelector();
   //   const [isSplashVisible, setIsSplashVisible] = useState(true);
   return (
-    <NavigationContainer>
+    <>
       {user ? (
         user?.user?.roleType === Role.ServiceProvider ? (
           <ServiceProvider />
@@ -27,7 +27,7 @@ function RootNav() {
       ) : (
         <AuthStack />
       )}
-    </NavigationContainer>
+    </>
   );
 }
 

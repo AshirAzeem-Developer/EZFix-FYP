@@ -322,4 +322,18 @@ export const getSkillsByCategoryWithUserDetails = (
   );
 };
 
+// =========================>> Notifications << =========================
+
+export const getNotificationsByUserId = (token: string, userId: number) => {
+  return apiRequest.get(
+    `${apiEndPoint.NOTIFICATIONS}?filters[sendTo][id][$eq]=${userId}&populate=*`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
+
 // ========================= >> HUZAIFA API CALLINGS << =========================

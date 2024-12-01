@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import useStyles from './style';
 
 import {ParentView} from '../../../components/common/ParentView/ParentView';
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import images from '../../../assets/images';
 import Button from '../../../components/Button/Button';
@@ -106,7 +106,11 @@ const StartStopWorking: React.FC<AppStackParamsList> = ({navigation}) => {
   };
   return (
     <ParentView>
-      <Header leftIconAction={() => navigation.goBack()} />
+      <Header
+        leftIconAction={() => navigation.goBack()}
+        isLeftShow={true}
+        heading="Timer"
+      />
 
       <View style={styles.container}>
         <Image source={images.StartStopWorking} />

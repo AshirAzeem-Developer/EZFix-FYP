@@ -41,6 +41,7 @@ const useStyles = () => {
       fontSize: sizes.FONT_SIZE_HEADER,
       fontFamily: theme.TEXT_STYLE_BOLD.fontFamily,
       color: 'black',
+      textTransform: 'capitalize',
     },
 
     declineText: {
