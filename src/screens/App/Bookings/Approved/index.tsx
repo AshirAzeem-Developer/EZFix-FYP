@@ -142,12 +142,20 @@ const Approved = ({navigation}) => {
                     <View style={styles.bookbutton}>
                       <Button
                         onPress={() => {
+                          navigation.navigate('MapScreen');
+                        }}
+                        text="Track Job"
+                        bgcolor={colors.PRIMARY}
+                        btnStyles={styles.btnStyles}
+                      />
+                      {/* <Button
+                        onPress={() => {
                           navigation.navigate('StartStopWorking');
                         }}
                         text="Start Working"
                         bgcolor={colors.PRIMARY}
                         btnStyles={styles.btnStyles}
-                      />
+                      /> */}
                     </View>
                   </View>
                 </View>
