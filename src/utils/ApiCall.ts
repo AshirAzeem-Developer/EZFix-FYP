@@ -345,3 +345,11 @@ export const getNotificationsByUserId = (token: string, userId: number) => {
 };
 
 // ========================= >> HUZAIFA API CALLINGS << =========================
+export const updateUserById = (token: string, userId: string, data: any) => {
+  return apiRequest.put(`${apiEndPoint.USERS}/${userId}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

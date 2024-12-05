@@ -17,7 +17,7 @@ import {FadeInDown} from 'react-native-reanimated';
 import icons from '../../../assets/icons';
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import DropDown from '../../../components/DropDown';
 import apiEndPoints from '../../../constants/apiEndPoints';
@@ -73,7 +73,11 @@ const Profile: React.FC<Props> = ({navigation}) => {
         console.log('Error', err);
       });
   }
-
+  useFocusEffect(
+    React.useCallback(() => {
+      GetUserALLData();
+    }, [])
+  )
   useEffect(() => {
     GetUserALLData();
   }, []);
