@@ -45,6 +45,8 @@ export type AppStackParamsList = {
   Chat: undefined;
   Chatlist: undefined;
   AllProviders: undefined;
+  AddSkill: undefined;
+  AddExperience: undefined;
 };
 
 const Stack = createNativeStackNavigator();

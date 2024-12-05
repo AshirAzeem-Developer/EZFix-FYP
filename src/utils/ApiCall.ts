@@ -321,6 +321,14 @@ export const getSkillsByCategoryWithUserDetails = (
     },
   );
 };
+export const postSkill = (data: {}, token: any) => {
+  return apiRequest.post(`/api/skills`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 // =========================>> Notifications << =========================
 

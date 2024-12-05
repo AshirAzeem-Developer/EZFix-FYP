@@ -38,6 +38,7 @@ const useStyles = () => {
       flexDirection: 'row',
       marginLeft: sizes.WIDTH * 0.05,
       marginTop: sizes.HEIGHT * 0.03,
+      borderRadius: sizes.WIDTH * 1,
     },
     profileDetailsContainer: {
       flexDirection: 'column',

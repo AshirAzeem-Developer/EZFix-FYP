@@ -22,6 +22,8 @@ import {StyleSheet, View} from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Header from '../components/Header';
 import Notifications from '../screens/App/Notifications';
+import AddSkill from '../screens/App/AddSkills';
+import AddExperience from '../screens/App/AddExperience';
 
 const Stack = createNativeStackNavigator();
 
@@ -138,6 +140,8 @@ function ServiceProvider() {
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
       <Stack.Screen name="Notification" component={Notifications} />
+      <Stack.Screen name="AddSkill" component={AddSkill} />
+      <Stack.Screen name="AddExperience" component={AddExperience} />
     </Stack.Navigator>
   );
 }
