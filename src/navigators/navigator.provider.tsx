@@ -22,31 +22,22 @@ import {StyleSheet, View} from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Header from '../components/Header';
 import Notifications from '../screens/App/Notifications';
+import AddSkill from '../screens/App/AddSkills';
+import AddExperience from '../screens/App/AddExperience';
 
 const Stack = createNativeStackNavigator();
 
 const BookingStack = ({navigation}: {navigation: any}) => {
   return (
-    <View style={styles.container}>
-      {/* Custom Header */}
-
-      <Header
-        isLeftShow={true}
-        heading="Bookings"
-        leftIconAction={() => navigation.goBack()}
-      />
-
-      {/* Top Tabs */}
-      <CreateTopTabs
-        initialRouteName="Pending"
-        screens={[
-          {name: 'Approved', Component: Approved, label: 'Approved'},
-          {name: 'Pending', Component: Pending, label: 'Pending'},
-          {name: 'Cancel', Component: Cancel, label: 'Cancelled'},
-        ]}
-        key={'BookingStack'}
-      />
-    </View>
+    <CreateTopTabs
+      initialRouteName="Pending"
+      screens={[
+        {name: 'Approved', Component: Approved, label: 'Approved'},
+        {name: 'Pending', Component: Pending, label: 'Pending'},
+        {name: 'Cancel', Component: Cancel, label: 'Cancelled'},
+      ]}
+      key={'BookingStack'}
+    />
   );
 };
 
@@ -74,13 +65,7 @@ const ChatStack = ({navigation}: {navigation: any}) => {
     <Stack.Navigator
       initialRouteName="Chat"
       screenOptions={{
-        header: ({navigation, route}) => (
-          <Header
-            isLeftShow={true}
-            heading="Chats"
-            leftIconAction={() => navigation.goBack()}
-          />
-        ),
+        headerShown: false,
       }}>
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Chatlist" component={Chatlist} />
@@ -138,6 +123,8 @@ function ServiceProvider() {
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
       <Stack.Screen name="Notification" component={Notifications} />
+      <Stack.Screen name="AddSkill" component={AddSkill} />
+      <Stack.Screen name="AddExperience" component={AddExperience} />
     </Stack.Navigator>
   );
 }

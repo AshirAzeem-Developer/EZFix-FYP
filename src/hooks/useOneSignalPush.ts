@@ -1,10 +1,5 @@
 import {useState, useEffect} from 'react';
 import {OneSignal} from 'react-native-onesignal';
-import {
-  addNotification,
-  NotificationsType,
-} from '../store/reducer/notifications';
-import {store} from '../store/store';
 
 export const logoutOneSignal = () => {
   OneSignal.logout();
@@ -15,6 +10,8 @@ const initOneSignal = async (userId: string) => {
   await OneSignal.Notifications.requestPermission(true);
   OneSignal.login(userId);
   showNotification();
+
+  console.log('User Id: ', userId);
 };
 
 const showNotification = () => {

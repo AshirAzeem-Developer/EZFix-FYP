@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useMemo, useCallback} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -17,11 +24,12 @@ import {
   setJobBookingDate,
   setJobDescription,
 } from '../../../store/reducer/job-order';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 type WorkDetailsProps = NativeStackScreenProps<AppStackParamsList>;
 
 const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
-  const {styles, colors} = useStyles();
+  const {styles, colors, sizes} = useStyles();
   const dispatch = useDispatch();
 
   // Extract parameters from route
@@ -32,13 +40,18 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   const jobOrderState = useSelector((state: any) => state.JobOrder);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [date, setDate] = useState<string | null>(null);
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const [description, setDescription] = useState<string>('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [endDate, setEndDate] = useState<Date | undefined>(undefined);
 
   const showData = useCallback(() => {
-    dispatch(setJobDescription(description));
-    dispatch(setJobBookingDate(date));
-    navigation.navigate('AllProviders');
+    if (date) {
+      const formattedDate = date.toISOString().split('T')[0];
+      dispatch(setJobDescription(description));
+      dispatch(setJobBookingDate(formattedDate));
+      navigation.navigate('AllProviders');
+    }
   }, [dispatch, description, date, navigation]);
 
   // ServiceSeekerView Component
@@ -49,23 +62,43 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
           {/* <Text style={styles.title}>{title}</Text> */}
 
           <View style={styles.textAreaContainer}>
-            <CustomTextArea
-              maxLength={250}
-              placeholder="Your Problem Description"
+            <Text style={styles.label}>Enter Problem Description</Text>
+            <TextInput
+              style={[
+                styles.input,
+                {
+                  height: sizes.HEIGHT * 0.2,
+                  textAlignVertical: 'top',
+                },
+              ]}
+              placeholder="Enter Job Description"
               value={description}
-              setValue={setDescription}
+              multiline
+              numberOfLines={4}
+              textAlign="left"
+              onChangeText={setDescription}
             />
           </View>
-
-          <View style={styles.datePickerContainer}>
-            <Text style={styles.dateLabel}>Choose Date of Booking</Text>
-            <DatePickerInput
-              leftIcon={images.calendar}
-              placeHolderTxt="Select Date"
-              placeHolderDateMode="DateMonthYear"
-              value={date}
-              handleOnChange={setDate}
-            />
+          <View style={styles.dateContainer}>
+            <Text style={styles.label}>Choose Date of Booking</Text>
+            <TouchableOpacity
+              style={styles.dateButton}
+              onPress={() => setShowDatePicker(true)}>
+              <Text>{date ? date.toLocaleDateString() : 'Not Specified'}</Text>
+            </TouchableOpacity>
+            {showDatePicker && (
+              <DateTimePicker
+                value={date || new Date()} // Use current date as fallback
+                mode="date"
+                display="default"
+                onChange={(event, selectedDate) => {
+                  setShowDatePicker(false);
+                  if (selectedDate) {
+                    setDate(selectedDate); // Update end date
+                  }
+                }}
+              />
+            )}
           </View>
           <TouchableOpacity
             onPress={showData}

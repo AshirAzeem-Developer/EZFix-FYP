@@ -53,7 +53,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const userId = useSelector((state: RootState) => state.user.user.user.id);
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
-  console.log('I am the logged IN User Right Now  --------------- > ', userId);
+  // console.log('I am the logged IN User Right Now  --------------- > ', userId);
 
   const userData = useSelector((state: RootState) => state.user.user.user);
 
@@ -76,8 +76,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
   useFocusEffect(
     React.useCallback(() => {
       GetUserALLData();
-    }, [])
-  )
+    }, []),
+  );
   useEffect(() => {
     GetUserALLData();
   }, []);
@@ -186,12 +186,16 @@ const Profile: React.FC<Props> = ({navigation}) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* =========== >>> Profile <<<< ============= */}
             <View style={styles.profileContainer}>
-              <Image source={{
+              <Image
+                source={{
                   uri: `${apiEndPoints.BASE_URL}${userAllData?.profileImage?.url}`,
-                }}  style={{
+                }}
+                style={{
                   width: sizes.WIDTH * 0.18,
                   height: sizes.WIDTH * 0.18,
-                }} />
+                  borderRadius: sizes.WIDTH * 0.09,
+                }}
+              />
               <View style={styles.profileDetailsContainer}>
                 <Text style={styles.name}>{userData?.name}</Text>
                 <Text style={styles.phoneNumberText}>{userData?.email}</Text>
@@ -242,16 +246,33 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 }}>
                 <Text style={styles.contactLabel}></Text>
                 <Text style={[styles.text, styles.contact]}>Add Skill</Text>
-                <TouchableOpacity onPress={Show} style={styles.addicon}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('AddSkill')}
+                  style={styles.addicon}>
                   <Image source={icons.ADD} />
                 </TouchableOpacity>
               </View>
             </View>
-            {showSkills && (
-              <View style={styles.dropdown}>
-                <DropDown />
+
+            <View style={styles.sectionContainer}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: sizes.WIDTH * 0.75,
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
+                {/* <Text style={styles.contactLabel}></Text> */}
+                <Text style={[styles.text, styles.contact]}>
+                  Add Experience
+                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('AddExperience')}
+                  style={styles.addicon}>
+                  <Image source={icons.ADD} />
+                </TouchableOpacity>
               </View>
-            )} */}
+            )}
 
             {/* =========== >>> Section 4 <<<< ============= */}
             {/* <View style={styles.experienceContainer}>
