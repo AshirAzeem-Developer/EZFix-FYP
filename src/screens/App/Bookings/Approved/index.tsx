@@ -91,10 +91,10 @@ const Approved = ({navigation}) => {
       });
   }
 
-  console.log(
-    'Approved Job Orders ==========> ',
-    JSON.stringify(jobOrders.data, null, 2),
-  );
+  // console.log(
+  //   'Approved Job Orders ==========> ',
+  //   JSON.stringify(jobOrders.data, null, 2),
+  // );
   // console.log('JobOrderLength', jobOrders.data?.length);
 
   const SeekerView = () => {
