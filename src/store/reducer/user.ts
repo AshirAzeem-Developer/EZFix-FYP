@@ -25,6 +25,12 @@ const user = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
+    updateUser(state, action) {
+      // Update individual fields in the user state
+      state.name = action.payload.name || state.name;
+      state.phoneNumber = action.payload.phoneNumber || state.phoneNumber;
+      // state.profileImage = action.payload.profileImage || state.profileImage;
+    },
     setuserName(state, action) {
       state.username = action.payload;
     },
@@ -66,6 +72,8 @@ export const {setCnicNumber} = user.actions;
 export const {setDateOfBirth} = user.actions;
 export const {setPassword} = user.actions;
 export const {setRoleType} = user.actions;
+export const {updateUser} = user.actions;
+
 export const {setIsAcceptedTermsAndConditions} = user.actions;
 
 export default user.reducer;

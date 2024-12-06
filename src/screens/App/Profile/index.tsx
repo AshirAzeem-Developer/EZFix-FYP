@@ -217,7 +217,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.sectionContainer}>
               <View>
                 <Text style={styles.countryLabel}>Country</Text>
-                <Text style={[styles.text, styles.country]}>US, Texas</Text>
+                <Text style={[styles.text, styles.country]}>Pakistan</Text>
               </View>
               <Image source={images.FLAG} />
             </View>
@@ -227,12 +227,12 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +92 344 2565412
+                  +{userData?.phoneNumber}
                 </Text>
               </View>
             </View>
 
-            <View style={styles.sectionContainer}>
+            {/* <View style={styles.sectionContainer}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -240,7 +240,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                 }}>
-                {/* <Text style={styles.contactLabel}></Text> */}
+                <Text style={styles.contactLabel}></Text>
                 <Text style={[styles.text, styles.contact]}>Add Skill</Text>
                 <TouchableOpacity onPress={Show} style={styles.addicon}>
                   <Image source={icons.ADD} />
@@ -251,7 +251,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View style={styles.dropdown}>
                 <DropDown />
               </View>
-            )}
+            )} */}
 
             {/* =========== >>> Section 4 <<<< ============= */}
             {/* <View style={styles.experienceContainer}>
