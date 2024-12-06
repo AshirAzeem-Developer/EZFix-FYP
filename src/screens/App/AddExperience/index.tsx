@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
@@ -14,6 +15,8 @@ import useStyles from './style';
 import Header from '../../../components/Header';
 import CustomModal from '../../../components/CustomCreatedModal';
 import images from '../../../assets/images';
+import {getSkillsFromUserId, postExperience} from '../../../utils/ApiCall';
+import {useSelector} from 'react-redux';
 
 enum ExperienceLevel {
   ENTRY = 'Entry Level',
@@ -32,11 +35,14 @@ interface Skill {
 }
 
 interface Experience {
-  id?: string;
-  jobTitle: string;
-  startDate: Date;
-  endDate?: Date;
-  skill: Skill;
+  data: {
+    id?: string;
+    jobTitle: string;
+    description: string;
+    startDate: Date;
+    endDate?: Date;
+    skill: Skill;
+  };
 }
 
 const AddExperience = ({navigation}) => {
@@ -46,8 +52,13 @@ const AddExperience = ({navigation}) => {
   const [skill, setSkill] = useState<Skill | null>(null);
   const [showStartDatePicker, setShowStartDatePicker] = useState(false);
   const [showEndDatePicker, setShowEndDatePicker] = useState(false);
-  const {styles, colors} = useStyles();
+  const {styles, colors, sizes} = useStyles();
   const [isOpen, setIsopen] = useState(false);
+  const userId = useSelector((state: any) => state?.user?.user?.user?.id);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  const [userSkills, setUserSkills] = useState([]);
+  const [jobDescription, setJobDescription] = useState('');
+  const [userSkillIds, setUserSkillIds] = useState([]);
 
   // Sample skills (replace with actual skills from your database)
   const SKILLS: Skill[] = [
@@ -80,24 +91,52 @@ const AddExperience = ({navigation}) => {
     }
 
     const newExperience: Experience = {
-      jobTitle,
-      startDate,
-      endDate,
-      skill,
+      data: {
+        jobTitle: jobTitle,
+        description: jobDescription,
+        startDate: startDate,
+        endDate: endDate,
+        skill: skill.id as any, // Send skill ID only
+      },
     };
+    postExperience(newExperience, userToken)
+      .then(res => {
+        if (res.status === 200) {
+          setIsopen(true);
+          // Simulate adding experience (replace with actual logic)
+          console.log(
+            'New Experience ------------ >> :',
+            JSON.stringify(newExperience, null, 2),
+          );
 
-    // Simulate adding experience (replace with actual logic)
-    console.log('New Experience:', newExperience);
+          // Reset fields
+          setJobTitle('');
+          setJobDescription('');
+          setStartDate(new Date());
+          setEndDate(undefined);
+          setSkill(null);
 
-    // Reset fields
-    setJobTitle('');
-    setStartDate(new Date());
-    setEndDate(undefined);
-    setSkill(null);
-
-    // Show confirmation
-    Alert.alert('Experience added successfully!');
+          navigation.goBack();
+        }
+      })
+      .catch(err => {
+        console.log('Error:', err);
+      });
   };
+
+  useEffect(() => {
+    // Add your logic here
+    getSkillsFromUserId(userId, userToken)
+      .then(res => {
+        const skills = res?.data?.skills || [];
+        setUserSkills(skills);
+        const skillIds = skills?.map((skill: any) => skill?.id);
+        setUserSkillIds(skillIds); // Update skill IDs state
+      })
+      .catch(err => {
+        console.log('Error:', err);
+      });
+  }, []);
 
   return (
     <ParentView style={styles.container}>
@@ -108,12 +147,30 @@ const AddExperience = ({navigation}) => {
       />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* <Text style={styles.title}>Add Work Experience</Text> */}
+        <Text style={styles.label}>Job Title</Text>
 
         <TextInput
           style={styles.input}
           placeholder="Job Title"
           value={jobTitle}
           onChangeText={setJobTitle}
+        />
+        <Text style={styles.label}>Work Description</Text>
+
+        <TextInput
+          style={[
+            styles.input,
+            {
+              height: sizes.HEIGHT * 0.2,
+              textAlignVertical: 'top',
+            },
+          ]}
+          placeholder="Enter Job Description"
+          value={jobDescription}
+          multiline
+          numberOfLines={4}
+          textAlign="left"
+          onChangeText={setJobDescription}
         />
 
         <View style={styles.dateContainer}>
@@ -165,30 +222,40 @@ const AddExperience = ({navigation}) => {
         <View style={styles.pickerContainer}>
           <Text style={styles.label}>Select Skill</Text>
           <View style={styles.skillDropdown}>
-            {SKILLS.map(s => (
+            {userSkills.map(s => (
               <TouchableOpacity
-                key={s.id}
+                key={s?.id}
                 style={[
                   styles.skillItem,
-                  skill?.id === s.id && styles.selectedSkillItem, // Highlight selected skill
+                  skill?.id === s?.id && styles.selectedSkillItem, // Highlight selected skill
                 ]}
                 onPress={() => {
                   setSkill(s); // Set selected skill
-                  console.log('Selected Skill:', s.name);
+                  console.log('Selected Skill:', s);
                 }}>
-                <Text>{s.name}</Text>
-                <Text style={styles.skillSubtext}>{s.category}</Text>
+                <Text
+                  style={skill?.id === s?.id && styles.selectedSkillItemText}>
+                  {s?.name}
+                </Text>
+                <Text
+                  style={[
+                    styles.skillSubtext,
+                    skill?.id === s?.id && styles.selectedSkillSubText,
+                  ]}>
+                  {s?.category?.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
         </View>
-
+      </ScrollView>
+      <View style={styles.addButtonContainer}>
         <TouchableOpacity
           style={styles.addButton}
           onPress={handleAddExperience}>
           <Text style={styles.addButtonText}>Add Experience</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </View>
       <CustomModal
         modalTitle={'Exerience Addded'}
         modalDesc={''}

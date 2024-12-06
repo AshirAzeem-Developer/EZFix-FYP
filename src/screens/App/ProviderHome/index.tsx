@@ -45,7 +45,7 @@ const ProviderHome = () => {
 
   // Second effect: Fetch job orders when skill IDs are updated
   useEffect(() => {
-    console.log('Fetching job orders for skill IDs:', userSkillIds);
+    // console.log('Fetching job orders for skill IDs:', userSkillIds);
     if (userSkillIds.length > 0) {
       getJobOrdersBySkills(userSkillIds, userToken)
         .then(res => {

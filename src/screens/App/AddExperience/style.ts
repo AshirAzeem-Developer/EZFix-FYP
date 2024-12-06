@@ -3,6 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {useColors} from '../../../constants/color';
 import {useSizes} from '../../../constants/size';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
+import {add} from 'date-fns';
 // dimenstion
 const {width, height} = Dimensions.get('window');
 const useStyles = () => {
@@ -97,12 +98,22 @@ const useStyles = () => {
       shadowRadius: sizes.WIDTH * 0.01, // 1% of width
       elevation: 3,
     },
+    addButtonContainer: {
+      position: 'absolute',
+      height: sizes.HEIGHT * 0.1, // 10% of height
+      flex: 1,
+      width: '100%',
+      alignSelf: 'center',
+      bottom: 0, // 5% of height
+      backgroundColor: colors.BACKGROUND || '#f4f4f4',
+      paddingHorizontal: sizes.WIDTH * 0.05, // 5% of width
+    },
     addButton: {
       backgroundColor: colors.PRIMARY || '#007bff',
       padding: sizes.WIDTH * 0.03, // 4% of width
       borderRadius: sizes.WIDTH * 0.025, // 2.5% of width
       alignItems: 'center',
-      marginTop: sizes.HEIGHT * 0.03, // 3% of height
+      marginTop: sizes.HEIGHT * 0.015, // 3% of height
     },
     addButtonText: {
       color: 'white',
@@ -126,6 +137,14 @@ const useStyles = () => {
     },
     selectedSkillItem: {
       backgroundColor: colors.PRIMARY || '#e6f2ff',
+      borderRadius: sizes.WIDTH * 0.025, // 2.5% of width
+    },
+    selectedSkillItemText: {
+      color: colors.WHITE || '#e6f2ff',
+      fontWeight: 'bold',
+    },
+    selectedSkillSubText: {
+      color: colors.WHITE || '#e6f2ff',
     },
     skillSubtext: {
       color: colors.BLACK || '#666',

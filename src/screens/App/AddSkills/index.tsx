@@ -32,12 +32,15 @@ enum ExperienceLevel {
 
 // Interfaces
 interface Skill {
-  id?: string;
-  name: string;
-  category: string;
-  hourlyRate: number;
-  experienceYears: number;
-  experienceLevel: ExperienceLevel;
+  data: {
+    id?: string;
+    name: string;
+    category: string;
+    hourlyRate: number;
+    experienceYears: number;
+    experienceLevel: ExperienceLevel;
+    user: number;
+  };
 }
 
 // Sample Categories (you can replace with your actual categories)
@@ -75,33 +78,33 @@ const AddSkill: React.FC<AppStackParamsList> = ({navigation}) => {
     }
     // Validation and skill addition logic
     const newSkill: Skill = {
-      name: skillName,
-      category: category,
-      hourlyRate: parseFloat(hourlyRate),
-      experienceYears: parseInt(experienceYears),
-      experienceLevel: experienceLevel,
+      data: {
+        name: skillName,
+        category: category,
+        hourlyRate: parseFloat(hourlyRate),
+        experienceYears: parseInt(experienceYears),
+        experienceLevel: experienceLevel,
+        user: userId,
+      },
     };
     postSkill(newSkill, userToken)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
         if (res.status === 200) {
           setIsopen(true);
+          // console.log('New Skill:', newSkill);
+          setSkillName('');
+          setCategory('');
+          setHourlyRate('');
+          setExperienceYears('');
+          setExperienceLevel(ExperienceLevel.ENTRY);
+          navigation.goBack();
         }
         // TODO: Add skill to your database/state management
-        console.log('New Skill:', newSkill);
       })
       .catch(err => {
         console.log(err);
       });
-    // Reset fields
-
-    // console.log('New Skill:', newSkill);
-
-    setSkillName('');
-    setCategory('');
-    setHourlyRate('');
-    setExperienceYears('');
-    setExperienceLevel(ExperienceLevel.ENTRY);
   };
 
   const closeModal = () => {
@@ -159,7 +162,7 @@ const AddSkill: React.FC<AppStackParamsList> = ({navigation}) => {
                 <TouchableOpacity
                   style={styles.dropdownItem}
                   onPress={() => {
-                    setCategory(item?.attributes?.name);
+                    setCategory(item?.id);
                     setShowCategoryDropdown(false);
                   }}>
                   <Text>{item?.attributes?.name}</Text>

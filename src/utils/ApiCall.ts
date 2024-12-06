@@ -266,7 +266,7 @@ export const fetchFriendsList = (userId: number, token: string) => {
       },
     })
     .then(response => {
-      console.log('Response Data', JSON.stringify(response.data, null, 2));
+      // console.log('Response Data', JSON.stringify(response.data, null, 2));
       // Extract recipients from the response data
       const friendsList = response.data?.data?.map((message: any) => {
         // Return the recipient if the current user is the sender, or the sender if the current user is the recipient
@@ -275,7 +275,7 @@ export const fetchFriendsList = (userId: number, token: string) => {
           : message.attributes?.sender;
       });
 
-      console.log('Friends List', JSON.stringify(friendsList, null, 2));
+      // console.log('Friends List', JSON.stringify(friendsList, null, 2));
 
       // Keep only the first occurrence of each user based on their id (discard subsequent duplicates)
       const seenUserIds = new Set();
@@ -322,7 +322,17 @@ export const getSkillsByCategoryWithUserDetails = (
   );
 };
 export const postSkill = (data: {}, token: any) => {
-  return apiRequest.post(`/api/skills`, data, {
+  return apiRequest.post(`${apiEndPoint.SKILLS}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+// ========================= >> Experience << =========================
+
+export const postExperience = (data: {}, token: any) => {
+  return apiRequest.post(`${apiEndPoint.EXPERIENCE}`, data, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

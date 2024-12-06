@@ -70,7 +70,7 @@ const MobileNoTextInput: React.FC<MobileNoTextInputProps> = ({
   });
 
   const onSelect = (country: any) => {
-    console.log('===>', country);
+    // console.log('===>', country);
     setSelectedCountryCode(country.cca2);
     setSelectedCountry(country);
   };

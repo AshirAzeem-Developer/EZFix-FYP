@@ -76,13 +76,7 @@ const ChatStack = ({navigation}: {navigation: any}) => {
     <Stack.Navigator
       initialRouteName="Chat"
       screenOptions={{
-        header: ({navigation, route}) => (
-          <Header
-            isLeftShow={true}
-            heading="Chats"
-            leftIconAction={() => navigation.goBack()}
-          />
-        ),
+        headerShown: false,
       }}>
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Chatlist" component={Chatlist} />
