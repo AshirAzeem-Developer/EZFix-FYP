@@ -61,7 +61,7 @@ const AllProviderCards: React.FC = () => {
   const userToken = useSelector((state: RootState) => state.user?.user?.jwt);
   const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
   const dispatch = useDispatch();
-  // console.log('Skill Name Is ==========> ', JobOrder.skill);
+  console.log('Job Order State is  ==========> ', JobOrder);
 
   const [providersData, setProvidersData] = useState<Provider[]>([]);
   console.log(
