@@ -29,22 +29,27 @@ const useStyles = () => {
       right: -sizes.WIDTH * 0.15,
     },
     profileImageContainer: {
-      marginTop: sizes.HEIGHT * 0.02,
-      marginLeft: sizes.WIDTH * 0.05,
+      marginTop: sizes.HEIGHT * 0.05,
+      justifyContent:"center",
+      
     },
     nameContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      marginHorizontal: sizes.WIDTH * 0.04,
+    
+      marginHorizontal: sizes.WIDTH * 0.09,
       borderBottomWidth: sizes.HEIGHT * 0.001,
       borderColor: '#757575',
+    },
+    inputStyle: {
+    marginTop:sizes.HEIGHT*0.03
     },
     phoneNumContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      marginHorizontal: sizes.WIDTH * 0.04,
+      marginHorizontal: sizes.WIDTH * 0.09,
 
       marginTop: sizes.HEIGHT * 0.02,
       borderBottomWidth: sizes.HEIGHT * 0.001,
