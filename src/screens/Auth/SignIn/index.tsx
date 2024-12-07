@@ -57,18 +57,14 @@ const SignIn = ({navigation}: Props) => {
       <>
         <SafeAreaView style={styles.container}>
           {/* =============== >>>> Header <<< =============== */}
-          <Header
-            leftIconAction={() => navigation.goBack()}
-            rightView={
-              <View style={styles.headerRightViewStyles}>
-                <Text style={styles.nowHereText}>New Here ? </Text>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('SignUpCheckPhone')}>
-                  <Text style={styles.heaaderSignupText}>Sign up</Text>
-                </TouchableOpacity>
-              </View>
-            }
-          />
+          <View style={styles.headerRightViewStyles}>
+            <Text style={styles.nowHereText}>New Here ? </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignUpCheckPhone')}>
+              <Text style={styles.heaaderSignupText}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+
           {/* =============== >>>> Logo Container <<< =============== */}
           <View style={styles.logoImgCont}>
             <Image source={icons.Logo} style={styles.logoImg} />

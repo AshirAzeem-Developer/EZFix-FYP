@@ -23,18 +23,23 @@ const useStyles = () => {
     },
     headerRightViewStyles: {
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
+      alignSelf: 'flex-end',
+      paddingRight: sizes.WIDTH * 0.05,
+      marginTop: sizes.HEIGHT * 0.02,
     },
     heaaderSignupText: {
-      ...globalStyles.TEXT_STYLE,
+      ...globalStyles.TEXT_STYLE_BOLD,
+
       flexDirection: 'row',
       alignItems: 'center',
-      fontSize: sizes.FONTSIZE,
+      fontSize: sizes.FONT_SIZE_TITLE,
     },
     nowHereText: {
       ...globalStyles.TEXT_STYLE,
       color: colors.GRAY,
-      fontSize: sizes.FONTSIZE,
+      fontSize: sizes.FONT_SIZE_TITLE,
     },
     logoImgCont: {
       alignSelf: 'flex-start',
