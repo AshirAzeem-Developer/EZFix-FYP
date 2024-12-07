@@ -62,6 +62,11 @@ const Notifications: React.FC<props> = ({navigation}) => {
       />
       <View style={styles.container}>
         <FlatList
+          contentContainerStyle={{
+            paddingBottom: sizes.HEIGHT * 0.1,
+          }}
+          showsVerticalScrollIndicator={false}
+          scrollEnabled={true}
           data={notifications}
           renderItem={({item}) => <NotificationCard message={item} />}
           keyExtractor={item => item.id}

@@ -25,6 +25,7 @@ import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
 import AllProviderCards from '../screens/App/AllProviders';
 import {View} from 'react-native';
+import MapScreen from '../screens/App/MapScreen';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -47,6 +48,7 @@ export type AppStackParamsList = {
   AllProviders: undefined;
   AddSkill: undefined;
   AddExperience: undefined;
+  MapScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -63,7 +65,7 @@ function ProfileStack() {
     </Stack.Navigator>
   );
 }
-function BookingStack({navigation}) {
+function BookingStack() {
   const userType = useSelector(
     (state: any) => state?.user?.user?.user?.roleType,
   );
@@ -93,7 +95,7 @@ function BookingStack({navigation}) {
     </>
   );
 }
-function ChatStack({navigation}) {
+function ChatStack() {
   return (
     <>
       <Stack.Navigator
@@ -168,6 +170,7 @@ function ServiceSeekerStack() {
       <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
       <Stack.Screen name="AllProviders" component={AllProviderCards} />
+      <Stack.Screen name="MapScreen" component={MapScreen} />
     </Stack.Navigator>
   );
 }

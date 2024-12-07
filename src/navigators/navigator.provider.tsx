@@ -1,9 +1,4 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../screens/App/Home';
-
-import Messages from '../screens/App/Message';
 import Profile from '../screens/App/Profile';
 import CreateBottomTabs from './CreateBottomTabs';
 import icons from '../assets/icons';
@@ -19,11 +14,12 @@ import Chat from '../screens/App/Chat';
 import Chatlist from '../components/ChatList';
 import ChatOpen from '../screens/App/ChatOpen';
 import {StyleSheet, View} from 'react-native';
-import CustomHeader from '../components/CustomHeader';
+
 import Header from '../components/Header';
 import Notifications from '../screens/App/Notifications';
 import AddSkill from '../screens/App/AddSkills';
 import AddExperience from '../screens/App/AddExperience';
+import StartStopWorking from '../screens/App/StartStopWorking';
 
 const Stack = createNativeStackNavigator();
 
@@ -125,6 +121,7 @@ function ServiceProvider() {
       <Stack.Screen name="Notification" component={Notifications} />
       <Stack.Screen name="AddSkill" component={AddSkill} />
       <Stack.Screen name="AddExperience" component={AddExperience} />
+      <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
     </Stack.Navigator>
   );
 }

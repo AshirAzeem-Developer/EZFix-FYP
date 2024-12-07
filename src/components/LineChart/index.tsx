@@ -5,7 +5,6 @@ import {LineChart} from 'react-native-chart-kit';
 const MyLineChart = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.chartTitle}>Monthly Revenue (PKR)</Text>
       <LineChart
         data={{
           labels: [

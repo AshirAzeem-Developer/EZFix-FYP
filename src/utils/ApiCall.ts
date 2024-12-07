@@ -353,6 +353,15 @@ export const getNotificationsByUserId = (token: string, userId: number) => {
     },
   );
 };
+// ========================= >> Location << =========================
+export const createLocation = (token: string, data: any) => {
+  return apiRequest.post(`${apiEndPoint.LOCATIONS}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 // ========================= >> HUZAIFA API CALLINGS << =========================
 export const updateUserById = (token: string, userId: string, data: any) => {

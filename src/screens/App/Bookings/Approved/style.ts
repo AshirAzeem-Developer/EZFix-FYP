@@ -82,7 +82,7 @@ const useStyles = () => {
       paddingTop: sizes.HEIGHT * 0.01,
     },
     provivder: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       padding: sizes.WIDTH * 0.01,
     },
     items: {
@@ -110,16 +110,23 @@ const useStyles = () => {
       marginLeft: sizes.WIDTH * 0.02,
     },
     btnContainer: {
+      width: sizes.WIDTH * 0.9,
       flexDirection: 'row',
       marginVertical: sizes.HEIGHT * 0.01,
       alignItems: 'center',
-      justifyContent: 'flex-end',
-      width: sizes.WIDTH * 0.45,
+      justifyContent: 'space-around',
+    },
+    btnStopTrackingStyles: {
+      width: sizes.WIDTH * 0.4,
+      height: sizes.HEIGHT * 0.038,
+    },
+    btnStartTrackingStyles: {
+      width: sizes.WIDTH * 0.4,
+      height: sizes.HEIGHT * 0.038,
     },
     btnStartJobStyles: {
-      width: sizes.WIDTH * 0.22,
+      width: sizes.WIDTH * 0.4,
       height: sizes.HEIGHT * 0.038,
-      marginLeft: sizes.WIDTH * 0.02,
     },
     seekerCont: {
       backgroundColor: 'rgba(0,128,0,0.2)',

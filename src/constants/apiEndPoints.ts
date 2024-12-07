@@ -13,4 +13,5 @@ export default {
   SKILLS: `/skills`,
   NOTIFICATIONS: '/notifications',
   EXPERIENCE: '/experiences',
+  LOCATIONS: '/locations',
 };
