@@ -202,10 +202,10 @@ const Pending: React.FC<AppStackParamsList> = () => {
         });
     }
 
-    console.log(
-      'Job Orders -------------------------------- > ',
-      jobOrders?.data,
-    );
+    // console.log(
+    //   'Job Orders -------------------------------- > ',
+    //   jobOrders?.data,
+    // );
     return (
       <ParentView
         style={styles.container}

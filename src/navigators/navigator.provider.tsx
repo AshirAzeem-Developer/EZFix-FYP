@@ -29,26 +29,15 @@ const Stack = createNativeStackNavigator();
 
 const BookingStack = ({navigation}: {navigation: any}) => {
   return (
-    <View style={styles.container}>
-      {/* Custom Header */}
-
-      <Header
-        isLeftShow={true}
-        heading="Bookings"
-        leftIconAction={() => navigation.goBack()}
-      />
-
-      {/* Top Tabs */}
-      <CreateTopTabs
-        initialRouteName="Pending"
-        screens={[
-          {name: 'Approved', Component: Approved, label: 'Approved'},
-          {name: 'Pending', Component: Pending, label: 'Pending'},
-          {name: 'Cancel', Component: Cancel, label: 'Cancelled'},
-        ]}
-        key={'BookingStack'}
-      />
-    </View>
+    <CreateTopTabs
+      initialRouteName="Pending"
+      screens={[
+        {name: 'Approved', Component: Approved, label: 'Approved'},
+        {name: 'Pending', Component: Pending, label: 'Pending'},
+        {name: 'Cancel', Component: Cancel, label: 'Cancelled'},
+      ]}
+      key={'BookingStack'}
+    />
   );
 };
 

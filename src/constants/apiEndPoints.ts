@@ -12,4 +12,5 @@ export default {
   MESSAGES: `/messages`,
   SKILLS: `/skills`,
   NOTIFICATIONS: '/notifications',
+  LOCATIONS: '/locations',
 };
