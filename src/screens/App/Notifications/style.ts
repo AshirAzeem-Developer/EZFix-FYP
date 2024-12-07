@@ -10,9 +10,7 @@ const useStyles = () => {
   const sizes = useSizes();
   const globalStyles = getGlobalStyles(colors, sizes);
   const styles = StyleSheet.create({
-    container: {
-      marginTop: sizes.HEIGHT * 0.03,
-    },
+    container: {},
   });
   return {
     colors,

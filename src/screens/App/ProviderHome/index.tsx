@@ -83,16 +83,14 @@ const ProviderHome = () => {
     <ParentView
       style={styles.container}
       enterAnimation={FadeInDown.duration(500)}>
+      <View style={styles.logoImgCont}>
+        <Image source={icons.Logo} style={styles.logoImg} />
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+          <Image source={icons.BELL} style={styles.bellImg} />
+          {notificationsAvailable && <View style={styles.notificationBadge} />}
+        </TouchableOpacity>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.logoImgCont}>
-          <Image source={icons.Logo} style={styles.logoImg} />
-          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
-            <Image source={icons.BELL} style={styles.bellImg} />
-            {notificationsAvailable && (
-              <View style={styles.notificationBadge} />
-            )}
-          </TouchableOpacity>
-        </View>
         <View style={styles.providerdetail}>
           <Text style={styles.name}>
             Hello, <Text>{user}</Text>
