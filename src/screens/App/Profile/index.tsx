@@ -53,7 +53,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const userId = useSelector((state: RootState) => state.user.user.user.id);
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
-  // console.log('I am the logged IN User Right Now  --------------- > ', userId);
+  console.log('I am the logged IN User Right Now  --------------- > ', userId);
 
   const userData = useSelector((state: RootState) => state.user.user.user);
 
@@ -221,7 +221,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.sectionContainer}>
               <View>
                 <Text style={styles.countryLabel}>Country</Text>
-                <Text style={[styles.text, styles.country]}>Pakistan</Text>
+                <Text style={[styles.text, styles.country]}>US, Texas</Text>
               </View>
               <Image source={images.FLAG} />
             </View>
@@ -231,12 +231,12 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +{userData?.phoneNumber}
+                  +92 344 2565412
                 </Text>
               </View>
             </View>
 
-            {/* <View style={styles.sectionContainer}>
+            <View style={styles.sectionContainer}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -244,7 +244,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                 }}>
-                <Text style={styles.contactLabel}></Text>
+                {/* <Text style={styles.contactLabel}></Text> */}
                 <Text style={[styles.text, styles.contact]}>Add Skill</Text>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('AddSkill')}
@@ -272,7 +272,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                   <Image source={icons.ADD} />
                 </TouchableOpacity>
               </View>
-            )}
+            </View>
 
             {/* =========== >>> Section 4 <<<< ============= */}
             {/* <View style={styles.experienceContainer}>
