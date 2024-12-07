@@ -65,7 +65,7 @@ function ProfileStack() {
     </Stack.Navigator>
   );
 }
-function BookingStack({navigation}) {
+function BookingStack() {
   const userType = useSelector(
     (state: any) => state?.user?.user?.user?.roleType,
   );
@@ -95,7 +95,7 @@ function BookingStack({navigation}) {
     </>
   );
 }
-function ChatStack({navigation}) {
+function ChatStack() {
   return (
     <>
       <Stack.Navigator

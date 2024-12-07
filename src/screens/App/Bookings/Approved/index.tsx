@@ -372,10 +372,10 @@ const Approved = ({navigation}) => {
               )}
               <Button
                 text="Start Job"
-                bgcolor="#008000"
+                bgcolor="#004000"
                 btnTextStyles={{color: 'white'}}
                 btnStyles={styles.btnStartJobStyles}
-                onPress={() => console.log('Start Working Pressed')}
+                onPress={() => navigation.navigate('StartStopWorking')}
               />
             </View>
           </View>
@@ -421,7 +421,7 @@ const Approved = ({navigation}) => {
                 <Button
                   icon={icons.MESSAGE_TAB_ACTIVE}
                   text="ChatNow"
-                  bgcolor="#ffffff"
+                  bgcolor="#f0f0f0"
                   btnStyles={styles.chatNowBtn}
                   btnTextStyles={{color: 'black'}}
                   onPress={() => navigation.navigate('Messages')}
