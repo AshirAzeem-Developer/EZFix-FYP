@@ -108,7 +108,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionIcon: icons.LOCK,
       optionText: 'Change Password',
       onPressAction: () => {
-        navigation.navigate('AuthStack', {screen: 'ChangePassword'});
+        navigation.navigate('ChangePassword');
       },
     },
     {
