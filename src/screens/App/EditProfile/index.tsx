@@ -11,11 +11,12 @@ import CustomActionSheet from '../../../components/CustomActionSheet';
 import CustomModal from '../../../components/CustomModal';
 import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
 import icons from '../../../assets/icons';
-import { useSelector } from 'react-redux';
-import { getUserById, updateUserById } from '../../../utils/ApiCall';
+import {useSelector} from 'react-redux';
+import {getUserById, updateUserById} from '../../../utils/ApiCall';
 import apiEndPoints from '../../../constants/apiEndPoints';
 import TextInputCustom from '../../../components/TextInputCustom';
-import { launchImageLibrary } from 'react-native-image-picker'; // Import the library
+import {launchImageLibrary} from 'react-native-image-picker'; // Import the library
+import {showSuccess} from '../../../utils/helperFunction';
 export default function EditProfile({navigation}: any) {
   const {styles, sizes, colors} = useStyles();
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
@@ -25,7 +26,7 @@ export default function EditProfile({navigation}: any) {
   const [Username, setUserName] = useState(userData?.name);
   const [email, setEmail] = useState();
   const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber);
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   // navigation
@@ -57,7 +58,7 @@ export default function EditProfile({navigation}: any) {
   //   }
   // };
   const pickImage = () => {
-    launchImageLibrary({ mediaType: 'photo', includeBase64: false }, (response) => {
+    launchImageLibrary({mediaType: 'photo', includeBase64: false}, response => {
       if (response.assets && response.assets.length > 0) {
         const selectedImage = response.assets[0].uri;
         setProfileImage(selectedImage); // Set the selected image URI
@@ -72,43 +73,40 @@ export default function EditProfile({navigation}: any) {
         if (profileImageUrl) {
           setProfileImage(`${apiEndPoints.BASE_URL}${profileImageUrl}`);
         } else {
-          setProfileImage(""); // Default empty or fallback
+          setProfileImage(''); // Default empty or fallback
         }
       } catch (error) {
-        console.error("Error fetching profile image:", error);
+        console.error('Error fetching profile image:', error);
       }
     };
-  
+
     fetchProfileImage();
   }, [userToken, userId]); // Dependencies to rerun if these values change
   const handleSave = async () => {
-    // if (!name || !email || !phoneNumber) {
-    //   Alert.alert('Validation Error', 'Name, email, and phone number are required.');
-    //   return;
-    // }
-
     setIsLoading(true);
-  
-      updateUserById(userToken, userId, {        
-       
-          name:Username,
-          phoneNumber:phoneNumber,
-          // profileImage: { profileImage }  // Ensure this matches the backend expectatio
-    
-      // Alert.alert('Success', 'Profile updated successfully.');
-      // navigation.goBack();
-      }).then((res)=>{
-        console.log(JSON.stringify(res.data,null,2));
-
-        
-      }).catch((error)=>{
-        console.log(error);
-        console.error('Error updating profile:', error.response ? error.response.data : error);
+    updateUserById(userToken, userId, {
+      name: Username,
+      phoneNumber: phoneNumber,
+    })
+      .then(res => {
+        // console.log(JSON.stringify(res.data, null, 2));
+        if (res.status === 200) {
+          // Alert.alert('Success', 'Profile updated successfully');
+          // navigate('Profile');
+          showSuccess('Profile updated successfully');
+        } else {
+          Alert.alert('Error', 'Failed to update profile');
+        }
       })
-    
-    }
+      .catch(error => {
+        console.log(error);
+        console.error(
+          'Error updating profile:',
+          error.response ? error.response.data : error,
+        );
+      });
+  };
   console.log(Username);
- 
 
   // useEffect(() => {
   //   fetchUserData();
@@ -140,7 +138,7 @@ export default function EditProfile({navigation}: any) {
             Cancel
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity  onPress={handleSave}>
+        <TouchableOpacity onPress={handleSave}>
           <Text
             style={{
               fontSize: sizes.WIDTH * 0.04,
@@ -152,33 +150,33 @@ export default function EditProfile({navigation}: any) {
       </View>
 
       <MyKeyboardAvoider style={{height: sizes.HEIGHT * 0.9}}>
-      <View style={[styles.profileImageContainer, { flexDirection: 'row' }]}>
-      <View>
-        <Image
-          style={{
-            width: sizes.WIDTH * 0.25,
-            height: sizes.WIDTH * 0.25,
-            borderRadius: sizes.WIDTH * 0.125,
-          }}
-          source={{
-            uri: profileImage,
-          }}
-        />
-        <TouchableOpacity style={styles.upload} onPress={pickImage}>
-          <Image source={images.UPLOAD_IMAGE_CAMERA} />
-        </TouchableOpacity>
-      </View>
-    </View>
+        <View style={[styles.profileImageContainer, {flexDirection: 'row'}]}>
+          <View>
+            <Image
+              style={{
+                width: sizes.WIDTH * 0.25,
+                height: sizes.WIDTH * 0.25,
+                borderRadius: sizes.WIDTH * 0.125,
+              }}
+              source={{
+                uri: profileImage,
+              }}
+            />
+            <TouchableOpacity style={styles.upload} onPress={pickImage}>
+              <Image source={images.UPLOAD_IMAGE_CAMERA} />
+            </TouchableOpacity>
+          </View>
+        </View>
 
         {/* ============= >>> Name Input  <<<< =================  */}
         <View style={styles.nameContainer}>
           <Image source={icons.Profile} />
           <TextInputCustom
-       textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
-    handleOnChange={text => setUserName(text)}
-    value={Username}
-    placeHolderTxt="Enter your name"
-    showBottomBorder={false} // Disable bottom border
+            textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
+            handleOnChange={text => setUserName(text)}
+            value={Username}
+            placeHolderTxt="Enter your name"
+            showBottomBorder={false} // Disable bottom border
           />
         </View>
         {/* ============= >>> Contact Input  <<<< =================  */}
@@ -189,11 +187,11 @@ export default function EditProfile({navigation}: any) {
           }}>
           <Text style={styles.phoneNumCode}>+92</Text>
           <TextInputCustom
-       textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
-    handleOnChange={text => setPhoneNumber(text)}
-    value={phoneNumber}
-    placeHolderTxt="Enter Phone Number"
-    showBottomBorder={false} // Disable bottom border
+            textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
+            handleOnChange={text => setPhoneNumber(text)}
+            value={phoneNumber}
+            placeHolderTxt="Enter Phone Number"
+            showBottomBorder={false} // Disable bottom border
           />
         </View>
         {/* ============= >>> CountryInput  <<<< =================  */}
@@ -201,11 +199,10 @@ export default function EditProfile({navigation}: any) {
           <Image source={images.FLAG} />
 
           <TextInputCustom
-       textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
-  
-    value="Pakistan"
-    placeHolderTxt="Enter Phone Number"
-    showBottomBorder={false} // Disable bottom border
+            textInputStyle={styles.inputStyle} // Apply padding and styles to TextInput
+            value="Pakistan"
+            placeHolderTxt="Enter Phone Number"
+            showBottomBorder={false} // Disable bottom border
           />
         </View>
 

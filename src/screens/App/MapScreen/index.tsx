@@ -13,8 +13,6 @@ import {WebSocketService} from '../../../services/WebSocketService';
 import {Socket} from 'socket.io-client';
 import {useSelector} from 'react-redux';
 
-const {width, height} = Dimensions.get('window');
-
 const MapScreen: React.FC = () => {
   const [region, setRegion] = useState<Region>({
     latitude: 37.78825,
@@ -22,6 +20,12 @@ const MapScreen: React.FC = () => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
+  const [markerPosition, setMarkerPosition] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+
   const {styles, colors, sizes} = useStyles();
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
   const userId = useSelector((state: any) => state.user?.user?.user?.id);
@@ -50,7 +54,28 @@ const MapScreen: React.FC = () => {
         });
 
         socket.on('location:create', location => {
-          console.log('Received message:', location);
+          console.log(
+            'Received Location ----------- >> :',
+            JSON.stringify(location, null, 2),
+          );
+          if (
+            location &&
+            location?.data?.attributes?.lat != null &&
+            location?.data?.attributes?.long != null
+          ) {
+            setRegion(prev => ({
+              ...prev,
+              latitude: location?.data?.attributes?.lat,
+              longitude: location?.data?.attributes?.long,
+            }));
+
+            setMarkerPosition({
+              latitude: location?.data?.attributes?.lat,
+              longitude: location?.data?.attributes?.long,
+            });
+          } else {
+            console.error('Invalid location data:', location);
+          }
         });
       }
     };
@@ -72,13 +97,9 @@ const MapScreen: React.FC = () => {
         style={styles.map}
         region={region}
         onRegionChangeComplete={setRegion}>
-        <Marker
-          coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
-          }}
-          title="Current Location"
-        />
+        {markerPosition && (
+          <Marker coordinate={markerPosition} title="Current Location" />
+        )}
       </MapView>
 
       <View style={styles.searchContainer}>

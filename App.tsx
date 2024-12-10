@@ -17,9 +17,11 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
-            <DataWrapper>
-              <RootNavigator />
-            </DataWrapper>
+            <DataWrapper
+              children={<RootNavigator />}
+              key={Math.random().toString()}
+            />
+            {/* <RootNavigator /> */}
           </NavigationContainer>
         </PersistGate>
       </Provider>
@@ -33,13 +35,11 @@ const DataWrapper = ({children}: {children: React.ReactNode}) => {
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
   useOneSignalPush(userId?.toString(), userToken);
-
   useHandleDeepLink();
-
   return (
     <>
-      <ToastHandler />
       {children}
+      <ToastHandler />
     </>
   );
 };

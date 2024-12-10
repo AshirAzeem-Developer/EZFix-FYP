@@ -79,10 +79,16 @@ const Profile: React.FC<Props> = ({navigation}) => {
     }, []),
   );
   useEffect(() => {
-    GetUserALLData();
+    setTimeout(() => {
+      GetUserALLData();
+    }, 1000);
   }, []);
 
   const SeekerView = () => {
+    // console.log(
+    //   'Users All Data  ------- >> ',
+    //   JSON.stringify(userAllData, null, 2),
+    // );
     return (
       <ParentView
         style={styles.container}
@@ -114,8 +120,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 }}
               />
               <View style={styles.profileDetailsContainer}>
-                <Text style={styles.name}>{userData?.name}</Text>
-                <Text style={styles.phoneNumberText}>{userData?.email}</Text>
+                <Text style={styles.name}>{userAllData?.name}</Text>
+                <Text style={styles.phoneNumberText}>{userAllData?.email}</Text>
               </View>
             </View>
             {/* =========== >>> Section 1 <<<< ============= */}
@@ -150,7 +156,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               <View>
                 <Text style={styles.contactLabel}>Contact no</Text>
                 <Text style={[styles.text, styles.contact]}>
-                  +{userData?.phoneNumber}
+                  +{userAllData?.phoneNumber}
                 </Text>
               </View>
             </View>

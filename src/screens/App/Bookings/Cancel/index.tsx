@@ -12,12 +12,9 @@ import {
 
 //local imports
 import icons from '../../../../assets/icons';
-import images from '../../../../assets/images';
-import SellerCard from '../../../../components/TopRatedSellerCard';
 import {ParentView} from '../../../../components/common/ParentView/ParentView';
 import useStyles from './style';
 import {FadeInDown} from 'react-native-reanimated';
-import Button from '../../../../components/Button/Button';
 import {useSelector} from 'react-redux';
 import {
   getJobOrders,
@@ -25,7 +22,6 @@ import {
   getSkillsFromUserId,
 } from '../../../../utils/ApiCall';
 import apiEndPoints from '../../../../constants/apiEndPoints';
-import jobOrder from '../../../../store/reducer/job-order';
 
 const Cancel = ({route, navigation}) => {
   const {styles, colors, sizes} = useStyles();

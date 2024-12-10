@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {useColors} from '../../../../constants/color';
 import {useSizes} from '../../../../constants/size';
 import {getGlobalStyles} from '../../../../constants/GlobalStyle';
-// dimenstion
+// dimension
 const {width, height} = Dimensions.get('window');
 const useStyles = () => {
   const colors = useColors();
@@ -81,7 +81,7 @@ const useStyles = () => {
       flexDirection: 'row',
       paddingTop: sizes.HEIGHT * 0.01,
     },
-    provivder: {
+    provider: {
       flexDirection: 'column',
       padding: sizes.WIDTH * 0.01,
     },
@@ -90,6 +90,10 @@ const useStyles = () => {
     },
     bookbutton: {
       padding: sizes.WIDTH * 0.034,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-end',
+      marginTop: -sizes.HEIGHT * 0.02,
     },
     btnStyles: {
       width: sizes.WIDTH * 0.33,

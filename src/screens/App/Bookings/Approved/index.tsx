@@ -109,45 +109,53 @@ const Approved = ({navigation}) => {
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={styles.providerscard}>
-                <View style={styles.provivder}>
-                  <View>
+                <View style={styles.provider}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}>
                     <Image
                       source={{
                         uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
                       }}
                       style={styles.providerimg}
                     />
-                  </View>
-                  <View style={styles.items}>
-                    <Text style={styles.job}>
-                      {
-                        item?.attributes?.skill?.data?.attributes?.category
-                          ?.data?.attributes?.name
-                      }
-                    </Text>
-                    <Text style={styles.work}>
-                      {item?.attributes?.description}
-                    </Text>
-                    <View style={styles.time}>
-                      <Image source={icons.CALENDAR} style={styles.clock} />
-                      <Text style={styles.timer}>{item?.attributes?.date}</Text>
-                    </View>
-                    <View style={styles.statuscontainer}>
-                      <Text style={{color: colors.BLACK}}>
-                        Status : {item?.attributes?.jobStatus}
+                    <View style={styles.items}>
+                      <Text style={styles.job}>
+                        {
+                          item?.attributes?.skill?.data?.attributes?.category
+                            ?.data?.attributes?.name
+                        }
                       </Text>
-                      <Text style={styles.status}> {item.status}</Text>
+                      <Text style={styles.work}>
+                        {item?.attributes?.description}
+                      </Text>
+                      <View style={styles.time}>
+                        <Image source={icons.CALENDAR} style={styles.clock} />
+                        <Text style={styles.timer}>
+                          {item?.attributes?.date}
+                        </Text>
+                      </View>
+                      <View style={styles.statuscontainer}>
+                        <Text style={{color: colors.BLACK}}>
+                          Status : {item?.attributes?.jobStatus}
+                        </Text>
+                        <Text style={styles.status}> {item.status}</Text>
+                      </View>
                     </View>
-                    <View style={styles.bookbutton}>
-                      <Button
-                        onPress={() => {
-                          navigation.navigate('MapScreen');
-                        }}
-                        text="Track Job"
-                        bgcolor={colors.PRIMARY}
-                        btnStyles={styles.btnStyles}
-                      />
-                      {/* <Button
+                  </View>
+                  <View style={styles.bookbutton}>
+                    <Button
+                      onPress={() => {
+                        navigation.navigate('MapScreen');
+                      }}
+                      text="Track Job"
+                      bgcolor={colors.PRIMARY}
+                      btnStyles={styles.btnStyles}
+                    />
+                    {/* <Button
                         onPress={() => {
                           navigation.navigate('StartStopWorking');
                         }}
@@ -155,7 +163,6 @@ const Approved = ({navigation}) => {
                         bgcolor={colors.PRIMARY}
                         btnStyles={styles.btnStyles}
                       /> */}
-                    </View>
                   </View>
                 </View>
               </View>
@@ -184,11 +191,59 @@ const Approved = ({navigation}) => {
   const ProviderView = () => {
     // Change to track individual job order tracking states
     const [jobOrdersTracking, setJobOrdersTracking] = useState<{
-      [jobId: string]: {
-        isTracking: boolean;
-        watchId: number | null;
+      [jobId: string]: boolean;
+    }>({}); // Tracks which job orders are "On the Way"
+
+    useEffect(() => {
+      // Track location only for active "On the Way" job orders
+      const activeJobIds = Object.keys(jobOrdersTracking).filter(
+        jobId => jobOrdersTracking[jobId],
+      );
+
+      if (activeJobIds.length === 0) {
+        return; // No active tracking, exit early
+      }
+
+      const intervalId = setInterval(() => {
+        Geolocation.getCurrentPosition(
+          (info: any) => {
+            console.log(
+              'Location:',
+              info.coords.latitude,
+              info.coords.longitude,
+            );
+
+            activeJobIds.forEach(jobId => {
+              createLocation(userToken, {
+                data: {
+                  long: info.coords.longitude,
+                  lat: info.coords.latitude,
+                  sender_id: userId,
+                  recipientId: 3, // Replace with dynamic recipientId if needed
+                },
+              })
+                .then(res => {
+                  console.log(`Location Updated for Job ${jobId}:`, res.data);
+                })
+                .catch(err => {
+                  console.error(
+                    `Location update failed for Job ${jobId}:`,
+                    err,
+                  );
+                  Alert.alert('Location Error', 'Unable to share location');
+                });
+            });
+          },
+          error => {
+            console.error('Geolocation error:', error);
+          },
+        );
+      }, 10000);
+
+      return () => {
+        clearInterval(intervalId); // Clean up interval on unmount
       };
-    }>({});
+    }, [jobOrdersTracking]);
 
     // Request location permissions
     const requestLocationPermission = useCallback(async () => {
@@ -206,11 +261,9 @@ const Approved = ({navigation}) => {
       return true; // iOS typically handles permissions differently
     }, []);
 
-    const startLocationTracking = useCallback(
-      async (jobItem: any) => {
-        const jobId = jobItem.id.toString();
+    const startTracking = useCallback(
+      async (jobId: string) => {
         const hasPermission = await requestLocationPermission();
-
         if (!hasPermission) {
           Alert.alert(
             'Permission Denied',
@@ -219,104 +272,26 @@ const Approved = ({navigation}) => {
           return;
         }
 
-        // Stop any existing tracking for this specific job order
-        const existingTracking = jobOrdersTracking[jobId];
-        if (existingTracking?.watchId) {
-          Geolocation.clearWatch(existingTracking.watchId);
-        }
-
-        const watchId = Geolocation.watchPosition(
-          position => {
-            try {
-              console.log(
-                'Location Updated:',
-                position.coords.latitude,
-                position.coords.longitude,
-                userId,
-                jobItem?.attributes?.service_seeker?.data?.id,
-              );
-              createLocation(userToken, {
-                data: {
-                  long: position.coords.longitude,
-                  lat: position.coords.latitude,
-                  sender_id: userId,
-                  recipientId: jobItem?.attributes?.service_seeker?.data?.id,
-                },
-              })
-                .then(res => {
-                  console.log('Location Updated:', res.data);
-                })
-                .catch(err => {
-                  console.error('Location update failed:', err);
-                  Alert.alert('Location Error', 'Unable to share location');
-                });
-            } catch (error) {
-              console.error('Location tracking error:', error);
-            }
-          },
-          error => {
-            console.error('Geolocation watch error:', error);
-            Alert.alert('Location Error', error.message);
-
-            // Stop tracking on error for this specific job order
-            stopLocationTracking(jobId);
-          },
-          {
-            enableHighAccuracy: true,
-            distanceFilter: 10, // Update every 10 meters
-            interval: 5000, // Try to get location every 5 seconds
-            fastestInterval: 2000, // But no more frequently than every 2 seconds
-          },
-        );
-
-        // Update tracking state for this specific job order
         setJobOrdersTracking(prev => ({
           ...prev,
-          [jobId]: {
-            isTracking: true,
-            watchId,
-          },
+          [jobId]: true, // Mark this job as "On the Way"
         }));
       },
-      [userId, userToken, jobOrdersTracking],
+      [requestLocationPermission],
     );
 
-    // Modify stopLocationTracking to work with specific job order
-    const stopLocationTracking = useCallback(
-      (jobId: string) => {
-        const jobTracking = jobOrdersTracking[jobId];
-        if (jobTracking?.watchId) {
-          Geolocation.clearWatch(jobTracking.watchId);
-
-          // Remove tracking for this specific job order
-          setJobOrdersTracking(prev => {
-            const updated = {...prev};
-            delete updated[jobId];
-            return updated;
-          });
-        }
-      },
-      [jobOrdersTracking],
-    );
-
-    // Cleanup on component unmount
-    useEffect(() => {
-      return () => {
-        // Stop all ongoing trackings
-        Object.keys(jobOrdersTracking).forEach(jobId => {
-          const tracking = jobOrdersTracking[jobId];
-          if (tracking?.watchId) {
-            Geolocation.clearWatch(tracking.watchId);
-          }
-        });
-      };
-    }, [jobOrdersTracking]);
+    const stopTracking = useCallback((jobId: string) => {
+      setJobOrdersTracking(prev => ({
+        ...prev,
+        [jobId]: false, // Stop tracking for this job
+      }));
+    }, []);
 
     const renderJobItem = ({item}: any) => {
+      const isTracking = jobOrdersTracking[item.id] ?? false;
       const serviceSeeker = item?.attributes?.service_seeker?.data?.attributes;
       const skill =
         item?.attributes?.skill?.data?.attributes?.category?.data?.attributes;
-
       return (
         <View
           style={[
@@ -355,17 +330,19 @@ const Approved = ({navigation}) => {
               </View>
             </View>
             <View style={styles.btnContainer}>
-              {!jobOrdersTracking[item.id]?.isTracking ? (
+              {!isTracking ? (
                 <Button
-                  text="Start Tracking"
-                  onPress={() => startLocationTracking(item)}
+                  text="On the Way"
+                  // onPress={() => startLocationTracking(item)}
+                  onPress={() => startTracking(item.id.toString())}
                   bgcolor="#008000"
                   btnStyles={styles.btnStartTrackingStyles}
                 />
               ) : (
                 <Button
                   text="Stop Tracking"
-                  onPress={() => stopLocationTracking(item.id.toString())}
+                  // onPress={() => stopLocationTracking(item.id.toString())}
+                  onPress={() => stopTracking(item.id.toString())}
                   bgcolor="#FF0000"
                   btnStyles={styles.btnStopTrackingStyles}
                 />

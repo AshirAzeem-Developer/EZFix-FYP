@@ -103,10 +103,6 @@ const Pending: React.FC<AppStackParamsList> = () => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Pending', userToken)
       .then(res => {
-        // console.log(
-        //   'Service Seeker Pending  Bookings',
-        //   JSON.stringify(res.data, null, 2),
-        // );
         setJobOrders(res.data);
       })
       .catch(err => {
@@ -202,10 +198,6 @@ const Pending: React.FC<AppStackParamsList> = () => {
         });
     }
 
-    // console.log(
-    //   'Job Orders -------------------------------- > ',
-    //   jobOrders?.data,
-    // );
     return (
       <ParentView
         style={styles.container}
