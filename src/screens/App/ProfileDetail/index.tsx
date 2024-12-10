@@ -58,15 +58,9 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
   const userToken = useSelector((state: any) => state.user?.user?.jwt);
   const [provider, setProvider] = useState<Provider | null>(null);
   const [reviews, setReviews] = useState<Review[] | null>(null);
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
-  const [singleProviderData, setSingleProviderData] = useState<any>(null);
 
   const providerData = route.params?.provider;
   const category = route.params?.category;
-
-  const handleSelect = (value: string) => {
-    setSelectedValue(value);
-  };
 
   useEffect(() => {
     if (!userToken || !providerData) return;
@@ -101,26 +95,27 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
   }, [userToken, providerData]);
 
   const renderReviewItem = ({item}: {item: Review}) => {
-    const {reviewBy, starNumber, reviewDescription} =
-      item.attributes?.user_review?.data?.attributes || {};
-
     return (
       <View>
         <View style={styles.reviews}>
           <Text style={{color: colors.BLACK, fontSize: sizes.WIDTH * 0.04}}>
-            Review By: {reviewBy}
+            Review By: {item.attributes?.user_review?.data?.attributes.reviewBy}
           </Text>
           <View style={styles.ratingContainer}>
             <Image source={icons.STAR_RATE} style={styles.star} />
-            <Text style={styles.starNumber}>{starNumber}</Text>
+            <Text style={styles.starNumber}>
+              {item.attributes?.user_review?.data?.attributes.starNumber}
+            </Text>
           </View>
         </View>
-        <Text style={{color: colors.BLACK}}>{reviewDescription}</Text>
+        <Text style={{color: colors.BLACK}}>
+          {item.attributes?.user_review?.data?.attributes.reviewDescription}
+        </Text>
       </View>
     );
   };
 
-  // console.log('Hourly Rate is ==========> ', hourlyRate);
+  console.log('Reviews Are  ==========> ', JSON.stringify(reviews, null, 2));
   return (
     <>
       <ParentView
@@ -170,7 +165,9 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
           <View>
             <Text style={styles.reviewsText}>Reviews</Text>
             <FlatList
-              data={reviews?.data !== null ? reviews?.data : []}
+              data={reviews?.data.filter(
+                (item: any) => item.attributes?.user_review?.data !== null,
+              )} // Filter out null reviews
               keyExtractor={item => item.id.toString()}
               renderItem={renderReviewItem}
               ListEmptyComponent={<Text>No reviews available</Text>}

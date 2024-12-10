@@ -68,9 +68,6 @@ const CreateNewPassword: FC<PCreateNewPasswordScreenProps> = ({navigation}) => {
       <View style={styles.textCont}>
         <Text style={styles.creatNewTxt}>Create Password</Text>
       </View>
-      {/* text component  end  */}
-
-      {/* input start */}
       <TextInputCustom
         leftIcon={images.lock}
         leftIconAction={() => {}}

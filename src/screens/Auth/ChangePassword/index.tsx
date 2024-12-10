@@ -10,7 +10,7 @@ import useStyles from './style';
 
 // local component
 import {ParentView} from '../../../components/common/ParentView/ParentView';
-import Header from '../../../components/AppHeader';
+import Header from '../../../components/Header';
 import TextInputCustom from '../../../components/TextInputCustom';
 import images from '../../../assets/images';
 import Button from '../../../components/Button/Button';
@@ -71,7 +71,7 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
     <ParentView
       style={styles.container}
       enterAnimation={FadeInDown.duration(500)}>
-      <Header leftIconAction={() => navigation.goBack()} />
+      <Header isLeftShow={true} leftIconAction={() => navigation.goBack()} />
       <GenericModal />
       {/* text component  */}
       <View style={styles.textCont}>

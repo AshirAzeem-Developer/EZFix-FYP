@@ -88,20 +88,21 @@ const useStyles = () => {
     items: {
       padding: sizes.WIDTH * 0.02,
     },
-    bookbutton: {
+    bookButtonContainer: {
       padding: sizes.WIDTH * 0.034,
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
+      flexDirection: 'row',
+      justifyContent: 'center',
       alignItems: 'flex-end',
       marginTop: -sizes.HEIGHT * 0.02,
     },
     btnStyles: {
-      width: sizes.WIDTH * 0.33,
-      height: sizes.HEIGHT * 0.038,
-      marginLeft: sizes.WIDTH * 0.099,
+      width: sizes.WIDTH * 0.42,
+      height: sizes.HEIGHT * 0.048,
+      marginLeft: sizes.WIDTH * 0.01,
       marginTop: sizes.WIDTH * 0.03,
       paddingLeft: sizes.WIDTH * 0.001,
       paddingRight: sizes.WIDTH * 0.001,
+      borderRadius: sizes.WIDTH * 0.02,
     },
     rejectBtn: {
       width: sizes.WIDTH * 0.22,

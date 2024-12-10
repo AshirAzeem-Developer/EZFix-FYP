@@ -42,10 +42,6 @@ const Cancel = ({route, navigation}) => {
         setUserSkills(skills);
         const skillIds = skills.map((skill: any) => skill.id);
         setUserSkillIds(skillIds); // Update skill IDs state
-
-        // console.log('Skills', JSON.stringify(skills, null, 2));
-        // console.log('User skills:', JSON.stringify(skills, null, 2));
-        // console.log('Skill IDs:', skillIds);
         {
           userType !== 'seeker'
             ? getJobOrders(skillIds, userToken, 'Cancelled')
@@ -70,10 +66,10 @@ const Cancel = ({route, navigation}) => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Cancelled', userToken)
       .then(res => {
-        // console.log(
-        //   'Service Seeker Pending  Bookings',
-        //   JSON.stringify(res.data, null, 2),
-        // );
+        console.log(
+          'Service Seeker Cancelled  Bookings',
+          JSON.stringify(res.data, null, 2),
+        );
         setJobOrders(res.data);
       })
       .catch(err => {
@@ -86,7 +82,7 @@ const Cancel = ({route, navigation}) => {
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
-        <View>
+        <View style={{flex: 1}}>
           {jobOrders.data?.length > 0 ? (
             <FlatList
               showsVerticalScrollIndicator={false}
@@ -145,7 +141,7 @@ const Cancel = ({route, navigation}) => {
                   fontSize: sizes.WIDTH * 0.05,
                   color: colors.BLACK,
                 }}>
-                No Pending Jobs
+                No Cancelled Jobs
               </Text>
             </View>
           )}

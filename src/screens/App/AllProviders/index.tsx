@@ -64,10 +64,10 @@ const AllProviderCards: React.FC = () => {
   console.log('Job Order State is  ==========> ', JobOrder);
 
   const [providersData, setProvidersData] = useState<Provider[]>([]);
-  console.log(
-    'Peoviders Data  is  ======= > ',
-    JSON.stringify(providersData, null, 2),
-  );
+  // console.log(
+  //   'Peoviders Data  is  ======= > ',
+  //   JSON.stringify(providersData, null, 2),
+  // );
 
   const fetchProviders = useCallback(() => {
     const queryParams = {
@@ -106,7 +106,7 @@ const AllProviderCards: React.FC = () => {
       service_seeker: userId,
       skill: item?.id,
     };
-    console.log('Job Data ----------------- >>> ', jobData);
+    // console.log('Job Data ----------------- >>> ', jobData);
 
     postJobOrder({data: jobData}, userToken)
       .then(() => {

@@ -18,6 +18,7 @@ import {validateEmail, validatePassword} from '../../../utils/validator';
 import {postLogin} from '../../../utils/ApiCall';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../../../navigators/authStack';
+import images from '../../../assets/images';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
 
@@ -49,6 +50,7 @@ const SignIn = ({navigation}: Props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isConnected, setisConnected] = useState(false);
+  const [isShowNewPassword, setIsNewShowPassword] = useState(true);
 
   // ======================>>>>>> Hooks <<<<<======================
   // const user = useSelector(state => console.log(state));
@@ -93,17 +95,23 @@ const SignIn = ({navigation}: Props) => {
             />
             <TextInputCustom
               leftIcon={icons.SHIELD_SEC}
+              isShowRightIcon
               placeHolderTxt="Password"
               value={password}
-              handleOnChange={setPassword}
-              // leftIconAction={() => console.log('left icon')}
-              isPassword
+              handleOnChange={newValue => {
+                setPassword(newValue);
+              }}
+              isPassword={isShowNewPassword}
               errorHandler={[
                 {
                   errorText: 'Invalid Password',
                   validator: validatePassword,
                 },
               ]}
+              rightIcon={isShowNewPassword ? images.crossEye : images.eyeOpen}
+              rightIconAction={() => {
+                setIsNewShowPassword(preVale => !preVale);
+              }}
             />
           </View>
           {/* =========== >>>> Button <<<<<========== */}

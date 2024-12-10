@@ -26,6 +26,7 @@ import ChatOpen from '../screens/App/ChatOpen';
 import AllProviderCards from '../screens/App/AllProviders';
 import {View} from 'react-native';
 import MapScreen from '../screens/App/MapScreen';
+import ChangePassword from '../screens/Auth/ChangePassword';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -49,6 +50,7 @@ export type AppStackParamsList = {
   AddSkill: undefined;
   AddExperience: undefined;
   MapScreen: undefined;
+  ChangePassword: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -171,6 +173,7 @@ function ServiceSeekerStack() {
       <Stack.Screen name="ChatOpen" component={ChatOpen} />
       <Stack.Screen name="AllProviders" component={AllProviderCards} />
       <Stack.Screen name="MapScreen" component={MapScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
     </Stack.Navigator>
   );
 }

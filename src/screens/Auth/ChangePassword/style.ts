@@ -23,7 +23,7 @@ const useStyles = () => {
       justifyContent: 'space-between',
       alignItems: 'flex-start',
       alignSelf: 'center',
-      marginTop: sizes.HEIGHT * 0.065,
+      marginTop: sizes.HEIGHT * 0.025,
       marginBottom: sizes.HEIGHT * 0.015,
       // backgroundColor: 'red',
     },
