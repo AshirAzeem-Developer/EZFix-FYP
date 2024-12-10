@@ -43,7 +43,7 @@ export type AppStackParamsList = {
     data: {};
   };
   StartStopWorking: undefined;
-  ChatOpen: {title: string; data?: any};
+  ChatOpen: {title: string; data?: any; profileImageURL?: string};
   Chat: undefined;
   Chatlist: undefined;
   AllProviders: undefined;

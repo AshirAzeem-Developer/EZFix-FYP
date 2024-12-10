@@ -58,6 +58,10 @@ const Chatopen = ({navigation}) => {
   const [messageInput, setMessageInput] = useState<string>('');
   const route = useRoute();
   const {data, name, friendData} = route.params as RouteParams;
+  const profileImageURL = route?.params?.profileImageURL;
+
+  console.log('Profile URL', profileImageURL);
+
   let friendId = data;
   console.log('Friend Id:', data);
   console.log('UserId', userId);
@@ -165,7 +169,9 @@ const Chatopen = ({navigation}) => {
           </TouchableOpacity>
           <Image
             source={{
-              uri: `${apiEndPoints.BASE_URL}${friendData?.profileImage?.url}`,
+              uri: `${apiEndPoints.BASE_URL}${
+                friendData?.profileImage?.url || profileImageURL
+              } `,
             }}
             style={styles.dpImageStyles}
           />

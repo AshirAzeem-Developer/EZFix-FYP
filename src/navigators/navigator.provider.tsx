@@ -20,6 +20,10 @@ import Notifications from '../screens/App/Notifications';
 import AddSkill from '../screens/App/AddSkills';
 import AddExperience from '../screens/App/AddExperience';
 import StartStopWorking from '../screens/App/StartStopWorking';
+import ChangePassword from '../screens/Auth/ChangePassword';
+import NotificationSetting from '../screens/App/NotificationSettings';
+import Support from '../screens/App/Support';
+import PrivacyPolicy from '../screens/App/PrivacyPolicy';
 
 const Stack = createNativeStackNavigator();
 
@@ -122,6 +126,13 @@ function ServiceProvider() {
       <Stack.Screen name="AddSkill" component={AddSkill} />
       <Stack.Screen name="AddExperience" component={AddExperience} />
       <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen
+        name="NotificationSettings"
+        component={NotificationSetting}
+      />
+      <Stack.Screen name="Support" component={Support} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
     </Stack.Navigator>
   );
 }

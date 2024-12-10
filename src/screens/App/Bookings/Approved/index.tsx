@@ -197,6 +197,9 @@ const Approved = ({navigation}) => {
     const [jobOrdersTracking, setJobOrdersTracking] = useState<{
       [jobId: string]: boolean;
     }>({}); // Tracks which job orders are "On the Way"
+    const [jobOrdersCanStartJob, setJobOrdersCanStartJob] = useState<{
+      [jobId: string]: boolean;
+    }>({});
 
     useEffect(() => {
       // Track location only for active "On the Way" job orders
@@ -280,6 +283,12 @@ const Approved = ({navigation}) => {
           ...prev,
           [jobId]: true, // Mark this job as "On the Way"
         }));
+
+        // Ensure "Start Job" is disabled when tracking starts
+        setJobOrdersCanStartJob(prev => ({
+          ...prev,
+          [jobId]: false,
+        }));
       },
       [requestLocationPermission],
     );
@@ -289,6 +298,10 @@ const Approved = ({navigation}) => {
         ...prev,
         [jobId]: false, // Stop tracking for this job
       }));
+      setJobOrdersCanStartJob(prev => ({
+        ...prev,
+        [jobId]: true, // Enable "Start Job" when "Arrived" is pressed
+      }));
     }, []);
 
     const renderJobItem = ({item}: any) => {
@@ -296,6 +309,16 @@ const Approved = ({navigation}) => {
       const serviceSeeker = item?.attributes?.service_seeker?.data?.attributes;
       const skill =
         item?.attributes?.skill?.data?.attributes?.category?.data?.attributes;
+      const canStartJob = jobOrdersCanStartJob[item.id] ?? false;
+
+      console.log(
+        'Full Item is  ======= >> ',
+        JSON.stringify(
+          item?.attributes?.service_seeker?.data?.attributes?.name,
+          null,
+          2,
+        ),
+      );
       return (
         <View
           style={[
@@ -337,15 +360,13 @@ const Approved = ({navigation}) => {
               {!isTracking ? (
                 <Button
                   text="On the Way"
-                  // onPress={() => startLocationTracking(item)}
                   onPress={() => startTracking(item.id.toString())}
                   bgcolor="#008000"
                   btnStyles={styles.btnStartTrackingStyles}
                 />
               ) : (
                 <Button
-                  text="Stop Tracking"
-                  // onPress={() => stopLocationTracking(item.id.toString())}
+                  text="Arrived"
                   onPress={() => stopTracking(item.id.toString())}
                   bgcolor="#FF0000"
                   btnStyles={styles.btnStopTrackingStyles}
@@ -353,10 +374,16 @@ const Approved = ({navigation}) => {
               )}
               <Button
                 text="Start Job"
-                bgcolor="#004000"
+                bgcolor={canStartJob ? '#004000' : '#808080'} // Change color based on state
                 btnTextStyles={{color: 'white'}}
-                btnStyles={styles.btnStartJobStyles}
-                onPress={() => navigation.navigate('StartStopWorking')}
+                btnStyles={[
+                  styles.btnStartJobStyles,
+                  {opacity: canStartJob ? 1 : 0.5}, // Dim the button if not enabled
+                ]}
+                onPress={() =>
+                  canStartJob && navigation.navigate('StartStopWorking')
+                }
+                disabled={!canStartJob} // Disable the button when not allowed
               />
             </View>
           </View>
@@ -405,7 +432,19 @@ const Approved = ({navigation}) => {
                   bgcolor="#f0f0f0"
                   btnStyles={styles.chatNowBtn}
                   btnTextStyles={{color: 'black'}}
-                  onPress={() => navigation.navigate('Messages')}
+                  onPress={() =>
+                    navigation.navigate('ChatOpen', {
+                      data: item?.attributes?.service_seeker?.data?.id,
+                      name: item?.attributes?.service_seeker?.data?.attributes
+                        ?.name,
+                      friendData:
+                        item?.attributes?.service_seeker?.data?.attributes
+                          ?.profileImage,
+                      profileImageURL:
+                        item?.attributes?.service_seeker?.data?.attributes
+                          .profileImage?.data?.attributes.url,
+                    })
+                  }
                 />
               </View>
             </View>

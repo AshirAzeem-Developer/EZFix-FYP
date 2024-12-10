@@ -124,14 +124,17 @@ const useStyles = () => {
     btnStopTrackingStyles: {
       width: sizes.WIDTH * 0.4,
       height: sizes.HEIGHT * 0.038,
+      borderRadius: sizes.WIDTH * 0.015,
     },
     btnStartTrackingStyles: {
       width: sizes.WIDTH * 0.4,
-      height: sizes.HEIGHT * 0.038,
+      height: sizes.HEIGHT * 0.04,
+      borderRadius: sizes.WIDTH * 0.015,
     },
     btnStartJobStyles: {
       width: sizes.WIDTH * 0.4,
-      height: sizes.HEIGHT * 0.038,
+      height: sizes.HEIGHT * 0.04,
+      borderRadius: sizes.WIDTH * 0.015,
     },
     seekerCont: {
       backgroundColor: 'rgba(0,128,0,0.2)',
