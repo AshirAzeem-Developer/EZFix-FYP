@@ -372,3 +372,11 @@ export const updateUserById = (token: string, userId: string, data: any) => {
     },
   });
 };
+export const deleteUserById = (token: string, userId: string) => {
+  return apiRequest.delete(`${apiEndPoint.USERS}/${userId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

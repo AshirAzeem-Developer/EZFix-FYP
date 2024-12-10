@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {Alert, SafeAreaView, Text, View} from 'react-native';
 import useStyles from './style';
 import {ParentView} from '../../../components/common/ParentView/ParentView';
 import {screen} from '../../../utils/constants';
@@ -19,7 +19,8 @@ import Animated, {FadeInRight} from 'react-native-reanimated';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
 import icons from '../../../assets/icons';
 import {color} from 'react-native-elements/dist/helpers';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { deleteUserById } from '../../../utils/ApiCall';
 
 interface ProfileSettingOptionType {
   optionId: number;
@@ -35,10 +36,12 @@ interface Props {
 export default function ProfileSettings({navigation}: Props) {
   const {styles, sizes, colors} = useStyles();
   const fonts = getGlobalStyles(colors, sizes);
-
+  const user = useUserSelector(); // Get current user details from state
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const [isOpen, setIsopen] = useState(false);
 
-  const dispatch = useDispatch();
+
 
   const modalProps = {
     image: images.DELETE_BADGE,
@@ -53,7 +56,47 @@ export default function ProfileSettings({navigation}: Props) {
       dispatch(setUser(null));
     },
   };
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  const userData = useSelector((state: RootState) => state.user.user.user);
+  const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
+  const handleDeleteAccount = async () => {
+    console.log(userToken);
+    console.log(userData);
+    
+    
+    // Show confirmation alert
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete your account? This action cannot be undone.',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            setIsLoading(true);
+            try {
+              // Call API to delete account
+              await deleteUserById(userToken, userId);
 
+              // Clear user data from local storage or state
+              dispatch(setUser(null));
+
+              // Redirect to login or another appropriate screen
+              setIsopen(true);
+
+              Alert.alert('Success', 'Your account has been deleted.');
+            } catch (error) {
+              Alert.alert('Error', 'Failed to delete account. Please try again.');
+            } finally {
+              setIsLoading(false);
+            }
+          },
+        },
+      ],
+    );
+  };
+  
   // Use the custom hook
   const {GenericModal, hideModal, showModal} = useGenericModal({
     modalProp: modalProps,
@@ -65,7 +108,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionIcon: icons.LOCK,
       optionText: 'Change Password',
       onPressAction: () => {
-        navigation.navigate('AuthStack', {screen: 'ChangePassword'});
+        navigation.navigate('ChangePassword');
       },
     },
     {
@@ -97,7 +140,7 @@ export default function ProfileSettings({navigation}: Props) {
       optionId: 5,
       optionIcon: icons.DELETE,
       optionText: 'Delete Account',
-      onPressAction: () => showModal(),
+      onPressAction: handleDeleteAccount, // Attach delete handler
     },
     {
       optionId: 6,
