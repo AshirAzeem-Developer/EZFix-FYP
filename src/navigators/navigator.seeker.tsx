@@ -27,6 +27,7 @@ import AllProviderCards from '../screens/App/AllProviders';
 import {View} from 'react-native';
 import MapScreen from '../screens/App/MapScreen';
 import ChangePassword from '../screens/Auth/ChangePassword';
+import AddReviewScreen from '../screens/App/AddReviewScreen/AddReviewScreen';
 
 export type AppStackParamsList = {
   Profile: undefined;
@@ -174,6 +175,8 @@ function ServiceSeekerStack() {
       <Stack.Screen name="AllProviders" component={AllProviderCards} />
       <Stack.Screen name="MapScreen" component={MapScreen} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="Review" component={AddReviewScreen} />
+
     </Stack.Navigator>
   );
 }

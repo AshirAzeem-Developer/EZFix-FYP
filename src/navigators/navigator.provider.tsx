@@ -127,6 +127,7 @@ function ServiceProvider() {
       <Stack.Screen name="AddExperience" component={AddExperience} />
       <Stack.Screen name="StartStopWorking" component={StartStopWorking} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      
       <Stack.Screen
         name="NotificationSettings"
         component={NotificationSetting}

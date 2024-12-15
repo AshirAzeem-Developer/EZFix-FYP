@@ -57,7 +57,10 @@ const StartStopWorking: React.FC<AppStackParamsList> = ({navigation}) => {
     setModalVisible(false);
     navigation.navigate('Home');
   };
-
+  const MovetoReview = () => {
+    setModalVisible(false);
+    navigation.navigate('Review');
+  };
   const formatTime = (totalSeconds: number) => {
     const getSeconds = `0${totalSeconds % 60}`.slice(-2);
     const minutes = Math.floor(totalSeconds / 60);
@@ -90,16 +93,30 @@ const StartStopWorking: React.FC<AppStackParamsList> = ({navigation}) => {
         <Text style={[styles.textStyles, styles.amountToBePaid]}>
           Amount to be Paid: Rs {amountToBePaid}/-
         </Text>
+        
         <BottomButton>
+        <Button
+            btnStyles={{
+              width: sizes.WIDTH * 0.8,
+              marginBottom:sizes.HEIGHT * 0.009,
+       
+            }}
+            bgcolor={colors.PRIMARY}
+            text="Give Review"
+            onPress={ MovetoReview}
+          />
           <Button
             btnStyles={{
               width: sizes.WIDTH * 0.8,
-              marginVertical: sizes.HEIGHT * 0.02,
+  
+              marginBottom:sizes.HEIGHT * 0.2,
+
             }}
             bgcolor={colors.PRIMARY}
             text="Move to Home Screen"
             onPress={handleModalClose}
           />
+
         </BottomButton>
       </View>
     );

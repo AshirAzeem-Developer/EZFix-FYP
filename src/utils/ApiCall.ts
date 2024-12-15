@@ -388,3 +388,11 @@ export const updatePassoword = (token: string, userId: string, data: any) => {
     },
   });
 };
+export const  UserReview = (data: {}, token: any) => {
+  return apiRequest.post(`${apiEndPoint.Reviews}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
