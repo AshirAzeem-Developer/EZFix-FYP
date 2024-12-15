@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 // third party
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -23,6 +23,8 @@ import {screen} from '../../../utils/constants';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 import {validatePassword} from '../../../utils/validator';
 import {getGlobalStyles} from '../../../constants/GlobalStyle';
+import { useSelector } from 'react-redux';
+import { updatePassoword } from '../../../utils/ApiCall';
 
 type ChangePasswordScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -41,7 +43,28 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isShowNewPassword, setIsNewShowPassword] = useState(true);
   const [isShowConfPassword, setIsShowConfPassword] = useState(true);
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  const userData = useSelector((state: RootState) => state.user.user.user);
+  const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
+  console.log(userId);
+  console.log(userData);
+  console.log(userToken);
+  
+  const handlePasswordUpdate = async () => {
+    if (!isValid) {
+      Alert.alert('Validation Error', 'Ensure the passwords match and are valid.');
+      return;
+    }
 
+    try {
+      const data = { password: newPassword };
+      await updatePassoword(userToken, userId, data);
+      showModal(); // Show success modal
+    } catch (error) {
+      console.error('Error updating password:', error);
+      Alert.alert('Error', 'Failed to update the password. Please try again.');
+    }
+  };
   const modalProps = {
     image: images.PasswordChanged,
     title: 'Password Changed Successfully',
@@ -145,7 +168,7 @@ const ChangePassword: FC<ChangePasswordScreenProps> = ({navigation}) => {
           bgcolor={isValid ? colors.PRIMARY : colors.LIGHT_GRAY}
           text="Save"
           textColor={isValid ? colors.BLACK : colors.GRAY}
-          onPress={() => showModal()}
+          onPress={handlePasswordUpdate}
           btnStyles={styles.saveButton}
         />
       </BottomButton>

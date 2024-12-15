@@ -380,3 +380,11 @@ export const deleteUserById = (token: string, userId: string) => {
     },
   });
 };
+export const updatePassoword = (token: string, userId: string, data: any) => {
+  return apiRequest.put(`${apiEndPoint.USERS}/${userId}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
