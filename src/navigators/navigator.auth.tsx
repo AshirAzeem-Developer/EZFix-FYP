@@ -29,11 +29,11 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 export const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="OnBoarding"
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Splash" component={Splash} />
+      {/* <Stack.Screen name="Splash" component={Splash} /> */}
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />

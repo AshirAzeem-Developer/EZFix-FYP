@@ -4,7 +4,6 @@ import useStyles from './styles';
 import images from '../../assets/images';
 import CustomModal from '../CustomModal';
 import {useNavigation} from '@react-navigation/native';
-import axios from 'axios';
 import {getCategories} from '../../utils/ApiCall';
 import {useDispatch, useSelector} from 'react-redux';
 import END_POINTS from '../../constants/apiEndPoints';
@@ -99,7 +98,7 @@ const CategoriesCard = () => {
 
   return (
     <>
-      {categories.slice(0, 3).map(category => (
+      {[...categories].slice(0, 3).map(category => (
         <TouchableOpacity
           key={category.id}
           style={styles.categoryContainer}

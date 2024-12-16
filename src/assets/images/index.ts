@@ -69,4 +69,5 @@ export default {
   Dp: require('./DP.png'),
   Bitmap: require('./Bitmap.png'),
   ARROW_LEFT: require('./arrowLeftBlack.png'),
+  LANG_IMAGE: require('./LangImage.png'),
 };

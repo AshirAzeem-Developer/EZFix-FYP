@@ -53,7 +53,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const userId = useSelector((state: RootState) => state.user.user.user.id);
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
-  console.log('I am the logged IN User Right Now  --------------- > ', userId);
+  // console.log('I am the logged IN User Right Now  --------------- > ', userId);
 
   const userData = useSelector((state: RootState) => state.user.user.user);
 
@@ -63,10 +63,10 @@ const Profile: React.FC<Props> = ({navigation}) => {
   function GetUserALLData() {
     getUserById(userToken, userId)
       .then(res => {
-        console.log(
-          'I am the logged IN User Right Now ',
-          JSON.stringify(res.data, null, 2),
-        );
+        // console.log(
+        //   'I am the logged IN User Right Now ',
+        //   JSON.stringify(res.data, null, 2),
+        // );
         setUserAllData(res.data);
       })
       .catch(err => {
@@ -117,6 +117,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 style={{
                   width: sizes.WIDTH * 0.18,
                   height: sizes.WIDTH * 0.18,
+                  borderRadius: sizes.WIDTH * 1,
                 }}
               />
               <View style={styles.profileDetailsContainer}>
@@ -215,7 +216,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
               </View>
               <View>
                 <Text style={styles.text}>Completed</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>10</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>08</Text>
               </View>
               <View>
                 <Text style={styles.text}>In Progress</Text>
