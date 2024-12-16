@@ -83,10 +83,11 @@ const Approved = ({navigation}) => {
   function fetchSeekerBookings() {
     getServiceSeekerBooking(userId, 'Approved', userToken)
       .then(res => {
-        // console.log(
-        //   'Service Seeker Bookings',
-        //   JSON.stringify(res.data, null, 2),
-        // );
+        console.log(
+          'Service Seeker Bookings',
+          JSON.stringify(res.data, null, 2),
+        );
+       
         setJobOrders(res.data);
       })
       .catch(err => {
@@ -137,6 +138,12 @@ const Approved = ({navigation}) => {
                             ?.data?.attributes?.name
                         }
                       </Text>
+                      <Text style={styles.job}>
+                        {
+                          item?.attributes?.skill?.data?.attributes?.hourlyRate
+                            
+                        }
+                      </Text>
                       <Text style={styles.work}>
                         {item?.attributes?.description}
                       </Text>
@@ -167,8 +174,12 @@ const Approved = ({navigation}) => {
                     </View>
                     <View>
                       <Button
+                      
                         onPress={() => {
-                          navigation.navigate('StartStopWorking' ,{ jobId: item.id});
+                          const hourlyRate = item?.attributes?.skill?.data?.attributes?.hourlyRate ?? 0;
+                          navigation.navigate('StartStopWorking' ,{ jobId: item.id,  HourlyRate: hourlyRate,});
+                          console.log(hourlyRate);
+                          
                         }}
                         text="Start Working"
                         bgcolor={'#2E7D32'}
