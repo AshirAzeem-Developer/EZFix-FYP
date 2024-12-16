@@ -9,18 +9,27 @@ import images from '../../../assets/images';
 import Button from '../../../components/Button/Button';
 import CustomModal from '../../../components/CustomModal';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
+import { useSelector } from 'react-redux';
 
 const StartStopWorking: React.FC<AppStackParamsList> = ({navigation ,route}) => {
   const {styles, colors, sizes} = useStyles();
-  const { jobId ,joborder} = route.params; // Retrieve the jobId
+  const { jobId ,  HourlyRate } = route.params; // Retrieve the jobId
   console.log('Received Job ID:', jobId); // Log the jobId to confirm
+  console.log(  HourlyRate);
   
-  
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+  const userData = useSelector((state: RootState) => state.user.user.user);
+  const userId = useSelector((state: RootState) => state.user?.user?.user?.id);
+  console.log(userId);
+  console.log(userData);
+  console.log(userToken);
+
+       
   const [modalVisible, setModalVisible] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [amountToBePaid, setAmountToBePaid] = useState(0);
-  const hourlyRate = 250; // Rs 250 per hour
+   const hourlyRate = HourlyRate; 
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isActive) {
