@@ -14,5 +14,5 @@ export default {
   NOTIFICATIONS: '/notifications',
   EXPERIENCE: '/experiences',
   LOCATIONS: '/locations',
-  Reviews:'/user-reviews'
+  Reviews: '/user-reviews',
 };

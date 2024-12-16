@@ -105,6 +105,7 @@ const useStyles = () => {
       shadowOpacity: 0.1,
       shadowRadius: sizes.WIDTH * 0.01, // 1% of width
       elevation: 3,
+      color: colors.BLACK,
     },
   });
   return {

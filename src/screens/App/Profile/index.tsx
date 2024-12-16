@@ -215,11 +215,11 @@ const Profile: React.FC<Props> = ({navigation}) => {
               </View>
               <View>
                 <Text style={styles.text}>Completed</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>237890</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>10</Text>
               </View>
               <View>
                 <Text style={styles.text}>In Progress</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>27</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>6</Text>
               </View>
             </View>
             {/* =========== >>> Section 2 <<<< ============= */}
@@ -227,7 +227,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
             <View style={styles.sectionContainer}>
               <View>
                 <Text style={styles.countryLabel}>Country</Text>
-                <Text style={[styles.text, styles.country]}>US, Texas</Text>
+                <Text style={[styles.text, styles.country]}>Pakistan</Text>
               </View>
               <Image source={images.FLAG} />
             </View>

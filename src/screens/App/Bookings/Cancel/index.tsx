@@ -192,7 +192,14 @@ const Cancel = ({route, navigation}) => {
                       <Image source={icons.Clock} style={styles.clock} />
                       <Text style={styles.timer}>{item?.attributes?.date}</Text>
                     </View>
-                    <TouchableOpacity style={styles.statuscontainer}>
+                    <TouchableOpacity
+                      style={styles.statuscontainer}
+                      onPress={() => {
+                        navigation.navigate('WorkDetails', {
+                          title: 'Work Description',
+                          data: item,
+                        });
+                      }}>
                       <Text
                         style={{
                           color: colors.BLACK,

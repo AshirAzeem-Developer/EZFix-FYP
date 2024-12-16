@@ -36,7 +36,9 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
   const {title, data} = route.params as {title: string; data: any};
 
   // Get user role type and job order state from Redux
-  const userRole = useSelector((state: any) => state.user.user.roleType);
+  const userRole = useSelector(
+    (state: any) => state?.user?.user?.user?.roleType,
+  );
   const jobOrderState = useSelector((state: any) => state.JobOrder);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -123,25 +125,41 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
     () => (
       <SafeAreaView style={styles.container}>
         {/* <Text style={styles.title}>{title}</Text> */}
-
         <View style={styles.textAreaContainer}>
-          <CustomTextArea
-            editable={false}
-            maxLength={250}
-            placeholder="Problem Description"
+          <Text style={styles.label}>Problem Description</Text>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                height: sizes.HEIGHT * 0.2,
+                textAlignVertical: 'top',
+              },
+            ]}
+            placeholder="Enter Job Description"
+            // value={description}
             value={data?.attributes?.description}
+            multiline
+            numberOfLines={4}
+            textAlign="left"
+            onChangeText={setDescription}
+            editable={false}
           />
         </View>
-
-        <View style={styles.datePickerContainer}>
-          <Text style={styles.dateLabel}>Date of Booking</Text>
-          <View style={styles.dateDisplay}>
-            <Image source={images.calendar} />
-            <Text style={styles.dateText}>{data?.attributes?.date}</Text>
-          </View>
+        <View style={styles.dateContainer}>
+          <Text style={styles.label}>Date of Booking</Text>
+          <TouchableOpacity
+            style={styles.dateButton}
+            onPress={() => setShowDatePicker(true)}>
+            <Text
+              style={{
+                color: colors.BLACK,
+              }}>
+              {date ? date.toLocaleDateString() : data?.attributes?.date}
+            </Text>
+          </TouchableOpacity>
         </View>
 
-        <View style={styles.attachPhotosContainer}>
+        {/* <View style={styles.attachPhotosContainer}>
           <Text style={styles.attachPhotosTitle}>Attached Photos</Text>
           <FlatList
             data={[1, 2, 3, 4, 5, 6]}
@@ -154,7 +172,7 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({navigation, route}) => {
               />
             )}
           />
-        </View>
+        </View> */}
       </SafeAreaView>
     ),
     [data, title, styles],
