@@ -71,7 +71,7 @@ const Chat: React.FC = () => {
       const usersResponse = await getMultipleUsers(userToken, friendIds);
       setUsers(usersResponse.data);
     } catch (err) {
-      setError('Failed to fetch friend list. Please try again later.');
+      // setError('Failed to fetch friend list. Please try again later.');
       console.error('Error fetching friends:', err);
     } finally {
       setIsLoading(false);
