@@ -215,8 +215,8 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 <Text style={[styles.text, styles.sec1Desc]}>05</Text>
               </View>
               <View>
-                <Text style={styles.text}>Compleusted</Text>
-                <Text style={[styles.text, styles.sec1Desc]}>237890</Text>
+                <Text style={styles.text}>Completed</Text>
+                <Text style={[styles.text, styles.sec1Desc]}>08</Text>
               </View>
               <View>
                 <Text style={styles.text}>In Progress</Text>
