@@ -10,9 +10,12 @@ import Button from '../../../components/Button/Button';
 import CustomModal from '../../../components/CustomModal';
 import BottomButton from '../../../components/common/BottomButton/BottomButton';
 
-const StartStopWorking: React.FC<AppStackParamsList> = ({navigation}) => {
+const StartStopWorking: React.FC<AppStackParamsList> = ({navigation ,route}) => {
   const {styles, colors, sizes} = useStyles();
-
+  const { jobId ,joborder} = route.params; // Retrieve the jobId
+  console.log('Received Job ID:', jobId); // Log the jobId to confirm
+  
+  
   const [modalVisible, setModalVisible] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -59,7 +62,7 @@ const StartStopWorking: React.FC<AppStackParamsList> = ({navigation}) => {
   };
   const MovetoReview = () => {
     setModalVisible(false);
-    navigation.navigate('Review');
+    navigation.navigate('Review',{ JobId: jobId });
   };
   const formatTime = (totalSeconds: number) => {
     const getSeconds = `0${totalSeconds % 60}`.slice(-2);
