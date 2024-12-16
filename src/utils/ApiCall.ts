@@ -384,10 +384,6 @@ export const deleteUserById = (token: string, userId: string) => {
 // ==================== >> Resource Localization Api << ======================
 
 export const getResourceLocalization = (langID: number, token: string) => {
-  console.log(
-    `${apiEndPoint.LOCALIZATION_RESOURCES}?filters[language_id][$eq]=${langID}`,
-  );
-
   return apiRequest.get(
     `${apiEndPoint.LOCALIZATION_RESOURCES}?filters[language_id][$eq]=${langID}`,
     {

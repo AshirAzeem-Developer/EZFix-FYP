@@ -24,6 +24,8 @@ const Home: React.FC<props> = ({navigation}) => {
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
   const {strings, langID, locale, rtl} = useLocaleStore();
 
+  console.log('Strings ====> ', strings, langID, locale, rtl);
+
   interface RootState {
     user: {
       user: {
@@ -66,7 +68,7 @@ const Home: React.FC<props> = ({navigation}) => {
         </View> */}
         <View>
           <Text style={styles.categoryheading}>
-            {strings?.Categories || 'Categories'}
+            {strings?.Catrgories || 'Categories'}
           </Text>
         </View>
         {/* -----------------------Categories---------------------- */}

@@ -63,6 +63,8 @@ export default function Language({navigation}: any) {
       return;
     }
 
+    // console.log('Locale To Sent ====> ', lang.langID, lang.locale, lang.rtl);
+
     setSelectedLang(lang);
     dispatch(
       setLocale({langID: lang.langID, locale: lang.locale, rtl: lang.rtl}),

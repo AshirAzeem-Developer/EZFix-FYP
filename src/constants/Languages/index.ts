@@ -5,7 +5,7 @@ export const arData = {
   rememberMe: 'تذكرني',
   phoneNumber: 'رقم الهاتف',
   logIn: 'تسجيل الدخول',
-  Categories: 'زمرے',
+  Catrgories: 'زمرے',
   TopRatedSellers: 'اعلی درجے کے سیلرز',
 };
 export const enData = {
@@ -15,6 +15,6 @@ export const enData = {
   rememberMe: 'Remember Me',
   phoneNumber: 'Phone Number',
   logIn: 'Log In',
-  Categories: 'Categories',
+  Catrgories: 'Categories',
   TopRatedSellers: 'Top Rated Sellers',
 };

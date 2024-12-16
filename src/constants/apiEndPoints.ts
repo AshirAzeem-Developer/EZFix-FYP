@@ -1,11 +1,8 @@
 // office Address: 192.168.100.45
 // second Address : 192.168.0.102
 export default {
-  // BASE_URL: `https://dev-api.ezfix.bond`,
-  // API_URL: `https://dev-api.ezfix.bond/api`,
-
-  BASE_URL: `http://10.133.138.226:1339`,
-  API_URL: `http://10.133.138.226:1339/api`,
+  BASE_URL: `https://dev-api.ezfix.bond`,
+  API_URL: `https://dev-api.ezfix.bond/api`,
   LOGIN: `/auth/local`,
   REGISTER: `/auth/local/register`,
   CATEGORY: `/categories`,

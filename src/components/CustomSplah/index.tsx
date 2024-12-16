@@ -8,6 +8,7 @@ import {screen} from '../../utils/constants';
 import useStyles from './style';
 import icons from '../../assets/icons';
 import {useLocalizationsRecourses} from '../../utils/apiHelpers';
+import {useLocaleStore} from '../../store/reducer/locale';
 
 export default function CustomSplash({
   show,
@@ -17,6 +18,9 @@ export default function CustomSplash({
   onEnd: () => void;
 }) {
   const {styles, colors, sizes} = useStyles();
+  const store = useLocaleStore();
+
+  console.log('Store ====> ', store);
 
   const [fadeAnim] = useState(new Animated.Value(1));
   const HideCustomSplash = (): void => {

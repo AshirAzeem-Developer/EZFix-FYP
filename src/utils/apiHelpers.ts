@@ -45,22 +45,21 @@ export const useLocalizationsRecourses = () => {
     //     }
     //   });
 
-    console.log('---------sssssssssssss------------>', rtl, userToken);
-
     getResourceLocalization(rtl ? 2 : 1, userToken)
       .then(res => {
         if (res) {
-          console.log(
-            'Response of Localization Api ============ >> ',
-            JSON.stringify(res.data, null, 2),
-          );
+          // console.log(
+          //   'Response of Localization Api ============ >> ',
+          //   res.data?.data[0],
+          // );
+
           dispatch(
             setLangData({
-              strings: res?.data?.attributes?.resources,
-              langID: res?.data?.attributes?.language_id,
-              locale: res?.data?.attributes?.LangShortName,
-              localizations: res?.data?.attributes?.resources,
-              langTitle: res?.data?.attributes?.language_name,
+              strings: res.data?.data[0].attributes?.resources,
+              langID: res.data?.data[0].attributes?.language_id,
+              locale: res.data?.data[0].attributes?.LangShortName,
+              localizations: res.data?.data[0].attributes?.resources,
+              langTitle: res.data?.data[0].attributes?.language_name,
               rtl: rtl,
             }),
           );

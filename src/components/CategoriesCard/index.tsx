@@ -35,8 +35,6 @@ const CategoriesCard = () => {
       });
   }, [userToken]);
 
-  console.log('sadasdasd', categories);
-
   // Memoized ModalView to avoid re-rendering
   const ModalView = useMemo(
     () => (
