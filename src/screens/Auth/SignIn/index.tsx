@@ -19,6 +19,7 @@ import {postLogin} from '../../../utils/ApiCall';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../../../navigators/authStack';
 import images from '../../../assets/images';
+import {useLocaleStore} from '../../../store/reducer/locale';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
 
@@ -26,6 +27,8 @@ const SignIn = ({navigation}: Props) => {
   const {styles, colors, sizes} = useStyles();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const {strings, langID, locale, rtl} = useLocaleStore();
+  console.log('strings --------------- >>> ', langID, locale, rtl, strings);
 
   function loginUser() {
     setLoading(true);
@@ -74,7 +77,9 @@ const SignIn = ({navigation}: Props) => {
 
           {/* ============ >>> Login To COntinue Container <<< ============ */}
           <View style={styles.loginToContinueCont}>
-            <Text style={styles.loginToContinueText}>Login to continue</Text>
+            <Text style={styles.loginToContinueText}>
+              {strings?.login} to continue
+            </Text>
           </View>
 
           {/* ================= >>> Input Fields <<<< ================= */}

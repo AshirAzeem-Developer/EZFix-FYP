@@ -27,14 +27,7 @@ const ProfileSettingOption: React.FC<props> = ({
         <Image source={optionIcon} style={styles.leftIconStyles} />
         <Text style={styles.settingOptionText}>{optionText}</Text>
       </View>
-      <Image
-        source={icons.ARROW}
-        style={
-          {
-            // transform: [{rotateY: '180deg' : '0deg'}],
-          }
-        }
-      />
+      <Image source={icons.ARROW} />
     </TouchableOpacity>
   );
 };

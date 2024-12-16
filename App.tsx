@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import RootNavigator from './src/navigators/navigator.root';
 
 //store
@@ -10,17 +10,23 @@ import ToastHandler from './src/components/Main/ToastHandler';
 import useOneSignalPush from './src/hooks/useOneSignalPush';
 import useHandleDeepLink from './src/hooks/useHandleDeepLink';
 import {NavigationContainer} from '@react-navigation/native';
+import CustomSplash from './src/components/CustomSplah';
 
 const App = () => {
+  const [show, setshow] = useState(true);
   return (
     <KeyboardProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
-            <DataWrapper
-              children={<RootNavigator />}
-              key={Math.random().toString()}
-            />
+            {show ? (
+              <CustomSplash show={show} onEnd={() => setshow(false)} />
+            ) : (
+              <DataWrapper
+                children={<RootNavigator />}
+                key={Math.random().toString()}
+              />
+            )}
             {/* <RootNavigator /> */}
           </NavigationContainer>
         </PersistGate>
