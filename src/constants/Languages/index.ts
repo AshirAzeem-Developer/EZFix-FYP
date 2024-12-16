@@ -4,12 +4,12 @@ export const arData = {
   forgotPassword: 'هل نسيت كلمة المرور؟',
   rememberMe: 'تذكرني',
   phoneNumber: 'رقم الهاتف',
-  logIn: 'تسجيل الدخول',
+  Login: 'تسجيل الدخول',
   Catrgories: 'زمرے',
   TopRatedSellers: 'اعلی درجے کے سیلرز',
 };
 export const enData = {
-  login: 'Log In',
+  Login: 'Log In',
   password: 'Password',
   forgotPassword: 'Forgot Password ?',
   rememberMe: 'Remember Me',

@@ -96,27 +96,41 @@ const Approved = ({navigation}) => {
 
   console.log('User Id:', userId);
 
-
   // jobOrders?.data?.forEach(job => {
   //   console.log('Job ID:', job.id);
   // });
-  
-   
+
   const SeekerView = () => {
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
         {jobOrders.data?.length > 0 ? (
-          
           <FlatList
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
             data={jobOrders?.data}
+            ListEmptyComponent={
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: sizes.HEIGHT * 0.3,
+                }}>
+                <Text
+                  style={{
+                    fontSize: sizes.WIDTH * 0.05,
+                    color: colors.BLACK,
+                  }}>
+                  {'No Approved Jobs'}
+                </Text>
+              </View>
+            }
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={styles.providerscard}>
-                 <Text style={{color:'black'}}>Job ID: {item.id}</Text>
+                {/* <Text style={{color:'black'}}>Job ID: {item.id}</Text> */}
                 <View style={styles.provider}>
                   <View
                     style={{
@@ -168,7 +182,9 @@ const Approved = ({navigation}) => {
                     <View>
                       <Button
                         onPress={() => {
-                          navigation.navigate('StartStopWorking' ,{ jobId: item.id});
+                          navigation.navigate('StartStopWorking', {
+                            jobId: item.id,
+                          });
                         }}
                         text="Start Working"
                         bgcolor={'#2E7D32'}
@@ -474,6 +490,23 @@ const Approved = ({navigation}) => {
         enterAnimation={FadeInDown.duration(500)}>
         {jobOrders.data?.length > 0 ? (
           <FlatList
+            ListEmptyComponent={
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: sizes.HEIGHT * 0.3,
+                }}>
+                <Text
+                  style={{
+                    fontSize: sizes.WIDTH * 0.05,
+                    color: colors.BLACK,
+                  }}>
+                  {'No Approved Jobs'}
+                </Text>
+              </View>
+            }
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
             data={jobOrders?.data}

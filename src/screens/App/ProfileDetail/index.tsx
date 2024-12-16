@@ -137,7 +137,7 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
               }}
             />
             <View style={styles.provider}>
-              <Text style={styles.name}>{providerData.name}</Text>
+              <Text style={styles.name}>{providerData?.name}</Text>
               <View style={styles.divider} />
               {category && <Text style={styles.category}>{category}</Text>}
             </View>
@@ -148,7 +148,11 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
               {icon: icons.USERS, label: '55+', description: 'Jobs'},
               {icon: icons.MEDAL, label: '10+', description: 'Experience'},
               {icon: icons.STAR_RATE, label: '4.6', description: 'Ratings'},
-              {icon: icons.MESSAGES, label: '1,872', description: 'Reviews'},
+              {
+                icon: icons.MESSAGES,
+                label: reviews?.data?.length,
+                description: 'Reviews',
+              },
             ].map((item, index) => (
               <View key={index}>
                 <Image source={item.icon} style={styles.socialIcon} />
@@ -165,7 +169,7 @@ const ProfileDetail: React.FC<Props> = ({route}) => {
           <View>
             <Text style={styles.reviewsText}>Reviews</Text>
             <FlatList
-              data={reviews?.data.filter(
+              data={reviews?.data?.filter(
                 (item: any) => item.attributes?.user_review?.data !== null,
               )} // Filter out null reviews
               keyExtractor={item => item.id.toString()}

@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Text,
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
   View,
   Image,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 
-//local imports
+// Local imports
 import icons from '../../../../assets/icons';
 import {ParentView} from '../../../../components/common/ParentView/ParentView';
 import useStyles from './style';
@@ -32,152 +31,103 @@ const Cancel = ({route, navigation}) => {
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
   const [userSkillIds, setUserSkillIds] = useState<number[]>([]);
-  const [userSkills, setUserSkills] = useState<any[]>([]);
   const [jobOrders, setJobOrders] = useState<any>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = useCallback(() => {
+    setLoading(true);
     getSkillsFromUserId(userId, userToken)
       .then(res => {
         const skills = res.data.skills || [];
-        setUserSkills(skills);
         const skillIds = skills.map((skill: any) => skill.id);
-        setUserSkillIds(skillIds); // Update skill IDs state
-        {
-          userType !== 'seeker'
-            ? getJobOrders(skillIds, userToken, 'Cancelled')
-                .then(res => {
-                  console.log(
-                    'Cancelled Job Orders',
-                    JSON.stringify(res.data.data, null, 2),
-                  );
-                  setJobOrders(res.data);
-                })
-                .catch(err => {
-                  console.log('Error in fetching Approved Job Orders', err);
-                })
-            : fetchSeekerBookings();
+        setUserSkillIds(skillIds);
+
+        if (userType !== 'seeker') {
+          getJobOrders(skillIds, userToken, 'Cancelled')
+            .then(res => {
+              setJobOrders(res.data);
+            })
+            .catch(err => {
+              console.error('Error fetching job orders:', err);
+            })
+            .finally(() => setLoading(false));
+        } else {
+          fetchSeekerBookings();
         }
       })
       .catch(err => {
-        console.log('Error fetching user skills:', err);
+        console.error('Error fetching user skills:', err);
+        setLoading(false);
       });
-  }, []);
+  }, [userId, userToken, userType]);
 
-  function fetchSeekerBookings() {
+  const fetchSeekerBookings = useCallback(() => {
     getServiceSeekerBooking(userId, 'Cancelled', userToken)
       .then(res => {
-        console.log(
-          'Service Seeker Cancelled  Bookings',
-          JSON.stringify(res.data, null, 2),
-        );
         setJobOrders(res.data);
       })
       .catch(err => {
-        console.log('Error fetching Service Seeker Bookings', err);
-      });
-  }
+        console.error('Error fetching seeker bookings:', err);
+      })
+      .finally(() => setLoading(false));
+  }, [userId, userToken]);
 
-  const SeekerView = () => {
-    return (
-      <ParentView
-        style={styles.container}
-        enterAnimation={FadeInDown.duration(500)}>
-        <View style={{flex: 1}}>
-          {jobOrders.data?.length > 0 ? (
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-              data={jobOrders?.data}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({item}) => (
-                <View>
-                  <View style={styles.providerscard}>
-                    <View style={styles.provivder}>
-                      <View>
-                        <Image
-                          source={{
-                            uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
-                          }}
-                          style={styles.providerimg}
-                        />
-                      </View>
-                      <View style={styles.items}>
-                        <Text style={styles.job}>
-                          {
-                            item?.attributes?.skill?.data?.attributes?.category
-                              ?.data?.attributes?.name
-                          }
-                        </Text>
-                        <Text style={styles.work}>
-                          {item?.attributes?.description}
-                        </Text>
-                        <View style={styles.time}>
-                          <Image source={icons.CALENDAR} style={styles.clock} />
-                          <Text style={styles.timer}>
-                            {item?.attributes?.date}
-                          </Text>
-                        </View>
-                        <View style={styles.statuscontainer}>
-                          <Text style={{color: colors.BLACK}}>Status : </Text>
-                          <Text style={styles.status}>
-                            {item?.attributes?.jobStatus}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              )}
-            />
-          ) : (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: sizes.WIDTH * 0.05,
-                  color: colors.BLACK,
-                }}>
-                No Cancelled Jobs
-              </Text>
-            </View>
-          )}
-        </View>
-      </ParentView>
-    );
-  };
-  const ProviderView = () => {
-    return (
-      <ParentView
-        style={styles.container}
-        enterAnimation={FadeInDown.duration(500)}>
-        {jobOrders.data?.length > 0 ? (
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
-            data={jobOrders?.data}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View
-                style={[
-                  styles.providerscard,
-                  {
-                    backgroundColor: 'white',
-                    elevation: 5,
-                  },
-                ]}>
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchData();
+    setRefreshing(false);
+  }, [fetchData]);
+
+  const renderEmptyComponent = () => (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text style={{fontSize: sizes.WIDTH * 0.05, color: colors.BLACK}}>
+        {'No Cancelled Jobs'}
+      </Text>
+    </View>
+  );
+
+  const renderLoading = () => (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator size="large" color={colors.PRIMARY} />
+    </View>
+  );
+
+  const SeekerView = () => (
+    <ParentView
+      style={styles.container}
+      enterAnimation={FadeInDown.duration(500)}>
+      {loading ? (
+        renderLoading()
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: sizes.HEIGHT * 0.1,
+            flexGrow: 1,
+          }}
+          data={jobOrders?.data}
+          ListEmptyComponent={renderEmptyComponent}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
+            <View>
+              <View style={styles.providerscard}>
                 <View style={styles.provivder}>
-                  <View>
-                    <Image
-                      source={{
-                        uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
-                      }}
-                      style={styles.providerViewimg}
-                    />
-                  </View>
+                  <Image
+                    source={{
+                      uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
+                    }}
+                    style={styles.providerimg}
+                  />
                   <View style={styles.items}>
                     <Text style={styles.job}>
                       {
@@ -185,120 +135,98 @@ const Cancel = ({route, navigation}) => {
                           ?.data?.attributes?.name
                       }
                     </Text>
-                    <Text style={styles.work} numberOfLines={2}>
+                    <Text style={styles.work}>
                       {item?.attributes?.description}
                     </Text>
                     <View style={styles.time}>
-                      <Image source={icons.Clock} style={styles.clock} />
+                      <Image source={icons.CALENDAR} style={styles.clock} />
                       <Text style={styles.timer}>{item?.attributes?.date}</Text>
                     </View>
-                    <TouchableOpacity
-                      style={styles.statuscontainer}
-                      onPress={() => {
-                        navigation.navigate('WorkDetails', {
-                          title: 'Work Description',
-                          data: item,
-                        });
-                      }}>
-                      <Text
-                        style={{
-                          color: colors.BLACK,
-                          textDecorationLine: 'underline',
-                        }}>
-                        View Details
+                    <View style={styles.statuscontainer}>
+                      <Text style={{color: colors.BLACK}}>Status : </Text>
+                      <Text style={styles.status}>
+                        {item?.attributes?.jobStatus}
                       </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                {/* =========== >> Seeker Container << ================== */}
-                <View>
-                  <View
-                    style={{
-                      backgroundColor: 'rgba(0,128,0,0.2)',
-                      width: sizes.WIDTH * 0.9,
-                      height: sizes.HEIGHT * 0.14,
-                      marginBottom: sizes.HEIGHT * 0.02,
-                      marginHorizontal: sizes.WIDTH * 0.02,
-                      alignSelf: 'center',
-                      borderRadius: sizes.WIDTH * 0.02,
-                    }}>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        marginLeft: sizes.WIDTH * 0.02,
-                      }}>
-                      <Image
-                        source={{
-                          uri: `${apiEndPoints.BASE_URL}${item?.attributes?.service_seeker?.data?.attributes?.profileImage?.data?.attributes?.url}`,
-                        }}
-                        style={{
-                          width: sizes.WIDTH * 0.14,
-                          height: sizes.HEIGHT * 0.07,
-                          borderRadius: sizes.WIDTH * 1,
-                          margin: sizes.WIDTH * 0.015,
-                          marginTop: sizes.WIDTH * 0.03,
-                        }}
-                      />
-                      <View
-                        style={{
-                          flexDirection: 'column',
-                          alignItems: 'flex-start',
-                          justifyContent: 'center',
-                          marginLeft: sizes.WIDTH * 0.03,
-                        }}>
-                        <Text
-                          style={{
-                            fontSize: sizes.WIDTH * 0.045,
-                            fontWeight: 'bold',
-                          }}>
-                          {
-                            item?.attributes?.service_seeker?.data?.attributes
-                              ?.name
-                          }
-                        </Text>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'flex-start',
-                          }}>
-                          <Image
-                            source={icons.Location}
-                            style={{
-                              width: sizes.WIDTH * 0.03,
-                              height: sizes.HEIGHT * 0.02,
-                              marginTop: sizes.WIDTH * 0.007,
-                            }}
-                          />
-                          <Text
-                            style={{
-                              marginLeft: sizes.WIDTH * 0.01,
-                            }}>
-                            38 Chestnut StreetStaunton
-                          </Text>
-                        </View>
-                      </View>
                     </View>
                   </View>
                 </View>
               </View>
-            )}
-          />
-        ) : (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text>No Cancelled Bookings Found</Text>
-          </View>
-        )}
-      </ParentView>
-    );
-  };
+            </View>
+          )}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        />
+      )}
+    </ParentView>
+  );
+
+  const ProviderView = () => (
+    <ParentView
+      style={styles.container}
+      enterAnimation={FadeInDown.duration(500)}>
+      {loading ? (
+        renderLoading()
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: sizes.HEIGHT * 0.1,
+            flexGrow: 1,
+          }}
+          data={jobOrders?.data}
+          keyExtractor={item => item.id.toString()}
+          ListEmptyComponent={renderEmptyComponent}
+          renderItem={({item}) => (
+            <View style={styles.providerscard}>
+              <View style={styles.provivder}>
+                <Image
+                  source={{
+                    uri: `${apiEndPoints.BASE_URL}${item?.attributes?.skill?.data?.attributes?.category?.data?.attributes?.icon?.data?.attributes?.url}`,
+                  }}
+                  style={styles.providerViewimg}
+                />
+                <View style={styles.items}>
+                  <Text style={styles.job}>
+                    {
+                      item?.attributes?.skill?.data?.attributes?.category?.data
+                        ?.attributes?.name
+                    }
+                  </Text>
+                  <Text style={styles.work} numberOfLines={2}>
+                    {item?.attributes?.description}
+                  </Text>
+                  <View style={styles.time}>
+                    <Image source={icons.Clock} style={styles.clock} />
+                    <Text style={styles.timer}>{item?.attributes?.date}</Text>
+                  </View>
+                  <TouchableOpacity
+                    style={styles.statuscontainer}
+                    onPress={() => {
+                      navigation.navigate('WorkDetails', {
+                        title: 'Work Description',
+                        data: item,
+                      });
+                    }}>
+                    <Text
+                      style={{
+                        color: colors.BLACK,
+                        textDecorationLine: 'underline',
+                      }}>
+                      View Details
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          )}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        />
+      )}
+    </ParentView>
+  );
 
   return userType === 'seeker' ? <SeekerView /> : <ProviderView />;
 };

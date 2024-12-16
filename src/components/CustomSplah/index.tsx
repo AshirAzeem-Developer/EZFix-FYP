@@ -20,7 +20,7 @@ export default function CustomSplash({
   const {styles, colors, sizes} = useStyles();
   const store = useLocaleStore();
 
-  console.log('Store ====> ', store);
+  // console.log('Store ====> ', store);
 
   const [fadeAnim] = useState(new Animated.Value(1));
   const HideCustomSplash = (): void => {

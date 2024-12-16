@@ -43,17 +43,15 @@ const ProviderHome = () => {
       });
   }, [userId, userToken]); // Ensure this effect runs when userId or userToken changes
 
-  // Second effect: Fetch job orders when skill IDs are updated
   useEffect(() => {
-    // console.log('Fetching job orders for skill IDs:', userSkillIds);
     if (userSkillIds.length > 0) {
       getJobOrdersBySkills(userSkillIds, userToken)
         .then(res => {
           setJobOrders(res.data || {});
-          // console.log(
-          //   'Job orders by user skills:',
-          //   JSON.stringify(res.data.meta.pagination.total, null, 2),
-          // );
+          console.log(
+            'Job orders by user skills:',
+            JSON.stringify(res.data.meta.pagination.total, null, 2),
+          );
         })
         .catch(err => {
           console.log(

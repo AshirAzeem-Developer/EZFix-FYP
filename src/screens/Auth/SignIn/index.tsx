@@ -76,7 +76,7 @@ const SignIn = ({navigation}: Props) => {
         {/* ============ >>> Login To COntinue Container <<< ============ */}
         <View style={styles.loginToContinueCont}>
           <Text style={styles.loginToContinueText}>
-            {strings?.login} to continue
+            {strings?.Login} to continue
           </Text>
         </View>
 
