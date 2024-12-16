@@ -44,16 +44,16 @@ export default function Language({navigation}: any) {
     },
     {
       langID: 2,
-      title: 'Arabic',
+      title: 'Urdu',
       icon: icons.URDU_ICON,
       rtl: true,
-      locale: 'AR',
+      locale: 'UR',
     },
   ];
   const [selectedLang, setSelectedLang] = useState<SelectLangItem>({
     langID: langID,
     title: langTitle,
-    icon: locale == 'AR' ? icons.URDU_ICON : icons.ENG_ICON,
+    icon: locale == 'UR' ? icons.URDU_ICON : icons.ENG_ICON,
     rtl: rtl ? rtl : false,
     locale: locale,
   });
@@ -62,17 +62,15 @@ export default function Language({navigation}: any) {
       console.log('Already selected', locale, lang.locale);
       return;
     }
-    console.log('lang ITEM ---------- >> ', lang);
+
     setSelectedLang(lang);
     dispatch(
       setLocale({langID: lang.langID, locale: lang.locale, rtl: lang.rtl}),
     );
     I18nManager.forceRTL(lang.rtl);
-    if (lang.rtl != rtl) {
-      setTimeout(() => {
-        RNRestart.restart();
-      }, 1000);
-    }
+    setTimeout(() => {
+      RNRestart.restart();
+    }, 1000);
   };
   return (
     <ParentView
@@ -101,6 +99,8 @@ export default function Language({navigation}: any) {
       </View>
       <FlatList
         data={languages}
+        extraData={[selectedLang]}
+        // keyExtractor={(item, index) => index.toString() + 'language'}
         renderItem={({item}) => (
           <LangSelectItem
             title={item.title}

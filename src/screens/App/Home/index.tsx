@@ -24,8 +24,6 @@ const Home: React.FC<props> = ({navigation}) => {
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
   const {strings, langID, locale, rtl} = useLocaleStore();
 
-  console.log('strings --------------- >>> ', langID, locale, rtl, strings);
-
   interface RootState {
     user: {
       user: {
@@ -79,7 +77,9 @@ const Home: React.FC<props> = ({navigation}) => {
         {/* -----------------------Providers---------------------- */}
         <View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.topRatedSellerHeading}>Top Rated Sellers</Text>
+            <Text style={styles.topRatedSellerHeading}>
+              {strings?.TopRatedSellers || 'Top Rated Sellers'}
+            </Text>
           </View>
           <TopProviderCards />
         </View>

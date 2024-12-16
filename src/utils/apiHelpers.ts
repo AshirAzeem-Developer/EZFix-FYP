@@ -5,13 +5,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import api from './api';
 import endPoints from '../constants/apiEndPoints';
 import {arData, enData} from '../constants/Languages';
+import ErrorToastMessage from '../components/AppToast/ErrorToastMessage';
+import {getResourceLocalization} from './ApiCall';
 // getLocales
 export const useLocalizationsRecourses = () => {
   const {langID, rtl, locale} = useLocaleStore();
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const [lastLanguageId, setLastLanguageId] = useState(-1);
-  const [error, setError] = useState('');
+  const userToken = useSelector((state: any) => state?.user?.user?.jwt);
+
   interface LangType {
     ShortName: string;
     resources: any;
@@ -26,31 +27,52 @@ export const useLocalizationsRecourses = () => {
     // }
     // if (loading) return;
     // setLastLanguageId(langID);
-    api
-      .get<LangType>(`${endPoints.LOCALIZATION_RESOURCES}/${langID}`)
-      .then(([response, error]: any) => {
-        // setIsLocaleLoaded(true);
-        console.log('locale data', JSON.stringify(response, null, 2));
-        if (error) {
-          // notify.error(error.responseMessage);
-          return;
-        }
-        if (response?.Success) {
-          // setLastLanguageId(langID);
-          const data = response;
+    // api
+    //   .get<LangType>(
+    //     `${endPoints.LOCALIZATION_RESOURCES}?filters[language_id][$eq]=${langID}`,
+    //   )
+    //   .then(([response, error]: any) => {
+    //     // setIsLocaleLoaded(true);
+    //     console.log('locale data', JSON.stringify(response, null, 2));
+    //     if (error) {
+    //       ErrorToastMessage('Error while fetching localizations');
+    //       return;
+    //     }
+    //     if (response?.Success) {
+    //       // setLastLanguageId(langID);
+    //       const data = response;
+
+    //     }
+    //   });
+
+    console.log('---------sssssssssssss------------>', rtl, userToken);
+
+    getResourceLocalization(rtl ? 2 : 1, userToken)
+      .then(res => {
+        if (res) {
+          console.log(
+            'Response of Localization Api ============ >> ',
+            JSON.stringify(res.data, null, 2),
+          );
           dispatch(
             setLangData({
-              strings: locale == 'AR' ? arData : enData,
-              langID: data.Data.LanguageId,
-              locale: data.Data.ShortName,
-              localizations: data.Data.Localizations,
-              langTitle: data.Data.Name,
+              strings: res?.data?.attributes?.resources,
+              langID: res?.data?.attributes?.language_id,
+              locale: res?.data?.attributes?.LangShortName,
+              localizations: res?.data?.attributes?.resources,
+              langTitle: res?.data?.attributes?.language_name,
               rtl: rtl,
             }),
           );
         }
+      })
+      .catch(err => {
+        console.log(
+          'Error in fetching localization data',
+          JSON.stringify(err, null, 2),
+        );
       });
-  }, [langID, loading]);
+  }, [langID, userToken]);
   // return {
   //   loading,
   //   error,

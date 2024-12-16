@@ -45,6 +45,7 @@ export const localeSlice = createSlice({
 });
 export const {setLangData, setLocale} = localeSlice.actions;
 export default localeSlice.reducer;
+
 export const useLocaleStore = (): LocaleType => {
   const locale = useSelector((state: any) => state.locale);
   return locale;

@@ -28,7 +28,6 @@ const SignIn = ({navigation}: Props) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const {strings, langID, locale, rtl} = useLocaleStore();
-  console.log('strings --------------- >>> ', langID, locale, rtl, strings);
 
   function loginUser() {
     setLoading(true);

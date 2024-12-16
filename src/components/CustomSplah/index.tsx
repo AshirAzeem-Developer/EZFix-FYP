@@ -19,7 +19,6 @@ export default function CustomSplash({
   const {styles, colors, sizes} = useStyles();
 
   const [fadeAnim] = useState(new Animated.Value(1));
-  useLocalizationsRecourses();
   const HideCustomSplash = (): void => {
     Animated.timing(fadeAnim, {
       toValue: 0,
@@ -36,6 +35,8 @@ export default function CustomSplash({
       }, 3000);
     }
   }, [show]);
+
+  useLocalizationsRecourses();
 
   return show ? (
     <Animated.View style={[styles.container, {opacity: fadeAnim}]}>
