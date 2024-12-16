@@ -53,4 +53,9 @@ export default {
   STAR_RATE: require('./starRate.png'),
   MESSAGES: require('./messages.png'),
   DUMMY_AVATAR: require('./dummayAvatar.png'),
+  ENG_ICON: require('./EngLangIcon.png'),
+  URDU_ICON: require('./UrduLangIcon.png'),
+  FILLED_CHECK: require('./FilledCheck.png'),
+  NON_FILLED_CHECK: require('./NonFilledChecked.png'),
+  LANG_ICON: require('./LangIcon.png'),
 };

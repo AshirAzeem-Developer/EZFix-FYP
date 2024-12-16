@@ -15,4 +15,5 @@ export default {
   EXPERIENCE: '/experiences',
   LOCATIONS: '/locations',
   Reviews: '/user-reviews',
+  LOCALIZATION_RESOURCES: '/localization-resources',
 };

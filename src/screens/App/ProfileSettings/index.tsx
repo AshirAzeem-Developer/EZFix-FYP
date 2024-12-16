@@ -119,12 +119,18 @@ export default function ProfileSettings({navigation}: Props) {
 
     {
       optionId: 5,
+      optionIcon: icons.LANG_ICON,
+      optionText: 'Language',
+      onPressAction: () => navigation.navigate('Language'),
+    },
+    {
+      optionId: 6,
       optionIcon: icons.DELETE,
       optionText: 'Delete Account',
       onPressAction: () => setIsDeleteAccountModalOpen(true), // Attach delete handler
     },
     {
-      optionId: 6,
+      optionId: 7,
       optionIcon: icons.ARROW_RIGHT,
       optionText: 'Logout',
       onPressAction: () => setIsopen(true),

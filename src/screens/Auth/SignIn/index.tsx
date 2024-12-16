@@ -19,6 +19,7 @@ import {postLogin} from '../../../utils/ApiCall';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../../../navigators/authStack';
 import images from '../../../assets/images';
+import {useLocaleStore} from '../../../store/reducer/locale';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
 
@@ -26,6 +27,7 @@ const SignIn = ({navigation}: Props) => {
   const {styles, colors, sizes} = useStyles();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const {strings, langID, locale, rtl} = useLocaleStore();
 
   function loginUser() {
     setLoading(true);
@@ -34,7 +36,7 @@ const SignIn = ({navigation}: Props) => {
       password: password,
     })
       .then(res => {
-        console.log('res', res?.data);
+        console.log('res', JSON.stringify(res?.data, null, 2));
         dispatch(setUser(res.data));
         showSuccess('Login Success');
         setLoading(false);
@@ -56,94 +58,94 @@ const SignIn = ({navigation}: Props) => {
   // const user = useSelector(state => console.log(state));
   return (
     <>
-      <>
-        <SafeAreaView style={styles.container}>
-          {/* =============== >>>> Header <<< =============== */}
-          <View style={styles.headerRightViewStyles}>
-            <Text style={styles.nowHereText}>New Here ? </Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('SignUpCheckPhone')}>
-              <Text style={styles.heaaderSignupText}>Sign up</Text>
-            </TouchableOpacity>
-          </View>
+      <SafeAreaView style={styles.container}>
+        {/* =============== >>>> Header <<< =============== */}
+        <View style={styles.headerRightViewStyles}>
+          <Text style={styles.nowHereText}>New Here ? </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignUpCheckPhone')}>
+            <Text style={styles.heaaderSignupText}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
 
-          {/* =============== >>>> Logo Container <<< =============== */}
-          <View style={styles.logoImgCont}>
-            <Image source={icons.Logo} style={styles.logoImg} />
-          </View>
+        {/* =============== >>>> Logo Container <<< =============== */}
+        <View style={styles.logoImgCont}>
+          <Image source={icons.Logo} style={styles.logoImg} />
+        </View>
 
-          {/* ============ >>> Login To COntinue Container <<< ============ */}
-          <View style={styles.loginToContinueCont}>
-            <Text style={styles.loginToContinueText}>Login to continue</Text>
-          </View>
+        {/* ============ >>> Login To COntinue Container <<< ============ */}
+        <View style={styles.loginToContinueCont}>
+          <Text style={styles.loginToContinueText}>
+            {strings?.login} to continue
+          </Text>
+        </View>
 
-          {/* ================= >>> Input Fields <<<< ================= */}
+        {/* ================= >>> Input Fields <<<< ================= */}
 
-          <View style={styles.inputFieldsCont}>
-            <TextInputCustom
-              leftIcon={icons.MAIL}
-              placeHolderTxt="Email or Phone"
-              value={username}
-              handleOnChange={setUsername}
-              errorHandler={[
-                {
-                  errorText: 'Invalid Email Address',
-                  validator: validateEmail,
-                },
-              ]}
-              // leftIconAction={() => console.log('left icon')}
-            />
-            <TextInputCustom
-              leftIcon={icons.SHIELD_SEC}
-              isShowRightIcon
-              placeHolderTxt="Password"
-              value={password}
-              handleOnChange={newValue => {
-                setPassword(newValue);
-              }}
-              isPassword={isShowNewPassword}
-              errorHandler={[
-                {
-                  errorText: 'Invalid Password',
-                  validator: validatePassword,
-                },
-              ]}
-              rightIcon={isShowNewPassword ? images.crossEye : images.eyeOpen}
-              rightIconAction={() => {
-                setIsNewShowPassword(preVale => !preVale);
-              }}
-            />
-          </View>
-          {/* =========== >>>> Button <<<<<========== */}
-          <View>
-            <Button
-              disabled={username.length === 0 || password.length === 0}
-              text="Log in"
-              bgcolor={
-                username.length === 0 || password.length === 0
-                  ? colors.GRAY
-                  : colors.PRIMARY
-              }
-              btnStyles={{width: sizes.WIDTH * 0.9}}
-              textColor="#ffffff"
-              onPress={() => loginUser()}
-              loading={loading}
-            />
-          </View>
-          {/* ==================== >>> Forgot Password <<< ==================== */}
-          <View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ForgetPassword')}>
-              <Text style={styles.forgotPass}>Forgot Password ?</Text>
-            </TouchableOpacity>
-          </View>
-
-          <CheckInternet
-            isConnected={isConnected}
-            setisConnected={setisConnected}
+        <View style={styles.inputFieldsCont}>
+          <TextInputCustom
+            leftIcon={icons.MAIL}
+            placeHolderTxt="Email or Phone"
+            value={username}
+            handleOnChange={setUsername}
+            errorHandler={[
+              {
+                errorText: 'Invalid Email Address',
+                validator: validateEmail,
+              },
+            ]}
+            // leftIconAction={() => console.log('left icon')}
           />
-        </SafeAreaView>
-      </>
+          <TextInputCustom
+            leftIcon={icons.SHIELD_SEC}
+            isShowRightIcon
+            placeHolderTxt="Password"
+            value={password}
+            handleOnChange={newValue => {
+              setPassword(newValue);
+            }}
+            isPassword={isShowNewPassword}
+            errorHandler={[
+              {
+                errorText: 'Invalid Password',
+                validator: validatePassword,
+              },
+            ]}
+            rightIcon={isShowNewPassword ? images.crossEye : images.eyeOpen}
+            rightIconAction={() => {
+              setIsNewShowPassword(preVale => !preVale);
+            }}
+          />
+        </View>
+        {/* =========== >>>> Button <<<<<========== */}
+        <View>
+          <Button
+            disabled={username.length === 0 || password.length === 0}
+            text="Log in"
+            bgcolor={
+              username.length === 0 || password.length === 0
+                ? colors.GRAY
+                : colors.PRIMARY
+            }
+            btnStyles={{width: sizes.WIDTH * 0.9}}
+            textColor="#ffffff"
+            onPress={() => loginUser()}
+            loading={loading}
+          />
+        </View>
+        {/* ==================== >>> Forgot Password <<< ==================== */}
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ForgetPassword')}>
+            <Text style={styles.forgotPass}>Forgot Password ?</Text>
+          </TouchableOpacity>
+        </View>
+
+        <CheckInternet
+          isConnected={isConnected}
+          setisConnected={setisConnected}
+        />
+      </SafeAreaView>
     </>
   );
 };

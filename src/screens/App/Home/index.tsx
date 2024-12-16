@@ -14,6 +14,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescr
 
 import {AppStackParamsList} from '../../../navigators/navigator.seeker';
 import {useSelector} from 'react-redux';
+import {useLocaleStore} from '../../../store/reducer/locale';
 
 //third party library
 type props = NativeStackScreenProps<AppStackParamsList>;
@@ -21,6 +22,10 @@ type props = NativeStackScreenProps<AppStackParamsList>;
 const Home: React.FC<props> = ({navigation}) => {
   const {styles, colors, sizes} = useStyles();
   const [notificationsAvailable, setNotificationsAvailable] = useState(true);
+  const {strings, langID, locale, rtl} = useLocaleStore();
+
+  console.log('Strings ====> ', strings, langID, locale, rtl);
+
   interface RootState {
     user: {
       user: {
@@ -62,7 +67,9 @@ const Home: React.FC<props> = ({navigation}) => {
           />
         </View> */}
         <View>
-          <Text style={styles.categoryheading}>Categories</Text>
+          <Text style={styles.categoryheading}>
+            {strings?.Catrgories || 'Categories'}
+          </Text>
         </View>
         {/* -----------------------Categories---------------------- */}
         <View style={styles.categories}>
@@ -72,7 +79,9 @@ const Home: React.FC<props> = ({navigation}) => {
         {/* -----------------------Providers---------------------- */}
         <View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.topRatedSellerHeading}>Top Rated Sellers</Text>
+            <Text style={styles.topRatedSellerHeading}>
+              {strings?.TopRatedSellers || 'Top Rated Sellers'}
+            </Text>
           </View>
           <TopProviderCards />
         </View>

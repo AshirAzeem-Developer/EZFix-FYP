@@ -388,11 +388,24 @@ export const updatePassoword = (token: string, userId: string, data: any) => {
     },
   });
 };
-export const  UserReview = (data: {}, token: any) => {
+export const UserReview = (data: {}, token: any) => {
   return apiRequest.post(`${apiEndPoint.Reviews}`, data, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
+};
+// ==================== >> Resource Localization Api << ======================
+
+export const getResourceLocalization = (langID: number, token: string) => {
+  return apiRequest.get(
+    `${apiEndPoint.LOCALIZATION_RESOURCES}?filters[language_id][$eq]=${langID}`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
 };

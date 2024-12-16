@@ -28,6 +28,7 @@ const useStyles = () => {
     leftContainer: {flexDirection: 'row', alignItems: 'center'},
     leftIconStyles: {
       width: sizes.WIDTH * 0.08,
+      height: sizes.WIDTH * 0.08,
       alignSelf: 'center',
       flexDirection: 'column',
       alignItems: 'center',
