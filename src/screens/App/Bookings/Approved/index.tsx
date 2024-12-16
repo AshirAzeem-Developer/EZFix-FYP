@@ -96,12 +96,19 @@ const Approved = ({navigation}) => {
 
   console.log('User Id:', userId);
 
+
+  // jobOrders?.data?.forEach(job => {
+  //   console.log('Job ID:', job.id);
+  // });
+  
+   
   const SeekerView = () => {
     return (
       <ParentView
         style={styles.container}
         enterAnimation={FadeInDown.duration(500)}>
         {jobOrders.data?.length > 0 ? (
+          
           <FlatList
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{paddingBottom: sizes.HEIGHT * 0.1}}
@@ -109,6 +116,7 @@ const Approved = ({navigation}) => {
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={styles.providerscard}>
+                 <Text style={{color:'black'}}>Job ID: {item.id}</Text>
                 <View style={styles.provider}>
                   <View
                     style={{
@@ -160,7 +168,7 @@ const Approved = ({navigation}) => {
                     <View>
                       <Button
                         onPress={() => {
-                          navigation.navigate('StartStopWorking');
+                          navigation.navigate('StartStopWorking' ,{ jobId: item.id});
                         }}
                         text="Start Working"
                         bgcolor={'#2E7D32'}

@@ -18,7 +18,7 @@ interface AddReviewScreenProps {
   navigation: any;
 }
 
-const AddReviewScreen: React.FC<AddReviewScreenProps> = ({ navigation }) => {
+const AddReviewScreen: React.FC<AddReviewScreenProps> = ({ navigation,route }) => {
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
@@ -27,7 +27,10 @@ const AddReviewScreen: React.FC<AddReviewScreenProps> = ({ navigation }) => {
   console.log(userId);
   console.log(userData);
   console.log(userToken);
+ const { JobId } = route.params; // Retrieve the jobId
+  console.log('Received Job ID:', JobId); // Log the jobId to confirm
 
+ 
   const handleStarPress = (selectedRating: number) => {
     setRating(selectedRating);
   };
@@ -41,10 +44,11 @@ const AddReviewScreen: React.FC<AddReviewScreenProps> = ({ navigation }) => {
     // Wrap data in "data" key
     const reviewData = {
       data: {
-        reviewBy:userData.name,
+        reviewBy:userData?.name,
         starNumber: rating,
         reviewDescription: comment,
-        state: 'Published',
+       
+        job_order:JobId
       },
     };
   
@@ -61,7 +65,9 @@ const AddReviewScreen: React.FC<AddReviewScreenProps> = ({ navigation }) => {
       navigation.navigate('Home');
     } catch (error) {
       if (error.response) {
-        console.error('Error Response:', error.response.data);
+        console.error('Error Details:', error.response.data.error.details.errors);
+      
+        
         Alert.alert('Error', `Failed to submit review: ${error.response.data.error.message || 'Unknown error'}`);
       } else if (error.request) {
         console.error('Error Request:', error.request);
