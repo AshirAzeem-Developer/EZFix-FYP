@@ -24,6 +24,7 @@ type TextInputCustomProps = {
   value: string;
   isShowRightIcon?: boolean;
   isPassword?: boolean;
+  editable?: boolean;
   //
   inputMode?: InputModeOptions;
   // functions
@@ -55,6 +56,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
   // bools
   isPassword,
   isShowRightIcon,
+  editable,
   // functions
   leftIconAction,
   rightIconAction,
@@ -110,6 +112,7 @@ const TextInputCustom: React.FC<TextInputCustomProps> = ({
             {width: !leftIcon ? '80%' : '70%'},
             textInputStyle,
           ]}
+          editable={editable}
           secureTextEntry={isPassword}
           placeholder={placeHolderTxt}
           placeholderTextColor={colors.GRAY}

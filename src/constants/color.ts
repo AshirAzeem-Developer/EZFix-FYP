@@ -37,5 +37,5 @@ export type Colors = typeof colorsDark;
 
 export const useColors = () => {
   // const color = useColorScheme();
-  return false ? colorsDark : colorsLight;
+  return false ? colorsLight : colorsLight;
 };

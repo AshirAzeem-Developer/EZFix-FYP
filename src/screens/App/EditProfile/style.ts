@@ -30,20 +30,19 @@ const useStyles = () => {
     },
     profileImageContainer: {
       marginTop: sizes.HEIGHT * 0.05,
-      justifyContent:"center",
-      
+      justifyContent: 'center',
     },
     nameContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-    
+
       marginHorizontal: sizes.WIDTH * 0.09,
       borderBottomWidth: sizes.HEIGHT * 0.001,
       borderColor: '#757575',
     },
     inputStyle: {
-    marginTop:sizes.HEIGHT*0.03
+      marginTop: sizes.HEIGHT * 0.03,
     },
     phoneNumContainer: {
       flexDirection: 'row',
@@ -110,6 +109,11 @@ const useStyles = () => {
       height: sizes.HEIGHT * 0.1,
 
       color: colors.GRAY,
+    },
+    loaderContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
   return {

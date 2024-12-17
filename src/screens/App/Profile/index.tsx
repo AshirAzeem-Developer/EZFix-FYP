@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -22,6 +22,7 @@ import {useSelector} from 'react-redux';
 import DropDown from '../../../components/DropDown';
 import apiEndPoints from '../../../constants/apiEndPoints';
 import {getUserById} from '../../../utils/ApiCall';
+import {useIsFocused} from '@react-navigation/native';
 
 type Props = NativeStackScreenProps<AppStackParamsList>;
 
@@ -30,6 +31,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
 
   const [userAllData, setUserAllData] = useState<any>({});
   const [isEnabled, setIsEnabled] = useState(false);
+  const isFocused = useIsFocused();
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   // ==== >> Defining type for Redux State << ====
@@ -60,29 +62,21 @@ const Profile: React.FC<Props> = ({navigation}) => {
   // console.log('USerType', userType);
   // console.log('User Data', JSON.stringify(userData, null, 2));
 
-  function GetUserALLData() {
+  const fetchUserData = useCallback(() => {
     getUserById(userToken, userId)
       .then(res => {
-        // console.log(
-        //   'I am the logged IN User Right Now ',
-        //   JSON.stringify(res.data, null, 2),
-        // );
         setUserAllData(res.data);
       })
       .catch(err => {
-        console.log('Error', err);
+        console.error('Error fetching user data:', err);
       });
-  }
+  }, [userToken, userId]);
+  // Fetch data whenever screen is focused
   useFocusEffect(
-    React.useCallback(() => {
-      GetUserALLData();
-    }, []),
+    useCallback(() => {
+      fetchUserData();
+    }, [fetchUserData]),
   );
-  useEffect(() => {
-    setTimeout(() => {
-      GetUserALLData();
-    }, 1000);
-  }, []);
 
   const SeekerView = () => {
     // console.log(
@@ -280,31 +274,6 @@ const Profile: React.FC<Props> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-
-            {/* =========== >>> Section 4 <<<< ============= */}
-            {/* <View style={styles.experienceContainer}>
-              <View style={styles.experienceChipContainer}>
-                <Text style={styles.expLabel}>Experience</Text>
-                <View style={styles.experienceChip}>
-                  <Text style={styles.chipText}>1+ Years</Text>
-                </View>
-              </View>
-              <View style={styles.divider} />
-              <View style={styles.refHeading}>
-                <View style={styles.refDivider} />
-                <Text style={styles.textSkill}>Skill</Text>
-                <View style={styles.clubSportsTextDivider} />
-                <Text style={styles.textSkill}>Technician</Text>
-              </View>
-              <Text style={styles.experienceTime}>Mar 2023 - Present...</Text>
-              <Text style={styles.textShortDesc}>Add a short description</Text>
-              <Text style={styles.expDesc}>
-                *Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi
-                dolor ex eum optio. Dolore eligendi quasi reiciendis!
-                Laudantium, voluptatum aliquam iure, et nemo eaque incidunt
-                sapiente qui ut ipsa libero!*
-              </Text>
-            </View> */}
 
             {/* =========== >>> Section 5 (Toggle) <<<< ============= */}
             <View style={styles.switchContainer}>
