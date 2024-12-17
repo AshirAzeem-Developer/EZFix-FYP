@@ -55,12 +55,7 @@ const Profile: React.FC<Props> = ({navigation}) => {
   const userId = useSelector((state: RootState) => state.user.user.user.id);
   const userToken = useSelector((state: any) => state?.user?.user?.jwt);
 
-  // console.log('I am the logged IN User Right Now  --------------- > ', userId);
-
   const userData = useSelector((state: RootState) => state.user.user.user);
-
-  // console.log('USerType', userType);
-  // console.log('User Data', JSON.stringify(userData, null, 2));
 
   const fetchUserData = useCallback(() => {
     getUserById(userToken, userId)

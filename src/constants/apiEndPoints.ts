@@ -16,4 +16,5 @@ export default {
   LOCATIONS: '/locations',
   Reviews: '/user-reviews',
   LOCALIZATION_RESOURCES: '/localization-resources',
+  UPLOAD: '/upload',
 };

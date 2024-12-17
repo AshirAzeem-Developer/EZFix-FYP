@@ -26,11 +26,12 @@ const useStyles = () => {
     upload: {
       position: 'relative',
       top: -sizes.WIDTH * 0.08,
-      right: -sizes.WIDTH * 0.15,
+      right: -sizes.WIDTH * 0.1,
     },
     profileImageContainer: {
       marginTop: sizes.HEIGHT * 0.05,
       justifyContent: 'center',
+      alignItems: 'center',
     },
     nameContainer: {
       flexDirection: 'row',
@@ -42,7 +43,12 @@ const useStyles = () => {
       borderColor: '#757575',
     },
     inputStyle: {
+      // backgroundColor: colors.RED,
       marginTop: sizes.HEIGHT * 0.03,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: sizes.HEIGHT * 0.02,
     },
     phoneNumContainer: {
       flexDirection: 'row',
@@ -114,6 +120,9 @@ const useStyles = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    inputContainer: {
+      paddingHorizontal: sizes.WIDTH * 0.05,
     },
   });
   return {

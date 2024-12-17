@@ -409,3 +409,13 @@ export const getResourceLocalization = (langID: number, token: string) => {
     },
   );
 };
+
+// ==================== >> Image Upload Api << ======================
+export const uploadImage = (token: string, formData: FormData) => {
+  return apiRequest.post(`https://dev-api.ezfix.bond/api/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Alert,
   Image,
@@ -15,7 +15,7 @@ import TextInputCustom from '../../../components/TextInputCustom';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showSuccess} from '../../../utils/helperFunction';
 import {useSelector} from 'react-redux';
-import {getUserById, updateUserById} from '../../../utils/ApiCall';
+import {getUserById, updateUserById, uploadImage} from '../../../utils/ApiCall';
 import apiEndPoints from '../../../constants/apiEndPoints';
 import {useFocusEffect} from '@react-navigation/native';
 import MyKeyboardAvoider from '../../../components/MyKeyboardAvoider';
@@ -26,22 +26,23 @@ export default function EditProfile({navigation}: any) {
   const userId = useSelector((state: any) => state?.user?.user?.user?.id);
 
   const [userAllData, setUserAllData] = useState<any>({});
-  const [Username, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isFetching, setIsFetching] = useState(true); // Loading state for initial fetch
+  const [isFetching, setIsFetching] = useState(true);
 
-  // Fetch user data from the API
+  // Fetch user data from Strapi
   const fetchUserData = useCallback(async () => {
-    setIsFetching(true); // Start loading
+    setIsFetching(true);
     try {
       const response = await getUserById(userToken, userId);
       const userData = response.data;
 
+      console.log('User Data ----- >> ', JSON.stringify(userData, null, 2));
       if (userData) {
         setUserAllData(userData);
-        setUserName(userData.name || '');
+        setUsername(userData.name || '');
         setPhoneNumber(userData.phoneNumber || '');
         setProfileImage(
           userData.profileImage?.url
@@ -52,31 +53,60 @@ export default function EditProfile({navigation}: any) {
     } catch (error) {
       console.error('Error fetching user data:', error);
     } finally {
-      setIsFetching(false); // Stop loading
+      setIsFetching(false);
     }
   }, [userToken, userId]);
 
-  // Fetch data when the screen is focused
   useFocusEffect(
     useCallback(() => {
       fetchUserData();
     }, [fetchUserData]),
   );
 
-  const pickImage = () => {
-    launchImageLibrary({mediaType: 'photo', includeBase64: false}, response => {
+  // Select and upload profile image
+  const pickImage = async () => {
+    launchImageLibrary({mediaType: 'photo'}, async response => {
       if (response.assets && response.assets.length > 0) {
-        const selectedImage = response.assets[0].uri;
-        setProfileImage(selectedImage);
+        const selectedImage = response.assets[0];
+        setProfileImage(selectedImage.uri);
+
+        // Upload the image to Strapi
+        try {
+          const formData = new FormData();
+          formData.append('files', {
+            uri: selectedImage.uri,
+            type: selectedImage.type,
+            name: selectedImage.fileName,
+          });
+
+          const uploadResponse = await uploadImage(userToken, formData);
+
+          console.log(
+            'Upload Response',
+            JSON.stringify(uploadResponse.data[0], null, 2),
+          );
+
+          if (uploadResponse.data[0]?.id) {
+            // Update user profile with uploaded image
+
+            await updateUserById(userToken, userId, {
+              profileImage: uploadResponse?.data[0]?.id,
+            });
+            showSuccess('Profile image updated successfully!');
+          }
+        } catch (error) {
+          Alert.alert('Error', 'Failed to upload image');
+          console.error('Image upload error:', error);
+        }
       }
     });
   };
 
   const handleSave = async () => {
-    setIsLoading(true); // Start loading on save
+    setIsLoading(true);
     try {
       const response = await updateUserById(userToken, userId, {
-        name: Username,
+        name: username,
         phoneNumber,
       });
 
@@ -89,11 +119,10 @@ export default function EditProfile({navigation}: any) {
     } catch (error) {
       console.error('Error updating profile:', error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
-  // Show loading indicator while fetching data
   if (isFetching) {
     return (
       <View style={styles.loaderContainer}>
@@ -105,10 +134,8 @@ export default function EditProfile({navigation}: any) {
   return (
     <ParentView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity>
-          <Text
-            style={{color: colors.RED, fontSize: sizes.WIDTH * 0.04}}
-            onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={{color: colors.RED, fontSize: sizes.WIDTH * 0.04}}>
             Cancel
           </Text>
         </TouchableOpacity>
@@ -124,62 +151,36 @@ export default function EditProfile({navigation}: any) {
       </View>
 
       <MyKeyboardAvoider style={{height: sizes.HEIGHT * 0.9}}>
-        <View style={[styles.profileImageContainer, {flexDirection: 'row'}]}>
-          <View>
-            <Image
-              style={{
-                width: sizes.WIDTH * 0.25,
-                height: sizes.WIDTH * 0.25,
-                borderRadius: sizes.WIDTH * 0.125,
-              }}
-              source={{
-                uri: profileImage || images.DUMMY_PROFILE,
-              }}
-            />
-            <TouchableOpacity style={styles.upload} onPress={pickImage}>
-              <Image source={images.UPLOAD_IMAGE_CAMERA} />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Name Input */}
-        <View style={styles.nameContainer}>
-          <Image source={images.person} />
-          <TextInputCustom
-            textInputStyle={styles.inputStyle}
-            handleOnChange={text => setUserName(text)}
-            value={Username}
-            placeHolderTxt="Enter your name"
-            showBottomBorder={false}
+        <View style={styles.profileImageContainer}>
+          <Image
+            style={{
+              width: sizes.WIDTH * 0.25,
+              height: sizes.WIDTH * 0.25,
+              borderRadius: sizes.WIDTH * 0.125,
+            }}
+            source={{
+              uri: profileImage || images.DUMMY_PROFILE,
+            }}
           />
+          <TouchableOpacity style={styles.upload} onPress={pickImage}>
+            <Image source={images.UPLOAD_IMAGE_CAMERA} />
+          </TouchableOpacity>
         </View>
 
-        {/* Phone Number Input */}
-        <View
-          style={{
-            ...styles.phoneNumContainer,
-            flexDirection: 'row',
-          }}>
-          <Text style={styles.phoneNumCode}>+92</Text>
+        <View style={styles.inputContainer}>
           <TextInputCustom
+            leftIcon={images.person}
             textInputStyle={styles.inputStyle}
-            handleOnChange={text => setPhoneNumber(text)}
+            handleOnChange={setUsername}
+            value={username}
+            placeHolderTxt="Enter your name"
+          />
+          <TextInputCustom
+            leftIcon={images.PHONE_CODE}
+            textInputStyle={styles.inputStyle}
+            handleOnChange={setPhoneNumber}
             value={phoneNumber}
             placeHolderTxt="Enter Phone Number"
-            showBottomBorder={false}
-          />
-        </View>
-
-        {/* Country Input */}
-        <View style={styles.phoneNumContainer}>
-          <Image source={images.FLAG} />
-          <TextInputCustom
-            handleOnChange={text => {}}
-            textInputStyle={styles.inputStyle}
-            value="Pakistan"
-            placeHolderTxt="Country"
-            editable={false} // Disable editing
-            showBottomBorder={false}
           />
         </View>
       </MyKeyboardAvoider>
